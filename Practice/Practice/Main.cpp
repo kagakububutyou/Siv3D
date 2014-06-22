@@ -1,18 +1,23 @@
 
 # include <Siv3D.hpp>
 
+/*
+		カラフルな円
+*/
+
 void Main()
 {
-		//		フォントサイズ
-		const Font font(30);
+	Graphics::SetBackground(Palette::White);
 
-		//		メインループ
-		while (System::Update())
+	while (System::Update())
+	{
+		for (int i = 0; i<36; i++)
 		{
-			//		文字描画
-			font(L"ようこそ、Siv3D の世界へ！").draw();
+			const double radian = Radians(i*10.0 + System::FrameCount());
 
-			//		マウス座標を中心に半径50の紅色の半透明の円の描画
-			Circle(Mouse::Pos(), 50).draw({ 255, 0, 0, 127 });
+			const Vec2 pos = Vec2(Sin(radian), -Cos(radian)) * 200 + Vec2(320, 240);
+
+			RectF(25, 25).setCenter(pos).rotate(radian).draw(HSV(i * 10));
 		}
+	}
 }
