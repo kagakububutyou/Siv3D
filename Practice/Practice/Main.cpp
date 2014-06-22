@@ -3,12 +3,16 @@
 
 void Main()
 {
-	const Font font(30);
+		//		フォントサイズ
+		const Font font(30);
 
-	while (System::Update())
-	{
-		font(L"ようこそ、Siv3D の世界へ！").draw();
+		//		メインループ
+		while (System::Update())
+		{
+			//		文字描画
+			font(L"ようこそ、Siv3D の世界へ！").draw();
 
-		Circle(Mouse::Pos(), 50).draw({ 255, 0, 0, 127 });
-	}
+			//		マウス座標を中心に半径50の紅色の半透明の円の描画
+			Circle(Mouse::Pos(), 50).draw({ 255, 0, 0, 127 });
+		}
 }
