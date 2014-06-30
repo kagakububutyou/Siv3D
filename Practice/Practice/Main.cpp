@@ -169,10 +169,10 @@ void DrawObject(OBJECT target)
 
 	//	オブジェクト描画
 	Rect(target.x,			//	X1座標
-		target.y,			//	Y1座標
-		target.x + target.width - 1,	//	X2座標　この引数は幅を指定するのではなく座標をしているので-1している。
-		target.y + target.height - 1)	//	Y2座標　この引数は幅を指定するのではなく座標をしているので-1している。
-		.draw(target.color);//	色
+			target.y,			//	Y1座標
+			target.width,	//	X2座標　
+			target.height)	//	Y2座標　
+			.draw(target.color);//	色
 
 	return;
 }
@@ -190,7 +190,7 @@ void DrawBG()
 //	引数：OBJECT objA,objB...衝突判定したいオブジェクト
 //	戻り値：1...衝突している 0...衝突していない
 //	--------------------------------------------------------------------
-int IsHit(OBJECT objA, OBJECT objB)
+bool IsHit(OBJECT objA, OBJECT objB)
 {
 	int x0 = objA.x;
 	int y0 = objA.y;
@@ -206,11 +206,11 @@ int IsHit(OBJECT objA, OBJECT objB)
 	if (x0 < x3 && x2 < x1 && y0 < y3 && y2 < y1)
 	{
 		//	重なっていた
-		return 1;
+		return true;
 	}
 
 	//	重なってなかった
-	return 0;
+	return false;
 }
 //	--------------------------------------------------------------------
 //	弾を生成する関数
@@ -234,7 +234,189 @@ void CreateShot(int shooterID, OBJECT shooter)
 		break;
 	}
 }
+//	--------------------------------------------------------------------
+//	プレイヤーの移動・ショットの発射処理を行う
+//	--------------------------------------------------------------------
+void ControllPlayer()
+{
+	//	→カーソルが押されているかどうかをチェック
+	if (Input::KeyRight.pressed)
+	{
+		Player.x += PLAYER_MOVESPEED;
+	}
+	//	←カーソルが押されているかどうかをチェック
+	if (Input::KeyLeft.pressed)
+	{
+		Player.x -= PLAYER_MOVESPEED;
+	}
 
+	//	ショット発射チェック
+	if (Input::KeySpace.clicked && PlayerShot.state == STATE::NONE)
+	{
+		//	弾を生成
+		CreateShot(ID::PLAYER, Player);
+	}
+}
+//*/
+//	--------------------------------------------------------------------
+//	プレイヤーのショットの移動関数
+//	--------------------------------------------------------------------
+void ControllPlayerShot()
+{
+	//	弾が無いか敵にヒットしているなら移動処理はせずに終了
+	if (PlayerShot.state != STATE::LIVE) return;
+
+	//	弾の移動
+	PlayerShot.y -= PLAYER_SHOT_SPEED;
+
+	//	弾は敵にヒットしている？
+	if (IsHit(PlayerShot, Enemy) == true)
+	{
+		//	弾を消す
+		PlayerShot.state = STATE::NONE;
+		//	敵をまた出す
+		InitEnemy();
+		return;
+	}
+
+	//	弾は画面外に消えた？
+	if (PlayerShot.y < 0)
+	{
+		PlayerShot.state = STATE::NONE;
+	}
+
+	return;
+}
+//	--------------------------------------------------------------------
+//	敵のショットの移動関数
+//	--------------------------------------------------------------------
+void ControllEnemyShot()
+{
+	//	弾が無いかプレイヤーにヒットしているなら移動処理はせずに終了
+	if (EnemyShot.state != STATE::LIVE) return;
+
+	//	弾の移動
+	EnemyShot.y += ENEMY_SHOT_SPEED;
+
+	//	弾はプレイヤーにヒットしている？
+	if (IsHit(EnemyShot, Player) == true)
+	{
+		//	弾を消す
+		EnemyShot.state = STATE::NONE;
+		//	プレイヤーを死亡状態にする
+		Player.state = STATE::HIT;
+		return;
+	}
+
+	//	弾は画面外に消えた？
+	if (EnemyShot.y > SCREEN_HEIGHT)
+	{
+		EnemyShot.state = STATE::NONE;
+	}
+
+	return;
+}
+
+
+//	--------------------------------------------------------------------
+//	敵の移動・ショットの発射処理を行う
+//	--------------------------------------------------------------------
+void ControllEnemy()
+{
+	//	端っこまで来ていたら移動方向を反転
+	switch (enemyMoveDirc)
+	{
+	case -1:
+		if (Enemy.x <= 0)
+		{
+			enemyMoveDirc = 1;
+		}
+		break;
+	case 1:
+		if (Enemy.x >= SCREEN_WIDTH - ENEMY_WIDTH)
+		{
+			enemyMoveDirc = -1;
+		}
+		break;
+	}
+
+	//	移動
+	Enemy.x += ENEMY_MOVESPEED * enemyMoveDirc;
+
+	//	ショット発射チェック
+	enemyShotTime--;
+	if (enemyShotTime == 0)
+	{
+		//	弾を現在出していないのなら弾を出す
+		if (EnemyShot.state == STATE::NONE)
+		{
+			//	弾を生成
+			CreateShot(ID::ENEMY, Enemy);
+		}
+		//	次に弾をうつ間隔を決める
+		CalcEnemyShotTiming();
+	}
+}
+//	--------------------------------------------------------------------
+//	プレイヤー、敵、弾の移動、あたり判定処理を呼ぶ
+//	--------------------------------------------------------------------
+void ControllGame()
+{
+	//	プレイヤーの移動判定
+	ControllPlayer();
+
+	//	プレイヤーのショットの移動
+	ControllPlayerShot();
+
+	//	敵の移動処理
+	ControllEnemy();
+
+	//	敵の弾の移動処理
+	ControllEnemyShot();
+
+	return;
+}
+//	--------------------------------------------------------------------
+//	プレイヤー、敵、弾、背景の描画処理を呼ぶ
+//	--------------------------------------------------------------------
+void DrawGame()
+{
+	// 画面を初期化
+	//ClearDrawScreen();
+
+	// 描画先画面を裏にする
+	//SetDrawScreen(DX_SCREEN_BACK);
+
+	//	背景描画
+	//DrawBG();
+
+	//	プレイヤーの描画処理
+	DrawObject(Player);
+	//	プレイヤーの弾描画
+	DrawObject(PlayerShot);
+
+	//	敵の描画
+	DrawObject(Enemy);
+	//	敵の弾描画
+	DrawObject(EnemyShot);
+
+	//	裏画面に描いたものを表画面に反映する
+	//ScreenFlip();
+
+	return;
+}
+//	--------------------------------------------------------------------
+//	様々なゲーム内処理を呼ぶ関数
+//	--------------------------------------------------------------------
+void GameMain()
+{
+	//	コントロール
+	ControllGame();
+	//	描画
+	DrawGame();
+
+	return;
+}
 //	初期化
 void init()
 {
@@ -248,8 +430,11 @@ void Main()
 	//	初期化
 	init();
 
+	//	ゲーム初期化
+	InitGame();
+
 	while (System::Update())
 	{
-		
+		GameMain();
 	}
 }
