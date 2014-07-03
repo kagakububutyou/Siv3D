@@ -1,21 +1,24 @@
 #include "Stage.h"
 
-
+Stage *stage;
 
 Stage::Stage()
 {
-	player = new Player();
+	player = new CPlayer();
+	floor = new CFloor();
 }
 
 
 Stage::~Stage()
 {
 	delete player;
+	delete floor;
 }
 
 void Stage::Update()
 {
 	player->Move();
 
-	player->Drwa();
+	floor->Draw();
+	player->Draw();
 }

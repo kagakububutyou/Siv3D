@@ -1,15 +1,17 @@
 #pragma once
 #include <Siv3D.hpp>
-
-
-class Floor
+class CFloor
 {
 private:
-
-	Float3 Pos;
+	
 
 public:
-	Floor();
-	~Floor();
+	CFloor();
+	~CFloor();
+
+	Float3 Pos;
+	Float3  Size;
+
+	void Draw();
 };
 

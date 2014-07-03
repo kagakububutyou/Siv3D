@@ -2,21 +2,21 @@
 
 # include <Siv3D.hpp>
 
-class Player
+class CPlayer
 {
 private:
 
 	Float3 Pos;
 	Float2 Vec;
 	Float2 Speed;
-	Float2 Size;
+	Float3 Size;
 	
 public:
-	Player();
-	~Player();
+	CPlayer();
+	~CPlayer();
 
 	void Move();
 
-	void Drwa();
+	void Draw();
 };
 

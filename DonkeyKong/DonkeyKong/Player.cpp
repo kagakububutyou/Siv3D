@@ -1,41 +1,31 @@
 #include "Player.h"
+#include "Collision.h"
+#include "Stage.h"
+#include "Floor.h"
 
-
-Player::Player()
+CPlayer::CPlayer()
 {
-	Pos.x = 0;
-	Pos.y = 0;
-	Pos.z = 0;
+	Pos = Float3(0, 0, 0);
 
 	Vec.x = 0;
 	Vec.y = 0;
 
-	Speed.x = 0.05f;
-	Speed.y = 0.05f;
+	Speed.x = 1;
+	Speed.y = 1;
 
-	Size.x = 32;
-	Size.y = 32;
+	Size = Float3(32,32,32);
 }
 
 
-Player::~Player()
+CPlayer::~CPlayer()
 {
 }
 
-void Player::Move()
+void CPlayer::Move()
 {
-	if (Input::KeyUp.pressed)
-	{
-		Vec.y = +Speed.y;
-	}
-	else if (Input::KeyDown.pressed)
-	{
-		Vec.y = -Speed.y;
-	}
-	else
-	{
-		Vec.y = 0;
-	}
+	Pos.y += Vec.y;
+	Pos.x += Vec.x;
+
 
 	if (Input::KeyRight.pressed)
 	{
@@ -50,13 +40,21 @@ void Player::Move()
 		Vec.x = 0;
 	}
 
-	Pos.y += Vec.y;
-	Pos.x += Vec.x;
+	if (!Collision::IsCollisionBox(Pos, Size, stage->floor->Pos, stage->floor->Size))
+	{
+		Vec.y = -3.8f;
+	}
+	if (Collision::IsCollisionBox(Pos, Size, stage->floor->Pos, stage->floor->Size))
+	{
+		Vec.y = 0;
+	}
+
+
 
 }
 
-void Player::Drwa()
+void CPlayer::Draw()
 {
-	//RectF(Pos, Size).draw();
-	Box(Pos,1).draw();
+	
+	Box(Pos,Size).draw();
 }
