@@ -1,8 +1,10 @@
 #pragma once
 #include <Siv3D.hpp>
-#include "Player.h"
-#include "Floor.h"
+#include <memory>
+#include <vector>
 
+class CPlayer;
+class CFloor;
 
 class Stage
 {
@@ -13,8 +15,9 @@ public:
 	~Stage();
 
 	void Update();
-	CFloor *floor;
-	CPlayer *player;
+	//		スマートポインタ
+	std::unique_ptr<CFloor> floor;
+	std::unique_ptr<CPlayer> player;
 
 };
 

@@ -2,15 +2,27 @@
 
 # include <Siv3D.hpp>
 
-class CPlayer
+
+#include "OBJECT.h"
+
+class CPlayer : public COBJECT
 {
 private:
 
-	Float3 Pos;
-	Float2 Vec;
-	Float2 Speed;
-	Float3 Size;
-	
+	float force;
+
+	static const float Speed;
+
+	enum class STATE
+	{
+		LIVE,
+		NOTE,
+		JUNP,
+
+	};
+
+	STATE State;
+
 public:
 	CPlayer();
 	~CPlayer();

@@ -169,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="OBJECT.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Stage.h" />
   </ItemGroup>

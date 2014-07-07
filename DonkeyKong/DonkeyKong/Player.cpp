@@ -3,17 +3,19 @@
 #include "Stage.h"
 #include "Floor.h"
 
+const float CPlayer::Speed = 5;
+
 CPlayer::CPlayer()
 {
-	Pos = Float3(0, 0, 0);
+	Pos = Float3(0, -50, 0);
 
-	Vec.x = 0;
-	Vec.y = 0;
-
-	Speed.x = 1;
-	Speed.y = 1;
+	Velocity = Float3(0, 0, 0);
 
 	Size = Float3(32,32,32);
+
+	force = 0;
+
+	State = STATE::LIVE;
 }
 
 
@@ -21,32 +23,67 @@ CPlayer::~CPlayer()
 {
 }
 
+
 void CPlayer::Move()
 {
-	Pos.y += Vec.y;
-	Pos.x += Vec.x;
+	Pos += Velocity;
 
-
-	if (Input::KeyRight.pressed)
+	
+	if (Input::KeyUp.clicked && State != STATE::JUNP)
 	{
-		Vec.x = +Speed.x;
+		force = 20;
+		State = STATE::JUNP;
 	}
-	else if (Input::KeyLeft.pressed)
+
+	if (State == STATE::JUNP)
 	{
-		Vec.x = -Speed.x;
+		force--;
+		Pos.y += force;
+		if (Collision::IsCollisionBox(Pos, Size, stage->floor->Pos, stage->floor->Size))
+		{
+			State = STATE::LIVE;
+			Pos.y -= force;
+			Pos.x -= 1;
+		}
+	}
+	//*/
+	/*
+	if (Input::KeyUp.pressed)
+	{
+		Velocity.y = Speed;
+	}
+	else if (Input::KeyDown.pressed)
+	{
+		Velocity.y = -Speed;
 	}
 	else
 	{
-		Vec.x = 0;
+		Velocity.y = 0;
 	}
+	//*/
 
+	if (Input::KeyRight.pressed)
+	{
+		Velocity.x = Speed;
+	}
+	else if (Input::KeyLeft.pressed)
+	{
+		Velocity.x = -Speed;
+	}
+	else
+	{
+		Velocity.x = 0;
+	}
+	//	°‚É“–‚½‚Á‚Ä‚È‚¢Žž
 	if (!Collision::IsCollisionBox(Pos, Size, stage->floor->Pos, stage->floor->Size))
 	{
-		Vec.y = -3.8f;
+		Velocity.y = -3.8f;
 	}
+	//	°‚É“–‚½‚Á‚Ä‚éŽž
 	if (Collision::IsCollisionBox(Pos, Size, stage->floor->Pos, stage->floor->Size))
 	{
-		Vec.y = 0;
+		//Velocity.x = 0;
+		Velocity.y = 0;
 	}
 
 
@@ -55,6 +92,5 @@ void CPlayer::Move()
 
 void CPlayer::Draw()
 {
-	
 	Box(Pos,Size).draw();
 }
