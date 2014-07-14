@@ -6,6 +6,11 @@
 class CPlayer;
 class CFloor;
 
+struct Item
+{
+	Float3 pos;
+};
+
 class Stage
 {
 private:
@@ -16,8 +21,9 @@ public:
 
 	void Update();
 	//		スマートポインタ
-	std::unique_ptr<CFloor> floor;
+	std::vector<std::unique_ptr<CFloor>> floor;
 	std::unique_ptr<CPlayer> player;
+	std::vector<Item> items;
 
 };
 

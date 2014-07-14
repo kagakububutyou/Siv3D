@@ -5,13 +5,11 @@ CFloor::CFloor(Float3 pos)
 {
 	Pos = pos;
 
-	Size = Float3(256, 32, 32);
+	Size = Float3(32, 32, 32);
 
 }
 
-CFloor::~CFloor()
-{
-}
+CFloor::~CFloor(){}
 
 void CFloor::Draw()
 {

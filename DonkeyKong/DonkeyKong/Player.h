@@ -5,6 +5,7 @@
 
 #include "OBJECT.h"
 
+
 class CPlayer : public COBJECT
 {
 private:

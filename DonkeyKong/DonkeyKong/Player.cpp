@@ -39,12 +39,16 @@ void CPlayer::Move()
 	{
 		force--;
 		Pos.y += force;
-		if (Collision::IsCollisionBox(Pos, Size, stage->floor->Pos, stage->floor->Size))
+		for (auto &i : stage->floor)
 		{
-			State = STATE::LIVE;
-			Pos.y -= force;
-			Pos.x -= 1;
+			if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+			{
+				State = STATE::LIVE;
+				Pos.y -= force;
+				Pos.x -= 1;
+			}
 		}
+			
 	}
 	//*/
 	/*
@@ -75,15 +79,21 @@ void CPlayer::Move()
 		Velocity.x = 0;
 	}
 	//	°‚É“–‚½‚Á‚Ä‚È‚¢Žž
-	if (!Collision::IsCollisionBox(Pos, Size, stage->floor->Pos, stage->floor->Size))
+	for (auto &i : stage->floor)
 	{
-		Velocity.y = -3.8f;
+		if (!Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+		{
+			Velocity.y = -3.8f;
+		}
 	}
 	//	°‚É“–‚½‚Á‚Ä‚éŽž
-	if (Collision::IsCollisionBox(Pos, Size, stage->floor->Pos, stage->floor->Size))
+	for (auto &i : stage->floor)
 	{
-		//Velocity.x = 0;
-		Velocity.y = 0;
+		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+		{
+			//Velocity.x = 0;
+			Velocity.y = 0;
+		}
 	}
 
 

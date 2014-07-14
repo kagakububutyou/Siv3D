@@ -11,7 +11,7 @@ public:
 	~CFloor();
 
 	Float3 Pos;
-	Float3  Size;
+	Float3 Size;
 
 	void Draw();
 };
