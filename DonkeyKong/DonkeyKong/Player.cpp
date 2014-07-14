@@ -11,7 +11,7 @@ CPlayer::CPlayer()
 
 	Velocity = Float3(0, 0, 0);
 
-	Size = Float3(32,32,32);
+	Size = Float3(16,16,16);
 
 	force = 0;
 

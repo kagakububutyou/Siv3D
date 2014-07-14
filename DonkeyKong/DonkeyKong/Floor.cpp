@@ -1,11 +1,11 @@
 #include "Floor.h"
 
 
-CFloor::CFloor(Float3 pos)
+CFloor::CFloor(Float3 pos, Float3 size)
 {
 	Pos = pos;
 
-	Size = Float3(32, 32, 32);
+	Size = size;
 
 }
 

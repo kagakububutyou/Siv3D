@@ -8,7 +8,7 @@ class CFloor;
 
 struct Item
 {
-	Float3 pos;
+	int Chip;
 };
 
 class Stage
@@ -19,11 +19,15 @@ public:
 	Stage();
 	~Stage();
 
+	void Map();
 	void Update();
 	//		スマートポインタ
 	std::vector<std::unique_ptr<CFloor>> floor;
 	std::unique_ptr<CPlayer> player;
 	std::vector<Item> items;
+
+	const static int Width = 560;
+	const static int Height = 640;
 
 };
 

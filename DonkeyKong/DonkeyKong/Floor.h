@@ -7,7 +7,7 @@ private:
 	
 
 public:
-	CFloor(Float3 pos);
+	CFloor(Float3 pos, Float3 size);
 	~CFloor();
 
 	Float3 Pos;
