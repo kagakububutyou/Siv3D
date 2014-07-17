@@ -8,7 +8,7 @@ class CFloor;
 
 struct Item
 {
-	int Chip;
+	Float3 Chip;
 };
 
 class Stage
@@ -26,8 +26,8 @@ public:
 	std::unique_ptr<CPlayer> player;
 	std::vector<Item> items;
 
-	const static int Width = 560;
-	const static int Height = 640;
+	const static int Width = 512;		//	ïù
+	const static int Height = 448;		//	çÇÇ≥
 
 };
 

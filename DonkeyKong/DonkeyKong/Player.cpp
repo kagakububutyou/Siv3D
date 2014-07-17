@@ -50,7 +50,6 @@ void CPlayer::Move()
 		}
 			
 	}
-	//*/
 	/*
 	if (Input::KeyUp.pressed)
 	{
@@ -78,28 +77,27 @@ void CPlayer::Move()
 	{
 		Velocity.x = 0;
 	}
+
+	Velocity.y = -3.8f;
+
+
 	//	°‚É“–‚½‚Á‚Ä‚È‚¢Žž
 	for (auto &i : stage->floor)
 	{
 		if (!Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
 		{
-			Velocity.y = -3.8f;
+			
 		}
 	}
 	//	°‚É“–‚½‚Á‚Ä‚éŽž
 	for (auto &i : stage->floor)
 	{
 		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
-		{
-			//Velocity.x = 0;
-			Velocity.y = 0;
+		{			
+			Pos.y -= Velocity.y;
 		}
 	}
-
-
-
 }
-
 void CPlayer::Draw()
 {
 	Box(Pos,Size).draw();
