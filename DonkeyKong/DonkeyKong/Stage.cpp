@@ -34,7 +34,7 @@ void Stage::Map()
 
 	
 	// 0 s–ÚA1 —ñ‚Ì—v‘f
-	const int MapX = csv.columns(1);
+	const int MapX = csv.get<int>(0, 2);
 	const int MapY = csv.rows ;
 	const int MapSize = csv.get<int>(0, 0);
 	for (int j = 1; j <= MapY; j++)

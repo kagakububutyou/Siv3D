@@ -7,7 +7,7 @@ const float CPlayer::Speed = 5;
 
 CPlayer::CPlayer()
 {
-	Pos = Float3(0, -50, 0);
+	Pos = Float3(-112, 16, 0);
 
 	Velocity = Float3(0, 0, 0);
 
@@ -95,6 +95,7 @@ void CPlayer::Move()
 		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
 		{			
 			Pos.y -= Velocity.y;
+			//Velocity.y = 0;
 		}
 	}
 }
