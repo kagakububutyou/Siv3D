@@ -11,7 +11,7 @@ CPlayer::CPlayer()
 
 	Velocity = Float3(0, 0, 0);
 
-	Size = Float3(16,16,16);
+	Size = Float3(16,32,16);
 
 	force = 0;
 
@@ -31,7 +31,7 @@ void CPlayer::Move()
 	
 	if (Input::KeyUp.clicked && State != STATE::JUNP)
 	{
-		force = 20;
+		force = 15;
 		State = STATE::JUNP;
 	}
 
@@ -101,5 +101,5 @@ void CPlayer::Move()
 }
 void CPlayer::Draw()
 {
-	Box(Pos,Size).draw();
+	Box(Pos, Size).draw(Palette::Red);
 }

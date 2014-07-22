@@ -28,16 +28,16 @@ void Stage::Map()
 		MessageBox::Show(L"エラー", L"Map.txt の読み込みに失敗しました。");
 		return;
 	}
-	Println(L"csv の行数: ", csv.rows - 1);
+	Println(L"csv の行数: ", csv.rows);
 
 	Println(L"csv の 1 行目の列数: ", csv.columns(1));
 
 	
 	// 0 行目、1 列の要素
-	const int MapX = csv.get<int>(0, 2);
-	const int MapY = csv.rows ;
+	const int MapX = 30;
+	const int MapY = 7;
 	const int MapSize = csv.get<int>(0, 0);
-	for (int j = 1; j <= MapY; j++)
+	for (int j = 1; j < MapY; j++)
 	{
 		for (int i = 0; i < MapX; i++)
 		{
@@ -59,5 +59,6 @@ void Stage::Update()
 	{
 		i->Draw();
 	}
+
 	player->Draw();
 }
