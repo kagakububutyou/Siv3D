@@ -20,6 +20,7 @@ Stage::~Stage()
 }
 void Stage::Map()
 {
+	/*
 	const CSVReader csv(L"Map.csv");
 	const Font font(20);
 
@@ -28,16 +29,16 @@ void Stage::Map()
 		MessageBox::Show(L"エラー", L"Map.txt の読み込みに失敗しました。");
 		return;
 	}
-	Println(L"csv の行数: ", csv.rows);
+	Println(L"csv の行数: ", csv.rows - 1);
 
 	Println(L"csv の 1 行目の列数: ", csv.columns(1));
 
 	
 	// 0 行目、1 列の要素
-	const int MapX = 30;
-	const int MapY = 7;
+	const int MapX = csv.get<int>(0, 2);
+	const int MapY = csv.rows ;
 	const int MapSize = csv.get<int>(0, 0);
-	for (int j = 1; j < MapY; j++)
+	for (int j = 1; j <= MapY; j++)
 	{
 		for (int i = 0; i < MapX; i++)
 		{
@@ -50,6 +51,22 @@ void Stage::Map()
 	{
 		floor.emplace_back(new CFloor(Float3(i.Chip), Float3(MapSize, MapSize, MapSize)));
 	}
+	//*/
+
+
+	const int MapWidth = 30;
+	const int MapHeight = 1;
+	const int MapSize = 16;
+	for (int j = 0; j < MapHeight; j++)
+	{
+		for (int i = 0; i < MapWidth; i++)
+		{
+			floor.emplace_back(new CFloor(Float3(MapSize*(MapWidth/2 - i),MapSize * j + (1+i),0), Float3(MapSize, MapSize, MapSize)));
+		}
+	}
+	//*/
+
+
 }
 void Stage::Update()
 {
@@ -59,6 +76,5 @@ void Stage::Update()
 	{
 		i->Draw();
 	}
-
 	player->Draw();
 }

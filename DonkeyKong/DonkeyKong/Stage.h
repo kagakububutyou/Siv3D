@@ -26,10 +26,8 @@ public:
 	std::unique_ptr<CPlayer> player;
 	std::vector<Item> items;
 
-	
 	const static int Width = 512;		//	•
 	const static int Height = 448;		//	‚‚³
-	//*/
 
 };
 
