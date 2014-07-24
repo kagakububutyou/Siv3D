@@ -26,10 +26,10 @@ private:
 
 public:
 	CPlayer();
-	~CPlayer();
+	~CPlayer(){};
 
 	void Move();
 
-	void Draw();
+	void Draw(Color color);
 };
 

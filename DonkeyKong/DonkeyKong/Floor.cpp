@@ -6,12 +6,9 @@ CFloor::CFloor(Float3 pos, Float3 size)
 	Pos = pos;
 
 	Size = size;
-
 }
 
-CFloor::~CFloor(){}
-
-void CFloor::Draw()
+void CFloor::Draw(Color color)
 {
-	Box(Pos, Size).draw();
+	Box(Pos, Size).draw(color);
 }

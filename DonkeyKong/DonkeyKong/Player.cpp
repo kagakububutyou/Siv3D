@@ -18,12 +18,6 @@ CPlayer::CPlayer()
 	State = STATE::LIVE;
 }
 
-
-CPlayer::~CPlayer()
-{
-}
-
-
 void CPlayer::Move()
 {
 	Pos += Velocity;
@@ -99,7 +93,7 @@ void CPlayer::Move()
 		}
 	}
 }
-void CPlayer::Draw()
+void CPlayer::Draw(Color color)
 {
-	Box(Pos, Size).draw(Palette::Red);
+	Box(Pos, Size).draw(color);
 }

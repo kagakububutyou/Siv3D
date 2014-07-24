@@ -11,10 +11,13 @@ class COBJECT
 public:
 	COBJECT(){}
 	~COBJECT(){}
-protected:
 
-	Float3 Pos;
-	Float3 Velocity;
-	Float3 Size;
+	Float3 Pos;			//	ç¿ïW
+	Float3 Velocity;	//	ë¨ìx
+	Float3 Size;		//	ëÂÇ´Ç≥
+
+
+	virtual void Draw(Color color) = 0;	//ï`âÊ
+
 };
 

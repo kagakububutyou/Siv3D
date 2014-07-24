@@ -20,7 +20,7 @@ Stage::~Stage()
 }
 void Stage::Map()
 {
-	/*
+	
 	const CSVReader csv(L"Map.csv");
 	const Font font(20);
 
@@ -38,22 +38,16 @@ void Stage::Map()
 	const int MapX = csv.get<int>(0, 2);
 	const int MapY = csv.rows ;
 	const int MapSize = csv.get<int>(0, 0);
-	for (int j = 1; j <= MapY; j++)
+	for (int j = 1; j < MapY; j++)
 	{
 		for (int i = 0; i < MapX; i++)
 		{
-			Item item;
-			item.Chip = csv.get<Float3>(j, i);
-			items.push_back(item);
+			floor.emplace_back(new CFloor(Float3(csv.get<Float3>(j, i)), Float3(MapSize, MapSize, MapSize)));
 		}
-	}
-	for (auto &i : items)
-	{
-		floor.emplace_back(new CFloor(Float3(i.Chip), Float3(MapSize, MapSize, MapSize)));
 	}
 	//*/
 
-
+	/*
 	const int MapWidth = 30;
 	const int MapHeight = 1;
 	const int MapSize = 16;
@@ -74,7 +68,7 @@ void Stage::Update()
 
 	for (auto &i : floor)
 	{
-		i->Draw();
+		i->Draw(Color(231, 0, 91));
 	}
-	player->Draw();
+	player->Draw(Palette::Red);
 }
