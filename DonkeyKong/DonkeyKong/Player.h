@@ -30,6 +30,6 @@ public:
 
 	void Move();
 
-	void Draw(Color color);
+	void Draw();
 };
 

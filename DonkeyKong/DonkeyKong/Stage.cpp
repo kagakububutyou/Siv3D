@@ -1,7 +1,7 @@
 #include "Stage.h"
 #include "Player.h"
 #include "Floor.h"
-
+#include "Ladder.h"
 Stage *stage;
 
 
@@ -21,30 +21,41 @@ Stage::~Stage()
 void Stage::Map()
 {
 	
-	const CSVReader csv(L"Map.csv");
+	const CSVReader map(L"csv/Map.csv");
+	const CSVReader lad(L"csv/Ladder.csv");
 	const Font font(20);
 
-	if (!csv)
+	if (!map || !lad)
 	{
-		MessageBox::Show(L"エラー", L"Map.txt の読み込みに失敗しました。");
+		MessageBox::Show(L"エラー", L"読み込みに失敗しました。");
 		return;
 	}
-	Println(L"csv の行数: ", csv.rows - 1);
+	Println(L"csv の行数: ", map.rows - 1);
 
-	Println(L"csv の 1 行目の列数: ", csv.columns(1));
+	Println(L"csv の 1 行目の列数: ", map.columns(1));
 
 	
-	// 0 行目、1 列の要素
-	const int MapX = csv.get<int>(0, 2);
-	const int MapY = csv.rows ;
-	const int MapSize = csv.get<int>(0, 0);
-	for (int j = 1; j < MapY; j++)
+	// 0 行目、2 列の要素
+	int MapWidth = map.columns(1);
+	int MapHeight = map.rows;
+	Float3 MapSize = map.get<Float3>(0, 0);
+	for (int j = 1; j < MapHeight; j++)
 	{
-		for (int i = 0; i < MapX; i++)
+		for (int i = 0; i < MapWidth; i++)
 		{
-			floor.emplace_back(new CFloor(Float3(csv.get<Float3>(j, i)), Float3(MapSize, MapSize, MapSize)));
+			floor.emplace_back(new CFloor(Float3(map.get<Float3>(j, i)), MapSize));
 		}
 	}
+	MapWidth = lad.columns(1);
+	
+	for (int i = 0; i < MapWidth; i++)
+	{
+		Item item;
+		item.Pos = lad.get<Float3>(1, i);
+		item.Size = lad.get<Float3>(2, i);
+		ladder.emplace_back(new CLadder(item.Pos, item.Size));
+	}//*/
+
 	//*/
 
 	/*
@@ -68,7 +79,11 @@ void Stage::Update()
 
 	for (auto &i : floor)
 	{
-		i->Draw(Color(231, 0, 91));
+		i->Draw();
 	}
-	player->Draw(Palette::Red);
+	for (auto &i:ladder)
+	{
+		i->Draw();
+	}
+	player->Draw();
 }

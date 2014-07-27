@@ -5,10 +5,13 @@
 
 class CPlayer;
 class CFloor;
+class COBJECT;
 
 struct Item
 {
-	Float3 Chip;
+	Float3 Pos;
+	Float3 Size;
+	Color color;
 };
 
 class Stage
@@ -16,13 +19,15 @@ class Stage
 private:
 
 public:
+
 	Stage();
 	~Stage();
 
 	void Map();
 	void Update();
 	//		スマートポインタ
-	std::vector<std::unique_ptr<CFloor>> floor;
+	std::vector<std::unique_ptr<COBJECT>> floor;
+	std::vector<std::unique_ptr<COBJECT>> ladder;
 	std::unique_ptr<CPlayer> player;
 	std::vector<Item> items;
 

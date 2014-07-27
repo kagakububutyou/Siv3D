@@ -15,9 +15,10 @@ public:
 	Float3 Pos;			//	À•W
 	Float3 Velocity;	//	‘¬“x
 	Float3 Size;		//	‘å‚«‚³
+	Color color;
 
 
-	virtual void Draw(Color color) = 0;	//•`‰æ
+	virtual void Draw() = 0;	//•`‰æ
 
 };
 

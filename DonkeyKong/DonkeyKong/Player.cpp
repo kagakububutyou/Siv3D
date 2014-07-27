@@ -16,6 +16,8 @@ CPlayer::CPlayer()
 	force = 0;
 
 	State = STATE::LIVE;
+
+	color = Palette::Red;
 }
 
 void CPlayer::Move()
@@ -93,7 +95,7 @@ void CPlayer::Move()
 		}
 	}
 }
-void CPlayer::Draw(Color color)
+void CPlayer::Draw()
 {
 	Box(Pos, Size).draw(color);
 }

@@ -11,20 +11,9 @@ private:
 
 public:
 
-	enum class FLOORTYPE
-	{
-		STEEL_FRAME,	//	ìSçú
-
-
-		ALL_TYPES,		//	ëSéÌóﬁ
-	};
-
-	FLOORTYPE FloorType;
-
-
 	CFloor(Float3 pos, Float3 size);
 	~CFloor(){};
 
-	void Draw(Color color);
+	void Draw();
 };
 
