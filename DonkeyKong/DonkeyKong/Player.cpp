@@ -35,7 +35,7 @@ void CPlayer::Move()
 	{
 		force--;
 		Pos.y += force;
-		for (auto &i : stage->floor)
+		for (auto &i : stage->obj[stage->FLOOR])
 		{
 			if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
 			{
@@ -78,7 +78,7 @@ void CPlayer::Move()
 
 
 	//	°‚É“–‚½‚Á‚Ä‚È‚¢Žž
-	for (auto &i : stage->floor)
+	for (auto &i : stage->obj[stage->FLOOR])
 	{
 		if (!Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
 		{
@@ -86,7 +86,7 @@ void CPlayer::Move()
 		}
 	}
 	//	°‚É“–‚½‚Á‚Ä‚éŽž
-	for (auto &i : stage->floor)
+	for (auto &i : stage->obj[stage->FLOOR])
 	{
 		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
 		{			

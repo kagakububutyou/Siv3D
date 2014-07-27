@@ -17,8 +17,17 @@ struct Item
 class Stage
 {
 private:
-
+	
 public:
+	enum OBJECT
+	{
+		FLOOR,			//	床
+		LADDER,		//	梯
+		BARREL,		//	樽
+
+		ALL,
+	};
+
 
 	Stage();
 	~Stage();
@@ -26,8 +35,7 @@ public:
 	void Map();
 	void Update();
 	//		スマートポインタ
-	std::vector<std::unique_ptr<COBJECT>> floor;
-	std::vector<std::unique_ptr<COBJECT>> ladder;
+	std::vector<std::unique_ptr<COBJECT>> obj[OBJECT::ALL];
 	std::unique_ptr<CPlayer> player;
 	std::vector<Item> items;
 

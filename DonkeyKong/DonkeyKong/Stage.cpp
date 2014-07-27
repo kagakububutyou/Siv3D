@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Floor.h"
 #include "Ladder.h"
+#include "Barrel.h"
 Stage *stage;
 
 
@@ -43,7 +44,7 @@ void Stage::Map()
 	{
 		for (int i = 0; i < MapWidth; i++)
 		{
-			floor.emplace_back(new CFloor(Float3(map.get<Float3>(j, i)), MapSize));
+			obj[OBJECT::FLOOR].emplace_back(new CFloor(Float3(map.get<Float3>(j, i)), MapSize));
 		}
 	}
 	MapWidth = lad.columns(1);
@@ -53,37 +54,24 @@ void Stage::Map()
 		Item item;
 		item.Pos = lad.get<Float3>(1, i);
 		item.Size = lad.get<Float3>(2, i);
-		ladder.emplace_back(new CLadder(item.Pos, item.Size));
-	}//*/
-
-	//*/
-
-	/*
-	const int MapWidth = 30;
-	const int MapHeight = 1;
-	const int MapSize = 16;
-	for (int j = 0; j < MapHeight; j++)
-	{
-		for (int i = 0; i < MapWidth; i++)
-		{
-			floor.emplace_back(new CFloor(Float3(MapSize*(MapWidth/2 - i),MapSize * j + (1+i),0), Float3(MapSize, MapSize, MapSize)));
-		}
+		obj[OBJECT::LADDER].emplace_back(new CLadder(item.Pos, item.Size));
 	}
-	//*/
-
-
+	for (int i = 0; i < 4; i++)
+	{
+		obj[OBJECT::BARREL].emplace_back(new CBarrel(i));
+	}
 }
 void Stage::Update()
 {
 	player->Move();
 
-	for (auto &i : floor)
+	for (int j = 0, max = OBJECT::ALL; j < max; j++)
 	{
-		i->Draw();
+		for (auto &i : obj[j])
+		{
+			i->Draw();
+		}
 	}
-	for (auto &i:ladder)
-	{
-		i->Draw();
-	}
+
 	player->Draw();
 }

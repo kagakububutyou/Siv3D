@@ -86,6 +86,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Barrel.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="Ladder.cpp" />
@@ -168,6 +169,7 @@
     <Font Include="Example\YomogiFont.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Barrel.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="Ladder.h" />
