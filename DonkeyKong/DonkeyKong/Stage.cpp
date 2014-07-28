@@ -22,11 +22,12 @@ Stage::~Stage()
 void Stage::Map()
 {
 	
-	const CSVReader map(L"csv/Map.csv");
+	const CSVReader map	(L"csv/Map.csv");
 	const CSVReader lad(L"csv/Ladder.csv");
+	const CSVReader bar(L"csv/Barrel.csv");
 	const Font font(20);
 
-	if (!map || !lad)
+	if (!map || !lad || !bar)
 	{
 		MessageBox::Show(L"ÉGÉâÅ[", L"ì«Ç›çûÇ›Ç…é∏îsÇµÇ‹ÇµÇΩÅB");
 		return;
@@ -56,9 +57,10 @@ void Stage::Map()
 		item.Size = lad.get<Float3>(2, i);
 		obj[OBJECT::LADDER].emplace_back(new CLadder(item.Pos, item.Size));
 	}
-	for (int i = 0; i < 4; i++)
+	MapWidth = bar.columns(1);
+	for (int i = 0; i < MapWidth; i++)
 	{
-		obj[OBJECT::BARREL].emplace_back(new CBarrel(i));
+		obj[OBJECT::BARREL].emplace_back(new CBarrel(Float3(bar.get<Float3>(1,i))));
 	}
 }
 void Stage::Update()

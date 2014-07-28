@@ -1,4 +1,4 @@
-﻿2014/07/27 20:59:33 にビルドを開始しました。
+﻿2014/07/28 12:25:31 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\教材\Siv3D\DonkeyKong\DonkeyKong\DonkeyKong.vcxproj" (Build ターゲット)。
      1>Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\教材\Siv3D\DonkeyKong\Debug\DonkeyKong.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\教材\Siv3D\DonkeyKong\Debug\DonkeyKong.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\教材\Siv3D\DonkeyKong\Debug\DonkeyKong.lib" /MACHINE:X86 Debug\RC.res
@@ -14,4 +14,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:07.31
+経過時間 00:00:06.59
