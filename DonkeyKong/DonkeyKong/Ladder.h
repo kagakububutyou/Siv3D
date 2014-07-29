@@ -7,5 +7,6 @@ public:
 	~CLadder(){};
 
 	void Draw();
+	void Update();
 };
 

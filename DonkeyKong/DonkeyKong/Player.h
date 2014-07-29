@@ -29,7 +29,10 @@ public:
 	~CPlayer(){};
 
 	void Move();
+	void Collision();
+
 
 	void Draw();
+	void Update();
 };
 

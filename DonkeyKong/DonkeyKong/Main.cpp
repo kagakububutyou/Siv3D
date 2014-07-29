@@ -19,6 +19,6 @@ void Main()
 
 	while (System::Update())
 	{
-		stage->Update();
+		stage->GameMain();
 	}
 }

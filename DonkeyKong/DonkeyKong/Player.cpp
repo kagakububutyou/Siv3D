@@ -46,21 +46,6 @@ void CPlayer::Move()
 		}
 			
 	}
-	/*
-	if (Input::KeyUp.pressed)
-	{
-		Velocity.y = Speed;
-	}
-	else if (Input::KeyDown.pressed)
-	{
-		Velocity.y = -Speed;
-	}
-	else
-	{
-		Velocity.y = 0;
-	}
-	//*/
-
 	if (Input::KeyRight.pressed)
 	{
 		Velocity.x = Speed;
@@ -75,26 +60,44 @@ void CPlayer::Move()
 	}
 
 	Velocity.y = -3.8f;
-
-
+}
+void CPlayer::Collision()
+{
 	//	°‚É“–‚½‚Á‚Ä‚È‚¢Žž
 	for (auto &i : stage->obj[stage->FLOOR])
 	{
 		if (!Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
 		{
-			
+
 		}
 	}
 	//	°‚É“–‚½‚Á‚Ä‚éŽž
 	for (auto &i : stage->obj[stage->FLOOR])
 	{
 		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
-		{			
+		{
 			Pos.y -= Velocity.y;
 			//Velocity.y = 0;
 		}
 	}
+	for (auto &i : stage->obj[stage->DRUM])
+	{
+		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+		{
+			if (Pos.x > i->Pos.x)
+			{
+				Pos.x += Speed;
+			}
+			
+		}
+	}
 }
+void CPlayer::Update()
+{
+	Collision();
+	Move();
+}
+
 void CPlayer::Draw()
 {
 	Box(Pos, Size).draw(color);

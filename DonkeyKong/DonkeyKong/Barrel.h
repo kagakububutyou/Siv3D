@@ -9,5 +9,6 @@ public:
 	~CBarrel(){};
 
 	void Draw();
+	void Update();
 };
 

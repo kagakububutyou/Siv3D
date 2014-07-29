@@ -3,6 +3,8 @@
 #include "Floor.h"
 #include "Ladder.h"
 #include "Barrel.h"
+#include "Enemy.h"
+#include "Drum.h"
 Stage *stage;
 
 
@@ -11,6 +13,7 @@ Stage::Stage()
 
 	//		スマートポインタ宣言の仕方
 	player.reset(new CPlayer());
+	enemy.reset(new CEnemy());
 	Map();
 }
 
@@ -21,23 +24,16 @@ Stage::~Stage()
 }
 void Stage::Map()
 {
-	
 	const CSVReader map	(L"csv/Map.csv");
 	const CSVReader lad(L"csv/Ladder.csv");
 	const CSVReader bar(L"csv/Barrel.csv");
-	const Font font(20);
 
 	if (!map || !lad || !bar)
 	{
 		MessageBox::Show(L"エラー", L"読み込みに失敗しました。");
 		return;
-	}
-	Println(L"csv の行数: ", map.rows - 1);
+	}	
 
-	Println(L"csv の 1 行目の列数: ", map.columns(1));
-
-	
-	// 0 行目、2 列の要素
 	int MapWidth = map.columns(1);
 	int MapHeight = map.rows;
 	Float3 MapSize = map.get<Float3>(0, 0);
@@ -62,11 +58,14 @@ void Stage::Map()
 	{
 		obj[OBJECT::BARREL].emplace_back(new CBarrel(Float3(bar.get<Float3>(1,i))));
 	}
+	obj[OBJECT::DRUM].emplace_back(new CDrum());
 }
 void Stage::Update()
 {
-	player->Move();
-
+	player->Update();	
+}
+void Stage::Draw()
+{
 	for (int j = 0, max = OBJECT::ALL; j < max; j++)
 	{
 		for (auto &i : obj[j])
@@ -76,4 +75,10 @@ void Stage::Update()
 	}
 
 	player->Draw();
+	enemy->Draw();
+}
+void Stage::GameMain()
+{
+	Update();
+	Draw();
 }
