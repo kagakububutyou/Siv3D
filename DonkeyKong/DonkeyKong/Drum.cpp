@@ -13,6 +13,5 @@ void CDrum::Update()
 }
 void CDrum::Draw()
 {
-	//Box(Pos, Size).draw(color);
 	Cylinder(Pos, Size.x / 2, Size.y).draw(color);
 }

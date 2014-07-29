@@ -62,7 +62,8 @@ void Stage::Map()
 }
 void Stage::Update()
 {
-	player->Update();	
+	player->Update();
+	enemy->Update();
 }
 void Stage::Draw()
 {
