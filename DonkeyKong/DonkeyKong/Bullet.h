@@ -3,6 +3,9 @@
 class CBullet :public COBJECT
 {
 private:
+	float posY;
+
+private:
 
 	float Speed;
 	bool CollisionFloor;

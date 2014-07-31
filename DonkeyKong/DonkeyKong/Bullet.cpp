@@ -19,8 +19,6 @@ void CBullet::Move()
 }
 void CBullet::Collision()
 {
-	static float posY = 0;
-
 	for (auto &i : stage->obj[stage->FLOOR])
 	{
 		if (!Collision::IsCollisionBox(Pos, Size / 2, i->Pos, i->Size))

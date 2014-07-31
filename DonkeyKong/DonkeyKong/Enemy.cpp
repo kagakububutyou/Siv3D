@@ -1,5 +1,6 @@
 #include "Enemy.h"
-
+#include "Stage.h"
+#include "Collision.h"
 
 CEnemy::CEnemy()
 {
@@ -13,7 +14,7 @@ CEnemy::CEnemy()
 
 	ShotTime = 3;
 
-	//ShotTiming();
+	ShotTiming();
 }
 void CEnemy::ShotTiming()
 {
@@ -26,13 +27,27 @@ void CEnemy::CreateShot()
 	if (ShotTime == 0)
 	{
 		bullet.emplace_back(new CBullet());
-		//ShotTiming();
+		ShotTiming();
 	}
 }
-
+void CEnemy::Collision()
+{
+	//	ƒhƒ‰ƒ€ŠÊ(—A‘——p)
+	for (auto &i : stage->obj[stage->DRUM])
+	{
+		for (auto &j : bullet)
+		{
+			if (Collision::IsCollisionBox(j->Pos, j->Size, i->Pos, i->Size))
+			{
+				bullet.erase(std::remove(bullet.begin(), bullet.end(), j), bullet.end());
+			}
+		}
+	}
+}
 void CEnemy::Update()
 {
 	CreateShot();
+	Collision();
 
 	for (auto &i : bullet)
 	{

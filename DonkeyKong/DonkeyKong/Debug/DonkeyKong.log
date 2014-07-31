@@ -1,17 +1,6 @@
-﻿2014/07/31 10:47:28 にビルドを開始しました。
+﻿2014/07/31 13:34:30 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\教材\Siv3D\DonkeyKong\DonkeyKong\DonkeyKong.vcxproj" (Build ターゲット)。
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Enemy.cpp Stage.cpp
-         Enemy.cpp
-     1>c:\教材\siv3d\donkeykong\donkeykong\enemy.h(24): warning C4512: 'CEnemy' : 代入演算子を生成できません。
-                 c:\教材\siv3d\donkeykong\donkeykong\enemy.h(5) : 'CEnemy' の宣言を確認してください。
-         コードを生成中...
-         コンパイル中...
-         Stage.cpp
-     1>c:\教材\siv3d\donkeykong\donkeykong\enemy.h(24): warning C4512: 'CEnemy' : 代入演算子を生成できません。
-                 c:\教材\siv3d\donkeykong\donkeykong\enemy.h(5) : 'CEnemy' の宣言を確認してください。
-         コードを生成中...
-       Link:
+     1>Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\教材\Siv3D\DonkeyKong\Debug\DonkeyKong.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\教材\Siv3D\DonkeyKong\Debug\DonkeyKong.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\教材\Siv3D\DonkeyKong\Debug\DonkeyKong.lib" /MACHINE:X86 Debug\RC.res
          Debug\Barrel.obj
          Debug\Bullet.obj
@@ -23,9 +12,10 @@
          Debug\Main.obj
          Debug\Player.obj
          Debug\Stage.obj
+         LINK : 前回のインクリメンタル リンクで C:\教材\Siv3D\DonkeyKong\Debug\DonkeyKong.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
          DonkeyKong.vcxproj -> C:\教材\Siv3D\DonkeyKong\Debug\DonkeyKong.exe
      1>プロジェクト "C:\教材\Siv3D\DonkeyKong\DonkeyKong\DonkeyKong.vcxproj" (Build ターゲット) のビルドが完了しました。
 
 ビルドに成功しました。
 
-経過時間 00:00:16.52
+経過時間 00:00:05.18

@@ -21,4 +21,5 @@ public:
 
 	void ShotTiming();
 	void CreateShot();
+	void Collision();
 };
