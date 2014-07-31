@@ -39,6 +39,7 @@ public:
 	void Draw();
 	void GameMain();
 	//		スマートポインタ
+	//		もう少し具体的に
 	std::vector<std::unique_ptr<COBJECT>> obj[OBJECT::ALL];
 	std::unique_ptr<CPlayer> player;
 	std::unique_ptr<CEnemy> enemy;

@@ -13,11 +13,11 @@ CEnemy::CEnemy()
 
 	ShotTime = 3;
 
-	ShotTiming();
+	//ShotTiming();
 }
 void CEnemy::ShotTiming()
 {
-	//ShotTime = Random(ShotMinTime, ShotMaxTime);
+	ShotTime = Random(ShotMinTime, ShotMaxTime);
 }
 
 void CEnemy::CreateShot()
@@ -26,12 +26,18 @@ void CEnemy::CreateShot()
 	if (ShotTime == 0)
 	{
 		bullet.emplace_back(new CBullet());
+		//ShotTiming();
 	}
 }
 
 void CEnemy::Update()
 {
 	CreateShot();
+
+	for (auto &i : bullet)
+	{
+		i->Update();
+	}
 }
 void CEnemy::Draw()
 {
