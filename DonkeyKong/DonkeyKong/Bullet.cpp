@@ -9,13 +9,14 @@ CBullet::CBullet()
 	Size = Float3(16, 32, 16);
 	color = Color(231, 95, 91);
 	Speed = -2.5f;
+	Gravity = -3.8f;
 	CollisionFloor = false;
 }
 void CBullet::Move()
 {
 	Pos += Velocity;
 
-	Velocity.y = -3.8f;
+	Velocity.y = Gravity;
 }
 void CBullet::Collision()
 {
@@ -44,18 +45,6 @@ void CBullet::Collision()
 			}
 			Velocity.x = Speed;
 			posY = Pos.y;
-			
-		}
-	}
-	//	ƒhƒ‰ƒ€ŠÊ(—A‘——p)
-	for (auto &i : stage->obj[stage->DRUM])
-	{
-		if (Collision::IsCollisionBox(Pos, Size / 2, i->Pos, i->Size))
-		{
-			if (Pos.x > i->Pos.x)
-			{
-				Pos.x -= Speed;
-			}
 		}
 	}
 }

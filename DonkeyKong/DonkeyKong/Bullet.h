@@ -4,6 +4,8 @@ class CBullet :public COBJECT
 {
 private:
 	float posY;
+	float angle;
+	float Gravity;
 
 private:
 

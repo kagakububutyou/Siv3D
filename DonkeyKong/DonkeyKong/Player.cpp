@@ -88,7 +88,6 @@ void CPlayer::Collision()
 			{
 				Pos.x += Speed;
 			}
-			
 		}
 	}
 }

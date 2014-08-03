@@ -24,9 +24,9 @@ Stage::~Stage()
 }
 void Stage::Map()
 {
-	const CSVReader map	(L"csv/Map.csv");
-	const CSVReader lad(L"csv/Ladder.csv");
-	const CSVReader bar(L"csv/Barrel.csv");
+	const CSVReader map	(L"engine/csv/Map.csv");
+	const CSVReader lad(L"engine/csv/Ladder.csv");
+	const CSVReader bar(L"engine/csv/Barrel.csv");
 
 	if (!map || !lad || !bar)
 	{
