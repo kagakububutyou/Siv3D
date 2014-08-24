@@ -11,7 +11,7 @@ CPlayer::CPlayer()
 
 	Velocity = Float3(0, 0, 0);
 
-	Size = Float3(16,32,16);
+	Size = Float3(16,16,16);
 
 	force = 0;
 
@@ -27,24 +27,8 @@ void CPlayer::Move()
 	
 	if (Input::KeyUp.clicked && State != STATE::JUNP)
 	{
-		force = 15;
+		force = 13;
 		State = STATE::JUNP;
-	}
-
-	if (State == STATE::JUNP)
-	{
-		force--;
-		Pos.y += force;
-		for (auto &i : stage->obj[stage->FLOOR])
-		{
-			if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
-			{
-				State = STATE::LIVE;
-				Pos.y -= force;
-				Pos.x -= 1;
-			}
-		}
-			
 	}
 	if (Input::KeyRight.pressed)
 	{
@@ -63,6 +47,25 @@ void CPlayer::Move()
 }
 void CPlayer::Collision()
 {
+	//	ƒWƒƒƒ“ƒv’†
+	if (State == STATE::JUNP)
+	{
+		force--;
+		Pos.y += force;
+		for (auto &i : stage->obj[stage->FLOOR])
+		{
+			if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+			{
+				Pos.y -= force;
+				if (Pos.x > i->Pos.x)
+				{
+					Pos.x += i->Size.x;
+				}
+				State = STATE::LIVE;
+			}
+		}
+	}
+
 	//	°‚É“–‚½‚Á‚Ä‚È‚¢Žž
 	for (auto &i : stage->obj[stage->FLOOR])
 	{
@@ -100,4 +103,5 @@ void CPlayer::Update()
 void CPlayer::Draw()
 {
 	Box(Pos, Size).draw(color);
+	Box(Pos.x,Pos.y + Size.y/2,Pos.z, Size.x, Size.y * 2, Size.z).draw(Palette::Blue);
 }
