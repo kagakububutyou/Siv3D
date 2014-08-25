@@ -8,7 +8,7 @@ CBullet::CBullet()
 	Velocity = Float3(0 , 0, 0);
 	Size = Float3(16, 32, 16);
 	color = Color(231, 95, 91);
-	Speed = -2.5f;
+	Speed = -1.25f;
 	Gravity = -3.8f;
 	CollisionFloor = false;
 }
