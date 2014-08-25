@@ -2,6 +2,12 @@
 #include "Stage.h"
 #include "Collision.h"
 
+/*
+	
+	ドンキーコング
+
+*/
+
 CEnemy::CEnemy()
 {
 	Pos = Float3(-136, 348, 0);

@@ -1,5 +1,9 @@
 #include "Floor.h"
+/*
 
+		ìSçú
+
+*/
 
 CFloor::CFloor(Float3 pos, Float3 size)
 {

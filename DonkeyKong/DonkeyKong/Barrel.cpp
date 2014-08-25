@@ -1,5 +1,9 @@
 #include "Barrel.h"
+/*
 
+		’M	
+
+*/
 
 CBarrel::CBarrel(Float3 pos)
 {

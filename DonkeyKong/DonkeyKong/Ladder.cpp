@@ -1,5 +1,9 @@
 #include "Ladder.h"
+/*
+	
+	‚Í‚µ‚²
 
+*/
 
 CLadder::CLadder(Float3 pos, Float3 size)
 {

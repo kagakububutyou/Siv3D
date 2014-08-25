@@ -3,6 +3,12 @@
 #include "Stage.h"
 #include "Floor.h"
 
+/*
+
+		ƒvƒŒƒCƒ„[
+
+*/
+
 const float CPlayer::Speed = 2.5f;
 
 CPlayer::CPlayer()
@@ -25,10 +31,10 @@ void CPlayer::Move()
 {
 	Pos += Velocity;
 
-	
-	if (Input::KeyUp.clicked && State != STATE::JUNP)
+	if (Input::KeyLShift.clicked && State != STATE::JUNP
+		|| Input::KeyRShift.clicked && State != STATE::JUNP)
 	{
-		force = 8.5f;
+		force = 8.25f;
 		State = STATE::JUNP;
 	}
 	if (Input::KeyRight.pressed)
@@ -43,10 +49,50 @@ void CPlayer::Move()
 	{
 		Velocity.x = 0;
 	}
-
-	
-
 	Velocity.y = -3.8f;
+	for (auto &i : stage->obj[stage->LADDER])
+	{
+		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+		{
+			if (Input::KeyUp.pressed)
+			{
+				Velocity.y = -Speed;
+				LOG(Velocity.y);
+			}
+			else  if (Input::KeyDown.pressed)
+			{
+				Velocity.y = Speed;
+			}
+			else
+			{
+				Velocity.y = 0;
+			}
+		}
+	}
+	/*
+	for (auto &i : stage->obj[stage->LADDER])
+	{
+		
+		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+		{
+			if (Input::KeyUp.pressed)
+			{
+				Velocity.y = -Speed;
+			}
+			else  if (Input::KeyDown.pressed)
+			{
+				Velocity.y = Speed;
+			}
+			else
+			{
+				Velocity.y = 0;
+			}
+		}
+		
+	}
+	//*/
+	
+	
 }
 void CPlayer::Collision()
 {
@@ -81,23 +127,6 @@ void CPlayer::Collision()
 					Pos.y += Velocity.y;
 				}
 			}
-			/*
-			if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
-			{
-				//Pos.y -= force;
-				Pos.y += Velocity.y;
-				Pos.x += Speed;
-				if (Pos.y <= i->Pos.y && Pos.y >= i->Pos.y + i->Size.y)
-				{
-					if (Pos.x >= i->Pos.x)
-					{
-
-					}
-				}
-				//if (Pos.y >= i->Pos.y - i->Size.y*2 && Pos.y <= i->Pos.y + i->Size.y)
-				State = STATE::LIVE;
-			}
-			//*/
 		}
 	}
 
@@ -151,7 +180,7 @@ void CPlayer::Update()
 }
 
 void CPlayer::Draw()
-{
+{	
 	Box(Pos, Size).draw(color);
 	//Box(Pos.x,Pos.y + Size.y/2,Pos.z, Size.x, Size.y * 2, Size.z).draw(Palette::Blue);
 }

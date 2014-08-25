@@ -1,5 +1,9 @@
 #include "Collision.h"
+/*
 
+		“–‚½‚è”»’è
+
+*/
 
 bool Collision::IsCollisionBox(Float3 Pos1, Float3 Size1, Float3 Pos2, Float3 Size2)
 {

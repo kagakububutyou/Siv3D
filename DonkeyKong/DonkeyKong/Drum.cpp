@@ -1,5 +1,9 @@
 #include "Drum.h"
+/*
+	
+	ƒhƒ‰ƒ€ŠÊ(—A‘——p)
 
+*/
 
 CDrum::CDrum()
 {

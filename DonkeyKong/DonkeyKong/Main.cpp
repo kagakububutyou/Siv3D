@@ -2,6 +2,11 @@
 # include <Siv3D.hpp>
 
 #include "Stage.h"
+/*
+
+		ƒƒCƒ“	
+
+*/
 
 void Main()
 {

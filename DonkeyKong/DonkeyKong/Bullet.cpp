@@ -2,6 +2,13 @@
 #include  "Stage.h"
 #include "Collision.h"
 
+/*
+
+		’e
+
+*/
+
+
 CBullet::CBullet()
 {
 	Pos = Float3(-136, 348, -5);
