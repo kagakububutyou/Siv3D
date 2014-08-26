@@ -164,11 +164,18 @@ void CPlayer::Collision()
 	//	ƒhƒ‰ƒ€ŠÊ(—A‘——p)
 	for (auto &i : stage->obj[stage->DRUM])
 	{
-		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+		if (Pos.x > i->Pos.x)
 		{
-			if (Pos.x > i->Pos.x)
-			{
+			if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+			{			
 				Pos.x += Speed;
+			}
+		}
+		if (Pos.x < i->Pos.x)
+		{
+			if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+			{
+				Pos.x -= Speed;
 			}
 		}
 	}
