@@ -34,7 +34,7 @@ void CPlayer::Move()
 	if (Input::KeyLShift.clicked && State != STATE::JUNP
 		|| Input::KeyRShift.clicked && State != STATE::JUNP)
 	{
-		force = 8.25f;
+		force = 8;
 		State = STATE::JUNP;
 	}
 	if (Input::KeyRight.pressed)
@@ -50,49 +50,32 @@ void CPlayer::Move()
 		Velocity.x = 0;
 	}
 	Velocity.y = -3.8f;
+
 	for (auto &i : stage->obj[stage->LADDER])
 	{
 		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
 		{
 			if (Input::KeyUp.pressed)
 			{
-				Velocity.y = -Speed;
-				LOG(Velocity.y);
+				Velocity.y = 0;
+				Pos.y += Speed;
 			}
-			else  if (Input::KeyDown.pressed)
+			if (Input::KeyDown.pressed)
 			{
-				Velocity.y = Speed;
+				Velocity.y = 0;
+				Pos.y -= Speed;
 			}
-			else
+			if (Input::KeyUp.code && Input::KeyDown.code)
 			{
 				Velocity.y = 0;
 			}
-		}
-	}
-	/*
-	for (auto &i : stage->obj[stage->LADDER])
-	{
-		
-		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
-		{
-			if (Input::KeyUp.pressed)
+			if (State == STATE::JUNP)
 			{
-				Velocity.y = -Speed;
-			}
-			else  if (Input::KeyDown.pressed)
-			{
-				Velocity.y = Speed;
-			}
-			else
-			{
-				Velocity.y = 0;
+				Velocity.y = -3.8f;
 			}
 		}
-		
 	}
 	//*/
-	
-	
 }
 void CPlayer::Collision()
 {
@@ -110,7 +93,16 @@ void CPlayer::Collision()
 					Pos.x -= Velocity.x;
 				}
 			}
-
+			else if (Pos.x <= i->Pos.x)
+			{
+				if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+				{
+					Pos.x += Velocity.x;
+				}
+			}
+		}
+		for (auto &i : stage->obj[stage->FLOOR])
+		{
 			if (Pos.y >= i->Pos.y)
 			{
 				if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
@@ -146,32 +138,20 @@ void CPlayer::Collision()
 			if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
 			{
 				Pos.y -= Velocity.y;
-				/*
-				if (Pos.x >= i->Pos.x)
-				{
-				Pos.x -= Velocity.x;
-				}
-				//*/
-				if (Pos.y >= i->Pos.y - i->Size.y * 2 && Pos.y <= i->Pos.y + i->Size.y)
-				{
-					//Pos.x += Velocity.x;
-				}
-				//*/
-				//Velocity.y = 0;
 			}
 		}
 	}
 	//	ƒhƒ‰ƒ€ŠÊ(—A‘——p)
 	for (auto &i : stage->obj[stage->DRUM])
 	{
-		if (Pos.x > i->Pos.x)
+		if (Pos.x >= i->Pos.x)
 		{
 			if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
 			{			
 				Pos.x += Speed;
 			}
 		}
-		if (Pos.x < i->Pos.x)
+		if (Pos.x <= i->Pos.x)
 		{
 			if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
 			{
