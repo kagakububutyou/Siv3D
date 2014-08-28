@@ -39,6 +39,7 @@ void CEnemy::CreateShot()
 void CEnemy::Collision()
 {
 	//	ƒhƒ‰ƒ€ŠÊ(—A‘——p)
+	/*
 	for (auto &i : stage->obj[stage->DRUM])
 	{
 		for (auto &j : bullet)
@@ -49,6 +50,26 @@ void CEnemy::Collision()
 			}
 		}
 	}
+	//*/
+	for (auto &i : bullet)
+	{
+		for (auto &j : stage->obj[stage->DRUM])
+		{
+			if (Collision::IsCollisionBox(i->Pos, i->Size, j->Pos, j->Size))
+			{
+				bullet.erase(std::remove(bullet.begin(), bullet.end(), i), bullet.end());
+			}
+		}
+		if (Collision::IsCollisionBox(i->Pos, i->Size, stage->player->Pos, stage->player->Size))
+		{
+			bullet.erase(std::remove(bullet.begin(), bullet.end(), i), bullet.end());
+			stage->player->Death();
+		}
+	}
+}
+void CEnemy::Death()
+{
+
 }
 void CEnemy::Update()
 {

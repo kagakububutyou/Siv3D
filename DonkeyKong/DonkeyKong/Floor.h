@@ -14,6 +14,7 @@ public:
 	~CFloor(){};
 
 	void Draw();
-	void Update();
+	void Update(){};
+	void Death(){};
 };
 

@@ -18,6 +18,7 @@ public:
 
 	void Draw();
 	void Update();
+	void Death();
 
 	void ShotTiming();
 	void CreateShot();

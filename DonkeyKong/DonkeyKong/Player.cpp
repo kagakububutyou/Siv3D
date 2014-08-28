@@ -75,7 +75,6 @@ void CPlayer::Move()
 			}
 		}
 	}
-	//*/
 }
 void CPlayer::Collision()
 {
@@ -160,6 +159,10 @@ void CPlayer::Collision()
 		}
 	}
 }
+void CPlayer::Death()
+{
+	Pos = Float3(-112, 16, 0);
+}
 void CPlayer::Update()
 {
 	Collision();
@@ -168,6 +171,6 @@ void CPlayer::Update()
 
 void CPlayer::Draw()
 {	
-	Box(Pos, Size).draw(color);
-	//Box(Pos.x,Pos.y + Size.y/2,Pos.z, Size.x, Size.y * 2, Size.z).draw(Palette::Blue);
+	//Box(Pos, Size).draw(color);
+	Box(Pos.x,Pos.y + Size.y/2+3,Pos.z, Size.x, Size.y * 2, Size.z).draw(Palette::Blue);
 }

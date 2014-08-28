@@ -19,10 +19,6 @@ CFloor::CFloor(Float3 pos, Float3 size)
 	}
 
 }
-void CFloor::Update()
-{
-
-}
 void CFloor::Draw()
 {
 	Box(Pos, Size).draw(TextureAsset(L"Floor"));

@@ -41,8 +41,8 @@ public:
 	//		スマートポインタ
 	//		もう少し具体的に
 	std::vector<std::unique_ptr<COBJECT>> obj[OBJECT::ALL];
-	std::unique_ptr<CPlayer> player;
-	std::unique_ptr<CEnemy> enemy;
+	std::unique_ptr<COBJECT> player;
+	std::unique_ptr<COBJECT> enemy;
 	std::vector<Item> items;
 
 	const static int Width = 512;		//	幅

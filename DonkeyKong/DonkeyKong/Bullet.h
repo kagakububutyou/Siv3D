@@ -21,5 +21,6 @@ public:
 
 	void Draw();
 	void Update();
+	void Death(){};
 };
 

@@ -18,8 +18,9 @@ public:
 	Color color;
 
 
-	virtual void Draw() = 0;	//描画
+	virtual void Draw() = 0;		//	描画
 	virtual void Update() = 0;	//	アップデート
+	virtual void Death() = 0;	//	死亡
 
 };
 

@@ -7,6 +7,7 @@ public:
 	~CDrum(){};
 
 	void Draw();
-	void Update();
+	void Update(){};
+	void Death(){};
 };
 

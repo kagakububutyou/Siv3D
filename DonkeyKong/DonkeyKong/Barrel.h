@@ -9,6 +9,7 @@ public:
 	~CBarrel(){};
 
 	void Draw();
-	void Update();
+	void Update(){};
+	void Death(){};
 };
 

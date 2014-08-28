@@ -30,6 +30,7 @@ public:
 
 	void Move();
 	void Collision();
+	void Death();
 
 
 	void Draw();
