@@ -21,9 +21,10 @@ CPlayer::CPlayer()
 
 	force = 0;
 
-	State = STATE::LIVE;
-
+	State = STATE::NOTE;
 	color = Palette::Red;
+
+	UseCount = UseMaxCount;
 }
 
 //	
@@ -31,8 +32,8 @@ void CPlayer::Move()
 {
 	Pos += Velocity;
 
-	if (Input::KeyLShift.clicked && State != STATE::JUNP
-		|| Input::KeyRShift.clicked && State != STATE::JUNP)
+	if (Input::KeyLShift.clicked && State == STATE::NOTE
+		|| Input::KeyRShift.clicked && State == STATE::NOTE)
 	{
 		force = 8;
 		State = STATE::JUNP;
@@ -51,27 +52,30 @@ void CPlayer::Move()
 	}
 	Velocity.y = -3.8f;
 
-	for (auto &i : stage->obj[stage->LADDER])
+	if (State != STATE::HAMMER)
 	{
-		if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
+		for (auto &i : stage->obj[stage->LADDER])
 		{
-			if (Input::KeyUp.pressed)
+			if (Collision::IsCollisionBox(Pos, Size, i->Pos, i->Size))
 			{
-				Velocity.y = 0;
-				Pos.y += Speed;
-			}
-			if (Input::KeyDown.pressed)
-			{
-				Velocity.y = 0;
-				Pos.y -= Speed;
-			}
-			if (Input::KeyUp.code && Input::KeyDown.code)
-			{
-				Velocity.y = 0;
-			}
-			if (State == STATE::JUNP)
-			{
-				Velocity.y = -3.8f;
+				if (Input::KeyUp.pressed)
+				{
+					Velocity.y = 0;
+					Pos.y += Speed;
+				}
+				if (Input::KeyDown.pressed)
+				{
+					Velocity.y = 0;
+					Pos.y -= Speed;
+				}
+				if (Input::KeyUp.code && Input::KeyDown.code)
+				{
+					Velocity.y = 0;
+				}
+				if (State == STATE::JUNP)
+				{
+					Velocity.y = -3.8f;
+				}
 			}
 		}
 	}
@@ -108,7 +112,7 @@ void CPlayer::Collision()
 				{
 					Pos.y -= Velocity.y;
 
-					State = STATE::LIVE;
+					State = STATE::NOTE;
 				}
 			}
 			else if (Pos.y <= i->Pos.y + i->Size.y)
@@ -121,7 +125,15 @@ void CPlayer::Collision()
 		}
 	}
 
-	if (State == STATE::LIVE)
+	if (Collision::IsCollisionBox(Pos, Size, stage->hammer->Pos, stage->hammer->Size))
+	{
+		if (State != STATE::HAMMER)
+		{
+			State = STATE::HAMMER;
+		}
+	}
+
+	if (State == STATE::NOTE || State == STATE::HAMMER)
 	{
 		//	°‚É“–‚½‚Á‚Ä‚È‚¢Žž
 		for (auto &i : stage->obj[stage->FLOOR])
@@ -159,12 +171,25 @@ void CPlayer::Collision()
 		}
 	}
 }
+void CPlayer::UseHammer()
+{
+	if (State == STATE::HAMMER)
+	{
+		UseCount -= 1;
+	}
+	if (UseCount < 0)
+	{
+		State = STATE::NOTE;
+		UseCount = UseMaxCount;
+	}
+}
 void CPlayer::Death()
 {
 	Pos = Float3(-112, 16, 0);
 }
 void CPlayer::Update()
 {
+	UseHammer();
 	Collision();
 	Move();
 }
@@ -172,5 +197,5 @@ void CPlayer::Update()
 void CPlayer::Draw()
 {	
 	//Box(Pos, Size).draw(color);
-	Box(Pos.x,Pos.y + Size.y/2+3,Pos.z, Size.x, Size.y * 1.5f, Size.z).draw(Palette::Blue);
+	Box(Pos.x, Pos.y + Size.y / 2 + 3, Pos.z, Size.x, Size.y * 1.5f, Size.z).draw(color);
 }

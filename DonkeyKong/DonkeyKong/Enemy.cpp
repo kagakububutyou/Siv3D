@@ -53,6 +53,10 @@ void CEnemy::Collision()
 			bullet.erase(std::remove(bullet.begin(), bullet.end(), i), bullet.end());
 			stage->player->Death();
 		}
+		if (Collision::IsCollisionBox(i->Pos, Float3(i->Size.x, i->Size.y / 2, i->Size.z), stage->hammer->Pos, stage->hammer->Size))
+		{
+			bullet.erase(std::remove(bullet.begin(), bullet.end(), i), bullet.end());
+		}
 	}
 }
 void CEnemy::Death()

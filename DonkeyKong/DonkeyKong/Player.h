@@ -12,6 +12,9 @@ private:
 
 	float force;
 
+	float UseCount;
+	const float UseMaxCount = 600;
+
 	static const float Speed;
 
 	enum class STATE
@@ -19,6 +22,8 @@ private:
 		LIVE,
 		NOTE,
 		JUNP,
+		HAMMER,
+		DEATH,
 
 	};
 
@@ -31,7 +36,7 @@ public:
 	void Move();
 	void Collision();
 	void Death();
-
+	void UseHammer();
 
 	void Draw();
 	void Update();

@@ -4,6 +4,18 @@ class CHammer :	public COBJECT
 {
 private:
 
+	enum class STATE
+	{
+		LIVE,
+		DEATH,
+	};
+
+	STATE State;
+
+	float UseCount;
+
+	const float UseMaxCount = 600;
+
 	bool IsCollisionPlayer;
 
 public:
@@ -14,6 +26,6 @@ public:
 	void Move();
 	void Draw();
 	void Update();
-	void Death(){};
+	void Death();
 };
 

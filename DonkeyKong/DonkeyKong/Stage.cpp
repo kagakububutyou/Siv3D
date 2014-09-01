@@ -64,9 +64,9 @@ void Stage::Map()
 }
 void Stage::Update()
 {
+	hammer->Update();
 	player->Update();
 	enemy->Update();
-	hammer->Update();
 }
 void Stage::Draw()
 {
