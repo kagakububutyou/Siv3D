@@ -3,9 +3,6 @@
 #include <memory>
 #include <vector>
 
-class CPlayer;
-class CEnemy;
-class CFloor;
 class COBJECT;
 
 struct Item
@@ -43,7 +40,7 @@ public:
 	std::vector<std::unique_ptr<COBJECT>> obj[OBJECT::ALL];
 	std::unique_ptr<COBJECT> player;
 	std::unique_ptr<COBJECT> enemy;
-	std::vector<Item> items;
+	std::unique_ptr<COBJECT> hammer;
 
 	const static int Width = 512;		//	ïù
 	const static int Height = 448;		//	çÇÇ≥

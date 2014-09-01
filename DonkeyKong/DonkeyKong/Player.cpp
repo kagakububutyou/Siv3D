@@ -172,5 +172,5 @@ void CPlayer::Update()
 void CPlayer::Draw()
 {	
 	//Box(Pos, Size).draw(color);
-	Box(Pos.x,Pos.y + Size.y/2+3,Pos.z, Size.x, Size.y * 2, Size.z).draw(Palette::Blue);
+	Box(Pos.x,Pos.y + Size.y/2+3,Pos.z, Size.x, Size.y * 1.5f, Size.z).draw(Palette::Blue);
 }

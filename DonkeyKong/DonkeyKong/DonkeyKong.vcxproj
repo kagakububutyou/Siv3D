@@ -92,6 +92,7 @@
     <ClCompile Include="Drum.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Floor.cpp" />
+    <ClCompile Include="Hammer.cpp" />
     <ClCompile Include="Ladder.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Drum.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Floor.h" />
+    <ClInclude Include="Hammer.h" />
     <ClInclude Include="Ladder.h" />
     <ClInclude Include="OBJECT.h" />
     <ClInclude Include="Player.h" />

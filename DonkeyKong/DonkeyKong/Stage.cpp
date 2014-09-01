@@ -5,6 +5,7 @@
 #include "Barrel.h"
 #include "Enemy.h"
 #include "Drum.h"
+#include "Hammer.h"
 Stage *stage;
 
 
@@ -14,6 +15,7 @@ Stage::Stage()
 	//		スマートポインタ宣言の仕方
 	player.reset(new CPlayer());
 	enemy.reset(new CEnemy());
+	hammer.reset(new CHammer());
 	Map();
 }
 
@@ -64,6 +66,7 @@ void Stage::Update()
 {
 	player->Update();
 	enemy->Update();
+	hammer->Update();
 }
 void Stage::Draw()
 {
@@ -75,6 +78,7 @@ void Stage::Draw()
 		}
 	}
 
+	hammer->Draw();
 	player->Draw();
 	enemy->Draw();
 }
