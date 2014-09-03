@@ -1,3 +1,5 @@
+#include <math.h>
+
 #include "Hammer.h"
 #include "Stage.h"
 #include "Collision.h"
@@ -15,22 +17,37 @@ CHammer::CHammer()
 }
 void CHammer::Move()
 {
-	if (IsCollisionPlayer && stage->player->Velocity.x > 0)
+	static float i = 10;
+	static float angle = 0;
+
+	
+	if (IsCollisionPlayer && stage->player->Direction.x > 0)
 	{
-		Pos = Float3(stage->player->Pos.x+Size.x,stage->player->Pos.y+Size.y/2,stage->player->Pos.z);
+		if (angle < 0){ i = 10; }
+		if (angle > 90)	{ i = -10; }
+
+		Pos = Float3(stage->player->Pos.x + sin(angle*Pi / 180.0)*Size.x, stage->player->Pos.y + Size.y / 2 + cos(angle*Pi / 180.0)*Size.y, stage->player->Pos.z);
 	}
-	if (IsCollisionPlayer && stage->player->Velocity.x < 0)
+	if (IsCollisionPlayer && stage->player->Direction.x < 0)
 	{
-		Pos = Float3(stage->player->Pos.x - Size.x, stage->player->Pos.y + Size.y / 2, stage->player->Pos.z);
+		if (angle > 360){ i = -10; }
+		if (angle < 270){ i = 10; }
+		
+		Pos = Float3(stage->player->Pos.x + sin(angle*Pi / 180.0)*Size.x, stage->player->Pos.y + Size.y / 2 + cos(angle*Pi / 180.0)*Size.y, stage->player->Pos.z);
 	}
-	if (IsCollisionPlayer)
-	{
-		UseCount -= 1;
-	}
+	
 	if (UseCount < 0)
 	{
 		State = STATE::DEATH;
 		UseCount = UseMaxCount;
+	}
+	//*/
+	
+
+	if (IsCollisionPlayer)
+	{
+		angle += i;
+		//UseCount -= 1;
 	}
 }
 void CHammer::Collision()

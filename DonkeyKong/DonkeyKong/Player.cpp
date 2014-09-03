@@ -16,6 +16,7 @@ CPlayer::CPlayer()
 	Pos = Float3(-112, 16, 0);
 
 	Velocity = Float3(0, 0, 0);
+	Direction = Float3(0, 0, 0);
 
 	Size = Float3(16,16,16);
 
@@ -41,10 +42,12 @@ void CPlayer::Move()
 	if (Input::KeyRight.pressed)
 	{
 		Velocity.x = Speed;
+		Direction.x = 1;
 	}
 	else if (Input::KeyLeft.pressed)
 	{
 		Velocity.x = -Speed;
+		Direction.x = -1;
 	}
 	else
 	{

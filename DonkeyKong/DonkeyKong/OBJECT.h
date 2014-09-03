@@ -14,6 +14,7 @@ public:
 
 	Float3 Pos;			//	À•W
 	Float3 Velocity;	//	‘¬“x
+	Float3 Direction;	//	•ûŒü
 	Float3 Size;		//	‘å‚«‚³
 	Color color;
 
