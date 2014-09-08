@@ -47,7 +47,7 @@ void CHammer::Move()
 	if (IsCollisionPlayer)
 	{
 		angle += i;
-		//UseCount -= 1;
+		UseCount -= 1;
 	}
 }
 void CHammer::Collision()

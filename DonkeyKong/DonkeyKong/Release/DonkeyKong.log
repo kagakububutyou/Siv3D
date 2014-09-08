@@ -1,10 +1,8 @@
-﻿2014/09/03 13:35:32 にビルドを開始しました。
+﻿2014/09/08 14:12:26 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\教材\審査会出展作品\第5回作品関連\DonkeyKong\DonkeyKong\DonkeyKong.vcxproj" (Build ターゲット)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Hammer.cpp
-         Hammer.cpp
-     1>c:\教材\審査会出展作品\第5回作品関連\donkeykong\donkeykong\Hammer.h(30): warning C4512: 'CHammer' : 代入演算子を生成できません。
-                 c:\教材\審査会出展作品\第5回作品関連\donkeykong\donkeykong\Hammer.h(3) : 'CHammer' の宣言を確認してください。
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Title.cpp
+         Title.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\教材\審査会出展作品\第5回作品関連\DonkeyKong\Release\DonkeyKong.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\教材\審査会出展作品\第5回作品関連\DonkeyKong\Release\DonkeyKong.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\教材\審査会出展作品\第5回作品関連\DonkeyKong\Release\DonkeyKong.lib" /MACHINE:X86 /SAFESEH Release\RC.res
          Release\Barrel.obj
@@ -18,6 +16,7 @@
          Release\Main.obj
          Release\Player.obj
          Release\Stage.obj
+         Release\Title.obj
          コード生成しています。
          コード生成が終了しました。
          DonkeyKong.vcxproj -> C:\教材\審査会出展作品\第5回作品関連\DonkeyKong\Release\DonkeyKong.exe
@@ -25,4 +24,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:19.36
+経過時間 00:00:25.48

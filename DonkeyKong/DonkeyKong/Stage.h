@@ -4,6 +4,7 @@
 #include <vector>
 
 class COBJECT;
+class CTitle;
 
 struct Item
 {
@@ -16,6 +17,15 @@ class Stage
 {
 private:
 	
+	enum StageFlag
+	{
+		TITLE,
+		MAIN,
+		CLEAR,
+	};
+
+	StageFlag Flag;
+
 public:
 	enum OBJECT
 	{
@@ -33,6 +43,9 @@ public:
 
 	void Map();
 	void Update();
+
+	void Transition();	//遷移
+
 	void Draw();
 	void GameMain();
 	//		スマートポインタ
@@ -41,6 +54,8 @@ public:
 	std::unique_ptr<COBJECT> player;
 	std::unique_ptr<COBJECT> enemy;
 	std::unique_ptr<COBJECT> hammer;
+
+	std::unique_ptr<CTitle> Title;
 
 	const static int Width = 512;		//	幅
 	const static int Height = 448;		//	高さ

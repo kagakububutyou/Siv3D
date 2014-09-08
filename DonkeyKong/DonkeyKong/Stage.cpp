@@ -6,6 +6,8 @@
 #include "Enemy.h"
 #include "Drum.h"
 #include "Hammer.h"
+#include "Title.h"
+
 Stage *stage;
 
 
@@ -16,6 +18,10 @@ Stage::Stage()
 	player.reset(new CPlayer());
 	enemy.reset(new CEnemy());
 	hammer.reset(new CHammer());
+	Title.reset(new CTitle());
+
+	Flag = StageFlag::TITLE;
+
 	Map();
 }
 
@@ -62,25 +68,46 @@ void Stage::Map()
 	}
 	obj[OBJECT::DRUM].emplace_back(new CDrum());
 }
+void Stage::Transition()
+{
+	if (Flag == StageFlag::TITLE && Input::KeyEnter.clicked)
+	{
+		Flag = StageFlag::MAIN;
+	}
+}
 void Stage::Update()
 {
-	hammer->Update();
-	player->Update();
-	enemy->Update();
+	Transition();
+
+	if (Flag == StageFlag::MAIN)
+	{
+		hammer->Update();
+		player->Update();
+		enemy->Update();
+	}
 }
 void Stage::Draw()
 {
-	for (int j = 0, max = OBJECT::ALL; j < max; j++)
+	
+	if (Flag == StageFlag::MAIN)
 	{
-		for (auto &i : obj[j])
+		for (int j = 0, max = OBJECT::ALL; j < max; j++)
 		{
-			i->Draw();
+			for (auto &i : obj[j])
+			{
+				i->Draw();
+			}
 		}
-	}
 
-	hammer->Draw();
-	player->Draw();
-	enemy->Draw();
+		hammer->Draw();
+		player->Draw();
+		enemy->Draw();
+	}
+	
+	if (Flag == StageFlag::TITLE)
+	{
+		Title->Draw();
+	}
 }
 void Stage::GameMain()
 {
