@@ -84,13 +84,15 @@ void Stage::GameStart()
 	}
 	if (Flag == StageFlag::CLEAR && Input::KeyEnter.clicked)
 	{
-		Flag = StageFlag::TITLE;
+		System::Exit();
 	}
 }
 void Stage::GameClear()
 {
 	Flag = StageFlag::CLEAR;
 	SoundAsset(L"BGM").stop();
+	SoundAsset(L"Walk").stop();
+	SoundAsset(L"Hammer").stop();
 }
 void Stage::Update()
 {
@@ -98,7 +100,6 @@ void Stage::Update()
 
 	if (Flag == StageFlag::MAIN)
 	{
-		hammer->Update();
 		player->Update();
 		reddy->Update();
 		enemy->Update();

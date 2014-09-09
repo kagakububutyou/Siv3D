@@ -14,6 +14,8 @@ const float CPlayer::Speed = 2.5f;
 CPlayer::CPlayer()
 {
 	Reset();
+
+	Text.reset(new Font(20, Typeface::Default));
 }
 
 void CPlayer::Reset()
@@ -153,12 +155,21 @@ void CPlayer::Collision()
 		}
 	}
 
+	
 	if (Collision::IsCollisionBox(Pos, Size, stage->hammer->Pos, stage->hammer->Size))
 	{
-		if (State != STATE::HAMMER)
+		State = STATE::HAMMER;
+	}
+	if (Collision::IsCollisionBox(Pos, Size, stage->hammer->Pos, stage->hammer->Size))
+	{
+		if (State == STATE::HAMMER)
 		{
-			State = STATE::HAMMER;
+			State = STATE::NOTE;
 		}
+	}
+	if (Collision::IsCollisionBox(Pos, Size, stage->enemy->Pos, stage->enemy->Size))
+	{
+		Death();
 	}
 	if (Collision::IsCollisionBox(Pos, Size, stage->reddy->Pos, stage->reddy->Size))
 	{
@@ -212,22 +223,31 @@ void CPlayer::UseHammer()
 	if (UseCount < 0)
 	{
 		State = STATE::NOTE;
-		UseCount = UseMaxCount;
+		//UseCount = UseMaxCount;
 	}
 }
 void CPlayer::Death()
 {
-	Reset();
+	//Reset();
+
+	Pos = Float3(-112, 16, 0);
+	State = STATE::NOTE;
+
+	//UseCount = -1;
 }
 void CPlayer::Update()
 {
-	UseHammer();
+	stage->hammer->Update();
+
 	Collision();
+	UseHammer();
 	Move();
 }
 
 void CPlayer::Draw()
 {	
-	//Box(Pos, Size).draw(color);
-	Box(Pos.x, Pos.y + Size.y / 2 + 3, Pos.z, Size.x, Size.y * 1.5f, Size.z).draw(color);
+	Box(Pos, Size).draw(color);
+	Box(Pos.x, Pos.y + Size.y / 2, Pos.z, Size.x, Size.y * 1.5f, Size.z).draw(color);
+
+	//Box(Float3(Pos.x, Pos.y + Size.y / 2 + 3, Pos.z), Float3(Size.x, Size.y * 1.5f, Size.z)).draw(color);
 }

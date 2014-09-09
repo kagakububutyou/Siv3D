@@ -51,7 +51,8 @@ void CEnemy::Collision()
 		if (Collision::IsCollisionBox(i->Pos, Float3(i->Size.x, i->Size.y/2, i->Size.z), stage->player->Pos, Float3(stage->player->Size.x, stage->player->Size.y, stage->player->Size.z)))
 		{
 			bullet.erase(std::remove(bullet.begin(), bullet.end(), i), bullet.end());
-			stage->player->Death();
+			//stage->player->Death();
+			//stage->hammer->Death();
 		}
 		if (Collision::IsCollisionBox(i->Pos, Float3(i->Size.x, i->Size.y / 2, i->Size.z), stage->hammer->Pos, stage->hammer->Size))
 		{

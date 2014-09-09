@@ -65,6 +65,7 @@ void CHammer::Death()
 
 	if (State == STATE::DEATH)
 	{
+		IsCollisionPlayer = false;
 		Pos = Float3(-100, -100, -100);
 	}
 }

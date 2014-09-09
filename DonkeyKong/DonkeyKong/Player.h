@@ -13,6 +13,8 @@ private:
 	float force;
 
 	float UseCount;
+	bool DeathFlag;
+
 	const float UseMaxCount = 600;
 
 	static const float Speed;
@@ -28,6 +30,7 @@ private:
 	};
 
 	STATE State;
+	std::unique_ptr<Font> Text;
 
 public:
 	CPlayer();
