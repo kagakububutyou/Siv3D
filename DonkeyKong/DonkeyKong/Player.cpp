@@ -13,12 +13,17 @@ const float CPlayer::Speed = 2.5f;
 
 CPlayer::CPlayer()
 {
+	Reset();
+}
+
+void CPlayer::Reset()
+{
 	Pos = Float3(-112, 16, 0);
 
 	Velocity = Float3(0, 0, 0);
 	Direction = Float3(0, 0, 0);
 
-	Size = Float3(16,16,16);
+	Size = Float3(16, 16, 16);
 
 	force = 0;
 
@@ -140,6 +145,10 @@ void CPlayer::Collision()
 		{
 			State = STATE::HAMMER;
 		}
+	}
+	if (Collision::IsCollisionBox(Pos, Size, stage->reddy->Pos, stage->reddy->Size))
+	{
+		Reset();
 	}
 
 	if (State == STATE::NOTE || State == STATE::HAMMER)

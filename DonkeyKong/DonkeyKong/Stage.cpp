@@ -7,6 +7,8 @@
 #include "Drum.h"
 #include "Hammer.h"
 #include "Title.h"
+#include "Clear.h"
+#include "Reddy.h"
 
 Stage *stage;
 
@@ -18,7 +20,9 @@ Stage::Stage()
 	player.reset(new CPlayer());
 	enemy.reset(new CEnemy());
 	hammer.reset(new CHammer());
+	reddy.reset(new CReddy());
 	Title.reset(new CTitle());
+	Clear.reset(new CClear());
 
 	Flag = StageFlag::TITLE;
 
@@ -69,28 +73,38 @@ void Stage::Map()
 	}
 	obj[OBJECT::DRUM].emplace_back(new CDrum());
 }
-void Stage::Transition()
+void Stage::GameStart()
 {
 	if (Flag == StageFlag::TITLE && Input::KeyEnter.clicked)
 	{
 		Flag = StageFlag::MAIN;
 		SoundAsset(L"BGM").play();
 	}
+	if (Flag == StageFlag::CLEAR && Input::KeyEnter.clicked)
+	{
+		Flag = StageFlag::TITLE;
+	}
+}
+void Stage::GameClear()
+{
+	Flag = StageFlag::CLEAR;
+	SoundAsset(L"BGM").stop();
 }
 void Stage::Update()
 {
-	Transition();
+	GameStart();
 
 	if (Flag == StageFlag::MAIN)
 	{
 		hammer->Update();
 		player->Update();
+		reddy->Update();
 		enemy->Update();
 	}
 }
 void Stage::Draw()
 {
-	
+
 	if (Flag == StageFlag::MAIN)
 	{
 		for (int j = 0, max = OBJECT::ALL; j < max; j++)
@@ -103,13 +117,12 @@ void Stage::Draw()
 
 		hammer->Draw();
 		player->Draw();
+		reddy->Draw();
 		enemy->Draw();
 	}
-	
-	if (Flag == StageFlag::TITLE)
-	{
-		Title->Draw();
-	}
+
+	if (Flag == StageFlag::TITLE){ Title->Draw(); }
+	if (Flag == StageFlag::CLEAR){ Clear->Draw(); }
 }
 void Stage::GameMain()
 {

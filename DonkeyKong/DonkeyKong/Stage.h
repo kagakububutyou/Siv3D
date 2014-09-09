@@ -5,6 +5,7 @@
 
 class COBJECT;
 class CTitle;
+class CClear;
 
 struct Item
 {
@@ -44,7 +45,8 @@ public:
 	void Map();
 	void Update();
 
-	void Transition();	//‘JˆÚ
+	void GameStart();
+	void GameClear();
 
 	void Draw();
 	void GameMain();
@@ -52,10 +54,12 @@ public:
 	//		‚à‚¤­‚µ‹ï‘Ì“I‚É
 	std::vector<std::unique_ptr<COBJECT>> obj[OBJECT::ALL];
 	std::unique_ptr<COBJECT> player;
+	std::unique_ptr<COBJECT> reddy;
 	std::unique_ptr<COBJECT> enemy;
 	std::unique_ptr<COBJECT> hammer;
 
 	std::unique_ptr<CTitle> Title;
+	std::unique_ptr<CClear> Clear;
 
 	const static int Width = 512;		//	•
 	const static int Height = 448;		//	‚‚³

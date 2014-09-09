@@ -33,6 +33,8 @@ public:
 	CPlayer();
 	~CPlayer(){};
 
+	void Reset();
+
 	void Move();
 	void Collision();
 	void Death();
