@@ -35,6 +35,7 @@ void Stage::Map()
 	const CSVReader map	(L"engine/csv/Map.csv");
 	const CSVReader lad(L"engine/csv/Ladder.csv");
 	const CSVReader bar(L"engine/csv/Barrel.csv");
+	SoundAsset::Register(L"BGM", L"engine/MP3/BGM.mp3",true);
 
 	if (!map || !lad || !bar)
 	{
@@ -73,6 +74,7 @@ void Stage::Transition()
 	if (Flag == StageFlag::TITLE && Input::KeyEnter.clicked)
 	{
 		Flag = StageFlag::MAIN;
+		SoundAsset(L"BGM").play();
 	}
 }
 void Stage::Update()
