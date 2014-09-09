@@ -39,7 +39,8 @@ void CPlayer::Move()
 	Pos += Velocity;
 
 	if (Input::KeyLShift.clicked && State == STATE::NOTE
-		|| Input::KeyRShift.clicked && State == STATE::NOTE)
+		|| Input::KeyRShift.clicked && State == STATE::NOTE
+		 || Input::KeySpace.clicked && State == STATE::NOTE)
 	{
 		force = 8;
 		State = STATE::JUNP;
@@ -48,22 +49,23 @@ void CPlayer::Move()
 	{
 		Velocity.x = Speed;
 		Direction.x = 1;
+		SoundAsset(L"Walk").play();
 	}
 	else if (Input::KeyLeft.pressed)
 	{
 		Velocity.x = -Speed;
 		Direction.x = -1;
+		SoundAsset(L"Walk").play();
 	}
 	else
 	{
 		Velocity.x = 0;
+		SoundAsset(L"Walk").stop();
 	}
 	if (Pos.y < -100)
 	{
 		Death();
 	}
-
-
 	Velocity.y = -3.8f;
 
 	if (State != STATE::HAMMER)
@@ -76,22 +78,34 @@ void CPlayer::Move()
 				{
 					Velocity.y = 0;
 					Pos.y += Speed;
+					SoundAsset(L"Walk").play();
 				}
-				if (Input::KeyDown.pressed)
+				else if (Input::KeyDown.pressed)
 				{
 					Velocity.y = 0;
 					Pos.y -= Speed;
+					SoundAsset(L"Walk").play();
 				}
-				if (Input::KeyUp.code && Input::KeyDown.code)
+				else if (Input::KeyUp.code && Input::KeyDown.code)
 				{
 					Velocity.y = 0;
 				}
-				if (State == STATE::JUNP)
+				else if (State == STATE::JUNP)
 				{
 					Velocity.y = -3.8f;
 				}
 			}
 		}
+	}
+	if (State == STATE::HAMMER)
+	{
+		SoundAsset(L"BGM").stop();
+		SoundAsset(L"Hammer").play();
+	}
+	if (State != STATE::HAMMER)
+	{
+		SoundAsset(L"Hammer").stop();
+		SoundAsset(L"BGM").play();
 	}
 }
 void CPlayer::Collision()
@@ -203,7 +217,7 @@ void CPlayer::UseHammer()
 }
 void CPlayer::Death()
 {
-	Pos = Float3(-112, 16, 0);
+	Reset();
 }
 void CPlayer::Update()
 {

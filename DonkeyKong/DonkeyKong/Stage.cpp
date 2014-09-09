@@ -40,6 +40,8 @@ void Stage::Map()
 	const CSVReader lad(L"engine/csv/Ladder.csv");
 	const CSVReader bar(L"engine/csv/Barrel.csv");
 	SoundAsset::Register(L"BGM", L"engine/MP3/BGM.mp3",true);
+	SoundAsset::Register(L"Walk", L"engine/MP3/“k•à.mp3", true);
+	SoundAsset::Register(L"Hammer", L"engine/MP3/ƒnƒ“ƒ}[.mp3", true);
 
 	if (!map || !lad || !bar)
 	{
