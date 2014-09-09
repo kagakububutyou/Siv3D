@@ -53,6 +53,12 @@ void CPlayer::Move()
 	{
 		Velocity.x = 0;
 	}
+	if (Pos.y < -100)
+	{
+		Death();
+	}
+
+
 	Velocity.y = -3.8f;
 
 	if (State != STATE::HAMMER)
