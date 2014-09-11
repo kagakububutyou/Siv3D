@@ -122,8 +122,10 @@ void Stage::Draw()
 		player->Draw();
 		reddy->Draw();
 		enemy->Draw();
-	}
+		std::dynamic_pointer_cast<CEnemy>(enemy)->BulletDelete();
 
+	}
+		
 	if (Flag == StageFlag::TITLE){ Title->Draw(); }
 	if (Flag == StageFlag::CLEAR){ Clear->Draw(); }
 }
@@ -131,4 +133,5 @@ void Stage::GameMain()
 {
 	Update();
 	Draw();
+
 }

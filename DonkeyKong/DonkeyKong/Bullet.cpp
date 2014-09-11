@@ -18,6 +18,7 @@ CBullet::CBullet()
 	Speed = -1.25f;
 	Gravity = -3.8f;
 	CollisionFloor = false;
+	isDelete = false;
 }
 void CBullet::Move()
 {

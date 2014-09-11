@@ -15,7 +15,7 @@ private:
 	float UseCount;
 	bool DeathFlag;
 
-	const float UseMaxCount = 600;
+	const float UseMaxCount = 600;	//	•Ï”‚Í‰¡
 
 	static const float Speed;
 
@@ -36,6 +36,7 @@ public:
 	CPlayer();
 	~CPlayer(){};
 
+	//	ŠÖ”‚Íã
 	void Reset();
 
 	void Move();
@@ -47,3 +48,11 @@ public:
 	void Update();
 };
 
+//	ƒRƒs[‚³‚¹‚È‚¢‚æ‚¤‚É‚·‚é
+class Noncopyable
+{
+	Noncopyable() = default;
+	Noncopyable(const Noncopyable&) = delete;
+	Noncopyable& operator =(const Noncopyable&) = delete;
+	
+};

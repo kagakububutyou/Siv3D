@@ -9,6 +9,8 @@ private:
 
 private:
 
+	
+
 	float Speed;
 	bool CollisionFloor;
 
@@ -22,5 +24,7 @@ public:
 	void Draw();
 	void Update();
 	void Death(){};
+
+	bool isDelete;
 };
 

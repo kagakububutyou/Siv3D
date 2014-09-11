@@ -45,20 +45,31 @@ void CEnemy::Collision()
 		{
 			if (Collision::IsCollisionBox(i->Pos, i->Size, j->Pos, j->Size))
 			{
-				bullet.erase(std::remove(bullet.begin(), bullet.end(), i), bullet.end());
+				i->isDelete = true;
 			}
 		}
 		if (Collision::IsCollisionBox(i->Pos, Float3(i->Size.x, i->Size.y/2, i->Size.z), stage->player->Pos, Float3(stage->player->Size.x, stage->player->Size.y, stage->player->Size.z)))
 		{
-			bullet.erase(std::remove(bullet.begin(), bullet.end(), i), bullet.end());
+			i->isDelete = true;
 			//stage->player->Death();
 			//stage->hammer->Death();
 		}
+
 		if (Collision::IsCollisionBox(i->Pos, Float3(i->Size.x, i->Size.y / 2, i->Size.z), stage->hammer->Pos, stage->hammer->Size))
 		{
-			bullet.erase(std::remove(bullet.begin(), bullet.end(), i), bullet.end());
+			i->isDelete = true;
 		}
+
 	}
+}
+
+void CEnemy::BulletDelete()
+{
+	Erase_if(bullet,[](const std::unique_ptr<CBullet> &obj)
+	{
+		return obj->isDelete;
+	});
+
 }
 void CEnemy::Death()
 {

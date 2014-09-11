@@ -55,7 +55,7 @@ public:
 	std::vector<std::unique_ptr<COBJECT>> obj[OBJECT::ALL];
 	std::unique_ptr<COBJECT> player;
 	std::unique_ptr<COBJECT> reddy;
-	std::unique_ptr<COBJECT> enemy;
+	std::shared_ptr<COBJECT> enemy;
 	std::unique_ptr<COBJECT> hammer;
 
 	std::unique_ptr<CTitle> Title;

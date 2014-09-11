@@ -1,7 +1,9 @@
 #pragma once
-#include <list>
+#include <vector>
 #include "OBJECT.h"
 #include "Bullet.h"
+
+
 class CEnemy :public COBJECT
 {
 private:
@@ -14,11 +16,12 @@ public:
 	CEnemy();
 	~CEnemy(){};
 
-	std::list<std::unique_ptr<CBullet>> bullet;
+	std::vector<std::unique_ptr<CBullet>> bullet;
 
 	void Draw();
 	void Update();
 	void Death();
+	void BulletDelete();
 
 	void ShotTiming();
 	void CreateShot();

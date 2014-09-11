@@ -159,7 +159,14 @@ void CPlayer::Collision()
 	if (Collision::IsCollisionBox(Pos, Size, stage->hammer->Pos, stage->hammer->Size))
 	{
 		State = STATE::HAMMER;
+		UseCount -= 1;
 	}
+	if (UseCount < 0)
+	{
+		State = STATE::NOTE;
+		UseCount = UseMaxCount;
+	}
+	/*
 	if (Collision::IsCollisionBox(Pos, Size, stage->hammer->Pos, stage->hammer->Size))
 	{
 		if (State == STATE::HAMMER)
@@ -167,6 +174,7 @@ void CPlayer::Collision()
 			State = STATE::NOTE;
 		}
 	}
+	//*/
 	if (Collision::IsCollisionBox(Pos, Size, stage->enemy->Pos, stage->enemy->Size))
 	{
 		Death();
