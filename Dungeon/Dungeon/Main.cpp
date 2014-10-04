@@ -1,4 +1,9 @@
+/*
 
+@author shinnnosuke hiratsuka
+@date 2014.10.02
+
+*/
 # include <Siv3D.hpp>
 
 void Main()

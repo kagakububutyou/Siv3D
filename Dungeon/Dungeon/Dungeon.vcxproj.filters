@@ -40,10 +40,22 @@
     <Filter Include="Task&amp;Actor">
       <UniqueIdentifier>{4f6df4fc-73d5-4521-ae10-6f0d7b232fea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{4328dd70-9c16-4386-a3a4-714faa2c891f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Task.cpp">
+      <Filter>Task&amp;Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Task&amp;Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +258,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Noncopyable.h">
+      <Filter>Task&amp;Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Task.h">
+      <Filter>Task&amp;Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Task&amp;Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
       <Filter>Task&amp;Actor</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,3 +1,9 @@
+/*
+
+@author shinnnosuke hiratsuka
+@date 2014.10.02
+
+*/
 #pragma once
 
 class Noncopyable
