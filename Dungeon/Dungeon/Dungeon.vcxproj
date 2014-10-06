@@ -87,8 +87,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CClearManager.cpp" />
+    <ClCompile Include="ChangeSceneKey.cpp" />
+    <ClCompile Include="ClearKeyEvent.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="GameApplication.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MenuKeyEvent.cpp" />
+    <ClCompile Include="MenuManager.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="Task.cpp" />
+    <ClCompile Include="TitleKeyEvent.cpp" />
+    <ClCompile Include="TitleManager.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -167,9 +181,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CharacterController.h" />
+    <ClInclude Include="ClearKeyEvent.h" />
+    <ClInclude Include="ClearManager.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GameApplication.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="MenuKeyEvent.h" />
+    <ClInclude Include="MenuManager.h" />
     <ClInclude Include="Noncopyable.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerMove.h" />
+    <ClInclude Include="PlayerState.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Task.h" />
+    <ClInclude Include="TitleKeyEvent.h" />
+    <ClInclude Include="TitleManager.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

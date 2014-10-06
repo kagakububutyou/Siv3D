@@ -138,11 +138,11 @@ public:
 	// ------------------------------------------------------
 	//	アクター自体を取得する
 	// ------------------------------------------------------
-	std::vector<std::shared_ptr<CActor>> GetActor(const std::stringbuf &name);
+	std::vector<std::shared_ptr<CActor>> GetActor(const std::string &name);
 
 	// ------------------------------------------------------
 	//	オブジェクトの数を取得する
 	// ------------------------------------------------------
-	void GetSize(const std::string &name);
+	int GetSize(const std::string &name);
 
 };

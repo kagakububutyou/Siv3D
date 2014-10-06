@@ -1,17 +1,9 @@
-﻿2014/10/04 9:50:08 にビルドを開始しました。
+﻿2014/10/06 12:01:50 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット)。
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Actor.cpp
-         Actor.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\教材\審査会出展作品\チーム制作\Dungeon\Debug\Dungeon.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Debug\Dungeon.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Debug\Dungeon.lib" /MACHINE:X86 Debug\RC.res
-         Debug\Actor.obj
-         Debug\Main.obj
-         Debug\Task.obj
-         Debug\Transform.obj
+     1>Link:
          Dungeon.vcxproj -> C:\教材\審査会出展作品\チーム制作\Dungeon\Debug\Dungeon.exe
      1>プロジェクト "C:\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット) のビルドが完了しました。
 
 ビルドに成功しました。
 
-経過時間 00:00:26.53
+経過時間 00:00:01.28

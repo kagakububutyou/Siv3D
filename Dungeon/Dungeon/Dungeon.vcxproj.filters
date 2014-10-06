@@ -43,6 +43,21 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{4328dd70-9c16-4386-a3a4-714faa2c891f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{dd910a93-126b-4d62-8c55-127fdc95ef67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{47de0d38-7099-43b5-a424-b8c0493cd335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{4ae951fd-5e3c-4962-9096-15e1baff782f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Siv3DWrap">
+      <UniqueIdentifier>{ebe37532-bf39-41be-82e0-d1a51e1ae5e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy">
+      <UniqueIdentifier>{4ccd07dc-41b8-4bfe-8c42-c04224222186}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -56,6 +71,48 @@
     </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeSceneKey.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMove.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleKeyEvent.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuKeyEvent.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Siv3DWrap</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Siv3DWrap</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameApplication.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearKeyEvent.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CClearManager.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +328,54 @@
     </ClInclude>
     <ClInclude Include="Actor.h">
       <Filter>Task&amp;Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMove.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterController.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleKeyEvent.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameApplication.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuKeyEvent.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Siv3DWrap</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Siv3DWrap</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearKeyEvent.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearManager.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
