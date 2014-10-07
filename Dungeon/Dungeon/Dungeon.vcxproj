@@ -89,7 +89,7 @@
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CClearManager.cpp" />
-    <ClCompile Include="ChangeSceneKey.cpp" />
+    <ClCompile Include="CharacterController.cpp" />
     <ClCompile Include="ClearKeyEvent.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameApplication.cpp" />
@@ -100,6 +100,7 @@
     <ClCompile Include="MenuManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TitleKeyEvent.cpp" />
     <ClCompile Include="TitleManager.cpp" />

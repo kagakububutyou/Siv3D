@@ -1,14 +1,14 @@
-﻿2014/10/07 0:07:10 にビルドを開始しました。
+﻿2014/10/07 10:56:00 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameApplication.cpp
-         GameApplication.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
+         Main.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.lib" /MACHINE:X86 /SAFESEH Release\RC.res
          Release\Actor.obj
          Release\Camera.obj
          Release\CClearManager.obj
-         Release\ChangeSceneKey.obj
+         Release\CharacterController.obj
          Release\ClearKeyEvent.obj
          Release\Enemy.obj
          Release\GameApplication.obj
@@ -19,15 +19,16 @@
          Release\MenuManager.obj
          Release\Player.obj
          Release\PlayerMove.obj
+         Release\Scene.obj
          Release\Task.obj
          Release\TitleKeyEvent.obj
          Release\TitleManager.obj
          Release\Transform.obj
-     1>ClearKeyEvent.obj : error LNK2001: 外部シンボル ""public: void __thiscall CSceneManager::ChangeScene(enum CSceneManager::Scene)" (?ChangeScene@CSceneManager@@QAEXW4Scene@1@@Z)" は未解決です。
-     1>GameApplication.obj : error LNK2001: 外部シンボル ""public: __thiscall CSceneManager::CSceneManager(class CGameApplication *)" (??0CSceneManager@@QAE@PAVCGameApplication@@@Z)" は未解決です。
-     1>C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.exe : fatal error LNK1120: 2 件の未解決の外部参照
-     1>プロジェクト "C:\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット) のビルドが終了しました -- 失敗。
+         コード生成しています。
+         コード生成が終了しました。
+         Dungeon.vcxproj -> C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.exe
+     1>プロジェクト "C:\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット) のビルドが完了しました。
 
-ビルドに失敗しました。
+ビルドに成功しました。
 
-経過時間 00:00:19.26
+経過時間 00:00:28.16

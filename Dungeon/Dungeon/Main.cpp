@@ -5,15 +5,16 @@
 
 */
 # include <Siv3D.hpp>
+#include "GameApplication.h"
 
 void Main()
 {
-	const Font font(30);
+	Window::SetTitle(L"Dungeon");
+	Window::Resize(CGameApplication::ScreenWidth, CGameApplication::ScreenHeight);
+	CGameApplication app;
 
 	while (System::Update())
 	{
-		font(L"ÇÊÇ§Ç±ÇªÅASiv3D ÇÃê¢äEÇ÷ÅI").draw();
-
-		Circle(Mouse::Pos(), 50).draw({ 255, 0, 0, 127 });
+		app.Update();
 	}
 }
