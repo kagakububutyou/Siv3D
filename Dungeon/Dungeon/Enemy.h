@@ -10,7 +10,7 @@
 class CEnemy :	public CActor
 {
 public:
-	CEnemy(std::shared_ptr<CTask> task, Float3 pos);
+	CEnemy(std::shared_ptr<CTask> task);
 	void Start();
 	void Update();
 	void Draw();

@@ -1,7 +1,7 @@
 #include "GameManager.h"
 #include "Scene.h"
 #include "Player.h"
-#include "Enemy.h"
+#include "EnemyManager.h"
 #include "Actor.h"
 
 CGameManager::CGameManager(std::shared_ptr<CSceneManager> manager) :
@@ -16,10 +16,13 @@ void CGameManager::Init()
 	state = State::Init;
 
 	auto player = std::make_shared<CActor>();
+	auto enemy_manager = std::make_shared<CActor>();
 
 	player->Append(std::make_shared<CPlayer>(task));
+	enemy_manager->Append(std::make_shared <CEnemyManager>(task));
 
 	task->Append("player", player);
+	task->Append("enemy_manager", enemy_manager);
 
 	camera = std::make_unique<CCamera>(Float3(0, 100, -500), Float3(0, 0, 0));
 	light = std::make_unique<CLight>(0, CLight::Type::Point, Float3(0, 100, -1000), 10000.0f, ColorF(2, 2, 2));
@@ -33,7 +36,7 @@ void CGameManager::Update()
 		task->Start();
 		state = State::Update;
 	}
-	else if (state == State::Update)
+	if (state == State::Update)
 	{
 		camera->Update();
 		light->Update();
