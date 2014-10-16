@@ -9,6 +9,9 @@
 #include "Scene.h"
 #include "Camera.h"
 #include "Light.h"
+class CMapRead;
+//class CBackGround;
+
 class CGameManager :public CScene
 {
 public:
@@ -17,7 +20,12 @@ public:
 	void Init();
 	void Update();
 
+	static const std::string PlayerName;
+	static const std::string FloorName;
+
 private:
+	int TransformMapToScreenX(const int x);
+	int TransformMapToScreenY(const int y);
 
 	///	状態
 	enum class State
@@ -30,5 +38,7 @@ private:
 	std::shared_ptr<CTask> task;				///	タスク
 	std::unique_ptr<CCamera> camera;	///	カメラ
 	std::unique_ptr<CLight> light;			///	ライト
+	std::unique_ptr<CMapRead> map_read;
+	//std::unique_ptr<CBackGround> barck_ground;
 
 };

@@ -16,9 +16,9 @@ public:
 
 	void ObjectRead(const Point index, const int type, std::shared_ptr<CActor> actor, std::shared_ptr<CActor> constructor);
 
-	static const int Width = 40;
-	static const int Height = 8;
-	static const int Size = 100;
+	static const int Width = 109;
+	static const int Height = 50;
+	static const int Size = 32;
 
 private:
 	void WidthRead(TextReader &reader, const int y);

@@ -4,7 +4,7 @@ CMapRead::CMapRead()
 {
 	FilePath Map = L"";
 
-	Map = L"engine\\data\\map\\test.txt";
+	Map = L"engine\\data\\map\\map.txt";
 
 	TextReader reader(Map);
 

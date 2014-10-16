@@ -121,13 +121,13 @@ public:
 	//	オブジェクトを取得する(IDまで取得する)
 	// ------------------------------------------------------
 	template<typename OBJ>
-	std::shared_ptr<OBJ> GetComponet(const std::string &name, const int Id)
+	std::shared_ptr<OBJ> GetComponent(const std::string &name, const int Id)
 	{
 		auto it = object.begin();
 		it = object.find(name);
 		assert(it != object.end());
 
-		return std::dynamic_pointer_cast<OBJ>(it->second->Getcomponent(Id));
+		return std::dynamic_pointer_cast<OBJ>(it->second->GetComponent(Id));
 	}
 
 	// ------------------------------------------------------

@@ -3,7 +3,9 @@
 //					code by shinnnnosuke hiratsuka
 // ------------------------------------------------
 #include "Camera.h"
+#include "Scene.h"
 
+#include "Actor.h"
 const float CCamera::Near = 100.0f;		///	Œ©‚¦‚é‹ß‚¢”ÍˆÍ
 const float CCamera::Far = 5000.0f;		///	Œ©‚¦‚é‰“‚¢”ÍˆÍ
 const float CCamera::degree = 45.0f;		///	ƒY[ƒ€

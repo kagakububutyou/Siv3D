@@ -94,6 +94,7 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GameApplication.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Goblin.cpp" />
@@ -103,6 +104,7 @@
     <ClCompile Include="MenuKeyEvent.cpp" />
     <ClCompile Include="MenuManager.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerCamera.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Task.cpp" />
@@ -193,6 +195,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="Floor.h" />
     <ClInclude Include="GameApplication.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Goblin.h" />
@@ -203,6 +206,7 @@
     <ClInclude Include="Noncopyable.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerCamera.h" />
     <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Scene.h" />

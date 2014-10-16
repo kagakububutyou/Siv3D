@@ -10,11 +10,12 @@
 #include <string>
 
 class CPlayerMove;
+class CPlayerCamera;
 
 class CPlayer :public CActor
 {
 public:
-	CPlayer(std::shared_ptr<CTask> task);
+	CPlayer(std::shared_ptr<CTask> task, Float3 pos);
 
 	void Start();
 	void Update();
@@ -22,4 +23,5 @@ public:
 
 private:
 	std::unique_ptr<CPlayerMove> move;	///	ˆÚ“®ˆ—
+	std::unique_ptr<CPlayerCamera> camera;	///	ƒJƒƒ‰ˆ—
 };
