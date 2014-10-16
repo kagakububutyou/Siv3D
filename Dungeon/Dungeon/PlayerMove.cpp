@@ -46,6 +46,38 @@ void CPlayerMove::Down()
 	}
 }
 
+void CPlayerMove::RightUp()
+{
+	if (CharacterController::RightMoveKey() && CharacterController::UpMoveKey())
+	{
+		VelocitySpeed(Float3(speed.x, speed.y, 0));
+	}
+}
+
+void CPlayerMove::RightDown()
+{
+	if (CharacterController::RightMoveKey() && CharacterController::DownMoveKey())
+	{
+		VelocitySpeed(Float3(speed.x, -speed.y, 0));
+	}
+}
+
+void CPlayerMove::LeftUp()
+{
+	if (CharacterController::LeftMoveKey() && CharacterController::UpMoveKey())
+	{
+		VelocitySpeed(Float3(-speed.x, speed.y, 0));
+	}
+}
+
+void CPlayerMove::LeftDown()
+{
+	if (CharacterController::LeftMoveKey() && CharacterController::DownMoveKey())
+	{
+		VelocitySpeed(Float3(-speed.x, -speed.y, 0));
+	}
+}
+
 void CPlayerMove::Stop()
 {
 	if (!CharacterController::RightMoveKey() && !CharacterController::LeftMoveKey()
@@ -61,5 +93,9 @@ void CPlayerMove::Update()
 	Left();
 	Up();
 	Down();
+	RightUp();
+	RightDown();
+	LeftUp();
+	LeftDown();
 	Stop();
 }

@@ -18,11 +18,15 @@ public:
 	Float3 GetVelocity()const { return velocity; }
 
 private:
-	void Right();	///	右移動
-	void Left();		///	左移動
-	void Up();		//	/	上移動
-	void Down();	///	下移動
-	void Stop();		///	停止
+	void Right();		///	右移動
+	void Left();			///	左移動
+	void Up();			//	/	上移動
+	void Down();		///	下移動
+	void RightUp();	///	右上
+	void RightDown();///	右下
+	void LeftUp();		///	左上
+	void LeftDown();	///	左下
+	void Stop();			///	停止
 	void VelocitySpeed(const Float3 speed);	///	移動量設定
 
 	Float3 velocity;	///	移動量
