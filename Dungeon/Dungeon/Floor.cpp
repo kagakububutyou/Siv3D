@@ -1,5 +1,7 @@
 #include "Floor.h"
 #include "MapRead.h"
+#include "Player.h"
+#include "GameManager.h"
 
 
 CFloor::CFloor(std::shared_ptr<CTask> task, Float3 pos) :

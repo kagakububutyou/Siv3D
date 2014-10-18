@@ -18,13 +18,12 @@ void CPlayer::Start()
 void CPlayer::Update()
 {
 	move->Update();
-	transform.Translate(move->GetVelocity());
+	//transform.Translate(move->GetVelocity());
 
 	camera->Update();
 }
 
 void CPlayer::Draw()
 {
-	Box(transform.GetPos(), transform.GetScale()).draw(Palette::Black);
-	
+	Box(transform.GetPos(), transform.GetScale()).draw(Palette::Royalblue);
 }
