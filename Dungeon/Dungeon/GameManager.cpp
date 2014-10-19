@@ -40,7 +40,7 @@ void CGameManager::Init()
 		{
 			
 			map_read->ObjectRead(Point(x, y), 2, player, std::make_shared<CPlayer>(task,
-				Float3(TransformMapToScreenX(x), TransformMapToScreenY(y), 0)));
+				Float3(TransformMapToScreenX(x), TransformMapToScreenY(y), -1)));
 				
 			
 			

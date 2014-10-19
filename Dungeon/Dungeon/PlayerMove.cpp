@@ -1,5 +1,7 @@
 #include "PlayerMove.h"
 #include "CharacterController.h"
+#include "Player.h"
+#include "GameManager.h"
 
 CPlayerMove::CPlayerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
@@ -98,4 +100,6 @@ void CPlayerMove::Update()
 	LeftUp();
 	LeftDown();
 	Stop();
+
+	task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.Translate(velocity);
 }
