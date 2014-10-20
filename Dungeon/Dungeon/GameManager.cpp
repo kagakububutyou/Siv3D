@@ -5,9 +5,11 @@
 #include "Actor.h"
 #include "MapRead.h"
 #include "Floor.h"
+#include "Staircase.h"
 
 const std::string CGameManager::PlayerName = "player";
 const std::string CGameManager::FloorName = "floor";
+const std::string CGameManager::Staircase = "staircase";
 
 
 CGameManager::CGameManager(std::shared_ptr<CSceneManager> manager) :
@@ -33,31 +35,33 @@ void CGameManager::Init()
 	auto enemy_manager = std::make_shared<CActor>();
 
 	auto floor = std::make_shared<CActor>();
+	auto staircase = std::make_shared<CActor>();
 
 	for (int y = 0; y < CMapRead::Height; y++)
 	{
 		for (int x = 0; x < CMapRead::Width; x++)
 		{
 			
-			map_read->ObjectRead(Point(x, y), 2, player, std::make_shared<CPlayer>(task,
+			map_read->ObjectRead(Point(x, y), CMapRead::PlayerPosition, player, std::make_shared<CPlayer>(task,
 				Float3(TransformMapToScreenX(x), TransformMapToScreenY(y), -1)));
 				
-			
-			
-			map_read->ObjectRead(Point(x, y), 1, floor, std::make_shared<CFloor>(task,
+			map_read->ObjectRead(Point(x, y), CMapRead::Floor, floor, std::make_shared<CFloor>(task,
+				Float3(TransformMapToScreenX(x), TransformMapToScreenY(y), 0)));
+
+			map_read->ObjectRead(Point(x, y), CMapRead::StaircasePosition, staircase, std::make_shared<CStaircase>(task,
 				Float3(TransformMapToScreenX(x), TransformMapToScreenY(y), 0)));
 		}
 	}
 
-	//player->Append(std::make_shared<CPlayer>(task));
 	enemy_manager->Append(std::make_shared <CEnemyManager>(task));
 
 	task->Append(PlayerName, player);
 	task->Append("enemy_manager", enemy_manager);
 
 	task->Append(FloorName, floor);
+	task->Append(Staircase, staircase);
 
-	light = std::make_unique<CLight>(0, CLight::Type::Point, Float3(0, 100, -1000), 10000.0f, ColorF(2, 2, 2));
+	light = std::make_unique<CLight>(0, CLight::Type::Point, Float3(-CMapRead::Width * CMapRead::Size / 2, -CMapRead::Height * CMapRead::Size / 2, -1000), 10000.0f, ColorF(2, 2, 2));
 }
 
 ///	ゲーム本体のアップデート

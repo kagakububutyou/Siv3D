@@ -18,7 +18,6 @@ void CPlayer::Start()
 void CPlayer::Update()
 {
 	move->Update();
-	//transform.Translate(move->GetVelocity());
 
 	camera->Update();
 }

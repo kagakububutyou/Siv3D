@@ -107,6 +107,7 @@
     <ClCompile Include="PlayerCamera.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Staircase.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TitleKeyEvent.cpp" />
     <ClCompile Include="TitleManager.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Staircase.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TitleKeyEvent.h" />
     <ClInclude Include="TitleManager.h" />

@@ -20,6 +20,11 @@ public:
 	static const int Height = 50;
 	static const int Size = 32;
 
+	static const int Floor = 1;						///	床
+	static const int PlayerPosition = 2;			///	プレイヤーの位置
+	static const int StaircasePosition = PlayerPosition;	///	階段の位置
+	
+
 private:
 	void WidthRead(TextReader &reader, const int y);
 	void HeightRead(TextReader &reader);

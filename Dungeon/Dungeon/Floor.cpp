@@ -12,5 +12,5 @@ CActor(task, Transform(pos - Float3(0, CMapRead::Size / 2, 0), Float3(CMapRead::
 
 void CFloor::Draw()
 {
-	Box(transform.GetPos(), transform.GetScale()).draw(Palette::Brown);
+	Box(transform.GetPos(), transform.GetScale()).draw(Palette::Red);
 }

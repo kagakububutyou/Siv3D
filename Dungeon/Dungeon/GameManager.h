@@ -22,6 +22,7 @@ public:
 
 	static const std::string PlayerName;
 	static const std::string FloorName;
+	static const std::string Staircase;
 
 private:
 	int TransformMapToScreenX(const int x);

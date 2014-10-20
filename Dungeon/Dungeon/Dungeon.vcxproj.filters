@@ -138,6 +138,9 @@
     <ClCompile Include="PlayerCamera.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="Staircase.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon.ico">
@@ -418,6 +421,9 @@
     </ClInclude>
     <ClInclude Include="PlayerCamera.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Staircase.h">
+      <Filter>Stage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
