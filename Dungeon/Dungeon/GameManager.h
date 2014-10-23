@@ -28,6 +28,9 @@ private:
 	int TransformMapToScreenX(const int x);
 	int TransformMapToScreenY(const int y);
 
+	float TransformMiniMapToScreenX(const float x);
+	float TransformMiniMapToScreenY(const float y);
+
 	///	ó‘Ô
 	enum class State
 	{

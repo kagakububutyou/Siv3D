@@ -6,7 +6,7 @@
 CPlayerMove::CPlayerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
 velocity(Float3(0, 0, 0)),
-speed(Float3(2.0f, 2.0f, 0))
+speed(Float3(20.0f, 20.0f, 0))
 {
 
 }

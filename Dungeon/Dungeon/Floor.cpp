@@ -1,6 +1,5 @@
 #include "Floor.h"
 #include "MapRead.h"
-#include "Player.h"
 #include "GameManager.h"
 
 

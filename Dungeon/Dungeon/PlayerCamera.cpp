@@ -12,6 +12,6 @@ void CPlayerCamera::Update()
 {
 	auto player_pos = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos();
 	camera->TransformPoint(Float3(player_pos.x, player_pos.y+50, -350));
-	camera->LookAt(Float3(player_pos.x, player_pos.y, 0));
+	camera->LookAt(Float3(player_pos.x, player_pos.y + 50, 0));
 	camera->Update();
 }

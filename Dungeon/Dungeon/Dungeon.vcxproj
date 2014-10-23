@@ -103,6 +103,7 @@
     <ClCompile Include="MapRead.cpp" />
     <ClCompile Include="MenuKeyEvent.cpp" />
     <ClCompile Include="MenuManager.cpp" />
+    <ClCompile Include="MiniMap.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerCamera.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="MapRead.h" />
     <ClInclude Include="MenuKeyEvent.h" />
     <ClInclude Include="MenuManager.h" />
+    <ClInclude Include="MiniMap.h" />
     <ClInclude Include="Noncopyable.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />

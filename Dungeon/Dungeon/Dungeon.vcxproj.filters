@@ -141,6 +141,9 @@
     <ClCompile Include="Staircase.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
+    <ClCompile Include="MiniMap.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon.ico">
@@ -423,6 +426,9 @@
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Staircase.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMap.h">
       <Filter>Stage</Filter>
     </ClInclude>
   </ItemGroup>
