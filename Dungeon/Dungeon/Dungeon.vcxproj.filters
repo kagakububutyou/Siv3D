@@ -135,12 +135,6 @@
     <ClCompile Include="MiniMap.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
-    <ClCompile Include="MapScroll.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="MapMove.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon.ico">
@@ -419,13 +413,7 @@
     <ClInclude Include="MiniMap.h">
       <Filter>Stage</Filter>
     </ClInclude>
-    <ClInclude Include="MapScroll.h">
-      <Filter>Stage</Filter>
-    </ClInclude>
     <ClInclude Include="MapState.h">
-      <Filter>Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="MapMove.h">
       <Filter>Stage</Filter>
     </ClInclude>
   </ItemGroup>

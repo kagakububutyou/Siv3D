@@ -2,18 +2,19 @@
 #include "MapRead.h"
 #include "GameManager.h"
 #include "GameApplication.h"
-#include "MapMove.h"
 #include "Player.h"
+#include "PlayerMove.h"
+
 
 CFloor::CFloor(std::shared_ptr<CTask> task, Point pos) :
 CActor(task, Transform(pos - Point(0, CMapRead::Size / 2), Point(CMapRead::Size, CMapRead::Size), Point(0, 0)), State::Live),
-scroll(std::make_unique<CMapMove>(task))
+scroll(std::make_unique<CPlayerMove>(task))
 {
 
 }
 void CFloor::Update()
 {
-	//scroll->Update();
+
 }
 void CFloor::Draw()
 {

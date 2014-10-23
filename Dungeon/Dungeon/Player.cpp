@@ -6,7 +6,6 @@
 CPlayer::CPlayer(std::shared_ptr<CTask> task, Point pos) :
 CActor(task, Transform(pos, Point(CMapRead::Size, CMapRead::Size), Point(0, 0)), State::Live),
 move(std::make_unique<CPlayerMove>(task))
-//camera(std::make_unique<CPlayerCamera>(task))
 {
 
 }
@@ -19,8 +18,6 @@ void CPlayer::Start()
 void CPlayer::Update()
 {
 	move->Update();
-
-	//camera->Update();
 }
 
 void CPlayer::Draw()

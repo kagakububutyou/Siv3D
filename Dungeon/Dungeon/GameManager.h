@@ -7,10 +7,7 @@
 #pragma once
 #include "Task.h"
 #include "Scene.h"
-#include "Camera.h"
-#include "Light.h"
 class CMapRead;
-//class CBackGround;
 
 class CGameManager :public CScene
 {
@@ -23,7 +20,6 @@ public:
 	static const std::string PlayerName;
 	static const std::string FloorName;
 	static const std::string Staircase;
-	static const std::string Scroll;
 
 private:
 	int TransformMapToScreenX(const int x);
@@ -41,9 +37,5 @@ private:
 
 	State state;	///	状態
 	std::shared_ptr<CTask> task;				///	タスク
-	std::unique_ptr<CCamera> camera;	///	カメラ
-	std::unique_ptr<CLight> light;			///	ライト
 	std::unique_ptr<CMapRead> map_read;
-	//std::unique_ptr<CBackGround> barck_ground;
-
 };

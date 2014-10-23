@@ -23,5 +23,4 @@ public:
 
 private:
 	std::unique_ptr<CPlayerMove> move;	///	ˆÚ“®ˆ—
-	//std::unique_ptr<CPlayerCamera> camera;	///	ƒJƒƒ‰ˆ—
 };

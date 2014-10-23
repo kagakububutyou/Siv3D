@@ -1,10 +1,8 @@
 #include "GameManager.h"
-//#include "Scene.h"
 #include "Player.h"
 #include "EnemyManager.h"
 #include "Actor.h"
 #include "MapRead.h"
-#include "MapScroll.h"
 #include "Floor.h"
 #include "Staircase.h"
 #include "MiniMap.h"
@@ -12,7 +10,6 @@
 const std::string CGameManager::PlayerName = "player";
 const std::string CGameManager::FloorName = "floor";
 const std::string CGameManager::Staircase = "staircase";
-const std::string CGameManager::Scroll = "map_scroll";
 
 
 CGameManager::CGameManager(std::shared_ptr<CSceneManager> manager) :
@@ -48,7 +45,6 @@ void CGameManager::Init()
 	auto floor = std::make_shared<CActor>();
 	auto staircase = std::make_shared<CActor>();
 	auto mini_map = std::make_shared<CActor>();
-	auto map_scroll = std::make_shared<CActor>();
 
 	for (int y = 0; y < CMapRead::Height; y++)
 	{
@@ -63,9 +59,6 @@ void CGameManager::Init()
 			map_read->ObjectRead(Point(x, y), CMapRead::PlayerPosition, player, std::make_shared<CPlayer>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y) - CMapRead::Size / 2)));
 
-			map_read->ObjectRead(Point(x, y), CMapRead::PlayerPosition, map_scroll, std::make_shared<CPlayer>(task,
-				Point(TransformMapToScreenX(x), TransformMapToScreenY(y) - CMapRead::Size / 2)));
-
 			map_read->ObjectRead(Point(x, y), CMapRead::Floor, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
 		}
@@ -75,7 +68,6 @@ void CGameManager::Init()
 
 	
 	
-	task->Append(Scroll, map_scroll);
 	task->Append(FloorName, floor);
 	task->Append(Staircase, staircase);
 
@@ -83,7 +75,7 @@ void CGameManager::Init()
 	task->Append(PlayerName, player);
 	task->Append("mini_map", mini_map);
 
-	//light = std::make_unique<CLight>(0, CLight::Type::Point, Point(-CMapRead::Width * CMapRead::Size / 2, -CMapRead::Height * CMapRead::Size / 2, -1000), 10000.0f, ColorF(2, 2, 2));
+
 }
 
 ///	ゲーム本体のアップデート
@@ -96,8 +88,6 @@ void CGameManager::Update()
 	}
 	if (state == State::Update)
 	{
-		//light->Update();
-
 		task->Update();
 		task->Draw();
 		task->Remove();
