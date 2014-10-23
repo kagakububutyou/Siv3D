@@ -13,7 +13,7 @@ class CLight :public Transform
 {
 public:
 	enum class Type;
-	CLight(int id, Type type, Float3 pos, float radius = 100, ColorF color = { 1, 1, 1, });
+	CLight(int id, Type type, Point pos, float radius = 100, ColorF color = { 1, 1, 1, });
 
 	void Update();
 

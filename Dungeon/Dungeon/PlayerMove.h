@@ -15,7 +15,7 @@ public:
 	void Update();
 
 	///	ˆÚ“®—Ê‚ğæ“¾
-	Float3 GetVelocity()const { return velocity; }
+	Point GetVelocity()const { return velocity; }
 
 private:
 	void Right();		///	‰EˆÚ“®
@@ -27,9 +27,9 @@ private:
 	void LeftUp();		///	¶ã
 	void LeftDown();	///	¶‰º
 	void Stop();			///	’â~
-	void VelocitySpeed(const Float3 speed);	///	ˆÚ“®—Êİ’è
+	void VelocitySpeed(const Point speed);	///	ˆÚ“®—Êİ’è
 
-	Float3 velocity;	///	ˆÚ“®—Ê
-	Float3 speed;		//	/	‘¬“x
+	Point velocity;	///	ˆÚ“®—Ê
+	Point speed;		//	/	‘¬“x
 
 };

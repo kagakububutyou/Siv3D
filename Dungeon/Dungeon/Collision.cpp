@@ -6,12 +6,28 @@
 
 namespace Collision
 {
-	bool IsCollisionBox(const Float3 &Pos1, const Float3 &Size1, const  Float3 &Pos2, const Float3 &Size2)
+	// ボックスのあたり判定 2D
+	bool RectToRect(const Point &pos, const Point &size, const Point &col_pos, const Point &col_size)
 	{
-		if (Abs(Pos1.x - Pos2.x) > ((Size1.x / 2 - 1) + (Size2.x / 2) - 1))return false;
-		if (Abs(Pos1.y - Pos2.y) > ((Size1.y / 2 - 1) + (Size2.y / 2) - 1))return false;
-		if (Abs(Pos1.z - Pos2.z) > ((Size1.z / 2 - 1) + (Size2.z / 2) - 1))return false;
 
-		return true;
+		const int x0 = pos.x;
+		const int y0 = pos.y;
+		const int x1 = pos.x + size.x - 1;
+		const int y1 = pos.y + size.y - 1;
+
+		const int x2 = col_pos.x;
+		const int y2 = col_pos.y;
+		const int x3 = col_pos.x + col_size.x - 1;
+		const int y3 = col_pos.y + col_size.y - 1;
+
+		//	二つの矩形が何かしらの形で重なっているか？
+		if (x0 < x3 && x2 < x1 && y0 < y3 && y2 < y1)
+		{
+			//	重なっていた
+			return true;
+		}
+
+		//	重なってなかった
+		return false;
 	}
 }

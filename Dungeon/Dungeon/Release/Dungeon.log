@@ -1,12 +1,11 @@
-﻿2014/10/20 19:06:23 にビルドを開始しました。
+﻿2014/10/23 18:29:46 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt PlayerCamera.cpp
-         PlayerCamera.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Player.cpp
+         Player.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.lib" /MACHINE:X86 /SAFESEH Release\RC.res
          Release\Actor.obj
-         Release\Camera.obj
          Release\ClearManager.obj
          Release\CharacterController.obj
          Release\ClearKeyEvent.obj
@@ -17,14 +16,14 @@
          Release\GameApplication.obj
          Release\GameManager.obj
          Release\Goblin.obj
-         Release\Light.obj
          Release\Main.obj
+         Release\MapMove.obj
          Release\MapRead.obj
+         Release\MapScroll.obj
          Release\MenuKeyEvent.obj
          Release\MenuManager.obj
          Release\MiniMap.obj
          Release\Player.obj
-         Release\PlayerCamera.obj
          Release\PlayerMove.obj
          Release\Scene.obj
          Release\Staircase.obj
@@ -39,4 +38,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:34.91
+経過時間 00:00:11.02

@@ -12,12 +12,12 @@
 class CCamera :public Transform
 {
 public:
-	CCamera(Float3 pos, Float3 lookat);
+	CCamera(Point pos, Point lookat);
 
 	void Update();
 
 private:
-	Float3 upvec;					///	•ûŒü
+	Point upvec;					///	•ûŒü
 	const static float Near;	///	Œ©‚¦‚é‹ß‚¢”ÍˆÍ
 	const static float Far;		///	Œ©‚¦‚é‰“‚¢”ÍˆÍ
 	const static float degree;	///	ƒY[ƒ€

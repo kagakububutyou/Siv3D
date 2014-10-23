@@ -18,7 +18,7 @@ public:
 
 	static const int Width = 109;
 	static const int Height = 50;
-	static const int Size = 32;
+	static const int Size = 64;
 
 	static const int Floor = 1;						///	床
 	static const int PlayerPosition = 2;			///	プレイヤーの位置

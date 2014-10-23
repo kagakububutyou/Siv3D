@@ -4,8 +4,8 @@
 // ------------------------------------------------
 #include "Light.h"
 
-CLight::CLight(int id, Type type, Float3 pos, float radius, ColorF color) :
-id(id), type(type), Transform(pos, Float3(0, 0, 0), Float3(0, 0, 0)), radius(radius), color(color)
+CLight::CLight(int id, Type type, Point pos, float radius, ColorF color) :
+id(id), type(type), Transform(pos, Point(0, 0, 0), Point(0, 0, 0)), radius(radius), color(color)
 {
 
 }

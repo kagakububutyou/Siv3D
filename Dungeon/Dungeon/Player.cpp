@@ -1,11 +1,12 @@
 #include "Player.h"
 #include "PlayerMove.h"
-#include "PlayerCamera.h"
+#include "MapRead.h"
+#include "MiniMap.h"
 
-CPlayer::CPlayer(std::shared_ptr<CTask> task, Float3 pos) :
-CActor(task ,Transform(pos, Float3(32, 32, 0), Float3(0, 0, 0)), State::Live),
-move(std::make_unique<CPlayerMove>(task)),
-camera(std::make_unique<CPlayerCamera>(task))
+CPlayer::CPlayer(std::shared_ptr<CTask> task, Point pos) :
+CActor(task, Transform(pos, Point(CMapRead::Size, CMapRead::Size), Point(0, 0)), State::Live),
+move(std::make_unique<CPlayerMove>(task))
+//camera(std::make_unique<CPlayerCamera>(task))
 {
 
 }
@@ -19,10 +20,11 @@ void CPlayer::Update()
 {
 	move->Update();
 
-	camera->Update();
+	//camera->Update();
 }
 
 void CPlayer::Draw()
 {
-	Box(transform.GetPos(), transform.GetScale()).draw(Palette::Royalblue);
+	Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Royalblue);
+	Rect(transform.GetPos().x / CMiniMap::MapScale, transform.GetPos().y / CMiniMap::MapScale, transform.GetScale().x / CMiniMap::MapScale, transform.GetScale().y / CMiniMap::MapScale).draw(Palette::Royalblue);
 }

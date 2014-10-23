@@ -6,14 +6,18 @@
 */
 #pragma once
 #include "Actor.h"
+class CMapMove;
 class CFloor :	public CActor
 {
 public:
-	CFloor(std::shared_ptr<CTask> task,Float3 pos);
+	CFloor(std::shared_ptr<CTask> task,Point pos);
 
+	void Update();
 	void Draw();
 
 private:
+
+	std::unique_ptr<CMapMove> scroll;	///	ˆÚ“®ˆ—
 	
 };
 

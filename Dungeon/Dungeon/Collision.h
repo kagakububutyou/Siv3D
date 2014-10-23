@@ -9,5 +9,6 @@
 
 namespace Collision
 {
-	bool IsCollisionBox(const Float3 &Pos1, const Float3 &Size1,const  Float3 &Pos2, const Float3 &Size2);
+	// Rect And Rect Collision
+	bool RectToRect(const Point &pos, const Point &size, const Point &col_pos, const Point &col_size);
 }

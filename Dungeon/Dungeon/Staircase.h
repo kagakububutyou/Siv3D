@@ -9,7 +9,7 @@
 class CStaircase:public CActor
 {
 public:
-	CStaircase(std::shared_ptr<CTask> task, Float3 pos);
+	CStaircase(std::shared_ptr<CTask> task, Point pos);
 
 	void Draw();
 

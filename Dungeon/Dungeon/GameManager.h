@@ -23,13 +23,14 @@ public:
 	static const std::string PlayerName;
 	static const std::string FloorName;
 	static const std::string Staircase;
+	static const std::string Scroll;
 
 private:
 	int TransformMapToScreenX(const int x);
 	int TransformMapToScreenY(const int y);
 
-	float TransformMiniMapToScreenX(const float x);
-	float TransformMiniMapToScreenY(const float y);
+	int TransformMiniMapToScreenX(const int x);
+	int TransformMiniMapToScreenY(const int y);
 
 	///	èÛë‘
 	enum class State

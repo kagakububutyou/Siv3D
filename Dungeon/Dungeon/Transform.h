@@ -11,32 +11,32 @@
 class Transform
 {
 public:
-	Transform(Float3 pos,Float3 scale, Float3 rotation);
+	Transform(Point pos,Point scale, Point rotation);
 
-	Float3 GetPos() const { return pos; }
-	Float3 GetRotation()const{ return rotation; }
-	Float3 GetScale() const{ return scale; }
+	Point GetPos() const { return pos; }
+	Point GetRotation()const{ return rotation; }
+	Point GetScale() const{ return scale; }
 
 	///	座標平行移動
-	void Translate(const Float3 &value);
+	void Translate(const Point &value);
 
 	///	指定位置に変換
-	void TransformPoint(const Float3 &value);
+	void TransformPoint(const Point &value);
 
 	///	回転軸を移動
-	void Rotaion(const Float3 &value);
+	void Rotaion(const Point &value);
 
 	///	指定軸に変換
-	void LookAt(const Float3 &value);
+	void LookAt(const Point &value);
 
 	///	スケールを大きくする
-	void Scaling(const Float3 &value);
+	void Scaling(const Point &value);
 
 	///	指定スケールに変換
-	void TransformScale(const Float3 &value);
+	void TransformScale(const Point &value);
 
 private:
-	Float3 pos;
-	Float3 scale;
-	Float3 rotation;
+	Point pos;
+	Point scale;
+	Point rotation;
 };

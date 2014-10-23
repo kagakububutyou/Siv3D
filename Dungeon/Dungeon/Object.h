@@ -13,7 +13,7 @@ class Object : private Noncopyable
 {
 public:
 	enum class State;
-	Object() : transform(Float3(0, 0, 0), Float3(0, 0, 0), Float3(0, 0, 0)){}
+	Object() : transform(Point(0, 0), Point(0, 0), Point(0, 0)){}
 	Object(Transform transform, State state) :
 		transform(transform), state(state){}
 	virtual ~Object() = default;

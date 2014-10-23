@@ -9,9 +9,11 @@
 class CMiniMap :public CActor
 {
 public:
-	CMiniMap(std::shared_ptr<CTask> task, Float3 pos);
+	CMiniMap(std::shared_ptr<CTask> task, Point pos);
 
 	void Draw();
+
+	static const int MapScale = 8;
 
 private:
 

@@ -11,9 +11,9 @@ const float CCamera::Far = 5000.0f;		///	Œ©‚¦‚é‰“‚¢”ÍˆÍ
 const float CCamera::degree = 45.0f;		///	ƒY[ƒ€
 const float CCamera::Speed = 5.0f;		///	‘¬“x
 
-CCamera::CCamera(Float3 pos, Float3 lookat) :
+CCamera::CCamera(Point pos, Point lookat) :
 upvec(Vec3(0, 1, 0)),
-Transform(pos, Float3(0, 0, 0), lookat)
+Transform(pos, Point(0, 0), lookat)
 {
 
 }

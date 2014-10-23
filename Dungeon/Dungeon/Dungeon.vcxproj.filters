@@ -93,12 +93,6 @@
     <ClCompile Include="MenuManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Siv3DWrap</Filter>
-    </ClCompile>
-    <ClCompile Include="Light.cpp">
-      <Filter>Siv3DWrap</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -135,13 +129,16 @@
     <ClCompile Include="Floor.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerCamera.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
     <ClCompile Include="Staircase.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
     <ClCompile Include="MiniMap.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="MapScroll.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="MapMove.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
   </ItemGroup>
@@ -392,12 +389,6 @@
     <ClInclude Include="GameManager.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Siv3DWrap</Filter>
-    </ClInclude>
-    <ClInclude Include="Light.h">
-      <Filter>Siv3DWrap</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Enemy</Filter>
     </ClInclude>
@@ -422,13 +413,19 @@
     <ClInclude Include="Floor.h">
       <Filter>Stage</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerCamera.h">
-      <Filter>Player</Filter>
-    </ClInclude>
     <ClInclude Include="Staircase.h">
       <Filter>Stage</Filter>
     </ClInclude>
     <ClInclude Include="MiniMap.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="MapScroll.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="MapState.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="MapMove.h">
       <Filter>Stage</Filter>
     </ClInclude>
   </ItemGroup>

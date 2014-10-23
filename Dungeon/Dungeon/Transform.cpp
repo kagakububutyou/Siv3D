@@ -1,44 +1,44 @@
 #include "Transform.h"
 
 
-Transform::Transform(Float3 pos, Float3 scale, Float3 rotation) :
+Transform::Transform(Point pos, Point scale, Point rotation) :
 pos(pos), scale(scale), rotation(rotation)
 {
 
 }
 
 ///	平行移動
-void Transform::Translate(const Float3 &value)
+void Transform::Translate(const Point &value)
 {
 	pos += value;
 }
 
 ///	指定座標に変換
-void Transform::TransformPoint(const Float3 &value)
+void Transform::TransformPoint(const Point &value)
 {
 	pos = value;
 }
 
 ///	回転軸を移動
-void Transform::Rotaion(const Float3 &value)
+void Transform::Rotaion(const Point &value)
 {
 	rotation += value;
 }
 
 ///	指定軸に変換
-void Transform::LookAt(const Float3 &value)
+void Transform::LookAt(const Point &value)
 {
 	rotation = value;
 }
 
 ///	スケールを大きくする
-void Transform::Scaling(const Float3 &value)
+void Transform::Scaling(const Point &value)
 {
 	scale += value;
 }
 
 ///	指定スケールに変換
-void Transform::TransformScale(const Float3 &value)
+void Transform::TransformScale(const Point &value)
 {
 	scale = value;
 }
