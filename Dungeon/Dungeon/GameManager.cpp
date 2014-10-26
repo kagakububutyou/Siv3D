@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include "GameApplication.h"
 #include "Player.h"
 #include "EnemyManager.h"
 #include "Actor.h"
@@ -6,10 +7,12 @@
 #include "Floor.h"
 #include "Staircase.h"
 #include "MiniMap.h"
+#include "Scroll.h"
 
 const std::string CGameManager::PlayerName = "player";
 const std::string CGameManager::FloorName = "floor";
 const std::string CGameManager::Staircase = "staircase";
+const std::string CGameManager::Scroll = "Scroll";
 
 
 CGameManager::CGameManager(std::shared_ptr<CSceneManager> manager) :
@@ -40,6 +43,8 @@ void CGameManager::Init()
 	state = State::Init;
 
 	auto player = std::make_shared<CActor>();
+	auto scroll = std::make_shared<CActor>();
+
 	auto enemy_manager = std::make_shared<CActor>();
 
 	auto floor = std::make_shared<CActor>();
@@ -57,6 +62,9 @@ void CGameManager::Init()
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 
 			map_read->ObjectRead(Point(x, y), CMapRead::PlayerPosition, player, std::make_shared<CPlayer>(task,
+				Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2)));
+
+			map_read->ObjectRead(Point(x, y), CMapRead::PlayerPosition, scroll, std::make_shared<CScroll>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y) - CMapRead::Size / 2)));
 
 			map_read->ObjectRead(Point(x, y), CMapRead::Floor, mini_map, std::make_shared<CMiniMap>(task,
@@ -73,6 +81,7 @@ void CGameManager::Init()
 
 	task->Append("enemy_manager", enemy_manager);
 	task->Append(PlayerName, player);
+	task->Append(Scroll, scroll);
 	task->Append("mini_map", mini_map);
 
 

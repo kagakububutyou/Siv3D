@@ -6,7 +6,6 @@
 */
 #pragma once
 #include "Actor.h"
-class CPlayerMove;
 class CFloor :	public CActor
 {
 public:
@@ -16,8 +15,6 @@ public:
 	void Draw();
 
 private:
-
-	std::unique_ptr<CPlayerMove> scroll;	///	ˆÚ“®ˆ—
 	
 };
 

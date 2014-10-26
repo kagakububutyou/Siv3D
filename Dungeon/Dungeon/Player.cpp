@@ -22,6 +22,6 @@ void CPlayer::Update()
 
 void CPlayer::Draw()
 {
-	Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Royalblue);
-	Rect(transform.GetPos().x / CMiniMap::MapScale, transform.GetPos().y / CMiniMap::MapScale, transform.GetScale().x / CMiniMap::MapScale, transform.GetScale().y / CMiniMap::MapScale).draw(Palette::Royalblue);
+	Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Blue);
+	//Rect(transform.GetPos().x / CMiniMap::MapScale, transform.GetPos().y / CMiniMap::MapScale, transform.GetScale().x / CMiniMap::MapScale, transform.GetScale().y / CMiniMap::MapScale).draw(ColorF(0, 255, 0));
 }

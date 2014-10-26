@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Floor.h"
 #include "GameManager.h"
+#include "Scroll.h"
 
 CPlayerMove::CPlayerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
@@ -102,5 +103,7 @@ void CPlayerMove::Update()
 	LeftDown();
 	Stop();
 
-	task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.Translate(velocity);
+
+	task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.Translate(velocity);
+	//task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.Translate(velocity);
 }

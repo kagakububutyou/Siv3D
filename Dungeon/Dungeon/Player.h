@@ -10,7 +10,6 @@
 #include <string>
 
 class CPlayerMove;
-class CPlayerCamera;
 
 class CPlayer :public CActor
 {
