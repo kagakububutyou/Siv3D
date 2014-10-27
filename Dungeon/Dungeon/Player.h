@@ -22,4 +22,7 @@ public:
 
 private:
 	std::unique_ptr<CPlayerMove> move;	///	ˆÚ“®ˆ—
+
+	Point MiniPlayerPos;
+
 };

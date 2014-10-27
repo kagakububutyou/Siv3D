@@ -4,11 +4,17 @@
 #include "Floor.h"
 #include "GameManager.h"
 #include "Scroll.h"
+#include "MiniMap.h"
+#include "MiniMapPlayer.h"
+
+#include "Goblin.h"
+#include "MiniGoblin.h"
+#include "EnemyManager.h"
 
 CPlayerMove::CPlayerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
 velocity(Point(0, 0)),
-speed(Point(20.0f, 20.0f))
+speed(Point(8.0f, 8.0f))
 {
 
 }
@@ -103,7 +109,11 @@ void CPlayerMove::Update()
 	LeftDown();
 	Stop();
 
-
+	task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.Translate(Point(velocity.x / CMiniMap::MapScale, velocity.y / CMiniMap::MapScale));
 	task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.Translate(velocity);
+
+
+	task->GetComponent<CGoblin>(CEnemyManager::Goblin, 0)->transform.Translate(-velocity);
+	task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0)->transform.Translate(Point(-velocity.x / CMiniMap::MapScale, -velocity.y / CMiniMap::MapScale));
 	//task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.Translate(velocity);
 }
