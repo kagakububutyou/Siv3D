@@ -9,12 +9,14 @@
 #include "MiniMap.h"
 #include "Scroll.h"
 #include "MiniMapPlayer.h"
+#include "Wall.h"
 
 const std::string CGameManager::PlayerName = "player";
 const std::string CGameManager::MiniPlayer = "MiniMapPlayer";
 const std::string CGameManager::FloorName = "floor";
 const std::string CGameManager::Staircase = "staircase";
 const std::string CGameManager::Scroll = "Scroll";
+const std::string CGameManager::WallName = "wall";
 
 
 CGameManager::CGameManager(std::shared_ptr<CSceneManager> manager) :
@@ -49,6 +51,7 @@ void CGameManager::Init()
 
 	auto enemy_manager = std::make_shared<CActor>();
 
+	auto wall = std::make_shared<CActor>();
 	auto floor = std::make_shared<CActor>();
 	auto staircase = std::make_shared<CActor>();
 	auto mini_map = std::make_shared<CActor>();
@@ -59,6 +62,9 @@ void CGameManager::Init()
 	{
 		for (int x = 0; x < CMapRead::Width; x++)
 		{
+			map_read->ObjectRead(Point(x, y), CMapRead::Wall, wall, std::make_shared<CWall>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+
 			map_read->ObjectRead(Point(x, y), CMapRead::Floor, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 
@@ -83,7 +89,7 @@ void CGameManager::Init()
 	enemy_manager->Append(std::make_shared <CEnemyManager>(task));
 
 	
-	
+	task->Append(WallName, wall);
 	task->Append(FloorName, floor);
 	task->Append(Staircase, staircase);
 	task->Append(MiniPlayer, mini_map_player);

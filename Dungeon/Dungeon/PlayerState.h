@@ -14,10 +14,19 @@ class CPlayerState
 {
 public:
 	CPlayerState(std::shared_ptr<CTask> task) :
-		task(task){};
+		task(task), state(State::Live){};
 
 	virtual void Update() = 0;
 
+	enum class State
+	{
+		None,
+		Live,
+	};
+
+	State GetState()const{ return state; }
+
 protected:
 	std::shared_ptr<CTask> task;
+	State state;
 };

@@ -7,12 +7,17 @@
 #include "MiniMap.h"
 #include "MiniMapPlayer.h"
 
+#include "Collision.h"
+
 #include "Goblin.h"
 #include "MiniGoblin.h"
 #include "EnemyManager.h"
 
+#include "Wall.h"
+
 CPlayerMove::CPlayerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
+state(State::Live),
 velocity(Point(0, 0)),
 speed(Point(8.0f, 8.0f))
 {
@@ -96,9 +101,29 @@ void CPlayerMove::Stop()
 		VelocitySpeed(Point(0, 0));
 	}
 }
+void CPlayerMove::EnemyCollision()
+{
+	auto pos1 = task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.GetPos();
+	auto size1 = task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.GetScale();
+	auto pos2 = task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0)->transform.GetPos();
+	auto size2 = task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0)->transform.GetScale();
 
+	if (Collision::RectToRect(pos1, size1, pos2, size2))
+	{
+		state = State::None;
+	}
+	else
+	{
+		state = State::Live;
+	}
+
+}
 void CPlayerMove::Update()
 {
+	EnemyCollision();
+
+	//if (state == State::None) return;
+
 	Right(),
 	Left();
 	Up();
@@ -113,7 +138,7 @@ void CPlayerMove::Update()
 	task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.Translate(velocity);
 
 
-	task->GetComponent<CGoblin>(CEnemyManager::Goblin, 0)->transform.Translate(-velocity);
-	task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0)->transform.Translate(Point(-velocity.x / CMiniMap::MapScale, -velocity.y / CMiniMap::MapScale));
+	//task->GetComponent<CGoblin>(CEnemyManager::Goblin, 0)->transform.Translate(-velocity);
+	//task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0)->transform.Translate(Point(-velocity.x / CMiniMap::MapScale, -velocity.y / CMiniMap::MapScale));
 	//task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.Translate(velocity);
 }

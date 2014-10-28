@@ -113,6 +113,7 @@
     <ClCompile Include="TitleKeyEvent.cpp" />
     <ClCompile Include="TitleManager.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="engine\assets\circle.png" />
@@ -219,6 +220,7 @@
     <ClInclude Include="TitleKeyEvent.h" />
     <ClInclude Include="TitleManager.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="Wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

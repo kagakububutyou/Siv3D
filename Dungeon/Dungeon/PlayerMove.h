@@ -14,6 +14,8 @@ public:
 
 	void Update();
 
+	void EnemyCollision();
+
 	///	ˆÚ“®—Ê‚ðŽæ“¾
 	Point GetVelocity()const { return velocity; }
 
@@ -31,5 +33,7 @@ private:
 
 	Point velocity;	///	ˆÚ“®—Ê
 	Point speed;		//	/	‘¬“x
+
+	State state;
 
 };

@@ -7,6 +7,8 @@
 #include "Collision.h"
 #include "MiniGoblin.h"
 #include "EnemyManager.h"
+#include "GameManager.h"
+#include "Player.h"
 
 CMiniMapPlayer::CMiniMapPlayer(std::shared_ptr<CTask> task, Point pos) :
 CActor(task, Transform(pos, Point(CMapRead::Size / CMiniMap::MapScale, CMapRead::Size / CMiniMap::MapScale), Point(0, 0)), State::Live),
@@ -42,12 +44,11 @@ void CMiniMapPlayer::Draw()
 	if (Collision::RectToRect(transform.GetPos(), transform.GetScale(), pos, size))
 	{
 		Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Yellow);
-		OnCollision = true;
+		//task->GetComponent<CPlayer>(CGameManager::PlayerName,0)->state = CPlayer::State::None;
 	}
 	else
 	{
 		Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Blue);
-		OnCollision = false;
 	}
 
 	

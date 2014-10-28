@@ -20,9 +20,10 @@ public:
 	static const int Height = 50;
 	static const int Size = 64;
 
+	static const int Wall = 0;							///	壁
 	static const int Floor = 1;						///	床
 	static const int PlayerPosition = 2;			///	プレイヤーの位置
-	static const int StaircasePosition = PlayerPosition;	///	階段の位置
+	static const int StaircasePosition = 2;		///	階段の位置
 	
 
 private:
