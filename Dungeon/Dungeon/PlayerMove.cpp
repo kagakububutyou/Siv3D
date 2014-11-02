@@ -103,20 +103,17 @@ void CPlayerMove::Stop()
 }
 void CPlayerMove::EnemyCollision()
 {
-	auto pos1 = task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.GetPos();
-	auto size1 = task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.GetScale();
-	auto pos2 = task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0)->transform.GetPos();
-	auto size2 = task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0)->transform.GetScale();
+	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
 
-	if (Collision::RectToRect(pos1, size1, pos2, size2))
+	for (auto& floor : task->GetActor(CGameManager::FloorName))
 	{
-		state = State::None;
+		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
+			floor->transform.GetPos() + pos, floor->transform.GetScale()))
+		{
+			state = State::None;
+		}
 	}
-	else
-	{
-		state = State::Live;
-	}
-
 }
 void CPlayerMove::Update()
 {
@@ -134,8 +131,13 @@ void CPlayerMove::Update()
 	LeftDown();
 	Stop();
 
-	task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.Translate(Point(velocity.x / CMiniMap::MapScale, velocity.y / CMiniMap::MapScale));
-	task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.Translate(velocity);
+	static int i = 0;
+	i++;
+	if (i % 10 == 0)
+	{
+		task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.Translate(Point(velocity.x / CMiniMap::MapScale, velocity.y / CMiniMap::MapScale));
+		task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.Translate(velocity);
+	}
 
 
 	//task->GetComponent<CGoblin>(CEnemyManager::Goblin, 0)->transform.Translate(-velocity);

@@ -21,7 +21,7 @@ public:
 	static const std::string MiniGoblin;	//
 
 
-	static const int GoblinPosition = 3;		//	ゴブリンの位置
+	static const int GoblinPosition = 10;		//	ゴブリンの位置
 
 private:
 

@@ -31,21 +31,5 @@ void CPlayer::Update()
 
 void CPlayer::Draw()
 {
-
-	for (int i = 0; i < task->GetSize(CGameManager::WallName); i++)
-	{
-		auto pos = task->GetComponent<CWall>(CGameManager::WallName, i)->transform.GetPos();
-		auto size = task->GetComponent<CWall>(CGameManager::WallName, i)->transform.GetScale();
-
-		if (Collision::RectToRect(transform.GetPos(), transform.GetScale(), pos, size))
-		{
-			Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Yellow);
-		}
-		else
-		{
-			Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Blue);
-		}
-	}
-	
-
+	Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Blue);
 }

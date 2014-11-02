@@ -38,13 +38,12 @@ void CMiniMapPlayer::Draw()
 	transform.GetScale().x / CMiniMap::MapScale, transform.GetScale().y / CMiniMap::MapScale).draw(Palette::Blue);
 	//*/
 
-	auto pos = task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0)->transform.GetPos();
-	auto size = task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0)->transform.GetScale();
+	auto MiniGoblin = task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0);
 
-	if (Collision::RectToRect(transform.GetPos(), transform.GetScale(), pos, size))
+	if (Collision::RectToRect(transform.GetPos(), transform.GetScale(), MiniGoblin->transform.GetPos(), MiniGoblin->transform.GetScale()))
 	{
 		Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Yellow);
-		//task->GetComponent<CPlayer>(CGameManager::PlayerName,0)->state = CPlayer::State::None;
+		//task->GetComponent<CPlayerMove>(CGameManager::PlayerName, 0)->EnemyCollision();
 	}
 	else
 	{

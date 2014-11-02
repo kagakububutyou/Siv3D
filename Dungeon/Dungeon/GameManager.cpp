@@ -62,36 +62,44 @@ void CGameManager::Init()
 	{
 		for (int x = 0; x < CMapRead::Width; x++)
 		{
+			///	壁
 			map_read->ObjectRead(Point(x, y), CMapRead::Wall, wall, std::make_shared<CWall>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
-
-			map_read->ObjectRead(Point(x, y), CMapRead::Floor, floor, std::make_shared<CFloor>(task,
+			///	部屋
+			map_read->ObjectRead(Point(x, y), CMapRead::Room, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
-
-			map_read->ObjectRead(Point(x, y), CMapRead::StaircasePosition, staircase, std::make_shared<CStaircase>(task,
+			///	通路
+			map_read->ObjectRead(Point(x, y), CMapRead::Corridor, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
-
+			///	上り階段
+			map_read->ObjectRead(Point(x, y), CMapRead::UpStairsPosition, staircase, std::make_shared<CStaircase>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			///	プレイヤーの位置
 			map_read->ObjectRead(Point(x, y), CMapRead::PlayerPosition, player, std::make_shared<CPlayer>(task,
 				Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2)));
-
+			///	スクロール
 			map_read->ObjectRead(Point(x, y), CMapRead::PlayerPosition, scroll, std::make_shared<CScroll>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y) - CMapRead::Size / 2)));
-
+			///	ミニマップ
+			///	プレイヤーの位置
 			map_read->ObjectRead(Point(x, y), CMapRead::PlayerPosition, mini_map_player, std::make_shared<CMiniMapPlayer>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
-
-			map_read->ObjectRead(Point(x, y), CMapRead::Floor, mini_map, std::make_shared<CMiniMap>(task,
+			///	部屋
+			map_read->ObjectRead(Point(x, y), CMapRead::Room, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
-
+			///	通路
+			map_read->ObjectRead(Point(x, y), CMapRead::Corridor, mini_map, std::make_shared<CMiniMap>(task,
+				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
 		}
 	}
 
 	enemy_manager->Append(std::make_shared <CEnemyManager>(task));
 
 	
-	task->Append(WallName, wall);
+	
 	task->Append(FloorName, floor);
 	task->Append(Staircase, staircase);
+	task->Append(WallName, wall);
 	task->Append(MiniPlayer, mini_map_player);
 
 	task->Append("enemy_manager", enemy_manager);

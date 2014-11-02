@@ -16,14 +16,17 @@ public:
 
 	void ObjectRead(const Point index, const int type, std::shared_ptr<CActor> actor, std::shared_ptr<CActor> constructor);
 
-	static const int Width = 109;
-	static const int Height = 50;
-	static const int Size = 64;
+	static const int Width = 50;
+	static const int Height = 30;
+	static const int Size = 128;
 
-	static const int Wall = 0;							///	壁
-	static const int Floor = 1;						///	床
-	static const int PlayerPosition = 2;			///	プレイヤーの位置
-	static const int StaircasePosition = 2;		///	階段の位置
+	static const int OutsideMap = 0;				///	マップ外
+	static const int Corridor = 1;					///	廊下
+	static const int Room = 2;						///	部屋
+	static const int Wall = 3;							///	壁
+	static const int PlayerPosition = 4;			///	プレイヤーの位置
+	static const int UpStairsPosition = 4;		///	上り階段の位置
+	static const int DownStairsPosition = 5;	///	下り階段の位置
 	
 
 private:

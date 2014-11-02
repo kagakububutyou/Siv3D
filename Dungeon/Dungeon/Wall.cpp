@@ -18,12 +18,10 @@ move(std::make_unique<CPlayerMove>(task))
 
 void CWall::Start()
 {
-
-	//MessageBox::Show(L"ÉGÉâÅ[", L"ì«Ç›çûÇ›Ç…é∏îsÇµÇ‹ÇµÇΩÅB");
-
-
-	TextureAsset::Register(L"Wall", L"engine/data/texture/MapChip/map_ground_simple.png");
-	
+	if (!TextureAsset(L"Wall"))
+	{
+		TextureAsset::Register(L"Wall", L"engine/data/texture/MapChip/map_ground_simple.png");
+	}
 }
 void CWall::Update()
 {
