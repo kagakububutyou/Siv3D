@@ -15,4 +15,6 @@ public:
 	static bool UpMoveKey();
 	static bool DownMoveKey();
 	static bool ChangeSceneKey();
+	static bool DisplayMiniMapKey();
+
 };

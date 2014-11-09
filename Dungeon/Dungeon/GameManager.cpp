@@ -5,7 +5,8 @@
 #include "Actor.h"
 #include "MapRead.h"
 #include "Floor.h"
-#include "Staircase.h"
+#include "UpStairs.h"
+#include "DownStairs.h"
 #include "MiniMap.h"
 #include "Scroll.h"
 #include "MiniMapPlayer.h"
@@ -14,7 +15,8 @@
 const std::string CGameManager::PlayerName = "player";
 const std::string CGameManager::MiniPlayer = "MiniMapPlayer";
 const std::string CGameManager::FloorName = "floor";
-const std::string CGameManager::Staircase = "staircase";
+const std::string CGameManager::UpStairs = "up_stairs";
+const std::string CGameManager::DownStairs = "down_stairs";
 const std::string CGameManager::Scroll = "Scroll";
 const std::string CGameManager::WallName = "wall";
 
@@ -53,7 +55,8 @@ void CGameManager::Init()
 
 	auto wall = std::make_shared<CActor>();
 	auto floor = std::make_shared<CActor>();
-	auto staircase = std::make_shared<CActor>();
+	auto up_stairs = std::make_shared<CActor>();
+	auto down_stairs = std::make_shared<CActor>();
 	auto mini_map = std::make_shared<CActor>();
 
 	auto mini_map_player = std::make_shared<CActor>();
@@ -72,7 +75,10 @@ void CGameManager::Init()
 			map_read->ObjectRead(Point(x, y), CMapRead::Corridor, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			///	上り階段
-			map_read->ObjectRead(Point(x, y), CMapRead::UpStairsPosition, staircase, std::make_shared<CStaircase>(task,
+			map_read->ObjectRead(Point(x, y), CMapRead::UpStairsPosition, up_stairs, std::make_shared<CUpStairs>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			///	下り階段
+			map_read->ObjectRead(Point(x, y), CMapRead::DownStairsPosition , down_stairs, std::make_shared<CDownStairs>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			///	プレイヤーの位置
 			map_read->ObjectRead(Point(x, y), CMapRead::PlayerPosition, player, std::make_shared<CPlayer>(task,
@@ -96,17 +102,17 @@ void CGameManager::Init()
 	enemy_manager->Append(std::make_shared <CEnemyManager>(task));
 
 	
+	task->Append(Scroll, scroll);
 	
 	task->Append(FloorName, floor);
-	task->Append(Staircase, staircase);
+	task->Append(UpStairs, up_stairs);
+	task->Append(DownStairs, down_stairs);
 	task->Append(WallName, wall);
-	task->Append(MiniPlayer, mini_map_player);
-
-	task->Append("enemy_manager", enemy_manager);
 	task->Append(PlayerName, player);
-	task->Append(Scroll, scroll);
-	task->Append("mini_map", mini_map);
+	task->Append("enemy_manager", enemy_manager);
 
+	task->Append(MiniPlayer, mini_map_player);
+	task->Append("mini_map", mini_map);
 
 }
 

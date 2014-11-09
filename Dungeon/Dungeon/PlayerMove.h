@@ -12,9 +12,13 @@ class CPlayerMove :public CPlayerState
 public:
 	CPlayerMove(std::shared_ptr<CTask> task);
 
+	void Start();
+
 	void Update();
 
-	void EnemyCollision();
+	void Draw();
+
+	void WallCollision();
 
 	///	移動量を取得
 	Point GetVelocity()const { return velocity; }
@@ -32,8 +36,26 @@ private:
 	void VelocitySpeed(const Point speed);	///	移動量設定
 
 	Point velocity;	///	移動量
-	Point speed;		//	/	速度
+	Point speed;		///	速度
 
 	State state;
+
+	///	方向
+	enum class MOVEDIREC{
+		Right,
+		Left,
+		Up,
+		Down,
+		RightUp,
+		RightDown,
+		LeftUp,
+		LeftDown,
+		Stop,
+	};
+
+	MOVEDIREC MoveDirec;
+
+	const Point TextureSize = Point(64,85);		///	画像のサイズ
+	Point TexturePos;	///	画像の場所
 
 };

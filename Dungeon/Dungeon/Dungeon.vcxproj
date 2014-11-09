@@ -91,6 +91,7 @@
     <ClCompile Include="CharacterController.cpp" />
     <ClCompile Include="ClearKeyEvent.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="DownStairs.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Floor.cpp" />
@@ -108,11 +109,11 @@
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scroll.cpp" />
-    <ClCompile Include="Staircase.cpp" />
     <ClCompile Include="Task.cpp" />
     <ClCompile Include="TitleKeyEvent.cpp" />
     <ClCompile Include="TitleManager.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="UpStairs.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +196,7 @@
     <ClInclude Include="ClearKeyEvent.h" />
     <ClInclude Include="ClearManager.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="DownStairs.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Floor.h" />
@@ -211,15 +213,16 @@
     <ClInclude Include="Noncopyable.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerAttack.h" />
     <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scroll.h" />
-    <ClInclude Include="Staircase.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="TitleKeyEvent.h" />
     <ClInclude Include="TitleManager.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="UpStairs.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

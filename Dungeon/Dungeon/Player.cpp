@@ -21,7 +21,7 @@ move(std::make_unique<CPlayerMove>(task))
 
 void CPlayer::Start()
 {
-
+	move->Start();
 }
 
 void CPlayer::Update()
@@ -31,5 +31,5 @@ void CPlayer::Update()
 
 void CPlayer::Draw()
 {
-	Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Blue);
+	move->Draw();
 }

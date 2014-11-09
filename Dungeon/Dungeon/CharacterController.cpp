@@ -3,6 +3,8 @@
 
 bool CharacterController::LeftMoveKey()
 {
+	static int i = 0;
+
 	if (Input::KeyA.pressed) return true;
 	if (Input::KeyLeft.pressed) return true;
 	return false;
@@ -31,7 +33,12 @@ bool CharacterController::DownMoveKey()
 
 bool CharacterController::ChangeSceneKey()
 {
-	if (Input::KeyZ.pressed) return true;
-	if (Input::KeyEnter.pressed) return true;
+	if (Input::KeyZ.clicked) return true;
+	if (Input::KeyEnter.clicked) return true;
+	return false;
+}
+bool CharacterController::DisplayMiniMapKey()
+{
+	if (Input::KeyEnter.clicked) return true;
 	return false;
 }
