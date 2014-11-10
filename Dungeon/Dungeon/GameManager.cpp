@@ -11,6 +11,7 @@
 #include "Scroll.h"
 #include "MiniMapPlayer.h"
 #include "Wall.h"
+#include "PlayerAttack.h"
 
 const std::string CGameManager::PlayerName = "player";
 const std::string CGameManager::MiniPlayer = "MiniMapPlayer";
@@ -19,6 +20,7 @@ const std::string CGameManager::UpStairs = "up_stairs";
 const std::string CGameManager::DownStairs = "down_stairs";
 const std::string CGameManager::Scroll = "Scroll";
 const std::string CGameManager::WallName = "wall";
+const std::string CGameManager::Attack = "Attack";
 
 
 CGameManager::CGameManager(std::shared_ptr<CSceneManager> manager) :
@@ -48,7 +50,10 @@ void CGameManager::Init()
 {
 	state = State::Init;
 
+	TextureAsset::Register(L"hoge", L"engine/data/texture/Character/Enemy/sky.jpg");
+
 	auto player = std::make_shared<CActor>();
+	auto atk = std::make_shared<CActor>();
 	auto scroll = std::make_shared<CActor>();
 
 	auto enemy_manager = std::make_shared<CActor>();
@@ -100,10 +105,12 @@ void CGameManager::Init()
 	}
 
 	enemy_manager->Append(std::make_shared <CEnemyManager>(task));
-
+	atk->Append(std::make_shared<CPlayerAttack>(task));
 	
 	task->Append(Scroll, scroll);
 	
+	task->Append(Attack, atk);
+
 	task->Append(FloorName, floor);
 	task->Append(UpStairs, up_stairs);
 	task->Append(DownStairs, down_stairs);
@@ -127,6 +134,8 @@ void CGameManager::Update()
 	if (state == State::Update)
 	{
 		task->Update();
+
+		(TextureAsset(L"hoge")).draw();
 		task->Draw();
 		task->Remove();
 	}

@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "PlayerMove.h"
+#include "PlayerAttack.h"
 #include "MapRead.h"
 #include "MiniMap.h"
 #include "GameApplication.h"
@@ -14,7 +15,8 @@
 
 CPlayer::CPlayer(std::shared_ptr<CTask> task, Point pos) :
 CActor(task, Transform(pos, Point(CMapRead::Size, CMapRead::Size), Point(0, 0)), State::Live),
-move(std::make_unique<CPlayerMove>(task))
+move(std::make_unique<CPlayerMove>(task)),
+attack(std::make_unique<CPlayerAttack>(task))
 {
 
 }
@@ -27,9 +29,11 @@ void CPlayer::Start()
 void CPlayer::Update()
 {
 	move->Update();
+	attack->Update();
 }
 
 void CPlayer::Draw()
 {
 	move->Draw();
+	attack->Draw();
 }

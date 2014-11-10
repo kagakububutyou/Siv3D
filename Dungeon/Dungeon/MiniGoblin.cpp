@@ -27,10 +27,10 @@ void CMiniGoblin::Update()
 void CMiniGoblin::Draw()
 {
 	auto pos = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
-	//auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
-	//auto pos = (transform.GetPos() - scroll + Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2 - CMapRead::Size / 2), transform.GetScale());
-
-	Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(0, 255, 0));
-
-	//Rect(transform.GetPos() - pos + Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2 - CMapRead::Size / 2), transform.GetScale()).draw(ColorF(0, 255, 0));
+	
+	auto DisplayMiniMap = task->GetComponent<CMiniMap>("mini_map", 0)->DisplayMiniMap;
+	if (DisplayMiniMap)
+	{
+		Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(0, 255, 0));
+	}
 }

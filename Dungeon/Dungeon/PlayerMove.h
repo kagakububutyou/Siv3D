@@ -9,20 +9,6 @@
 
 class CPlayerMove :public CPlayerState
 {
-public:
-	CPlayerMove(std::shared_ptr<CTask> task);
-
-	void Start();
-
-	void Update();
-
-	void Draw();
-
-	void WallCollision();
-
-	///	移動量を取得
-	Point GetVelocity()const { return velocity; }
-
 private:
 	void Right();		///	右移動
 	void Left();			///	左移動
@@ -55,7 +41,25 @@ private:
 
 	MOVEDIREC MoveDirec;
 
-	const Point TextureSize = Point(64,85);		///	画像のサイズ
+	Point TextureSize = Point(256, 256);		///	画像のサイズ
+	Point MoveTexturePos;	///	画像の場所
 	Point TexturePos;	///	画像の場所
+	int GraphicChangeCounts;
+
+public:
+	CPlayerMove(std::shared_ptr<CTask> task);
+
+	void Start();
+
+	void Update();
+
+	void Draw();
+
+	void WallCollision();
+
+	///	移動量を取得
+	Point GetVelocity()const { return velocity; }
+
+	MOVEDIREC GetMoveDirec() const{ return MoveDirec; }
 
 };

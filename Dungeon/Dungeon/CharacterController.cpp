@@ -42,3 +42,8 @@ bool CharacterController::DisplayMiniMapKey()
 	if (Input::KeyEnter.clicked) return true;
 	return false;
 }
+bool CharacterController::AttackKey()
+{
+	if (Input::KeyZ.clicked) return true;
+	return false;
+}

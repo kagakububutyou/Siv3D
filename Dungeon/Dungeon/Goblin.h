@@ -19,5 +19,12 @@ public:
 	void Draw();
 
 private:
+
+	void OnCollision();
+
 	std::unique_ptr<CPlayerMove> move;	///	ˆÚ“®ˆ—
+
+	bool isCollision;
+
+	const Font font;
 };

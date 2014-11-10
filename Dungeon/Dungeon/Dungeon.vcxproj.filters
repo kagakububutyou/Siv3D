@@ -150,6 +150,9 @@
     <ClCompile Include="DownStairs.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerAttack.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon.ico">

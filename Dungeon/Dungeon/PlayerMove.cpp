@@ -20,15 +20,21 @@ CPlayerMove::CPlayerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
 state(State::Live),
 velocity(Point(0, 0)),
-speed(Point(8.0f, 8.0f))
+speed(Point(8.0f, 8.0f)),
+MoveTexturePos(Point(2,2)),
+TexturePos(Point(1, 1)),
+GraphicChangeCounts(0)
 {
 
 }
 void CPlayerMove::Start()
 {
-	TextureAsset::Register(L"MainCharacter", L"engine/data/texture/Character/MainCharacter/shujinkoutachi.png");
+	TextureAsset::Register(L"TaChi", L"engine/data/texture/Character/MainCharacter/shujinkoutachi.png");
+	TextureAsset::Register(L"Walk", L"engine/data/texture/Character/MainCharacter/shujinkouaruki.png");
 
-	TexturePos = Point(1, 1);
+	
+
+	
 }
 void CPlayerMove::VelocitySpeed(const Point speed)
 {
@@ -41,6 +47,14 @@ void CPlayerMove::Left()
 	{
 		VelocitySpeed(Point(-speed.x, 0));
 		TexturePos = Point(0, 1);
+
+		MoveDirec = MOVEDIREC::Left;
+
+		GraphicChangeCounts++;
+		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(0, 3);
+		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(1, 3);
+		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(2, 3);
+		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 3);
 	}
 }
 
@@ -50,7 +64,14 @@ void CPlayerMove::Right()
 	{
 		VelocitySpeed(Point(speed.x, 0));
 		TexturePos = Point(2, 1);
+
+		GraphicChangeCounts++;
+		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(6, 3);
+		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(5, 3);
+		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(4, 3);
+		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 3);
 	}
+	
 }
 
 void CPlayerMove::Up()
@@ -59,6 +80,12 @@ void CPlayerMove::Up()
 	{
 		VelocitySpeed(Point(0, -speed.y));
 		TexturePos = Point(1, 0);
+
+		GraphicChangeCounts++;
+		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(3, 0);
+		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(3, 1);
+		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(3, 2);
+		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(3, 1);
 	}
 }
 
@@ -68,6 +95,12 @@ void CPlayerMove::Down()
 	{
 		VelocitySpeed(Point(0, speed.y));
 		TexturePos = Point(1, 2);
+
+		GraphicChangeCounts++;
+		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(3, 6);
+		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(3, 5);
+		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(3, 4);
+		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(3, 5);
 	}
 }
 
@@ -77,6 +110,12 @@ void CPlayerMove::RightUp()
 	{
 		VelocitySpeed(Point(speed.x, -speed.y));
 		TexturePos = Point(2, 0);
+
+		GraphicChangeCounts++;
+		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(6, 0);
+		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(5, 1);
+		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(4, 2);
+		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 1);
 	}
 }
 
@@ -86,6 +125,12 @@ void CPlayerMove::RightDown()
 	{
 		VelocitySpeed(Point(speed.x, speed.y));
 		TexturePos = Point(2, 2);
+
+		GraphicChangeCounts++;
+		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(6, 6);
+		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(5, 5);
+		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(4, 4);
+		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 5);
 	}
 }
 
@@ -95,6 +140,12 @@ void CPlayerMove::LeftUp()
 	{
 		VelocitySpeed(Point(-speed.x, -speed.y));
 		TexturePos = Point(0, 0);
+
+		GraphicChangeCounts++;
+		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(0, 0);
+		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(1, 1);
+		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(2, 2);
+		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 1);
 	}
 }
 
@@ -104,6 +155,12 @@ void CPlayerMove::LeftDown()
 	{
 		VelocitySpeed(Point(-speed.x, speed.y));
 		TexturePos = Point(0, 2);
+
+		GraphicChangeCounts++;
+		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(0, 6);
+		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(1, 5);
+		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(2, 4);
+		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 5);
 	}
 }
 
@@ -159,18 +216,31 @@ void CPlayerMove::Update()
 	LeftDown();
 	Stop();
 
-	WallCollision();
+	//WallCollision();
 		
 	task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.Translate(Point(velocity.x / CMiniMap::MapScale, velocity.y / CMiniMap::MapScale));
 	task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.Translate(velocity);
-
-	//task->GetComponent<CGoblin>(CEnemyManager::Goblin, 0)->transform.Translate(-velocity);
-	//task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0)->transform.Translate(Point(-velocity.x / CMiniMap::MapScale, -velocity.y / CMiniMap::MapScale));
-	//task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.Translate(velocity);
 }
 void CPlayerMove::Draw()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
 
-	Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"MainCharacter")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+	Circle(player->transform.GetPos() + Point(64,128), 32).draw(ColorF(0,0,0,0.5));
+
+	if (!CharacterController::RightMoveKey() && !CharacterController::LeftMoveKey()
+		&& !CharacterController::UpMoveKey() && !CharacterController::DownMoveKey())
+	{
+		
+	}
+
+	if (CharacterController::RightMoveKey() || CharacterController::LeftMoveKey()
+		|| CharacterController::UpMoveKey() || CharacterController::DownMoveKey())
+	{
+		Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Walk")(TextureSize.x * MoveTexturePos.x, TextureSize.y * MoveTexturePos.y, TextureSize.x, TextureSize.y)).draw();
+	}
+	else
+	{
+		Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"TaChi")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+	}
+
 }

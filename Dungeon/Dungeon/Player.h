@@ -10,6 +10,7 @@
 #include <string>
 
 class CPlayerMove;
+class CPlayerAttack;
 
 class CPlayer :public CActor
 {
@@ -22,6 +23,7 @@ public:
 
 private:
 	std::unique_ptr<CPlayerMove> move;	///	ˆÚ“®ˆ—
+	std::unique_ptr<CPlayerAttack> attack;	///	UŒ‚
 
 	Point MiniPlayerPos;
 };

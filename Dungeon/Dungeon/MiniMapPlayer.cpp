@@ -32,20 +32,9 @@ void CMiniMapPlayer::Update()
 
 void CMiniMapPlayer::Draw()
 {
-	/*
-	Rect(transform.GetPos().x / CMiniMap::MapScale + CGameApplication::ScreenWidth / 2 - (CMapRead::Width * CMapRead::Size / CMiniMap::MapScale) / 2,
-	transform.GetPos().y / CMiniMap::MapScale + CGameApplication::ScreenHeight / 2 - (CMapRead::Height * CMapRead::Size / CMiniMap::MapScale) / 2 - (CMapRead::Size / CMiniMap::MapScale) * 7 / 2,
-	transform.GetScale().x / CMiniMap::MapScale, transform.GetScale().y / CMiniMap::MapScale).draw(Palette::Blue);
-	//*/
-
 	auto MiniGoblin = task->GetComponent<CMiniGoblin>(CEnemyManager::MiniGoblin, 0);
-
-	if (Collision::RectToRect(transform.GetPos(), transform.GetScale(), MiniGoblin->transform.GetPos(), MiniGoblin->transform.GetScale()))
-	{
-		Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Yellow);
-		//task->GetComponent<CPlayerMove>(CGameManager::PlayerName, 0)->EnemyCollision();
-	}
-	else
+	auto DisplayMiniMap = task->GetComponent<CMiniMap>("mini_map", 0)->DisplayMiniMap;
+	if (DisplayMiniMap)
 	{
 		Rect(transform.GetPos(), transform.GetScale()).draw(Palette::Blue);
 	}

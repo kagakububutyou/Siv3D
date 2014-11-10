@@ -33,5 +33,5 @@ void CWall::Draw()
 
 	//transform.TransformPoint(transform.GetPos() - pos);
 
-	Rect(transform.GetPos() - pos, transform.GetScale())(TextureAsset(L"Wall")).draw();
+	//Rect(transform.GetPos() - pos, transform.GetScale())(TextureAsset(L"Wall")).draw();
 }

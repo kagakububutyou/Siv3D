@@ -24,6 +24,7 @@ public:
 	static const std::string DownStairs;
 	static const std::string Scroll;
 	static const std::string WallName;
+	static const std::string Attack;
 
 private:
 	int TransformMapToScreenX(const int x);

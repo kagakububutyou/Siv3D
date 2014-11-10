@@ -16,5 +16,5 @@ public:
 	static bool DownMoveKey();
 	static bool ChangeSceneKey();
 	static bool DisplayMiniMapKey();
-
+	static bool AttackKey();
 };

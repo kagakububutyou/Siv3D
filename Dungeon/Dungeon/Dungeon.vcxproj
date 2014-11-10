@@ -106,6 +106,7 @@
     <ClCompile Include="MiniMap.cpp" />
     <ClCompile Include="MiniMapPlayer.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerAttack.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scroll.cpp" />

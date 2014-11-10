@@ -11,6 +11,7 @@ class CFloor :	public CActor
 public:
 	CFloor(std::shared_ptr<CTask> task,Point pos);
 
+	void Start();
 	void Update();
 	void Draw();
 
