@@ -42,13 +42,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SIV3D_20140500)\Inc;$(SIV3D_20140500)\Inc\boostMinimal;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SIV3D_20140500)\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SIV3D_20140501)\Inc;$(SIV3D_20140501)\Inc\boostMinimal;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SIV3D_20140501)\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SIV3D_20140500)\Inc;$(SIV3D_20140500)\Inc\boostMinimal;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SIV3D_20140500)\Lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SIV3D_20140501)\Inc;$(SIV3D_20140501)\Inc\boostMinimal;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SIV3D_20140501)\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -86,11 +86,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="ClearManager.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Actor.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Collision.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Task.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Transform.cpp" />
     <ClCompile Include="CharacterController.cpp" />
     <ClCompile Include="ClearKeyEvent.cpp" />
-    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="ClearManager.cpp" />
     <ClCompile Include="DownStairs.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
@@ -110,10 +112,8 @@
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scroll.cpp" />
-    <ClCompile Include="Task.cpp" />
     <ClCompile Include="TitleKeyEvent.cpp" />
     <ClCompile Include="TitleManager.cpp" />
-    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="UpStairs.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
@@ -192,11 +192,15 @@
     <Font Include="Example\YomogiFont.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Actor.h" />
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Actor.h" />
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Collision.h" />
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Noncopyable.h" />
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Object.h" />
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Task.h" />
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Transform.h" />
     <ClInclude Include="CharacterController.h" />
     <ClInclude Include="ClearKeyEvent.h" />
     <ClInclude Include="ClearManager.h" />
-    <ClInclude Include="Collision.h" />
     <ClInclude Include="DownStairs.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
@@ -211,18 +215,15 @@
     <ClInclude Include="MiniGoblin.h" />
     <ClInclude Include="MiniMap.h" />
     <ClInclude Include="MiniMapPlayer.h" />
-    <ClInclude Include="Noncopyable.h" />
-    <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerAttack.h" />
     <ClInclude Include="PlayerMove.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scroll.h" />
-    <ClInclude Include="Task.h" />
+    <ClInclude Include="Staircase.h" />
     <ClInclude Include="TitleKeyEvent.h" />
     <ClInclude Include="TitleManager.h" />
-    <ClInclude Include="Transform.h" />
     <ClInclude Include="UpStairs.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>

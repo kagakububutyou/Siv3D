@@ -1,49 +1,101 @@
-﻿2014/10/20 11:47:09 にビルドを開始しました。
-     1>ノード 2 上のプロジェクト "C:\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット)。
+﻿2014/11/17 11:49:39 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\vantan\Desktop\教材\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt EnemyManager.cpp Floor.cpp GameApplication.cpp GameManager.cpp MapRead.cpp PlayerCamera.cpp PlayerMove.cpp Staircase.cpp
-         Staircase.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W4 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Enemy.cpp EnemyManager.cpp GameApplication.cpp Goblin.cpp Main.cpp MiniGoblin.cpp MiniMapPlayer.cpp Player.cpp PlayerAttack.cpp PlayerMove.cpp
          PlayerMove.cpp
-         PlayerCamera.cpp
-         MapRead.cpp
-         GameManager.cpp
-         Floor.cpp
-         コードを生成中...
-         コンパイル中...
+         PlayerAttack.cpp
+         Player.cpp
+         MiniMapPlayer.cpp
+         MiniGoblin.cpp
+         Main.cpp
+         Goblin.cpp
          GameApplication.cpp
          EnemyManager.cpp
+         Enemy.cpp
          コードを生成中...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\RC.res" RC.rc 
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\教材\審査会出展作品\チーム制作\Dungeon\Debug\Dungeon.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Debug\Dungeon.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Debug\Dungeon.lib" /MACHINE:X86 Debug\RC.res
-         Debug\Actor.obj
-         Debug\Camera.obj
-         Debug\ClearManager.obj
-         Debug\CharacterController.obj
-         Debug\ClearKeyEvent.obj
-         Debug\Collision.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\vantan\Desktop\教材\Dungeon\Debug\Dungeon.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\vantan\Desktop\教材\Dungeon\Debug\Dungeon.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\vantan\Desktop\教材\Dungeon\Debug\Dungeon.lib" /MACHINE:X86 Debug\RC.res
          Debug\Enemy.obj
          Debug\EnemyManager.obj
-         Debug\Floor.obj
          Debug\GameApplication.obj
-         Debug\GameManager.obj
          Debug\Goblin.obj
-         Debug\Light.obj
          Debug\Main.obj
-         Debug\MapRead.obj
-         Debug\MenuKeyEvent.obj
-         Debug\MenuManager.obj
+         Debug\MiniGoblin.obj
+         Debug\MiniMapPlayer.obj
          Debug\Player.obj
-         Debug\PlayerCamera.obj
+         Debug\PlayerAttack.obj
          Debug\PlayerMove.obj
-         Debug\Scene.obj
-         Debug\Staircase.obj
-         Debug\Task.obj
-         Debug\TitleKeyEvent.obj
-         Debug\TitleManager.obj
-         Debug\Transform.obj
-         Dungeon.vcxproj -> C:\教材\審査会出展作品\チーム制作\Dungeon\Debug\Dungeon.exe
-     1>プロジェクト "C:\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット) のビルドが完了しました。
+     1>MiniMapPlayer.obj : error LNK2001: 外部シンボル ""public: __thiscall Transform::Transform(struct s3d::Point,struct s3d::Point,struct s3d::Point)" (??0Transform@@QAE@UPoint@s3d@@00@Z)" は未解決です。
+     1>Player.obj : error LNK2001: 外部シンボル ""public: __thiscall Transform::Transform(struct s3d::Point,struct s3d::Point,struct s3d::Point)" (??0Transform@@QAE@UPoint@s3d@@00@Z)" は未解決です。
+     1>PlayerAttack.obj : error LNK2001: 外部シンボル ""public: __thiscall Transform::Transform(struct s3d::Point,struct s3d::Point,struct s3d::Point)" (??0Transform@@QAE@UPoint@s3d@@00@Z)" は未解決です。
+     1>Enemy.obj : error LNK2001: 外部シンボル ""public: __thiscall Transform::Transform(struct s3d::Point,struct s3d::Point,struct s3d::Point)" (??0Transform@@QAE@UPoint@s3d@@00@Z)" は未解決です。
+     1>EnemyManager.obj : error LNK2001: 外部シンボル ""public: __thiscall Transform::Transform(struct s3d::Point,struct s3d::Point,struct s3d::Point)" (??0Transform@@QAE@UPoint@s3d@@00@Z)" は未解決です。
+     1>Goblin.obj : error LNK2001: 外部シンボル ""public: __thiscall Transform::Transform(struct s3d::Point,struct s3d::Point,struct s3d::Point)" (??0Transform@@QAE@UPoint@s3d@@00@Z)" は未解決です。
+     1>MiniGoblin.obj : error LNK2001: 外部シンボル ""public: __thiscall Transform::Transform(struct s3d::Point,struct s3d::Point,struct s3d::Point)" (??0Transform@@QAE@UPoint@s3d@@00@Z)" は未解決です。
+     1>MiniMapPlayer.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Start(void)" (?Start@CActor@@UAEXXZ)" は未解決です。
+     1>Player.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Start(void)" (?Start@CActor@@UAEXXZ)" は未解決です。
+     1>PlayerAttack.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Start(void)" (?Start@CActor@@UAEXXZ)" は未解決です。
+     1>Enemy.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Start(void)" (?Start@CActor@@UAEXXZ)" は未解決です。
+     1>EnemyManager.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Start(void)" (?Start@CActor@@UAEXXZ)" は未解決です。
+     1>Goblin.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Start(void)" (?Start@CActor@@UAEXXZ)" は未解決です。
+     1>MiniGoblin.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Start(void)" (?Start@CActor@@UAEXXZ)" は未解決です。
+     1>MiniMapPlayer.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Update(void)" (?Update@CActor@@UAEXXZ)" は未解決です。
+     1>Player.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Update(void)" (?Update@CActor@@UAEXXZ)" は未解決です。
+     1>PlayerAttack.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Update(void)" (?Update@CActor@@UAEXXZ)" は未解決です。
+     1>Enemy.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Update(void)" (?Update@CActor@@UAEXXZ)" は未解決です。
+     1>EnemyManager.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Update(void)" (?Update@CActor@@UAEXXZ)" は未解決です。
+     1>Goblin.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Update(void)" (?Update@CActor@@UAEXXZ)" は未解決です。
+     1>MiniGoblin.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Update(void)" (?Update@CActor@@UAEXXZ)" は未解決です。
+     1>MiniMapPlayer.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Draw(void)" (?Draw@CActor@@UAEXXZ)" は未解決です。
+     1>Player.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Draw(void)" (?Draw@CActor@@UAEXXZ)" は未解決です。
+     1>PlayerAttack.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Draw(void)" (?Draw@CActor@@UAEXXZ)" は未解決です。
+     1>Enemy.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Draw(void)" (?Draw@CActor@@UAEXXZ)" は未解決です。
+     1>EnemyManager.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Draw(void)" (?Draw@CActor@@UAEXXZ)" は未解決です。
+     1>Goblin.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Draw(void)" (?Draw@CActor@@UAEXXZ)" は未解決です。
+     1>MiniGoblin.obj : error LNK2001: 外部シンボル ""public: virtual void __thiscall CActor::Draw(void)" (?Draw@CActor@@UAEXXZ)" は未解決です。
+     1>EnemyManager.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall CMapRead::CMapRead(void)" (??0CMapRead@@QAE@XZ) が関数 "class std::unique_ptr<class CMapRead,struct std::default_delete<class CMapRead> > __cdecl std::make_unique<class CMapRead>(void)" (??$make_unique@VCMapRead@@$$$V@std@@YA?AV?$unique_ptr@VCMapRead@@U?$default_delete@VCMapRead@@@std@@@0@XZ) で参照されました。
+     1>EnemyManager.obj : error LNK2019: 未解決の外部シンボル "public: void __thiscall CMapRead::ObjectRead(struct s3d::Point,int,class std::shared_ptr<class CActor>,class std::shared_ptr<class CActor>)" (?ObjectRead@CMapRead@@QAEXUPoint@s3d@@HV?$shared_ptr@VCActor@@@std@@1@Z) が関数 "public: virtual void __thiscall CEnemyManager::Start(void)" (?Start@CEnemyManager@@UAEXXZ) で参照されました。
+     1>EnemyManager.obj : error LNK2019: 未解決の外部シンボル "public: void __thiscall CTask::Append(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::shared_ptr<class CActor>)" (?Append@CTask@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$shared_ptr@VCActor@@@3@@Z) が関数 "public: virtual void __thiscall CEnemyManager::Start(void)" (?Start@CEnemyManager@@UAEXXZ) で参照されました。
+     1>GameApplication.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall CSceneManager::CSceneManager(class CGameApplication *)" (??0CSceneManager@@QAE@PAVCGameApplication@@@Z) が関数 "public: __thiscall std::_Ref_count_obj<class CSceneManager>::_Ref_count_obj<class CSceneManager><class CGameApplication * const>(class CGameApplication * const &&)" (??$?0QAVCGameApplication@@@?$_Ref_count_obj@VCSceneManager@@@std@@QAE@$$QBQAVCGameApplication@@@Z) で参照されました。
+     1>GameApplication.obj : error LNK2019: 未解決の外部シンボル "public: void __thiscall CSceneManager::Update(void)" (?Update@CSceneManager@@QAEXXZ) が関数 "public: void __thiscall CGameApplication::Update(void)" (?Update@CGameApplication@@QAEXXZ) で参照されました。
+     1>GameApplication.obj : error LNK2019: 未解決の外部シンボル "public: void __thiscall CSceneManager::ChangeScene(enum CSceneManager::Scene)" (?ChangeScene@CSceneManager@@QAEXW4Scene@1@@Z) が関数 "public: __thiscall CGameApplication::CGameApplication(void)" (??0CGameApplication@@QAE@XZ) で参照されました。
+     1>GameApplication.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall CTitleManager::CTitleManager(class std::shared_ptr<class CSceneManager>)" (??0CTitleManager@@QAE@V?$shared_ptr@VCSceneManager@@@std@@@Z) が関数 "class std::unique_ptr<class CTitleManager,struct std::default_delete<class CTitleManager> > __cdecl std::make_unique<class CTitleManager,class std::shared_ptr<class CSceneManager> &>(class std::shared_ptr<class CSceneManager> &)" (??$make_unique@VCTitleManager@@AAV?$shared_ptr@VCSceneManager@@@std@@@std@@YA?AV?$unique_ptr@VCTitleManager@@U?$default_delete@VCTitleManager@@@std@@@0@AAV?$shared_ptr@VCSceneManager@@@0@@Z) で参照されました。
+     1>GameApplication.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall CMenuManager::CMenuManager(class std::shared_ptr<class CSceneManager>)" (??0CMenuManager@@QAE@V?$shared_ptr@VCSceneManager@@@std@@@Z) が関数 "class std::unique_ptr<class CMenuManager,struct std::default_delete<class CMenuManager> > __cdecl std::make_unique<class CMenuManager,class std::shared_ptr<class CSceneManager> &>(class std::shared_ptr<class CSceneManager> &)" (??$make_unique@VCMenuManager@@AAV?$shared_ptr@VCSceneManager@@@std@@@std@@YA?AV?$unique_ptr@VCMenuManager@@U?$default_delete@VCMenuManager@@@std@@@0@AAV?$shared_ptr@VCSceneManager@@@0@@Z) で参照されました。
+     1>GameApplication.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall CGameManager::CGameManager(class std::shared_ptr<class CSceneManager>)" (??0CGameManager@@QAE@V?$shared_ptr@VCSceneManager@@@std@@@Z) が関数 "class std::unique_ptr<class CGameManager,struct std::default_delete<class CGameManager> > __cdecl std::make_unique<class CGameManager,class std::shared_ptr<class CSceneManager> &>(class std::shared_ptr<class CSceneManager> &)" (??$make_unique@VCGameManager@@AAV?$shared_ptr@VCSceneManager@@@std@@@std@@YA?AV?$unique_ptr@VCGameManager@@U?$default_delete@VCGameManager@@@std@@@0@AAV?$shared_ptr@VCSceneManager@@@0@@Z) で参照されました。
+     1>GameApplication.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall CClearManager::CClearManager(class std::shared_ptr<class CSceneManager>)" (??0CClearManager@@QAE@V?$shared_ptr@VCSceneManager@@@std@@@Z) が関数 "class std::unique_ptr<class CClearManager,struct std::default_delete<class CClearManager> > __cdecl std::make_unique<class CClearManager,class std::shared_ptr<class CSceneManager> &>(class std::shared_ptr<class CSceneManager> &)" (??$make_unique@VCClearManager@@AAV?$shared_ptr@VCSceneManager@@@std@@@std@@YA?AV?$unique_ptr@VCClearManager@@U?$default_delete@VCClearManager@@@std@@@0@AAV?$shared_ptr@VCSceneManager@@@0@@Z) で参照されました。
+     1>PlayerMove.obj : error LNK2001: 外部シンボル ""public: class std::shared_ptr<class Object> __thiscall CActor::GetComponent(int)const " (?GetComponent@CActor@@QBE?AV?$shared_ptr@VObject@@@std@@H@Z)" は未解決です。
+     1>Goblin.obj : error LNK2001: 外部シンボル ""public: class std::shared_ptr<class Object> __thiscall CActor::GetComponent(int)const " (?GetComponent@CActor@@QBE?AV?$shared_ptr@VObject@@@std@@H@Z)" は未解決です。
+     1>MiniGoblin.obj : error LNK2001: 外部シンボル ""public: class std::shared_ptr<class Object> __thiscall CActor::GetComponent(int)const " (?GetComponent@CActor@@QBE?AV?$shared_ptr@VObject@@@std@@H@Z)" は未解決です。
+     1>MiniMapPlayer.obj : error LNK2001: 外部シンボル ""public: class std::shared_ptr<class Object> __thiscall CActor::GetComponent(int)const " (?GetComponent@CActor@@QBE?AV?$shared_ptr@VObject@@@std@@H@Z)" は未解決です。
+     1>PlayerAttack.obj : error LNK2001: 外部シンボル ""public: class std::shared_ptr<class Object> __thiscall CActor::GetComponent(int)const " (?GetComponent@CActor@@QBE?AV?$shared_ptr@VObject@@@std@@H@Z)" は未解決です。
+     1>Goblin.obj : error LNK2019: 未解決の外部シンボル "bool __cdecl Collision::RectToRect(struct s3d::Point const &,struct s3d::Point const &,struct s3d::Point const &,struct s3d::Point const &)" (?RectToRect@Collision@@YA_NABUPoint@s3d@@000@Z) が関数 "public: virtual void __thiscall CGoblin::Draw(void)" (?Draw@CGoblin@@UAEXXZ) で参照されました。
+     1>PlayerMove.obj : error LNK2001: 外部シンボル ""bool __cdecl Collision::RectToRect(struct s3d::Point const &,struct s3d::Point const &,struct s3d::Point const &,struct s3d::Point const &)" (?RectToRect@Collision@@YA_NABUPoint@s3d@@000@Z)" は未解決です。
+     1>Goblin.obj : error LNK2001: 外部シンボル ""public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const CGameManager::Scroll" (?Scroll@CGameManager@@2V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@B)" は未解決です。
+     1>PlayerMove.obj : error LNK2001: 外部シンボル ""public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const CGameManager::Scroll" (?Scroll@CGameManager@@2V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@B)" は未解決です。
+     1>Goblin.obj : error LNK2001: 外部シンボル ""public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const CGameManager::Attack" (?Attack@CGameManager@@2V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@B)" は未解決です。
+     1>MiniGoblin.obj : error LNK2001: 外部シンボル ""public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const CGameManager::PlayerName" (?PlayerName@CGameManager@@2V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@B)" は未解決です。
+     1>PlayerAttack.obj : error LNK2001: 外部シンボル ""public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const CGameManager::PlayerName" (?PlayerName@CGameManager@@2V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@B)" は未解決です。
+     1>PlayerMove.obj : error LNK2001: 外部シンボル ""public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const CGameManager::PlayerName" (?PlayerName@CGameManager@@2V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@B)" は未解決です。
+     1>MiniMapPlayer.obj : error LNK2019: 未解決の外部シンボル "public: void __thiscall Transform::TransformPoint(struct s3d::Point const &)" (?TransformPoint@Transform@@QAEXABUPoint@s3d@@@Z) が関数 "public: virtual void __thiscall CMiniMapPlayer::Start(void)" (?Start@CMiniMapPlayer@@UAEXXZ) で参照されました。
+     1>PlayerAttack.obj : error LNK2001: 外部シンボル ""public: void __thiscall Transform::TransformPoint(struct s3d::Point const &)" (?TransformPoint@Transform@@QAEXABUPoint@s3d@@@Z)" は未解決です。
+     1>PlayerAttack.obj : error LNK2019: 未解決の外部シンボル "public: static bool __cdecl CharacterController::LeftMoveKey(void)" (?LeftMoveKey@CharacterController@@SA_NXZ) が関数 "private: void __thiscall CPlayerAttack::Left(void)" (?Left@CPlayerAttack@@AAEXXZ) で参照されました。
+     1>PlayerMove.obj : error LNK2001: 外部シンボル ""public: static bool __cdecl CharacterController::LeftMoveKey(void)" (?LeftMoveKey@CharacterController@@SA_NXZ)" は未解決です。
+     1>PlayerAttack.obj : error LNK2019: 未解決の外部シンボル "public: static bool __cdecl CharacterController::RightMoveKey(void)" (?RightMoveKey@CharacterController@@SA_NXZ) が関数 "private: void __thiscall CPlayerAttack::Right(void)" (?Right@CPlayerAttack@@AAEXXZ) で参照されました。
+     1>PlayerMove.obj : error LNK2001: 外部シンボル ""public: static bool __cdecl CharacterController::RightMoveKey(void)" (?RightMoveKey@CharacterController@@SA_NXZ)" は未解決です。
+     1>PlayerAttack.obj : error LNK2019: 未解決の外部シンボル "public: static bool __cdecl CharacterController::UpMoveKey(void)" (?UpMoveKey@CharacterController@@SA_NXZ) が関数 "private: void __thiscall CPlayerAttack::Up(void)" (?Up@CPlayerAttack@@AAEXXZ) で参照されました。
+     1>PlayerMove.obj : error LNK2001: 外部シンボル ""public: static bool __cdecl CharacterController::UpMoveKey(void)" (?UpMoveKey@CharacterController@@SA_NXZ)" は未解決です。
+     1>PlayerAttack.obj : error LNK2019: 未解決の外部シンボル "public: static bool __cdecl CharacterController::DownMoveKey(void)" (?DownMoveKey@CharacterController@@SA_NXZ) が関数 "private: void __thiscall CPlayerAttack::Down(void)" (?Down@CPlayerAttack@@AAEXXZ) で参照されました。
+     1>PlayerMove.obj : error LNK2001: 外部シンボル ""public: static bool __cdecl CharacterController::DownMoveKey(void)" (?DownMoveKey@CharacterController@@SA_NXZ)" は未解決です。
+     1>PlayerAttack.obj : error LNK2019: 未解決の外部シンボル "public: static bool __cdecl CharacterController::AttackKey(void)" (?AttackKey@CharacterController@@SA_NXZ) が関数 "private: void __thiscall CPlayerAttack::Create(void)" (?Create@CPlayerAttack@@AAEXXZ) で参照されました。
+     1>PlayerMove.obj : error LNK2019: 未解決の外部シンボル "public: class std::vector<class std::shared_ptr<class CActor>,class std::allocator<class std::shared_ptr<class CActor> > > __thiscall CTask::GetActor(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &)" (?GetActor@CTask@@QAE?AV?$vector@V?$shared_ptr@VCActor@@@std@@V?$allocator@V?$shared_ptr@VCActor@@@std@@@2@@std@@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@3@@Z) が関数 "public: void __thiscall CPlayerMove::WallCollision(void)" (?WallCollision@CPlayerMove@@QAEXXZ) で参照されました。
+     1>PlayerMove.obj : error LNK2019: 未解決の外部シンボル "public: void __thiscall Transform::Translate(struct s3d::Point const &)" (?Translate@Transform@@QAEXABUPoint@s3d@@@Z) が関数 "public: virtual void __thiscall CPlayerMove::Update(void)" (?Update@CPlayerMove@@UAEXXZ) で参照されました。
+     1>PlayerMove.obj : error LNK2001: 外部シンボル ""public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const CGameManager::MiniPlayer" (?MiniPlayer@CGameManager@@2V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@B)" は未解決です。
+     1>PlayerMove.obj : error LNK2001: 外部シンボル ""public: static class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const CGameManager::WallName" (?WallName@CGameManager@@2V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@B)" は未解決です。
+     1>C:\Users\vantan\Desktop\教材\Dungeon\Debug\Dungeon.exe : fatal error LNK1120: 29 件の未解決の外部参照
+     1>プロジェクト "C:\Users\vantan\Desktop\教材\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット) のビルドが終了しました -- 失敗。
 
-ビルドに成功しました。
+ビルドに失敗しました。
 
-経過時間 00:01:26.23
+経過時間 00:01:24.34

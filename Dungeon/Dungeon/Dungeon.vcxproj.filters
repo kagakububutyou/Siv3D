@@ -37,54 +37,69 @@
     <Filter Include="リソース ファイル\engine\fonts\mplus">
       <UniqueIdentifier>{99143a80-58b1-454e-806f-515e7065900b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Task&amp;Actor">
-      <UniqueIdentifier>{4f6df4fc-73d5-4521-ae10-6f0d7b232fea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utility">
-      <UniqueIdentifier>{4328dd70-9c16-4386-a3a4-714faa2c891f}</UniqueIdentifier>
+    <Filter Include="Enemy">
+      <UniqueIdentifier>{a837caaf-af86-49c9-8752-8b929fbab237}</UniqueIdentifier>
     </Filter>
     <Filter Include="Player">
-      <UniqueIdentifier>{dd910a93-126b-4d62-8c55-127fdc95ef67}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="System">
-      <UniqueIdentifier>{47de0d38-7099-43b5-a424-b8c0493cd335}</UniqueIdentifier>
+      <UniqueIdentifier>{cf59b5ca-3e5b-4428-82cc-863d08deb790}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scene">
-      <UniqueIdentifier>{4ae951fd-5e3c-4962-9096-15e1baff782f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Siv3DWrap">
-      <UniqueIdentifier>{ebe37532-bf39-41be-82e0-d1a51e1ae5e5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enemy">
-      <UniqueIdentifier>{4ccd07dc-41b8-4bfe-8c42-c04224222186}</UniqueIdentifier>
+      <UniqueIdentifier>{32606a22-4b29-4436-9ab5-7adbbb7a2bf0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Stage">
-      <UniqueIdentifier>{c993d752-0755-49d6-a107-1ac0519bb604}</UniqueIdentifier>
+      <UniqueIdentifier>{9f3b00c0-f047-420c-b81d-5e1cef7821b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{c31be0fc-d5a0-45e9-9f80-58a6ea08a34a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Task&amp;Actor">
+      <UniqueIdentifier>{5cc26624-22e1-47e8-afc2-b78685f286d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{a4d7c229-6e05-4442-ba67-be176680e8de}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Task.cpp">
-      <Filter>Task&amp;Actor</Filter>
+    <ClCompile Include="MiniGoblin.cpp">
+      <Filter>Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>Task&amp;Actor</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>Utility</Filter>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Goblin.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMapPlayer.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerAttack.cpp">
       <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="PlayerMove.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="TitleKeyEvent.cpp">
+    <ClCompile Include="Scene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="TitleManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearKeyEvent.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="MenuKeyEvent.cpp">
@@ -93,65 +108,47 @@
     <ClCompile Include="MenuManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="GameApplication.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="ClearKeyEvent.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="CharacterController.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyManager.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="ClearManager.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Goblin.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="MapRead.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Floor.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniMap.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
     <ClCompile Include="Scroll.cpp">
-      <Filter>Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniMapPlayer.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniGoblin.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Wall.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
     <ClCompile Include="UpStairs.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
     <ClCompile Include="DownStairs.cpp">
       <Filter>Stage</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerAttack.cpp">
-      <Filter>Player</Filter>
+    <ClCompile Include="Floor.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="MapRead.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMap.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterController.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="GameApplication.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Task.cpp">
+      <Filter>Task&amp;Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Actor.cpp">
+      <Filter>Task&amp;Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Transform.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Collision.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleKeyEvent.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -353,22 +350,31 @@
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Noncopyable.h">
-      <Filter>Task&amp;Actor</Filter>
+    <ClInclude Include="GoblinMove.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Utility</Filter>
+    <ClInclude Include="MiniGoblin.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Task.h">
-      <Filter>Task&amp;Actor</Filter>
+    <ClInclude Include="Staircase.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Task&amp;Actor</Filter>
+    <ClInclude Include="Enemy.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>Task&amp;Actor</Filter>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Goblin.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMapPlayer.h">
+      <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAttack.h">
       <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="PlayerMove.h">
@@ -377,32 +383,11 @@
     <ClInclude Include="PlayerState.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterController.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleKeyEvent.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="TitleManager.h">
       <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameApplication.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuKeyEvent.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuManager.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="ClearKeyEvent.h">
       <Filter>Scene</Filter>
@@ -410,47 +395,62 @@
     <ClInclude Include="ClearManager.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Utility</Filter>
+    <ClInclude Include="GameManager.h">
+      <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyManager.h">
-      <Filter>Enemy</Filter>
+    <ClInclude Include="MenuKeyEvent.h">
+      <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Goblin.h">
-      <Filter>Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="MapRead.h">
-      <Filter>Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Floor.h">
-      <Filter>Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniMap.h">
-      <Filter>Stage</Filter>
+    <ClInclude Include="MenuManager.h">
+      <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scroll.h">
-      <Filter>Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniMapPlayer.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniGoblin.h">
-      <Filter>Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="GoblinMove.h">
-      <Filter>Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Wall.h">
       <Filter>Stage</Filter>
     </ClInclude>
     <ClInclude Include="UpStairs.h">
       <Filter>Stage</Filter>
     </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
     <ClInclude Include="DownStairs.h">
       <Filter>Stage</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerAttack.h">
-      <Filter>Player</Filter>
+    <ClInclude Include="Floor.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="MapRead.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMap.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterController.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="GameApplication.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Task.h">
+      <Filter>Task&amp;Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Actor.h">
+      <Filter>Task&amp;Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Noncopyable.h">
+      <Filter>Task&amp;Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Object.h">
+      <Filter>Task&amp;Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Transform.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Collision.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleKeyEvent.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
