@@ -38,6 +38,21 @@ void CPlayerMove::Start()
 }
 void CPlayerMove::VelocitySpeed(const Point speed)
 {
+	/*
+	static int hoge = 0;
+
+	hoge++;
+
+	if (hoge % 60 == 0)
+	{
+	velocity = speed;
+	}
+	else
+	{
+	velocity = Point(0,0);
+	}
+	//*/
+
 	velocity = speed;
 }
 
@@ -108,7 +123,7 @@ void CPlayerMove::RightUp()
 {
 	if (CharacterController::RightMoveKey() && CharacterController::UpMoveKey())
 	{
-		VelocitySpeed(Point(speed.x, -speed.y));
+		VelocitySpeed(Point(speed.x/2, -speed.y/2));
 		TexturePos = Point(2, 0);
 
 		GraphicChangeCounts++;
@@ -123,7 +138,7 @@ void CPlayerMove::RightDown()
 {
 	if (CharacterController::RightMoveKey() && CharacterController::DownMoveKey())
 	{
-		VelocitySpeed(Point(speed.x, speed.y));
+		VelocitySpeed(Point(speed.x/2, speed.y/2));
 		TexturePos = Point(2, 2);
 
 		GraphicChangeCounts++;
@@ -138,7 +153,7 @@ void CPlayerMove::LeftUp()
 {
 	if (CharacterController::LeftMoveKey() && CharacterController::UpMoveKey())
 	{
-		VelocitySpeed(Point(-speed.x, -speed.y));
+		VelocitySpeed(Point(-speed.x/2, -speed.y/2));
 		TexturePos = Point(0, 0);
 
 		GraphicChangeCounts++;
@@ -153,7 +168,7 @@ void CPlayerMove::LeftDown()
 {
 	if (CharacterController::LeftMoveKey() && CharacterController::DownMoveKey())
 	{
-		VelocitySpeed(Point(-speed.x, speed.y));
+		VelocitySpeed(Point(-speed.x/2, speed.y/2));
 		TexturePos = Point(0, 2);
 
 		GraphicChangeCounts++;
@@ -210,13 +225,13 @@ void CPlayerMove::Update()
 	Left();
 	Up();
 	Down();
-	RightUp();
-	RightDown();
-	LeftUp();
-	LeftDown();
+	//RightUp();
+	//RightDown();
+	//LeftUp();
+	//LeftDown();
 	Stop();
 
-	//WallCollision();
+	WallCollision();
 		
 	task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.Translate(Point(velocity.x / CMiniMap::MapScale, velocity.y / CMiniMap::MapScale));
 	task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.Translate(velocity);

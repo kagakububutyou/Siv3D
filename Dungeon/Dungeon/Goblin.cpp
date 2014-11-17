@@ -24,7 +24,7 @@ void CGoblin::Start()
 	//transform.TransformPoint(Point(transform.GetPos().x / CMiniMap::MapScale + CGameApplication::ScreenWidth / 2 - (CMapRead::Width * CMapRead::Size / CMiniMap::MapScale) / 2,
 		//transform.GetPos().y / CMiniMap::MapScale + CGameApplication::ScreenHeight / 2 - (CMapRead::Height * CMapRead::Size / CMiniMap::MapScale) / 2 - (CMapRead::Size / CMiniMap::MapScale) * 7 / 2));
 
-	TextureAsset::Register(L"Goblin", L"engine/data/texture/Character/Enemy/houdaina.png");
+	TextureAsset::Register(L"Goblin", L"engine/data/texture/Character/Enemy/パトローラー/patoro-ra- syoumen.png");
 }
 void CGoblin::OnCollision()
 {
@@ -51,8 +51,8 @@ void CGoblin::Draw()
 
 	font(transform.GetPos() - pos).draw(0,100);
 
-	if (Collision::RectToRect(transform.GetPos() - pos, transform.GetScale(), atk->transform.GetPos(), atk->transform.GetScale()))
-	//if (isCollision)
+	if (Collision::RectToRect(transform.GetPos() - pos, transform.GetScale(), atk->transform.GetPos(), atk->transform.GetScale())
+	&& atk->isCollision)
 	{
 		Rect(transform.GetPos() - pos, transform.GetScale())(TextureAsset(L"Goblin")).draw(ColorF(Palette::Yellow));
 	}

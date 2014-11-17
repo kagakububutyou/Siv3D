@@ -16,6 +16,8 @@ public:
 	void Finish();
 	//Transform transform;	///<	座標、サイズ、回転
 
+	bool isCollision;	///<	あたり判定がおこっているかどうか
+
 private:
 	
 	std::unique_ptr<CPlayerMove> move;	///	移動処理
@@ -31,7 +33,7 @@ private:
 	void LeftUp();		///	左上
 	void LeftDown();	///	左下
 
-	bool isCollision;	///<	あたり判定がおこっているかどうか
+	
 
 	const Font font;
 };

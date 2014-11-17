@@ -50,7 +50,7 @@ void CGameManager::Init()
 {
 	state = State::Init;
 
-	TextureAsset::Register(L"hoge", L"engine/data/texture/Character/Enemy/sky.jpg");
+	TextureAsset::Register(L"hoge", L"engine/data/texture/Character/Enemy/kumori.png");
 
 	auto player = std::make_shared<CActor>();
 	auto atk = std::make_shared<CActor>();

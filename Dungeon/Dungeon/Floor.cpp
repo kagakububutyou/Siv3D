@@ -16,7 +16,7 @@ void CFloor::Start()
 {
 	if (!TextureAsset(L"Floor"))
 	{
-		TextureAsset::Register(L"Floor", L"engine/data/texture/MapChip/map_ground_white.png");
+		TextureAsset::Register(L"Floor", L"engine/data/texture/MapChip/網型マップチップ/map_ground_batu.png");
 	}
 }
 void CFloor::Update()
