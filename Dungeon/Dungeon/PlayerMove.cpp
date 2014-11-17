@@ -9,7 +9,7 @@
 
 #include "Collision.h"
 
-#include "Goblin.h"
+#include "Patroller.h"
 #include "MiniGoblin.h"
 #include "EnemyManager.h"
 
@@ -231,7 +231,7 @@ void CPlayerMove::Update()
 	//LeftDown();
 	Stop();
 
-	WallCollision();
+	//WallCollision();
 		
 	task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.Translate(Point(velocity.x / CMiniMap::MapScale, velocity.y / CMiniMap::MapScale));
 	task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.Translate(velocity);

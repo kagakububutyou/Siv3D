@@ -72,9 +72,6 @@
     <ClCompile Include="EnemyManager.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Goblin.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="MiniMapPlayer.cpp">
       <Filter>Player</Filter>
     </ClCompile>
@@ -149,6 +146,12 @@
     </ClCompile>
     <ClCompile Include="TitleKeyEvent.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Patroller.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="PatrollerMove.cpp">
+      <Filter>Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -350,9 +353,6 @@
     </Font>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GoblinMove.h">
-      <Filter>Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="MiniGoblin.h">
       <Filter>Enemy</Filter>
     </ClInclude>
@@ -363,9 +363,6 @@
       <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyManager.h">
-      <Filter>Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Goblin.h">
       <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="MiniMapPlayer.h">
@@ -451,6 +448,12 @@
     </ClInclude>
     <ClInclude Include="TitleKeyEvent.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Patroller.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="PatrollerMove.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

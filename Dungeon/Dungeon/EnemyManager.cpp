@@ -1,14 +1,14 @@
 #include "MapRead.h"
 #include "EnemyManager.h"
 #include "GameManager.h"
-#include "Goblin.h"
+#include "Patroller.h"
 #include "MiniMap.h"
 #include "GameApplication.h"
 #include "MiniGoblin.h"
 
 
 
-const std::string CEnemyManager::Goblin = "goblin";
+const std::string CEnemyManager::Patroller = "Patroller";
 const std::string CEnemyManager::MiniGoblin = "MiniGoblin";
 
 CEnemyManager::CEnemyManager(std::shared_ptr<CTask> task) :
@@ -35,14 +35,14 @@ int CEnemyManager::TransformMiniMapToScreenY(const int y)
 }
 void CEnemyManager::Start()
 {
-	auto goblin = std::make_shared<CActor>();
+	auto patroller = std::make_shared<CActor>();
 	auto minigoblin = std::make_shared<CActor>();
 
 	for (int y = 0; y < CMapRead::Height; y++)
 	{
 		for (int x = 0; x < CMapRead::Width; x++)
 		{
-			map_read->ObjectRead(Point(x, y), CEnemyManager::GoblinPosition, goblin, std::make_shared<CGoblin>(task,
+			map_read->ObjectRead(Point(x, y), CEnemyManager::GoblinPosition, patroller, std::make_shared<CPatroller>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 
 			map_read->ObjectRead(Point(x, y), CEnemyManager::GoblinPosition, minigoblin, std::make_shared<CMiniGoblin>(task,
@@ -50,7 +50,7 @@ void CEnemyManager::Start()
 		}
 	}
 
-	task->Append(Goblin, goblin);
+	task->Append(Patroller, patroller);
 	task->Append(MiniGoblin, minigoblin);
 
 }

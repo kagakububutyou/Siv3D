@@ -99,7 +99,6 @@
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GameApplication.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapRead.cpp" />
     <ClCompile Include="MenuKeyEvent.cpp" />
@@ -107,6 +106,8 @@
     <ClCompile Include="MiniGoblin.cpp" />
     <ClCompile Include="MiniMap.cpp" />
     <ClCompile Include="MiniMapPlayer.cpp" />
+    <ClCompile Include="Patroller.cpp" />
+    <ClCompile Include="PatrollerMove.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerAttack.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
@@ -207,14 +208,14 @@
     <ClInclude Include="Floor.h" />
     <ClInclude Include="GameApplication.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="Goblin.h" />
-    <ClInclude Include="GoblinMove.h" />
     <ClInclude Include="MapRead.h" />
     <ClInclude Include="MenuKeyEvent.h" />
     <ClInclude Include="MenuManager.h" />
     <ClInclude Include="MiniGoblin.h" />
     <ClInclude Include="MiniMap.h" />
     <ClInclude Include="MiniMapPlayer.h" />
+    <ClInclude Include="Patroller.h" />
+    <ClInclude Include="PatrollerMove.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerAttack.h" />
     <ClInclude Include="PlayerMove.h" />

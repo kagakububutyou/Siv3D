@@ -17,7 +17,7 @@ public:
 	void Start();
 	void Update();
 
-	static const std::string Goblin;	//	ƒSƒuƒŠƒ“
+	static const std::string Patroller;	//	ƒSƒuƒŠƒ“
 	static const std::string MiniGoblin;	//
 
 

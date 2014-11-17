@@ -1,8 +1,8 @@
-﻿2014/11/17 16:16:32 にビルドを開始しました。
+﻿2014/11/17 18:54:22 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameApplication.cpp
-         GameApplication.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt PatrollerMove.cpp
+         PatrollerMove.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.lib" /MACHINE:X86 /SAFESEH Release\RC.res
          Release\Actor.obj
@@ -18,7 +18,6 @@
          Release\Floor.obj
          Release\GameApplication.obj
          Release\GameManager.obj
-         Release\Goblin.obj
          Release\Main.obj
          Release\MapRead.obj
          Release\MenuKeyEvent.obj
@@ -26,6 +25,8 @@
          Release\MiniGoblin.obj
          Release\MiniMap.obj
          Release\MiniMapPlayer.obj
+         Release\Patroller.obj
+         Release\PatrollerMove.obj
          Release\Player.obj
          Release\PlayerAttack.obj
          Release\PlayerMove.obj
@@ -42,4 +43,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:37.90
+経過時間 00:00:42.23
