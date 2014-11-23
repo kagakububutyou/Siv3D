@@ -7,6 +7,7 @@
 #pragma once
 #include "Actor.h"
 
+class CPatrollerAnimation;
 class CPatrollerMove;
 
 class CPatroller :public CActor
@@ -22,7 +23,8 @@ private:
 
 	void OnCollision();
 
-	std::unique_ptr<CPatrollerMove> move;	///	移動処理
+	std::unique_ptr<CPatrollerAnimation> anime;	///	アニメーション
+	std::unique_ptr<CPatrollerMove> move;			///	移動
 
 	bool isCollision;
 

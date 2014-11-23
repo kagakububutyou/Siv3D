@@ -107,6 +107,7 @@
     <ClCompile Include="MiniMap.cpp" />
     <ClCompile Include="MiniMapPlayer.cpp" />
     <ClCompile Include="Patroller.cpp" />
+    <ClCompile Include="PatrollerAnimation.cpp" />
     <ClCompile Include="PatrollerMove.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerAttack.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="MiniMap.h" />
     <ClInclude Include="MiniMapPlayer.h" />
     <ClInclude Include="Patroller.h" />
+    <ClInclude Include="PatrollerAnimation.h" />
     <ClInclude Include="PatrollerMove.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerAttack.h" />

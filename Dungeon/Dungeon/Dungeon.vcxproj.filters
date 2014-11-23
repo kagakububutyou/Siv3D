@@ -58,6 +58,9 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{a4d7c229-6e05-4442-ba67-be176680e8de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enemy\Patroller">
+      <UniqueIdentifier>{4f5da479-7239-4d4e-be19-3fa82f8345be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -148,10 +151,13 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Patroller.cpp">
-      <Filter>Enemy</Filter>
+      <Filter>Enemy\Patroller</Filter>
+    </ClCompile>
+    <ClCompile Include="PatrollerAnimation.cpp">
+      <Filter>Enemy\Patroller</Filter>
     </ClCompile>
     <ClCompile Include="PatrollerMove.cpp">
-      <Filter>Enemy</Filter>
+      <Filter>Enemy\Patroller</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -450,10 +456,13 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Patroller.h">
-      <Filter>Enemy</Filter>
+      <Filter>Enemy\Patroller</Filter>
+    </ClInclude>
+    <ClInclude Include="PatrollerAnimation.h">
+      <Filter>Enemy\Patroller</Filter>
     </ClInclude>
     <ClInclude Include="PatrollerMove.h">
-      <Filter>Enemy</Filter>
+      <Filter>Enemy\Patroller</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

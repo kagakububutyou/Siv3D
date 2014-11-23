@@ -12,26 +12,20 @@
 
 CPatrollerMove::CPatrollerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
-TexturePos(Point(1, 1))
+velocity(Point(0, 0)),
+speed(Point(8.0f, 8.0f))
 {
 
 }
 
 void CPatrollerMove::Start()
 {
-	TextureAsset::Register(L"Patroller", L"engine/data/texture/Character/Enemy/パトローラー/patoro-ra-.png");
+
 }
 
-void CPatrollerMove::Right()
+void CPatrollerMove::VelocitySpeed(const Point speed)
 {
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-
-	if (player.x > patroller->transform.GetPos().x + patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x)
-	{
-		TexturePos = Point(2,1);
-	}
+	velocity = speed;
 }
 void CPatrollerMove::Left()
 {
@@ -41,9 +35,21 @@ void CPatrollerMove::Left()
 
 	if (player.x < patroller->transform.GetPos().x - patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x)
 	{
-		TexturePos = Point(0, 1);
+		VelocitySpeed(Point(-speed.x, 0));
 	}
 }
+void CPatrollerMove::Right()
+{
+	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
+	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
+
+	if (player.x > patroller->transform.GetPos().x + patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x)
+	{
+		
+	}
+}
+
 void CPatrollerMove::Up()
 {
 	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
@@ -52,10 +58,10 @@ void CPatrollerMove::Up()
 
 	if (player.y < patroller->transform.GetPos().y - patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y)
 	{
-		TexturePos = Point(1, 0);
+		
 	}
 }
-	
+
 void CPatrollerMove::Down()
 {
 	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
@@ -64,7 +70,18 @@ void CPatrollerMove::Down()
 
 	if (player.y > patroller->transform.GetPos().y + patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y)
 	{
-		TexturePos = Point(1, 2);
+
+	}
+}
+void CPatrollerMove::Stop()
+{
+	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
+	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
+
+	if (player.x == patroller->transform.GetPos().x - pos->transform.GetPos().x)
+	{
+		VelocitySpeed(Point(0, 0));
 	}
 }
 void CPatrollerMove::Update()
@@ -73,21 +90,13 @@ void CPatrollerMove::Update()
 	Left();
 	Up();
 	Down();
+
+	Stop();
+
+	task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0)->transform.Translate(velocity);
 }
 
 void CPatrollerMove::Draw()
 {
-	auto atk = task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
-	auto patroller = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0);
-
-	if (Collision::RectToRect(patroller->transform.GetPos() - pos, patroller->transform.GetScale(), atk->transform.GetPos(), atk->transform.GetScale())
-		&& atk->isCollision)
-	{
-		Rect(patroller->transform.GetPos() - pos, patroller->transform.GetScale())(TextureAsset(L"Patroller")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw(ColorF(Palette::Yellow));
-	}
-	else
-	{
-		Rect(patroller->transform.GetPos() - pos, patroller->transform.GetScale())(TextureAsset(L"Patroller")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-	}
+	
 }

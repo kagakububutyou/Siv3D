@@ -1,4 +1,4 @@
-﻿2014/11/17 18:54:22 にビルドを開始しました。
+﻿2014/11/21 20:47:11 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット)。
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt PatrollerMove.cpp
@@ -26,6 +26,7 @@
          Release\MiniMap.obj
          Release\MiniMapPlayer.obj
          Release\Patroller.obj
+         Release\PatrollerAnimation.obj
          Release\PatrollerMove.obj
          Release\Player.obj
          Release\PlayerAttack.obj
@@ -43,4 +44,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:42.23
+経過時間 00:00:38.67

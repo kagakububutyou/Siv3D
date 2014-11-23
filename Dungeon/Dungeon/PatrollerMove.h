@@ -1,7 +1,7 @@
 /*
 
 @author shinnnosuke hiratsuka
-@date 2014.10.02
+@date 2014.10.21
 
 */
 #pragma once
@@ -15,8 +15,12 @@ private:
 	void Up();			//	/	上
 	void Down();		///	下
 
-	Point TextureSize = Point(256, 256);		///	画像のサイズ
-	Point TexturePos;	///	画像の場所
+	void Stop();			///	停止
+	void VelocitySpeed(const Point speed);	///	移動量設定
+
+	Point velocity;	///	移動量
+	Point speed;		///	速度
+
 
 public:
 
