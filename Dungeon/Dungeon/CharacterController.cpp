@@ -47,3 +47,8 @@ bool CharacterController::AttackKey()
 	if (Input::KeyZ.clicked) return true;
 	return false;
 }
+bool CharacterController::AttackAnimation()
+{
+	if (Input::KeyZ.pressed) return true;
+	return false;
+}

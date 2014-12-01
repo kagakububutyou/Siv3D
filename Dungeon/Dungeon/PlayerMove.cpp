@@ -15,6 +15,7 @@
 
 #include "Wall.h"
 #include "MapRead.h"
+#include "PlayerAttack.h"
 
 CPlayerMove::CPlayerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
@@ -31,10 +32,8 @@ void CPlayerMove::Start()
 {
 	TextureAsset::Register(L"TaChi", L"engine/data/texture/Character/MainCharacter/shujinkoutachi.png");
 	TextureAsset::Register(L"Walk", L"engine/data/texture/Character/MainCharacter/shujinkouaruki.png");
+	TextureAsset::Register(L"Attack", L"engine/data/texture/Character/MainCharacter/attack.png");
 
-	
-
-	
 }
 void CPlayerMove::VelocitySpeed(const Point speed)
 {
@@ -70,6 +69,8 @@ void CPlayerMove::Left()
 		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(1, 3);
 		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(2, 3);
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 3);
+
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 	}
 }
 
@@ -85,6 +86,8 @@ void CPlayerMove::Right()
 		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(5, 3);
 		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(4, 3);
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 3);
+
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 	}
 	
 }
@@ -101,6 +104,8 @@ void CPlayerMove::Up()
 		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(3, 1);
 		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(3, 2);
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(3, 1);
+
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 	}
 }
 
@@ -116,6 +121,8 @@ void CPlayerMove::Down()
 		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(3, 5);
 		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(3, 4);
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(3, 5);
+
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 	}
 }
 
@@ -131,6 +138,8 @@ void CPlayerMove::RightUp()
 		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(5, 1);
 		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(4, 2);
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 1);
+
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 	}
 }
 
@@ -146,6 +155,8 @@ void CPlayerMove::RightDown()
 		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(5, 5);
 		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(4, 4);
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 5);
+
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 	}
 }
 
@@ -161,6 +172,8 @@ void CPlayerMove::LeftUp()
 		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(1, 1);
 		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(2, 2);
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 1);
+
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 	}
 }
 
@@ -176,6 +189,8 @@ void CPlayerMove::LeftDown()
 		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(1, 5);
 		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(2, 4);
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 5);
+
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 	}
 }
 
@@ -185,6 +200,8 @@ void CPlayerMove::Stop()
 		&& !CharacterController::UpMoveKey() && !CharacterController::DownMoveKey())
 	{
 		VelocitySpeed(Point(0, 0));
+
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = false;
 	}
 }
 void CPlayerMove::WallCollision()
@@ -240,22 +257,27 @@ void CPlayerMove::Draw()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
 
-	Circle(player->transform.GetPos() + Point(64,128), 32).draw(ColorF(0,0,0,0.5));
+	//Circle(player->transform.GetPos() + Point(64,128), 32).draw(ColorF(0,0,0,0.5));
 
 	if (!CharacterController::RightMoveKey() && !CharacterController::LeftMoveKey()
 		&& !CharacterController::UpMoveKey() && !CharacterController::DownMoveKey())
 	{
 		
 	}
-
-	if (CharacterController::RightMoveKey() || CharacterController::LeftMoveKey()
-		|| CharacterController::UpMoveKey() || CharacterController::DownMoveKey())
+	//if (!task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision)
 	{
-		Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Walk")(TextureSize.x * MoveTexturePos.x, TextureSize.y * MoveTexturePos.y, TextureSize.x, TextureSize.y)).draw();
+		if (CharacterController::RightMoveKey() || CharacterController::LeftMoveKey()
+			|| CharacterController::UpMoveKey() || CharacterController::DownMoveKey())
+		{
+			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Walk")(TextureSize.x * MoveTexturePos.x, TextureSize.y * MoveTexturePos.y, TextureSize.x, TextureSize.y)).draw();
+		}
+		else if (CharacterController::AttackAnimation())
+		{
+			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+		}
+		else
+		{
+			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"TaChi")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+		}
 	}
-	else
-	{
-		Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"TaChi")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-	}
-
 }

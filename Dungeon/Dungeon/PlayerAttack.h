@@ -33,7 +33,8 @@ private:
 	void LeftUp();		///	¶ã
 	void LeftDown();	///	¶‰º
 
-	
+	Point TextureSize = Point(256, 256);		///	‰æ‘œ‚ÌƒTƒCƒY
+	Point TexturePos;	///	‰æ‘œ‚ÌêŠ
 
 	const Font font;
 };

@@ -23,7 +23,6 @@ void CPlayerAttack::Create()
 		return;
 	}
 	isCollision = false;
-
 }
 void CPlayerAttack::Left()
 {
@@ -78,6 +77,6 @@ void CPlayerAttack::Draw()
 
 	if (isCollision)
 	{
-		Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(Palette::Blue,0.5));
+		//Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(Palette::Blue,0.5));
 	}
 }

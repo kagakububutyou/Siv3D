@@ -15,6 +15,8 @@ private:
 	void Up();			//	/	ã
 	void Down();		///	‰º
 
+	void WallCollision();
+
 	void Stop();			///	’â~
 	void VelocitySpeed(const Point speed);	///	ˆÚ“®—Êİ’è
 

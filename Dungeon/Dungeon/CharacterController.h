@@ -17,4 +17,5 @@ public:
 	static bool ChangeSceneKey();
 	static bool DisplayMiniMapKey();
 	static bool AttackKey();
+	static bool AttackAnimation();
 };

@@ -2,10 +2,12 @@
 #include "Patroller.h"
 #include "EnemyManager.h"
 
+#include "Player.h"
 #include "PlayerAttack.h"
 #include "GameManager.h"
 #include "Scroll.h"
 #include "Collision.h"
+#include "MapRead.h"
 
 #include "Transform.h"
 #include "GameApplication.h"
@@ -13,7 +15,7 @@
 CPatrollerMove::CPatrollerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
 velocity(Point(0, 0)),
-speed(Point(8.0f, 8.0f))
+speed(Point(16.0f, 16.0f))
 {
 
 }
@@ -33,7 +35,7 @@ void CPatrollerMove::Left()
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
 	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
-	if (player.x < patroller->transform.GetPos().x - patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x)
+	if (player.x < patroller->transform.GetPos().x - patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x - CMapRead::Size)
 	{
 		VelocitySpeed(Point(-speed.x, 0));
 	}
@@ -44,9 +46,9 @@ void CPatrollerMove::Right()
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
 	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
-	if (player.x > patroller->transform.GetPos().x + patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x)
+	if (player.x > patroller->transform.GetPos().x + patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x + CMapRead::Size)
 	{
-		
+		VelocitySpeed(Point(speed.x, 0));
 	}
 }
 
@@ -56,9 +58,9 @@ void CPatrollerMove::Up()
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
 	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
-	if (player.y < patroller->transform.GetPos().y - patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y)
+	if (player.y < patroller->transform.GetPos().y - patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y - CMapRead::Size)
 	{
-		
+		VelocitySpeed(Point(0, -speed.y));
 	}
 }
 
@@ -68,20 +70,51 @@ void CPatrollerMove::Down()
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
 	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
-	if (player.y > patroller->transform.GetPos().y + patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y)
+	if (player.y > patroller->transform.GetPos().y + patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y + CMapRead::Size)
 	{
-
+		VelocitySpeed(Point(0, speed.y));
 	}
 }
 void CPatrollerMove::Stop()
 {
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
+	auto patroll = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0);
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
 	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
-	if (player.x == patroller->transform.GetPos().x - pos->transform.GetPos().x)
+	if (!task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior
+		&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision)
 	{
 		VelocitySpeed(Point(0, 0));
+	}
+}
+void CPatrollerMove::WallCollision()
+{
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
+	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
+
+	for (auto& floor : task->GetActor(CGameManager::WallName))
+	{
+		if (Collision::RectToRect(patroller->transform.GetPos(), patroller->transform.GetScale(),
+			floor->transform.GetPos() - pos->transform.GetPos(), floor->transform.GetScale()))
+		{
+
+			if (patroller->transform.GetPos().y > floor->transform.GetPos().y - pos->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, speed.y));
+			}
+			if (floor->transform.GetPos().y - pos->transform.GetPos().y > patroller->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, -speed.y));
+			}
+			if (patroller->transform.GetPos().x > floor->transform.GetPos().x - pos->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(speed.x, 0));
+			}
+			if (floor->transform.GetPos().x - pos->transform.GetPos().x > patroller->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(-speed.x, 0));
+			}
+		}
 	}
 }
 void CPatrollerMove::Update()
@@ -90,6 +123,8 @@ void CPatrollerMove::Update()
 	Left();
 	Up();
 	Down();
+
+	//WallCollision();
 
 	Stop();
 

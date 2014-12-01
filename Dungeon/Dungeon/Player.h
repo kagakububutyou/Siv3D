@@ -21,6 +21,8 @@ public:
 	void Update();
 	void Draw();
 
+	bool behavior;
+
 private:
 	std::unique_ptr<CPlayerMove> move;	///	ˆÚ“®ˆ—
 	std::unique_ptr<CPlayerAttack> attack;	///	UŒ‚
