@@ -2,13 +2,16 @@
 #include "EnemyManager.h"
 #include "GameManager.h"
 #include "Patroller.h"
+#include "PatrollerAttack.h"
+#include "SnakeCopter.h"
 #include "MiniMap.h"
 #include "GameApplication.h"
 #include "MiniGoblin.h"
 
 
-
+const std::string CEnemyManager::SnakeCopter = "SnakeCopter";
 const std::string CEnemyManager::Patroller = "Patroller";
+const std::string CEnemyManager::PatrollerAttack = "PatrollerAttack";
 const std::string CEnemyManager::MiniGoblin = "MiniGoblin";
 
 CEnemyManager::CEnemyManager(std::shared_ptr<CTask> task) :
@@ -36,21 +39,32 @@ int CEnemyManager::TransformMiniMapToScreenY(const int y)
 void CEnemyManager::Start()
 {
 	auto patroller = std::make_shared<CActor>();
+	auto patroller_atk = std::make_shared<CActor>();
+	auto snake_copter = std::make_shared<CActor>();
 	auto minigoblin = std::make_shared<CActor>();
 
 	for (int y = 0; y < CMapRead::Height; y++)
 	{
 		for (int x = 0; x < CMapRead::Width; x++)
 		{
-			map_read->ObjectRead(Point(x, y), CEnemyManager::GoblinPosition, patroller, std::make_shared<CPatroller>(task,
+			///	パトローラー
+			map_read->ObjectRead(Point(x, y), CEnemyManager::PatrollerPosition, patroller, std::make_shared<CPatroller>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
-
-			map_read->ObjectRead(Point(x, y), CEnemyManager::GoblinPosition, minigoblin, std::make_shared<CMiniGoblin>(task,
+			map_read->ObjectRead(Point(x, y), CEnemyManager::PatrollerPosition, patroller_atk, std::make_shared<CPatrollerAttack>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			///	ヘビコプター
+			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, snake_copter, std::make_shared<CSnakeCopter>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			
+			map_read->ObjectRead(Point(x, y), CEnemyManager::PatrollerPosition, minigoblin, std::make_shared<CMiniGoblin>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
+			//*/
 		}
 	}
 
 	task->Append(Patroller, patroller);
+	task->Append(PatrollerAttack, patroller_atk);
+	task->Append(SnakeCopter, snake_copter);
 	task->Append(MiniGoblin, minigoblin);
 
 }

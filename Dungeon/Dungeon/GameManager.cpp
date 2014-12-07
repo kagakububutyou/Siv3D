@@ -76,6 +76,10 @@ void CGameManager::Init()
 			///	•”‰®
 			map_read->ObjectRead(Point(x, y), CMapRead::Room, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CEnemyManager::PatrollerPosition, floor, std::make_shared<CFloor>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, floor, std::make_shared<CFloor>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			///	’Ê˜H
 			map_read->ObjectRead(Point(x, y), CMapRead::Corridor, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));

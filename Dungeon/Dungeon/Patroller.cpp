@@ -1,6 +1,7 @@
 #include "Patroller.h"
 #include "PatrollerAnimation.h"
 #include "PatrollerMove.h"
+#include "PatrollerAttack.h"
 #include "MapRead.h"
 #include "MiniMap.h"
 #include "Scroll.h"
@@ -32,12 +33,25 @@ void CPatroller::Start()
 }
 void CPatroller::OnCollision()
 {
+	auto atk = task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0);
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto patroller = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0);
 
+	if (Collision::RectToRect(patroller->transform.GetPos() - pos, patroller->transform.GetScale(), atk->transform.GetPos(), atk->transform.GetScale())
+		&& atk->isCollision)
+	{
+		state = State::None;
+	}
 }
 void CPatroller::Update()
 {
-	anime->Update();
-	move->Update();
+	if (state != State::None)
+	{
+		anime->Update();
+		move->Update();
+		task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack,0)->Update();
+	}
+
 	OnCollision();
 }
 void CPatroller::Draw()
@@ -49,7 +63,10 @@ void CPatroller::Draw()
 	//Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(0, 255, 0));
 
 	//isCollision = true;
-
-	move->Draw();
-	anime->Draw();
+	if (state != State::None)
+	{
+		move->Draw();
+		anime->Draw();
+		task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack, 0)->Draw();
+	}
 }

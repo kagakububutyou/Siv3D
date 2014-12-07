@@ -19,7 +19,7 @@ TexturePos(Point(1, 1))
 
 void CPatrollerAnimation::Start()
 {
-	TextureAsset::Register(L"Patroller", L"engine/data/texture/Character/Enemy/パトローラー/patoro-ra-.png");
+	TextureAsset::Register(L"Patroller", L"engine/data/texture/Character/Enemy/Patroller.png");
 }
 
 void CPatrollerAnimation::Right()

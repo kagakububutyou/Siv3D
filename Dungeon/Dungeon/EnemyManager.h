@@ -17,11 +17,14 @@ public:
 	void Start();
 	void Update();
 
-	static const std::string Patroller;	//	ƒSƒuƒŠƒ“
+	static const std::string SnakeCopter;
+	static const std::string Patroller;
+	static const std::string PatrollerAttack;
 	static const std::string MiniGoblin;	//
 
 
-	static const int GoblinPosition = 10;		//	ƒSƒuƒŠƒ“‚ÌˆÊ’u
+	static const int PatrollerPosition = 10;		
+	static const int SnakeCopterPosition = 11;
 
 private:
 

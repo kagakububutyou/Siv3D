@@ -14,6 +14,7 @@ public:
 	void Draw();
 	void OnCollisionStart();
 	void Finish();
+	void OnCollision();
 	//Transform transform;	///<	座標、サイズ、回転
 
 	bool isCollision;	///<	あたり判定がおこっているかどうか

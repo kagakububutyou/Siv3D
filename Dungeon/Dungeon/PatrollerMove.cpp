@@ -15,7 +15,7 @@
 CPatrollerMove::CPatrollerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
 velocity(Point(0, 0)),
-speed(Point(16.0f, 16.0f))
+speed(Point(8.0f, 8.0f))
 {
 
 }

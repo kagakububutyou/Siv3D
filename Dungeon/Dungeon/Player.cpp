@@ -17,7 +17,8 @@ CPlayer::CPlayer(std::shared_ptr<CTask> task, Point pos) :
 CActor(task, Transform(pos, Point(CMapRead::Size, CMapRead::Size), Point(0, 0)), State::Live),
 move(std::make_unique<CPlayerMove>(task)),
 attack(std::make_unique<CPlayerAttack>(task)),
-behavior(false)
+behavior(false),
+HP(20)
 {
 
 }

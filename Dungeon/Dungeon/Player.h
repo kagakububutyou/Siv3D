@@ -21,6 +21,9 @@ public:
 	void Update();
 	void Draw();
 
+	int GetHP(){ return HP; };
+	void HitAttack(){ HP = HP - 1; };
+
 	bool behavior;
 
 private:
@@ -28,4 +31,5 @@ private:
 	std::unique_ptr<CPlayerAttack> attack;	///	çUåÇ
 
 	Point MiniPlayerPos;
+	int HP;
 };

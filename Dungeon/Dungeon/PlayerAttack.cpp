@@ -6,6 +6,10 @@
 #include "Player.h"
 #include "GameManager.h"
 #include "PlayerMove.h"
+#include "Collision.h"
+
+#include "EnemyManager.h"
+#include "PatrollerAttack.h"
 
 
 CPlayerAttack::CPlayerAttack(std::shared_ptr<CTask> task) :
@@ -60,6 +64,18 @@ void CPlayerAttack::Down()
 		transform.TransformPoint(Point(player->transform.GetPos().x, player->transform.GetPos().y + player->transform.GetScale().y));
 	}
 }
+void CPlayerAttack::OnCollision()
+{
+	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0));
+	auto patroller = task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack, 0);
+
+	if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(), patroller->transform.GetPos(), patroller->transform.GetScale())
+		&& patroller->isCollision)
+	{
+		player->HitAttack();
+		return;
+	}
+}
 void CPlayerAttack::Update()
 {
 	Left();
@@ -68,12 +84,13 @@ void CPlayerAttack::Update()
 	Down();
 
 	Create();
+	OnCollision();
 }
 
 void CPlayerAttack::Draw()
 {
 	
-	font(transform.GetPos()).draw();
+	font(task->GetComponent<CPlayer>(CGameManager::PlayerName,0)->GetHP()).draw();
 
 	if (isCollision)
 	{

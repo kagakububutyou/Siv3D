@@ -61,6 +61,9 @@
     <Filter Include="Enemy\Patroller">
       <UniqueIdentifier>{4f5da479-7239-4d4e-be19-3fa82f8345be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enemy\SnakeCopter">
+      <UniqueIdentifier>{61c681ba-da73-4a90-b5c3-833b04d41139}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -157,6 +160,18 @@
       <Filter>Enemy\Patroller</Filter>
     </ClCompile>
     <ClCompile Include="PatrollerMove.cpp">
+      <Filter>Enemy\Patroller</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeCopter.cpp">
+      <Filter>Enemy\SnakeCopter</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeCopterAnimation.cpp">
+      <Filter>Enemy\SnakeCopter</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeCopterMove.cpp">
+      <Filter>Enemy\SnakeCopter</Filter>
+    </ClCompile>
+    <ClCompile Include="PatrollerAttack.cpp">
       <Filter>Enemy\Patroller</Filter>
     </ClCompile>
   </ItemGroup>
@@ -462,6 +477,18 @@
       <Filter>Enemy\Patroller</Filter>
     </ClInclude>
     <ClInclude Include="PatrollerMove.h">
+      <Filter>Enemy\Patroller</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeCopter.h">
+      <Filter>Enemy\SnakeCopter</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeCopterAnimation.h">
+      <Filter>Enemy\SnakeCopter</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeCopterMove.h">
+      <Filter>Enemy\SnakeCopter</Filter>
+    </ClInclude>
+    <ClInclude Include="PatrollerAttack.h">
       <Filter>Enemy\Patroller</Filter>
     </ClInclude>
   </ItemGroup>

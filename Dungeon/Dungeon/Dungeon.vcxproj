@@ -108,12 +108,16 @@
     <ClCompile Include="MiniMapPlayer.cpp" />
     <ClCompile Include="Patroller.cpp" />
     <ClCompile Include="PatrollerAnimation.cpp" />
+    <ClCompile Include="PatrollerAttack.cpp" />
     <ClCompile Include="PatrollerMove.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerAttack.cpp" />
     <ClCompile Include="PlayerMove.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scroll.cpp" />
+    <ClCompile Include="SnakeCopter.cpp" />
+    <ClCompile Include="SnakeCopterAnimation.cpp" />
+    <ClCompile Include="SnakeCopterMove.cpp" />
     <ClCompile Include="TitleKeyEvent.cpp" />
     <ClCompile Include="TitleManager.cpp" />
     <ClCompile Include="UpStairs.cpp" />
@@ -217,6 +221,7 @@
     <ClInclude Include="MiniMapPlayer.h" />
     <ClInclude Include="Patroller.h" />
     <ClInclude Include="PatrollerAnimation.h" />
+    <ClInclude Include="PatrollerAttack.h" />
     <ClInclude Include="PatrollerMove.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerAttack.h" />
@@ -224,6 +229,9 @@
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scroll.h" />
+    <ClInclude Include="SnakeCopter.h" />
+    <ClInclude Include="SnakeCopterAnimation.h" />
+    <ClInclude Include="SnakeCopterMove.h" />
     <ClInclude Include="Staircase.h" />
     <ClInclude Include="TitleKeyEvent.h" />
     <ClInclude Include="TitleManager.h" />
