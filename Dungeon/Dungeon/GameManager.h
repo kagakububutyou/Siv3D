@@ -17,6 +17,8 @@ public:
 	void Init();
 	void Update();
 
+	void GameOver(std::shared_ptr<CSceneManager> scene);
+
 	static const std::string PlayerName;
 	static const std::string MiniPlayer;
 	static const std::string FloorName;

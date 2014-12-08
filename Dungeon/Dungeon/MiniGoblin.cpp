@@ -31,6 +31,6 @@ void CMiniGoblin::Draw()
 	auto DisplayMiniMap = task->GetComponent<CMiniMap>("mini_map", 0)->DisplayMiniMap;
 	if (DisplayMiniMap)
 	{
-		Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(0, 255, 0));
+		//Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(0, 255, 0));
 	}
 }

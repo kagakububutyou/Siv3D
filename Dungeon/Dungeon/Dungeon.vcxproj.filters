@@ -64,6 +64,18 @@
     <Filter Include="Enemy\SnakeCopter">
       <UniqueIdentifier>{61c681ba-da73-4a90-b5c3-833b04d41139}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Clear">
+      <UniqueIdentifier>{4723e79e-f156-4967-b41b-c16bb07de981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Menu">
+      <UniqueIdentifier>{8eed2ab0-f952-43a2-9a77-4b2db364c373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\GameOver">
+      <UniqueIdentifier>{d221fb83-1d0c-44a8-830b-b0079c36d99f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Title">
+      <UniqueIdentifier>{cec569af-4f9d-4e48-b641-ebeb7d8ae61b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -93,22 +105,7 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="TitleManager.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="ClearKeyEvent.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="ClearManager.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuKeyEvent.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scroll.cpp">
@@ -150,9 +147,6 @@
     <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Collision.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="TitleKeyEvent.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Patroller.cpp">
       <Filter>Enemy\Patroller</Filter>
     </ClCompile>
@@ -173,6 +167,33 @@
     </ClCompile>
     <ClCompile Include="PatrollerAttack.cpp">
       <Filter>Enemy\Patroller</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearKeyEvent.cpp">
+      <Filter>Scene\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="ClearManager.cpp">
+      <Filter>Scene\Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuManager.cpp">
+      <Filter>Scene\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuKeyEvent.cpp">
+      <Filter>Scene\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverKeyEvent.cpp">
+      <Filter>Scene\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleManager.cpp">
+      <Filter>Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleKeyEvent.cpp">
+      <Filter>Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverManager.cpp">
+      <Filter>Scene\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeCopterAttack.cpp">
+      <Filter>Enemy\SnakeCopter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -404,22 +425,7 @@
     <ClInclude Include="Scene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="TitleManager.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="ClearKeyEvent.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="ClearManager.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="GameManager.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuKeyEvent.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuManager.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scroll.h">
@@ -467,9 +473,6 @@
     <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Collision.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="TitleKeyEvent.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Patroller.h">
       <Filter>Enemy\Patroller</Filter>
     </ClInclude>
@@ -490,6 +493,33 @@
     </ClInclude>
     <ClInclude Include="PatrollerAttack.h">
       <Filter>Enemy\Patroller</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearKeyEvent.h">
+      <Filter>Scene\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearManager.h">
+      <Filter>Scene\Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuKeyEvent.h">
+      <Filter>Scene\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuManager.h">
+      <Filter>Scene\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverManager.h">
+      <Filter>Scene\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverKeyEvent.h">
+      <Filter>Scene\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleManager.h">
+      <Filter>Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleKeyEvent.h">
+      <Filter>Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeCopterAttack.h">
+      <Filter>Enemy\SnakeCopter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

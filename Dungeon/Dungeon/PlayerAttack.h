@@ -2,8 +2,10 @@
 #pragma once
 #include "PlayerState.h"
 #include "Transform.h"
+#include "Scene.h"
 
 class CPlayerMove;
+class CSceneManager;
 
 class CPlayerAttack :public CActor
 {

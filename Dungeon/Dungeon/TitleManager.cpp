@@ -25,5 +25,5 @@ void CTitleManager::Draw()
 {
 	TextureAsset(L"Title").resize(CGameApplication::ScreenWidth, CGameApplication::ScreenHeight).draw();
 
-	Logo->drawCenter(L"ƒ^ƒCƒgƒ‹", Float2(CGameApplication::ScreenWidth / 2, 100), Palette::Royalblue);
+	Logo->drawCenter(L"The Escape Robot", Float2(CGameApplication::ScreenWidth / 2, 100), Palette::Royalblue);
 }

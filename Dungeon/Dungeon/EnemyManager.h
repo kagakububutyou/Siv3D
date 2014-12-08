@@ -18,6 +18,7 @@ public:
 	void Update();
 
 	static const std::string SnakeCopter;
+	static const std::string SnakeCopterAttack;
 	static const std::string Patroller;
 	static const std::string PatrollerAttack;
 	static const std::string MiniGoblin;	//

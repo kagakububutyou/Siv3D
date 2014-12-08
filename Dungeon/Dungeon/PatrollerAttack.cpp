@@ -38,45 +38,45 @@ void CPatrollerAttack::Create()
 void CPatrollerAttack::Left()
 {
 	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto Patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
+	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
-	if (player.x < Patroller->transform.GetPos().x - Patroller->transform.GetScale().x / 2 - pos.x - CMapRead::Size)
+	if (player.x < patroller->transform.GetPos().x - patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x)
 	{
-		transform.TransformPoint(Point(Patroller->transform.GetPos().x - Patroller->transform.GetScale().x, Patroller->transform.GetPos().y) - pos);
+		transform.TransformPoint(Point(patroller->transform.GetPos().x - patroller->transform.GetScale().x, patroller->transform.GetPos().y) - pos->transform.GetPos());
 	}
 }
 void CPatrollerAttack::Right()
 {
 	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto Patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
+	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
-	if (player.x > Patroller->transform.GetPos().x + Patroller->transform.GetScale().x / 2 - pos.x + CMapRead::Size)
+	if (player.x > patroller->transform.GetPos().x + patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x)
 	{
-		transform.TransformPoint(Point(Patroller->transform.GetPos().x + Patroller->transform.GetScale().x, Patroller->transform.GetPos().y) - pos);
+		transform.TransformPoint(Point(patroller->transform.GetPos().x + patroller->transform.GetScale().x, patroller->transform.GetPos().y) - pos->transform.GetPos());
 	}
 }
 void CPatrollerAttack::Up()
 {
 	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto Patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
+	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
-	if (player.y < Patroller->transform.GetPos().y - Patroller->transform.GetScale().y / 2 - pos.y - CMapRead::Size)
+	if (player.y < patroller->transform.GetPos().y - patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y)
 	{
-		transform.TransformPoint(Point(Patroller->transform.GetPos().x, Patroller->transform.GetPos().y - Patroller->transform.GetScale().y) - pos);
+		transform.TransformPoint(Point(patroller->transform.GetPos().x, patroller->transform.GetPos().y - patroller->transform.GetScale().y) - pos->transform.GetPos());
 	}
 }
 void CPatrollerAttack::Down()
 {
 	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto Patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
+	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
-	if (player.y > Patroller->transform.GetPos().y + Patroller->transform.GetScale().y / 2 - pos.y + CMapRead::Size)
+	if (player.y > patroller->transform.GetPos().y + patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y)
 	{
-		transform.TransformPoint(Point(Patroller->transform.GetPos().x, Patroller->transform.GetPos().y + Patroller->transform.GetScale().y) - pos);
+		transform.TransformPoint(Point(patroller->transform.GetPos().x, patroller->transform.GetPos().y + patroller->transform.GetScale().y) - pos->transform.GetPos());
 	}
 }
 void CPatrollerAttack::Update()

@@ -20,7 +20,7 @@ void CSceneManager::FadeOut()
 {
 	if (!isFade) return;
 
-	Rect(0, 0, CGameApplication::ScreenWidth, CGameApplication::ScreenHeight).draw(ColorF(1, 1, 1,alpha));
+	Rect(0, 0, CGameApplication::ScreenWidth, CGameApplication::ScreenHeight).draw(ColorF(0, 0, 0,alpha));
 	alpha += 0.05;
 	if (alpha >= 1)
 	{

@@ -4,12 +4,14 @@
 #include "Patroller.h"
 #include "PatrollerAttack.h"
 #include "SnakeCopter.h"
+#include "SnakeCopterAttack.h"
 #include "MiniMap.h"
 #include "GameApplication.h"
 #include "MiniGoblin.h"
 
 
 const std::string CEnemyManager::SnakeCopter = "SnakeCopter";
+const std::string CEnemyManager::SnakeCopterAttack = "SnakeCopterAttack";
 const std::string CEnemyManager::Patroller = "Patroller";
 const std::string CEnemyManager::PatrollerAttack = "PatrollerAttack";
 const std::string CEnemyManager::MiniGoblin = "MiniGoblin";
@@ -41,6 +43,7 @@ void CEnemyManager::Start()
 	auto patroller = std::make_shared<CActor>();
 	auto patroller_atk = std::make_shared<CActor>();
 	auto snake_copter = std::make_shared<CActor>();
+	auto snake_copter_atk = std::make_shared<CActor>();
 	auto minigoblin = std::make_shared<CActor>();
 
 	for (int y = 0; y < CMapRead::Height; y++)
@@ -55,7 +58,12 @@ void CEnemyManager::Start()
 			///	ヘビコプター
 			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, snake_copter, std::make_shared<CSnakeCopter>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, snake_copter_atk, std::make_shared<CSnakeCopterAttack>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			
+
+
+
 			map_read->ObjectRead(Point(x, y), CEnemyManager::PatrollerPosition, minigoblin, std::make_shared<CMiniGoblin>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
 			//*/
@@ -65,6 +73,7 @@ void CEnemyManager::Start()
 	task->Append(Patroller, patroller);
 	task->Append(PatrollerAttack, patroller_atk);
 	task->Append(SnakeCopter, snake_copter);
+	task->Append(SnakeCopterAttack, snake_copter_atk);
 	task->Append(MiniGoblin, minigoblin);
 
 }

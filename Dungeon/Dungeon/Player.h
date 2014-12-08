@@ -22,7 +22,9 @@ public:
 	void Draw();
 
 	int GetHP(){ return HP; };
+	int GetMaxHP(){ return MaxHP; };
 	void HitAttack(){ HP = HP - 1; };
+	void DeathCHANGEScene();
 
 	bool behavior;
 
@@ -32,4 +34,5 @@ private:
 
 	Point MiniPlayerPos;
 	int HP;
+	int MaxHP;
 };

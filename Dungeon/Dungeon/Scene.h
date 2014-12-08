@@ -48,6 +48,7 @@ public:
 		Menu,	///	メニュー
 		Game,	///	ゲーム
 		Clear,	///	クリア
+		Over,		///	ゲームオーバー
 	};
 private:
 

@@ -10,6 +10,9 @@
 
 #include "EnemyManager.h"
 #include "PatrollerAttack.h"
+#include "SnakeCopterAttack.h"
+
+#include "Scene.h"
 
 
 CPlayerAttack::CPlayerAttack(std::shared_ptr<CTask> task) :
@@ -68,8 +71,15 @@ void CPlayerAttack::OnCollision()
 {
 	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0));
 	auto patroller = task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack, 0);
+	auto snake_copter = task->GetComponent<CSnakeCopterAttack>(CEnemyManager::SnakeCopterAttack, 0);
 
 	if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(), patroller->transform.GetPos(), patroller->transform.GetScale())
+		&& patroller->isCollision)
+	{
+		player->HitAttack();
+		return;
+	}
+	if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(), snake_copter->transform.GetPos(), snake_copter->transform.GetScale())
 		&& patroller->isCollision)
 	{
 		player->HitAttack();
@@ -89,8 +99,12 @@ void CPlayerAttack::Update()
 
 void CPlayerAttack::Draw()
 {
-	
-	font(task->GetComponent<CPlayer>(CGameManager::PlayerName,0)->GetHP()).draw();
+	auto hp = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->GetHP();
+	auto maxHp = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->GetMaxHP();
+
+	font(hp/2).draw();
+
+	//Rect(10, 10, hp * 10, 40).draw(ColorF(Palette::Blue, 0.5));
 
 	if (isCollision)
 	{
