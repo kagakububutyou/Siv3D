@@ -23,5 +23,5 @@ void CUpStairs::Draw()
 {
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
 
-	Rect(transform.GetPos() - pos, transform.GetScale())(TextureAsset(L"UpStairs")).draw();
+	Rect(transform.GetPos() - pos, transform.GetScale())(TextureAsset(L"DownStairs")).draw();
 }

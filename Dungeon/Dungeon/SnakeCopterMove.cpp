@@ -89,28 +89,26 @@ void CSnakeCopterMove::Stop()
 }
 void CSnakeCopterMove::WallCollision()
 {
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
 	auto SnakeCopter = (task->GetComponent<CSnakeCopter>(CEnemyManager::SnakeCopter, 0));
 
 	for (auto& floor : task->GetActor(CGameManager::WallName))
 	{
 		if (Collision::RectToRect(SnakeCopter->transform.GetPos(), SnakeCopter->transform.GetScale(),
-			floor->transform.GetPos() - pos->transform.GetPos(), floor->transform.GetScale()))
+			floor->transform.GetPos(), floor->transform.GetScale()))
 		{
-
-			if (SnakeCopter->transform.GetPos().y > floor->transform.GetPos().y - pos->transform.GetPos().y)
+			if (SnakeCopter->transform.GetPos().y > floor->transform.GetPos().y)
 			{
 				VelocitySpeed(Point(0, speed.y));
 			}
-			if (floor->transform.GetPos().y - pos->transform.GetPos().y > SnakeCopter->transform.GetPos().y)
+			if (floor->transform.GetPos().y > SnakeCopter->transform.GetPos().y)
 			{
 				VelocitySpeed(Point(0, -speed.y));
 			}
-			if (SnakeCopter->transform.GetPos().x > floor->transform.GetPos().x - pos->transform.GetPos().x)
+			if (SnakeCopter->transform.GetPos().x > floor->transform.GetPos().x)
 			{
 				VelocitySpeed(Point(speed.x, 0));
 			}
-			if (floor->transform.GetPos().x - pos->transform.GetPos().x > SnakeCopter->transform.GetPos().x)
+			if (floor->transform.GetPos().x > SnakeCopter->transform.GetPos().x)
 			{
 				VelocitySpeed(Point(-speed.x, 0));
 			}
@@ -124,7 +122,7 @@ void CSnakeCopterMove::Update()
 	Up();
 	Down();
 
-	//WallCollision();
+	WallCollision();
 
 	Stop();
 

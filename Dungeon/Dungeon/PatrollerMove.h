@@ -15,6 +15,8 @@ private:
 	void Up();			//	/	è„
 	void Down();		///	â∫
 
+	void Move();		///	ìÆÇ´
+
 	void WallCollision();
 
 	void Stop();			///	í‚é~

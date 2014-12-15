@@ -77,45 +77,64 @@ void CPatrollerMove::Down()
 }
 void CPatrollerMove::Stop()
 {
+	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
 	auto patroll = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0);
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
 	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
 	if (!task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior
-		&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision)
+	&&!task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision)
 	{
 		VelocitySpeed(Point(0, 0));
 	}
 }
 void CPatrollerMove::WallCollision()
 {
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
 	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
 	for (auto& floor : task->GetActor(CGameManager::WallName))
 	{
 		if (Collision::RectToRect(patroller->transform.GetPos(), patroller->transform.GetScale(),
-			floor->transform.GetPos() - pos->transform.GetPos(), floor->transform.GetScale()))
+			floor->transform.GetPos(), floor->transform.GetScale()))
 		{
-
-			if (patroller->transform.GetPos().y > floor->transform.GetPos().y - pos->transform.GetPos().y)
+			if (patroller->transform.GetPos().y > floor->transform.GetPos().y)
 			{
 				VelocitySpeed(Point(0, speed.y));
 			}
-			if (floor->transform.GetPos().y - pos->transform.GetPos().y > patroller->transform.GetPos().y)
+			if (floor->transform.GetPos().y > patroller->transform.GetPos().y)
 			{
 				VelocitySpeed(Point(0, -speed.y));
 			}
-			if (patroller->transform.GetPos().x > floor->transform.GetPos().x - pos->transform.GetPos().x)
+			if (patroller->transform.GetPos().x > floor->transform.GetPos().x)
 			{
 				VelocitySpeed(Point(speed.x, 0));
 			}
-			if (floor->transform.GetPos().x - pos->transform.GetPos().x > patroller->transform.GetPos().x)
+			if (floor->transform.GetPos().x > patroller->transform.GetPos().x)
 			{
 				VelocitySpeed(Point(-speed.x, 0));
 			}
 		}
 	}
+}
+void CPatrollerMove::Move()
+{
+	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
+	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
+
+	if (player.y - patroller->transform.GetPos().y + patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y + CMapRead::Size
+		> player.x - patroller->transform.GetPos().x + patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x + CMapRead::Size)
+	{
+		if (player.y < patroller->transform.GetPos().y - patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y - CMapRead::Size)
+		{
+			VelocitySpeed(Point(0, -speed.y));
+		}
+		if(player.y > patroller->transform.GetPos().y + patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y + CMapRead::Size)
+		{
+			VelocitySpeed(Point(0, speed.y));
+		}
+	}
+
 }
 void CPatrollerMove::Update()
 {
@@ -124,7 +143,9 @@ void CPatrollerMove::Update()
 	Up();
 	Down();
 
-	//WallCollision();
+	WallCollision();
+
+	//Move();
 
 	Stop();
 

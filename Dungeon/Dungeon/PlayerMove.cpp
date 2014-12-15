@@ -214,7 +214,6 @@ void CPlayerMove::WallCollision()
 		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
 			floor->transform.GetPos() - pos, floor->transform.GetScale()))
 		{
-			
 			if (player->transform.GetPos().y > floor->transform.GetPos().y - pos.y)
 			{
 				VelocitySpeed(Point(0, speed.y));
@@ -248,7 +247,7 @@ void CPlayerMove::Update()
 	//LeftDown();
 	Stop();
 
-	//WallCollision();
+	WallCollision();
 		
 	task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.Translate(Point(velocity.x / CMiniMap::MapScale, velocity.y / CMiniMap::MapScale));
 	task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.Translate(velocity);

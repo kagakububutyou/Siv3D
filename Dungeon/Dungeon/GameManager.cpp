@@ -71,10 +71,14 @@ void CGameManager::Init()
 		for (int x = 0; x < CMapRead::Width; x++)
 		{
 			///	•Ç
-			map_read->ObjectRead(Point(x, y), CMapRead::Wall, wall, std::make_shared<CWall>(task,
+			/*map_read->ObjectRead(Point(x, y), CMapRead::Wall, wall, std::make_shared<CWall>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));*/
+			map_read->ObjectRead(Point(x, y), 0, wall, std::make_shared<CWall>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			///	•”‰®
 			map_read->ObjectRead(Point(x, y), CMapRead::Room, floor, std::make_shared<CFloor>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::Wall, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::PatrollerPosition, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
