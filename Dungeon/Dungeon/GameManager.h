@@ -17,7 +17,8 @@ public:
 	void Init();
 	void Update();
 
-	void GameOver(std::shared_ptr<CSceneManager> scene);
+	void GameOver();
+	void GameClear();
 
 	static const std::string PlayerName;
 	static const std::string MiniPlayer;
@@ -27,6 +28,7 @@ public:
 	static const std::string Scroll;
 	static const std::string WallName;
 	static const std::string Attack;
+	static bool Clear;
 
 private:
 	int TransformMapToScreenX(const int x);

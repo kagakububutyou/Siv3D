@@ -27,7 +27,8 @@ void CSnakeCopterAttack::Create()
 		&&player.x < SnakeCopter->transform.GetPos().x + SnakeCopter->transform.GetScale().x / 2 - pos.x + CMapRead::Size
 		&&player.y > SnakeCopter->transform.GetPos().y - SnakeCopter->transform.GetScale().y / 2 - pos.y - CMapRead::Size
 		&&player.y < SnakeCopter->transform.GetPos().y + SnakeCopter->transform.GetScale().y / 2 - pos.y + CMapRead::Size
-		&&*/task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision)
+		&&*/task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision
+		&& task->GetComponent<CSnakeCopter>(CEnemyManager::SnakeCopter,0)->GetState() != State::None)
 	{
 		isCollision = true;
 		return;

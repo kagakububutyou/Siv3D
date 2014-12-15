@@ -19,5 +19,6 @@ public:
 	void Draw();
 
 private:
+	Font *Logo;	///	ロゴ
 	std::unique_ptr<CClearKeyEvent> key;	///	キーイベント
 };

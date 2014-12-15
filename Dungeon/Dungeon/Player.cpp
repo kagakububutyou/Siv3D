@@ -40,3 +40,14 @@ void CPlayer::Draw()
 	move->Draw();
 	attack->Draw();
 }
+
+/*		
+		13:30～
+
+		持ち時間
+		10分セッティング含めて
+
+
+
+
+*/

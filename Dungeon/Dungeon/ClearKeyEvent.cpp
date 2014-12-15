@@ -11,6 +11,6 @@ void CClearKeyEvent::ChangSceneMenu(std::shared_ptr<CSceneManager> scene)
 {
 	if (CharacterController::ChangeSceneKey())
 	{
-		scene->ChangeScene(CSceneManager::Scene::Menu);
+		scene->ChangeScene(CSceneManager::Scene::Title);
 	}
 }

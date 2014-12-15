@@ -21,11 +21,14 @@ public:
 	static const std::string SnakeCopterAttack;
 	static const std::string Patroller;
 	static const std::string PatrollerAttack;
+	static const std::string Battery;
+	static const std::string BatteryAttack;
 	static const std::string MiniGoblin;	//
 
 
 	static const int PatrollerPosition = 10;		
 	static const int SnakeCopterPosition = 11;
+	static const int BatteryPosition = 12;
 
 private:
 

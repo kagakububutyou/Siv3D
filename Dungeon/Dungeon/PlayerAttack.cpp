@@ -11,6 +11,7 @@
 #include "EnemyManager.h"
 #include "PatrollerAttack.h"
 #include "SnakeCopterAttack.h"
+#include "BatteryAttack.h"
 
 #include "Scene.h"
 
@@ -72,6 +73,7 @@ void CPlayerAttack::OnCollision()
 	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0));
 	auto patroller = task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack, 0);
 	auto snake_copter = task->GetComponent<CSnakeCopterAttack>(CEnemyManager::SnakeCopterAttack, 0);
+	auto battery = task->GetComponent<CBatteryAttack>(CEnemyManager::BatteryAttack, 0);
 
 	if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(), patroller->transform.GetPos(), patroller->transform.GetScale())
 		&& patroller->isCollision)
@@ -79,8 +81,16 @@ void CPlayerAttack::OnCollision()
 		player->HitAttack();
 		return;
 	}
+	
 	if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(), snake_copter->transform.GetPos(), snake_copter->transform.GetScale())
-		&& patroller->isCollision)
+		&& snake_copter->isCollision)
+	{
+		player->HitAttack();
+		return;
+	}
+	//*/
+	if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(), battery->transform.GetPos(), battery->transform.GetScale())
+		&& battery->isCollision)
 	{
 		player->HitAttack();
 		return;
@@ -100,11 +110,13 @@ void CPlayerAttack::Update()
 void CPlayerAttack::Draw()
 {
 	auto hp = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->GetHP();
-	auto maxHp = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->GetMaxHP();
+	//auto maxHp = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->GetMaxHP();
 
-	font(hp/2).draw();
+	//auto HP = "HP";
 
-	//Rect(10, 10, hp * 10, 40).draw(ColorF(Palette::Blue, 0.5));
+	font(CGameManager::Clear).draw();
+
+	Rect(10, 10, hp * 10, 40).draw(ColorF(Palette::Blue, 0.5));
 
 	if (isCollision)
 	{

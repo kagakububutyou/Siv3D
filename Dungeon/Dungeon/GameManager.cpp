@@ -21,6 +21,7 @@ const std::string CGameManager::DownStairs = "down_stairs";
 const std::string CGameManager::Scroll = "Scroll";
 const std::string CGameManager::WallName = "wall";
 const std::string CGameManager::Attack = "Attack";
+bool CGameManager::Clear = false;
 
 
 CGameManager::CGameManager(std::shared_ptr<CSceneManager> manager) :
@@ -84,6 +85,10 @@ void CGameManager::Init()
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CEnemyManager::BatteryPosition, floor, std::make_shared<CFloor>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::DownStairsPosition, floor, std::make_shared<CFloor>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			///	通路
 			map_read->ObjectRead(Point(x, y), CMapRead::Corridor, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
@@ -112,6 +117,8 @@ void CGameManager::Init()
 			///	階段
 			map_read->ObjectRead(Point(x, y), CMapRead::DownStairsPosition, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::UpStairsPosition, mini_map, std::make_shared<CMiniMap>(task,
+				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
 			///	敵
 			map_read->ObjectRead(Point(x, y), CEnemyManager::PatrollerPosition, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
@@ -138,12 +145,19 @@ void CGameManager::Init()
 	task->Append("mini_map", mini_map);
 
 }
-void CGameManager::GameOver(std::shared_ptr<CSceneManager> scene)
+void CGameManager::GameOver()
 {
 	//if (task->GetComponent<CPlayer>(CGameManager::PlayerName,0)->GetHP() < 0)
 	if (Input::KeyD.clicked)
 	{
 		scene->ChangeScene(CSceneManager::Scene::Over);
+	}
+}
+void CGameManager::GameClear()
+{
+	if (Input::KeyC.clicked)
+	{
+		scene->ChangeScene(CSceneManager::Scene::Clear);
 	}
 }
 ///	ゲーム本体のアップデート
@@ -161,7 +175,7 @@ void CGameManager::Update()
 		(TextureAsset(L"hoge")).draw();
 		task->Draw();
 		task->Remove();
-
-		GameOver(scene);
+		GameOver();
+		GameClear();
 	}
 }

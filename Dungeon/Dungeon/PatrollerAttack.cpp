@@ -27,7 +27,8 @@ void CPatrollerAttack::Create()
 	&&player.x < Patroller->transform.GetPos().x + Patroller->transform.GetScale().x / 2 - pos.x + CMapRead::Size
 	&&player.y > Patroller->transform.GetPos().y - Patroller->transform.GetScale().y / 2 - pos.y - CMapRead::Size
 	&&player.y < Patroller->transform.GetPos().y + Patroller->transform.GetScale().y / 2 - pos.y + CMapRead::Size
-	&&*/task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision)
+	&&*/task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision 
+	&&  task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0)->GetState() != State::None)
 	{
 		isCollision = true;
 		return;

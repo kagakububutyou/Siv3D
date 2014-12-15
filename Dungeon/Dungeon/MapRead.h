@@ -24,8 +24,8 @@ public:
 	static const int Corridor = 1;					///	廊下
 	static const int Room = 2;						///	部屋
 	static const int Wall = 3;							///	壁
-	static const int PlayerPosition = 4;			///	プレイヤーの位置
 	static const int UpStairsPosition = 4;		///	上り階段の位置
+	static const int PlayerPosition = 5;			///	プレイヤーの位置
 	static const int DownStairsPosition = 5;	///	下り階段の位置
 	
 

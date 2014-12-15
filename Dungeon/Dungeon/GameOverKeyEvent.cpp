@@ -11,6 +11,6 @@ void CGameOverKeyEvent::ChangSceneMenu(std::shared_ptr<CSceneManager> scene)
 {
 	if (CharacterController::ChangeSceneKey())
 	{
-		scene->ChangeScene(CSceneManager::Scene::Title);
+		scene->ChangeScene(CSceneManager::Scene::Game);
 	}
 }

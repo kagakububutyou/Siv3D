@@ -5,15 +5,18 @@
 #include "PatrollerAttack.h"
 #include "SnakeCopter.h"
 #include "SnakeCopterAttack.h"
+#include "Battery.h"
+#include "BatteryAttack.h"
 #include "MiniMap.h"
 #include "GameApplication.h"
 #include "MiniGoblin.h"
-
 
 const std::string CEnemyManager::SnakeCopter = "SnakeCopter";
 const std::string CEnemyManager::SnakeCopterAttack = "SnakeCopterAttack";
 const std::string CEnemyManager::Patroller = "Patroller";
 const std::string CEnemyManager::PatrollerAttack = "PatrollerAttack";
+const std::string CEnemyManager::Battery = "Battery";
+const std::string CEnemyManager::BatteryAttack = "BatteryAttack";
 const std::string CEnemyManager::MiniGoblin = "MiniGoblin";
 
 CEnemyManager::CEnemyManager(std::shared_ptr<CTask> task) :
@@ -44,6 +47,8 @@ void CEnemyManager::Start()
 	auto patroller_atk = std::make_shared<CActor>();
 	auto snake_copter = std::make_shared<CActor>();
 	auto snake_copter_atk = std::make_shared<CActor>();
+	auto battery = std::make_shared<CActor>();
+	auto battery_atk = std::make_shared<CActor>();
 	auto minigoblin = std::make_shared<CActor>();
 
 	for (int y = 0; y < CMapRead::Height; y++)
@@ -60,7 +65,11 @@ void CEnemyManager::Start()
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, snake_copter_atk, std::make_shared<CSnakeCopterAttack>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
-			
+			///	ホーダイナー
+			map_read->ObjectRead(Point(x, y), CEnemyManager::BatteryPosition, battery, std::make_shared<CBattery>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CEnemyManager::BatteryPosition, battery_atk, std::make_shared<CBatteryAttack>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 
 
 
@@ -74,6 +83,8 @@ void CEnemyManager::Start()
 	task->Append(PatrollerAttack, patroller_atk);
 	task->Append(SnakeCopter, snake_copter);
 	task->Append(SnakeCopterAttack, snake_copter_atk);
+	task->Append(Battery, battery);
+	task->Append(BatteryAttack, battery_atk);
 	task->Append(MiniGoblin, minigoblin);
 
 }

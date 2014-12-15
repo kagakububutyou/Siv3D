@@ -76,6 +76,9 @@
     <Filter Include="Scene\Title">
       <UniqueIdentifier>{cec569af-4f9d-4e48-b641-ebeb7d8ae61b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enemy\Battery">
+      <UniqueIdentifier>{8fc00bad-92ed-4eb2-8a78-005a776adbf0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -194,6 +197,18 @@
     </ClCompile>
     <ClCompile Include="SnakeCopterAttack.cpp">
       <Filter>Enemy\SnakeCopter</Filter>
+    </ClCompile>
+    <ClCompile Include="Battery.cpp">
+      <Filter>Enemy\Battery</Filter>
+    </ClCompile>
+    <ClCompile Include="BatteryAnimation.cpp">
+      <Filter>Enemy\Battery</Filter>
+    </ClCompile>
+    <ClCompile Include="BatteryAttack.cpp">
+      <Filter>Enemy\Battery</Filter>
+    </ClCompile>
+    <ClCompile Include="BatteryMove.cpp">
+      <Filter>Enemy\Battery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -520,6 +535,18 @@
     </ClInclude>
     <ClInclude Include="SnakeCopterAttack.h">
       <Filter>Enemy\SnakeCopter</Filter>
+    </ClInclude>
+    <ClInclude Include="Battery.h">
+      <Filter>Enemy\Battery</Filter>
+    </ClInclude>
+    <ClInclude Include="BatteryAnimation.h">
+      <Filter>Enemy\Battery</Filter>
+    </ClInclude>
+    <ClInclude Include="BatteryAttack.h">
+      <Filter>Enemy\Battery</Filter>
+    </ClInclude>
+    <ClInclude Include="BatteryMove.h">
+      <Filter>Enemy\Battery</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

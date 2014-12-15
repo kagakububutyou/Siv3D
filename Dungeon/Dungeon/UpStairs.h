@@ -6,14 +6,19 @@
 */
 #pragma once
 #include "Actor.h"
+class CSceneManager;
+
 class CUpStairs :public CActor
 {
 public:
 	CUpStairs(std::shared_ptr<CTask> task, Point pos);
 
 	void Start();
-
+	void Update();
+	void ChangeSceneClear();
 	void Draw();
+
+	std::shared_ptr<CSceneManager> scene;
 
 private:
 

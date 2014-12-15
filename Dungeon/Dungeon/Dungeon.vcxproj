@@ -90,6 +90,10 @@
     <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Collision.cpp" />
     <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Task.cpp" />
     <ClCompile Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Transform.cpp" />
+    <ClCompile Include="Battery.cpp" />
+    <ClCompile Include="BatteryAnimation.cpp" />
+    <ClCompile Include="BatteryAttack.cpp" />
+    <ClCompile Include="BatteryMove.cpp" />
     <ClCompile Include="CharacterController.cpp" />
     <ClCompile Include="ClearKeyEvent.cpp" />
     <ClCompile Include="ClearManager.cpp" />
@@ -207,6 +211,10 @@
     <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Object.h" />
     <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Task.h" />
     <ClInclude Include="..\..\..\..\..\..\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Transform.h" />
+    <ClInclude Include="Battery.h" />
+    <ClInclude Include="BatteryAnimation.h" />
+    <ClInclude Include="BatteryAttack.h" />
+    <ClInclude Include="BatteryMove.h" />
     <ClInclude Include="CharacterController.h" />
     <ClInclude Include="ClearKeyEvent.h" />
     <ClInclude Include="ClearManager.h" />
