@@ -7,6 +7,7 @@
 #pragma once
 #include "Actor.h"
 class CSceneManager;
+class CScene;
 
 class CUpStairs :public CActor
 {
@@ -18,7 +19,9 @@ public:
 	void ChangeSceneClear();
 	void Draw();
 
-	std::shared_ptr<CSceneManager> scene;
+	//std::unique_ptr<CSceneManager> scene;
+	//std::shared_ptr<CScene> next_scene;
+	
 
 private:
 

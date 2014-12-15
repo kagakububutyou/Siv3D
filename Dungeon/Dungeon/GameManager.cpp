@@ -155,10 +155,19 @@ void CGameManager::GameOver()
 }
 void CGameManager::GameClear()
 {
+	if (CGameManager::Clear)
+	{
+		state = State::Clear;
+
+		scene->ChangeScene(CSceneManager::Scene::Clear);
+		
+	}
+	/*
 	if (Input::KeyC.clicked)
 	{
 		scene->ChangeScene(CSceneManager::Scene::Clear);
 	}
+	//*/
 }
 ///	ゲーム本体のアップデート
 void CGameManager::Update()
@@ -167,6 +176,10 @@ void CGameManager::Update()
 	{
 		task->Start();
 		state = State::Update;
+	}
+	if (state == State::Clear)
+	{
+		//scene->ChangeScene(CSceneManager::Scene::Clear);
 	}
 	if (state == State::Update)
 	{
@@ -178,4 +191,5 @@ void CGameManager::Update()
 		GameOver();
 		GameClear();
 	}
+	
 }

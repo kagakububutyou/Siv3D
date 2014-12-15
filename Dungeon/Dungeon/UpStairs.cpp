@@ -32,6 +32,7 @@ void CUpStairs::ChangeSceneClear()
 										player->transform.GetPos(), player->transform.GetScale()))
 	{
 		CGameManager::Clear = true;
+		//scene->ChangeScene(CSceneManager::Scene::Clear);
 	}
 }
 void CUpStairs::Update()

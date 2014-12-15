@@ -42,6 +42,7 @@ private:
 	{
 		Init,		///	初期化
 		Update,	///	アップデート
+		Clear,	///	くりあ
 	};
 
 	State state;	///	状態
