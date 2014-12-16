@@ -1,4 +1,5 @@
 #include "SnakeCopterAnimation.h"
+#include "SnakeCopterAttack.h"
 #include "SnakeCopter.h"
 #include "EnemyManager.h"
 
@@ -9,6 +10,7 @@
 
 #include "Transform.h"
 #include "GameApplication.h"
+#include "CharacterController.h"
 
 CSnakeCopterAnimation::CSnakeCopterAnimation(std::shared_ptr<CTask> task) :
 CPlayerState(task),
@@ -80,11 +82,17 @@ void CSnakeCopterAnimation::Draw()
 	auto atk = task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0);
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
 	auto SnakeCopter = task->GetComponent<CSnakeCopter>(CEnemyManager::SnakeCopter, 0);
+	auto snake_atk = task->GetComponent<CSnakeCopterAttack>(CEnemyManager::SnakeCopterAttack, 0);
 
 	if (Collision::RectToRect(SnakeCopter->transform.GetPos() - pos, SnakeCopter->transform.GetScale(), atk->transform.GetPos(), atk->transform.GetScale())
 		&& atk->isCollision)
 	{
 		Rect(SnakeCopter->transform.GetPos() - pos, SnakeCopter->transform.GetScale())(TextureAsset(L"SnakeCopter")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw(ColorF(Palette::Yellow));
+	}
+	else if (CharacterController::AttackKey())
+	{
+		Rect(snake_atk->transform.GetPos(), snake_atk->transform.GetScale())(TextureAsset(L"Fire")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+		Rect(SnakeCopter->transform.GetPos() - pos, SnakeCopter->transform.GetScale())(TextureAsset(L"SnakeCopter")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
 	}
 	else
 	{

@@ -160,6 +160,8 @@ void CGameManager::GameClear()
 		state = State::Clear;
 
 		scene->ChangeScene(CSceneManager::Scene::Clear);
+
+		//Init();
 		
 	}
 	/*
@@ -180,6 +182,9 @@ void CGameManager::Update()
 	if (state == State::Clear)
 	{
 		//scene->ChangeScene(CSceneManager::Scene::Clear);
+		//task->Start();
+		//state = State::Init;
+		//Init();
 	}
 	if (state == State::Update)
 	{

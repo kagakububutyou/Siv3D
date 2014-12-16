@@ -33,6 +33,7 @@ void CPlayerMove::Start()
 	TextureAsset::Register(L"TaChi", L"engine/data/texture/Character/MainCharacter/shujinkoutachi.png");
 	TextureAsset::Register(L"Walk", L"engine/data/texture/Character/MainCharacter/shujinkouaruki.png");
 	TextureAsset::Register(L"Attack", L"engine/data/texture/Character/MainCharacter/attack.png");
+	TextureAsset::Register(L"Attack_Efect", L"engine/data/texture/Character/MainCharacter/エフェク.png");
 
 }
 void CPlayerMove::VelocitySpeed(const Point speed)
@@ -255,6 +256,7 @@ void CPlayerMove::Update()
 void CPlayerMove::Draw()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
+	auto player_atk = task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0);
 
 	//Circle(player->transform.GetPos() + Point(64,128), 32).draw(ColorF(0,0,0,0.5));
 
@@ -270,9 +272,19 @@ void CPlayerMove::Draw()
 		{
 			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Walk")(TextureSize.x * MoveTexturePos.x, TextureSize.y * MoveTexturePos.y, TextureSize.x, TextureSize.y)).draw();
 		}
+		else if (CharacterController::AttackKey())
+		{
+			//Rect(player_atk->transform.GetPos(), player_atk->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+			Rect(player_atk->transform.GetPos(), player_atk->transform.GetScale())(TextureAsset(L"Attack_Efect")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+		}
 		else if (CharacterController::AttackAnimation())
 		{
 			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+			if (player_atk->isHit)
+			{
+				Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw(ColorF(Palette::Black));
+			}
 		}
 		else
 		{

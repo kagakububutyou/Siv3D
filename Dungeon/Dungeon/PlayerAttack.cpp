@@ -19,9 +19,14 @@
 CPlayerAttack::CPlayerAttack(std::shared_ptr<CTask> task) :
 CActor(task, Transform(Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2), Point(CMapRead::Size, CMapRead::Size), Point(0, 0)), state),
 isCollision(false),
+isHit(false),
 font(30)
 {
 
+}
+void CPlayerAttack::Start()
+{
+	TextureAsset::Register(L"huga", L"engine/data/texture/Character/MainCharacter/efect_damage.png");
 }
 void CPlayerAttack::Create()
 {
@@ -75,10 +80,13 @@ void CPlayerAttack::OnCollision()
 	auto snake_copter = task->GetComponent<CSnakeCopterAttack>(CEnemyManager::SnakeCopterAttack, 0);
 	auto battery = task->GetComponent<CBatteryAttack>(CEnemyManager::BatteryAttack, 0);
 
+	isHit = false;
+
 	if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(), patroller->transform.GetPos(), patroller->transform.GetScale())
 		&& patroller->isCollision)
 	{
 		player->HitAttack();
+		isHit = true;
 		return;
 	}
 	
@@ -86,6 +94,7 @@ void CPlayerAttack::OnCollision()
 		&& snake_copter->isCollision)
 	{
 		player->HitAttack();
+		isHit = true;
 		return;
 	}
 	//*/
@@ -93,6 +102,7 @@ void CPlayerAttack::OnCollision()
 		&& battery->isCollision)
 	{
 		player->HitAttack();
+		isHit = true;
 		return;
 	}
 }
@@ -114,7 +124,7 @@ void CPlayerAttack::Draw()
 
 	//auto HP = "HP";
 
-	font(CGameManager::Clear).draw();
+	//font(CGameManager::Clear).draw();
 
 	Rect(10, 10, hp * 10, 40).draw(ColorF(Palette::Blue, 0.5));
 

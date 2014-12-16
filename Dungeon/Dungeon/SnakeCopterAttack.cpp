@@ -97,6 +97,6 @@ void CSnakeCopterAttack::Draw()
 
 	if (isCollision)
 	{
-		Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(Palette::Blue, 0.5));
+		//Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(Palette::Red, 0.5));
 	}
 }

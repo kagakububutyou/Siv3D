@@ -12,6 +12,7 @@ class CPlayerAttack :public CActor
 public:
 	CPlayerAttack(std::shared_ptr<CTask> task);
 
+	void Start();
 	void Update();
 	void Draw();
 	void OnCollisionStart();
@@ -20,6 +21,7 @@ public:
 	//Transform transform;	///<	座標、サイズ、回転
 
 	bool isCollision;	///<	あたり判定がおこっているかどうか
+	bool isHit;
 
 private:
 	

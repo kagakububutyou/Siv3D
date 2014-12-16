@@ -1,6 +1,7 @@
 #include "ClearKeyEvent.h"
 #include "Scene.h"
 #include "CharacterController.h"
+#include <Siv3D.hpp>
 
 CClearKeyEvent::CClearKeyEvent()
 {
@@ -11,6 +12,9 @@ void CClearKeyEvent::ChangSceneMenu(std::shared_ptr<CSceneManager> scene)
 {
 	if (CharacterController::ChangeSceneKey())
 	{
-		scene->ChangeScene(CSceneManager::Scene::Title);
+		System::SetExitEvent;
+		//scene->ChangeScene(CSceneManager::Scene::Title);
+		
+
 	}
 }
