@@ -12,6 +12,10 @@
 #include "MiniMapPlayer.h"
 #include "Wall.h"
 #include "PlayerAttack.h"
+#include "SwitchWall.h"
+#include "SwitchWall1.h"
+#include "SwitchWall2.h"
+#include "SwitchWall3.h"
 
 const std::string CGameManager::PlayerName = "player";
 const std::string CGameManager::MiniPlayer = "MiniMapPlayer";
@@ -20,6 +24,10 @@ const std::string CGameManager::UpStairs = "up_stairs";
 const std::string CGameManager::DownStairs = "down_stairs";
 const std::string CGameManager::Scroll = "Scroll";
 const std::string CGameManager::WallName = "wall";
+const std::string CGameManager::SwitchWall = "SwitchWall";
+const std::string CGameManager::SwitchWall1 = "SwitchWall1";
+const std::string CGameManager::SwitchWall2 = "SwitchWall2";
+const std::string CGameManager::SwitchWall3 = "SwitchWall3";
 const std::string CGameManager::Attack = "Attack";
 bool CGameManager::Clear = false;
 
@@ -64,6 +72,11 @@ void CGameManager::Init()
 	auto up_stairs = std::make_shared<CActor>();
 	auto down_stairs = std::make_shared<CActor>();
 	auto mini_map = std::make_shared<CActor>();
+	auto switch_wall = std::make_shared<CActor>();
+	auto switch_wall1 = std::make_shared<CActor>();
+	auto switch_wall2 = std::make_shared<CActor>();
+	auto switch_wall3 = std::make_shared<CActor>();
+	
 
 	auto mini_map_player = std::make_shared<CActor>();
 
@@ -90,6 +103,14 @@ void CGameManager::Init()
 			map_read->ObjectRead(Point(x, y), CEnemyManager::BatteryPosition, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CMapRead::DownStairsPosition, floor, std::make_shared<CFloor>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::SwitchWallPosition, switch_wall, std::make_shared<CSwitchWall>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::SwitchWall1Position, switch_wall1, std::make_shared<CSwitchWall1>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::SwitchWall2Position, switch_wall2, std::make_shared<CSwitchWall2>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::SwitchWall3Position, switch_wall3, std::make_shared<CSwitchWall3>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			///	’Ê˜H
 			map_read->ObjectRead(Point(x, y), CMapRead::Corridor, floor, std::make_shared<CFloor>(task,
@@ -144,6 +165,10 @@ void CGameManager::Init()
 	task->Append(UpStairs, up_stairs);
 	task->Append(DownStairs, down_stairs);
 	task->Append(WallName, wall);
+	task->Append(SwitchWall, switch_wall);
+	task->Append(SwitchWall1, switch_wall1);
+	task->Append(SwitchWall2, switch_wall2);
+	task->Append(SwitchWall3, switch_wall3);
 	task->Append(PlayerName, player);
 	task->Append("enemy_manager", enemy_manager);
 

@@ -225,6 +225,18 @@
     <ClCompile Include="SnakeCopter1Move.cpp">
       <Filter>Enemy\SnakeCopter1</Filter>
     </ClCompile>
+    <ClCompile Include="SwitchWall.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchWall1.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchWall2.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchWall3.cpp">
+      <Filter>Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon.ico">
@@ -574,6 +586,18 @@
     </ClInclude>
     <ClInclude Include="SnakeCopter1Move.h">
       <Filter>Enemy\SnakeCopter1</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchWall.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchWall1.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchWall2.h">
+      <Filter>Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="SwitchWall3.h">
+      <Filter>Stage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

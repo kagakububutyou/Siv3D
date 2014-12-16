@@ -130,6 +130,10 @@
     <ClCompile Include="SnakeCopterAnimation.cpp" />
     <ClCompile Include="SnakeCopterAttack.cpp" />
     <ClCompile Include="SnakeCopterMove.cpp" />
+    <ClCompile Include="SwitchWall.cpp" />
+    <ClCompile Include="SwitchWall1.cpp" />
+    <ClCompile Include="SwitchWall2.cpp" />
+    <ClCompile Include="SwitchWall3.cpp" />
     <ClCompile Include="TitleKeyEvent.cpp" />
     <ClCompile Include="TitleManager.cpp" />
     <ClCompile Include="UpStairs.cpp" />
@@ -256,6 +260,10 @@
     <ClInclude Include="SnakeCopterAttack.h" />
     <ClInclude Include="SnakeCopterMove.h" />
     <ClInclude Include="Staircase.h" />
+    <ClInclude Include="SwitchWall.h" />
+    <ClInclude Include="SwitchWall1.h" />
+    <ClInclude Include="SwitchWall2.h" />
+    <ClInclude Include="SwitchWall3.h" />
     <ClInclude Include="TitleKeyEvent.h" />
     <ClInclude Include="TitleManager.h" />
     <ClInclude Include="UpStairs.h" />

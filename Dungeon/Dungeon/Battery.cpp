@@ -41,6 +41,7 @@ void CBattery::OnCollision()
 		&& atk->isCollision)
 	{
 		state = State::None;
+		atk->isEnemy4 = true;
 	}
 }
 void CBattery::Update()

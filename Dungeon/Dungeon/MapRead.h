@@ -27,6 +27,11 @@ public:
 	static const int UpStairsPosition = 4;		///	上り階段の位置
 	static const int PlayerPosition = 5;			///	プレイヤーの位置
 	static const int DownStairsPosition = 5;	///	下り階段の位置
+
+	static const int SwitchWallPosition = 20;
+	static const int SwitchWall1Position = 21;
+	static const int SwitchWall2Position = 22;
+	static const int SwitchWall3Position = 23;
 	
 
 private:

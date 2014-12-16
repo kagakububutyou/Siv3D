@@ -23,6 +23,11 @@ public:
 	bool isCollision;	///<	‚ ‚½‚è”»’è‚ª‚¨‚±‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
 	bool isHit;
 
+	bool isEnemy1;
+	bool isEnemy2;
+	bool isEnemy3;
+	bool isEnemy4;
+
 private:
 	
 	std::unique_ptr<CPlayerMove> move;	///	ˆÚ“®ˆ—

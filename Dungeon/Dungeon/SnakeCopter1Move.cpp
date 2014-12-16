@@ -114,6 +114,102 @@ void CSnakeCopter1Move::WallCollision()
 			}
 		}
 	}
+	for (auto& wall : task->GetActor(CGameManager::SwitchWall))
+	{
+		if (Collision::RectToRect(SnakeCopter1->transform.GetPos(), SnakeCopter1->transform.GetScale(),
+			wall->transform.GetPos() , wall->transform.GetScale())
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy1)
+		{
+			if (SnakeCopter1->transform.GetPos().y > wall->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, speed.y));
+			}
+			if (wall->transform.GetPos().y > SnakeCopter1->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, -speed.y));
+			}
+			if (SnakeCopter1->transform.GetPos().x > wall->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(speed.x, 0));
+			}
+			if (wall->transform.GetPos().x > SnakeCopter1->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(-speed.x, 0));
+			}
+		}
+	}
+	for (auto& wall1 : task->GetActor(CGameManager::SwitchWall1))
+	{
+		if (Collision::RectToRect(SnakeCopter1->transform.GetPos(), SnakeCopter1->transform.GetScale(),
+			wall1->transform.GetPos(), wall1->transform.GetScale())
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy2)
+		{
+			if (SnakeCopter1->transform.GetPos().y > wall1->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, speed.y));
+			}
+			if (wall1->transform.GetPos().y> SnakeCopter1->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, -speed.y));
+			}
+			if (SnakeCopter1->transform.GetPos().x > wall1->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(speed.x, 0));
+			}
+			if (wall1->transform.GetPos().x> SnakeCopter1->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(-speed.x, 0));
+			}
+		}
+	}
+	for (auto& wall2 : task->GetActor(CGameManager::SwitchWall2))
+	{
+		if (Collision::RectToRect(SnakeCopter1->transform.GetPos(), SnakeCopter1->transform.GetScale(),
+			wall2->transform.GetPos(), wall2->transform.GetScale())
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy3)
+		{
+			if (SnakeCopter1->transform.GetPos().y > wall2->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, speed.y));
+			}
+			if (wall2->transform.GetPos().y> SnakeCopter1->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, -speed.y));
+			}
+			if (SnakeCopter1->transform.GetPos().x > wall2->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(speed.x, 0));
+			}
+			if (wall2->transform.GetPos().x  > SnakeCopter1->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(-speed.x, 0));
+			}
+		}
+	}
+	for (auto& wall3 : task->GetActor(CGameManager::SwitchWall3))
+	{
+		if (Collision::RectToRect(SnakeCopter1->transform.GetPos(), SnakeCopter1->transform.GetScale(),
+			wall3->transform.GetPos(), wall3->transform.GetScale())
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy4)
+		{
+			if (SnakeCopter1->transform.GetPos().y > wall3->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, speed.y));
+			}
+			if (wall3->transform.GetPos().y> SnakeCopter1->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, -speed.y));
+			}
+			if (SnakeCopter1->transform.GetPos().x > wall3->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(speed.x, 0));
+			}
+			if (wall3->transform.GetPos().x > SnakeCopter1->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(-speed.x, 0));
+			}
+		}
+	}
 }
 void CSnakeCopter1Move::Update()
 {

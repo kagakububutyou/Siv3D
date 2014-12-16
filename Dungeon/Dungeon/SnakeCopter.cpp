@@ -40,6 +40,7 @@ void CSnakeCopter::OnCollision()
 		&& atk->isCollision)
 	{
 		state = State::None;
+		atk->isEnemy2 = true;
 	}
 }
 void CSnakeCopter::Update()

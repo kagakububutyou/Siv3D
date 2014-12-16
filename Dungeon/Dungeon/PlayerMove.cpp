@@ -233,6 +233,102 @@ void CPlayerMove::WallCollision()
 			}
 		}
 	}
+	for (auto& wall : task->GetActor(CGameManager::SwitchWall))
+	{
+		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
+			wall->transform.GetPos() - pos, wall->transform.GetScale())
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack,0)->isEnemy1)
+		{
+			if (player->transform.GetPos().y > wall->transform.GetPos().y - pos.y)
+			{
+				VelocitySpeed(Point(0, speed.y));
+			}
+			if (wall->transform.GetPos().y - pos.y > player->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, -speed.y));
+			}
+			if (player->transform.GetPos().x > wall->transform.GetPos().x - pos.x)
+			{
+				VelocitySpeed(Point(speed.x, 0));
+			}
+			if (wall->transform.GetPos().x - pos.x > player->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(-speed.x, 0));
+			}
+		}
+	}
+	for (auto& wall1 : task->GetActor(CGameManager::SwitchWall1))
+	{
+		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
+			wall1->transform.GetPos() - pos, wall1->transform.GetScale())
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy2)
+		{
+			if (player->transform.GetPos().y > wall1->transform.GetPos().y - pos.y)
+			{
+				VelocitySpeed(Point(0, speed.y));
+			}
+			if (wall1->transform.GetPos().y - pos.y > player->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, -speed.y));
+			}
+			if (player->transform.GetPos().x > wall1->transform.GetPos().x - pos.x)
+			{
+				VelocitySpeed(Point(speed.x, 0));
+			}
+			if (wall1->transform.GetPos().x - pos.x > player->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(-speed.x, 0));
+			}
+		}
+	}
+	for (auto& wall2 : task->GetActor(CGameManager::SwitchWall2))
+	{
+		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
+			wall2->transform.GetPos() - pos, wall2->transform.GetScale())
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy3)
+		{
+			if (player->transform.GetPos().y > wall2->transform.GetPos().y - pos.y)
+			{
+				VelocitySpeed(Point(0, speed.y));
+			}
+			if (wall2->transform.GetPos().y - pos.y > player->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, -speed.y));
+			}
+			if (player->transform.GetPos().x > wall2->transform.GetPos().x - pos.x)
+			{
+				VelocitySpeed(Point(speed.x, 0));
+			}
+			if (wall2->transform.GetPos().x - pos.x > player->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(-speed.x, 0));
+			}
+		}
+	}
+	for (auto& wall3 : task->GetActor(CGameManager::SwitchWall3))
+	{
+		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
+			wall3->transform.GetPos() - pos, wall3->transform.GetScale())
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy4)
+		{
+			if (player->transform.GetPos().y > wall3->transform.GetPos().y - pos.y)
+			{
+				VelocitySpeed(Point(0, speed.y));
+			}
+			if (wall3->transform.GetPos().y - pos.y > player->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, -speed.y));
+			}
+			if (player->transform.GetPos().x > wall3->transform.GetPos().x - pos.x)
+			{
+				VelocitySpeed(Point(speed.x, 0));
+			}
+			if (wall3->transform.GetPos().x - pos.x > player->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(-speed.x, 0));
+			}
+		}
+	}
 }
 void CPlayerMove::Update()
 {

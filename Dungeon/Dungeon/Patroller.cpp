@@ -41,6 +41,7 @@ void CPatroller::OnCollision()
 		&& atk->isCollision)
 	{
 		state = State::None;
+		atk->isEnemy1 = true;
 	}
 }
 void CPatroller::Update()

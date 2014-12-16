@@ -27,6 +27,10 @@ public:
 	static const std::string DownStairs;
 	static const std::string Scroll;
 	static const std::string WallName;
+	static const std::string SwitchWall;
+	static const std::string SwitchWall1;
+	static const std::string SwitchWall2;
+	static const std::string SwitchWall3;
 	static const std::string Attack;
 	static bool Clear;
 

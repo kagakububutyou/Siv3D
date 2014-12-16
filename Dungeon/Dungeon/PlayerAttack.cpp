@@ -20,6 +20,10 @@ CPlayerAttack::CPlayerAttack(std::shared_ptr<CTask> task) :
 CActor(task, Transform(Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2), Point(CMapRead::Size, CMapRead::Size), Point(0, 0)), state),
 isCollision(false),
 isHit(false),
+isEnemy1(false),
+isEnemy2(false),
+isEnemy3(false),
+isEnemy4(false),
 font(30)
 {
 
@@ -124,7 +128,7 @@ void CPlayerAttack::Draw()
 
 	//auto HP = "HP";
 
-	//font(CGameManager::Clear).draw();
+	font(isEnemy1).draw();
 
 	Rect(10, 10, hp * 10, 40).draw(ColorF(Palette::Blue, 0.5));
 
