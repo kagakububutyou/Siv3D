@@ -85,6 +85,8 @@ void CGameManager::Init()
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopter1Position, floor, std::make_shared<CFloor>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::BatteryPosition, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CMapRead::DownStairsPosition, floor, std::make_shared<CFloor>(task,
@@ -123,6 +125,10 @@ void CGameManager::Init()
 			map_read->ObjectRead(Point(x, y), CEnemyManager::PatrollerPosition, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, mini_map, std::make_shared<CMiniMap>(task,
+				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CEnemyManager::BatteryPosition, mini_map, std::make_shared<CMiniMap>(task,
+				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopter1Position, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
 		}
 	}

@@ -10,6 +10,9 @@ key(std::make_unique<CClearKeyEvent>())
 }
 void CClearManager::Init()
 {
+	TextureAsset::Register(L"ED", L"engine/data/texture/Character/Etc/ED.png");
+	TextureAsset::Register(L"GAMECLEAR", L"engine/data/texture/Character/Etc/GAMECLEAR.png");
+
 	Logo = new Font(50, Typeface::Black);
 }
 
@@ -21,5 +24,9 @@ void CClearManager::Update()
 
 void CClearManager::Draw()
 {
-	Logo->drawCenter(L"Ç∞Å[ÇﬁÇ≠ÇËÇ†ÅH", Float2(CGameApplication::ScreenWidth / 2, 100), Palette::Royalblue);
+	TextureAsset(L"ED")/*.resize(CGameApplication::ScreenWidth, CGameApplication::ScreenHeight)*/.draw(CGameApplication::ScreenWidth / 2 - 260, 250);
+
+	(TextureAsset(L"GAMECLEAR")).draw(CGameApplication::ScreenWidth / 2 - 350, 100);
+
+	//Logo->drawCenter(L"GameClearÅH", Float2(CGameApplication::ScreenWidth / 2, 100), Palette::Royalblue);
 }

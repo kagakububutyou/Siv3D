@@ -5,6 +5,8 @@
 #include "PatrollerAttack.h"
 #include "SnakeCopter.h"
 #include "SnakeCopterAttack.h"
+#include "SnakeCopter1.h"
+#include "SnakeCopter1Attack.h"
 #include "Battery.h"
 #include "BatteryAttack.h"
 #include "MiniMap.h"
@@ -13,6 +15,8 @@
 
 const std::string CEnemyManager::SnakeCopter = "SnakeCopter";
 const std::string CEnemyManager::SnakeCopterAttack = "SnakeCopterAttack";
+const std::string CEnemyManager::SnakeCopter1 = "SnakeCopter1";
+const std::string CEnemyManager::SnakeCopter1Attack = "SnakeCopter1Attack";
 const std::string CEnemyManager::Patroller = "Patroller";
 const std::string CEnemyManager::PatrollerAttack = "PatrollerAttack";
 const std::string CEnemyManager::Battery = "Battery";
@@ -47,6 +51,8 @@ void CEnemyManager::Start()
 	auto patroller_atk = std::make_shared<CActor>();
 	auto snake_copter = std::make_shared<CActor>();
 	auto snake_copter_atk = std::make_shared<CActor>();
+	auto snake_copter1 = std::make_shared<CActor>();
+	auto snake_copter1_atk = std::make_shared<CActor>();
 	auto battery = std::make_shared<CActor>();
 	auto battery_atk = std::make_shared<CActor>();
 	auto minigoblin = std::make_shared<CActor>();
@@ -64,6 +70,10 @@ void CEnemyManager::Start()
 			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, snake_copter, std::make_shared<CSnakeCopter>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, snake_copter_atk, std::make_shared<CSnakeCopterAttack>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopter1Position, snake_copter1, std::make_shared<CSnakeCopter1>(task,
+				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopter1Position, snake_copter1_atk, std::make_shared<CSnakeCopter1Attack>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			///	ホーダイナー
 			map_read->ObjectRead(Point(x, y), CEnemyManager::BatteryPosition, battery, std::make_shared<CBattery>(task,
@@ -83,6 +93,8 @@ void CEnemyManager::Start()
 	task->Append(PatrollerAttack, patroller_atk);
 	task->Append(SnakeCopter, snake_copter);
 	task->Append(SnakeCopterAttack, snake_copter_atk);
+	task->Append(SnakeCopter1, snake_copter1);
+	task->Append(SnakeCopter1Attack, snake_copter1_atk);
 	task->Append(Battery, battery);
 	task->Append(BatteryAttack, battery_atk);
 	task->Append(MiniGoblin, minigoblin);

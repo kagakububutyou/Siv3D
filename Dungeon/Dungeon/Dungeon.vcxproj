@@ -123,6 +123,10 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scroll.cpp" />
     <ClCompile Include="SnakeCopter.cpp" />
+    <ClCompile Include="SnakeCopter1.cpp" />
+    <ClCompile Include="SnakeCopter1Animation.cpp" />
+    <ClCompile Include="SnakeCopter1Attack.cpp" />
+    <ClCompile Include="SnakeCopter1Move.cpp" />
     <ClCompile Include="SnakeCopterAnimation.cpp" />
     <ClCompile Include="SnakeCopterAttack.cpp" />
     <ClCompile Include="SnakeCopterMove.cpp" />
@@ -244,6 +248,10 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scroll.h" />
     <ClInclude Include="SnakeCopter.h" />
+    <ClInclude Include="SnakeCopter1.h" />
+    <ClInclude Include="SnakeCopter1Animation.h" />
+    <ClInclude Include="SnakeCopter1Attack.h" />
+    <ClInclude Include="SnakeCopter1Move.h" />
     <ClInclude Include="SnakeCopterAnimation.h" />
     <ClInclude Include="SnakeCopterAttack.h" />
     <ClInclude Include="SnakeCopterMove.h" />
