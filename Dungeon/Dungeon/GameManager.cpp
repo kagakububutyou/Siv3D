@@ -30,6 +30,7 @@ const std::string CGameManager::SwitchWall2 = "SwitchWall2";
 const std::string CGameManager::SwitchWall3 = "SwitchWall3";
 const std::string CGameManager::Attack = "Attack";
 bool CGameManager::Clear = false;
+bool CGameManager::Bat = false;
 
 
 CGameManager::CGameManager(std::shared_ptr<CSceneManager> manager) :
@@ -181,7 +182,7 @@ void CGameManager::GameOver()
 	//if (task->GetComponent<CPlayer>(CGameManager::PlayerName,0)->GetHP() < 0)
 	if (Input::KeyD.clicked)
 	{
-		scene->ChangeScene(CSceneManager::Scene::Over);
+		//scene->ChangeScene(CSceneManager::Scene::Over);
 	}
 }
 void CGameManager::GameClear()
@@ -194,6 +195,12 @@ void CGameManager::GameClear()
 
 		//Init();
 		
+	}
+	if (CGameManager::Bat)
+	{
+		state = State::Clear;
+
+		scene->ChangeScene(CSceneManager::Scene::Over);
 	}
 	/*
 	if (Input::KeyC.clicked)

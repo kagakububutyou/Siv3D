@@ -19,7 +19,8 @@ CBattery::CBattery(std::shared_ptr<CTask> task, Point pos) :
 CActor(task, Transform(pos + Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2 - CMapRead::Size / 2), Point(CMapRead::Size/* / CMiniMap::MapScale*/, CMapRead::Size/* / CMiniMap::MapScale*/), Point(0, 0)), State::Live),
 anime(std::make_unique<CBatteryAnimation>(task)),
 move(std::make_unique<CBatteryMove>(task)),
-isCollision(false)
+isCollision(false),
+HP(10)
 {
 }
 
@@ -40,7 +41,14 @@ void CBattery::OnCollision()
 	if (Collision::RectToRect(Battery->transform.GetPos() - pos, Battery->transform.GetScale(), atk->transform.GetPos(), atk->transform.GetScale())
 		&& atk->isCollision)
 	{
+		Battery->HitAttack();
+	}
+	if (Battery->GetHP() <= 0)
+	{
 		state = State::None;
+	}
+	if (state == State::None)
+	{
 		atk->isEnemy4 = true;
 	}
 }

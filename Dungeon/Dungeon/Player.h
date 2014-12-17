@@ -21,9 +21,9 @@ public:
 	void Update();
 	void Draw();
 
-	int GetHP(){ return HP; };
 	int GetMaxHP(){ return MaxHP; };
-	void HitAttack(){ HP = HP - 1; };
+	int GetHP(){ return HP; };
+	void HitAttack(){ HP = HP - 1; return; };
 	void DeathCHANGEScene();
 
 	bool behavior;

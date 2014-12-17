@@ -30,8 +30,9 @@ void CUpStairs::ChangeSceneClear()
 
 	if (Collision::RectToRect(UpStairs->transform.GetPos() - pos, UpStairs->transform.GetScale(),
 										player->transform.GetPos(), player->transform.GetScale()))
-	{
-		CGameManager::Clear = true;
+	{		
+		if(player->GetHP() >= 0)	CGameManager::Clear = true;
+		if (player->GetHP() < 0) CGameManager::Bat = true;
 		//scene->ChangeScene(CSceneManager::Scene::Clear);
 	}
 }

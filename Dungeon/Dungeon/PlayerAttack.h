@@ -21,7 +21,10 @@ public:
 	//Transform transform;	///<	座標、サイズ、回転
 
 	bool isCollision;	///<	あたり判定がおこっているかどうか
-	bool isHit;
+	bool isHit1;
+	bool isHit2;
+	bool isHit3;
+	bool isHit4;
 
 	bool isEnemy1;
 	bool isEnemy2;

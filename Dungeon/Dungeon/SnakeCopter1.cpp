@@ -18,7 +18,8 @@ CSnakeCopter1::CSnakeCopter1(std::shared_ptr<CTask> task, Point pos) :
 CActor(task, Transform(pos + Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2 - CMapRead::Size / 2), Point(CMapRead::Size/* / CMiniMap::MapScale*/, CMapRead::Size/* / CMiniMap::MapScale*/), Point(0, 0)), State::Live),
 anime(std::make_unique<CSnakeCopter1Animation>(task)),
 move(std::make_unique<CSnakeCopter1Move>(task)),
-isCollision(false)
+isCollision(false),
+HP(2)
 {
 }
 
@@ -39,7 +40,14 @@ void CSnakeCopter1::OnCollision()
 	if (Collision::RectToRect(SnakeCopter1->transform.GetPos() - pos, SnakeCopter1->transform.GetScale(), atk->transform.GetPos(), atk->transform.GetScale())
 		&& atk->isCollision)
 	{
+		SnakeCopter1->HitAttack();
+	}
+	if (SnakeCopter1->GetHP() <= 0)
+	{
 		state = State::None;
+	}
+	if (state == State::None)
+	{
 		atk->isEnemy3 = true;
 	}
 }

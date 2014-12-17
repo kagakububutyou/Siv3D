@@ -18,8 +18,8 @@ CActor(task, Transform(pos, Point(CMapRead::Size, CMapRead::Size), Point(0, 0)),
 move(std::make_unique<CPlayerMove>(task)),
 attack(std::make_unique<CPlayerAttack>(task)),
 behavior(false),
-MaxHP(40),
-HP(40)
+MaxHP(3000),
+HP(3000)
 {
 
 }

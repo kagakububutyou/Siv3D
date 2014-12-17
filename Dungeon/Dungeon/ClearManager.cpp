@@ -18,7 +18,7 @@ void CClearManager::Init()
 
 void CClearManager::Update()
 {
-	key->ChangSceneMenu(scene);
+	//key->ChangSceneMenu(scene);
 	Draw();
 }
 

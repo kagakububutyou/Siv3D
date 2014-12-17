@@ -33,6 +33,7 @@ public:
 	static const std::string SwitchWall3;
 	static const std::string Attack;
 	static bool Clear;
+	static bool Bat;
 
 private:
 	int TransformMapToScreenX(const int x);
@@ -47,6 +48,7 @@ private:
 		Init,		///	初期化
 		Update,	///	アップデート
 		Clear,	///	くりあ
+		Bat,
 	};
 
 	State state;	///	状態

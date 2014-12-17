@@ -10,6 +10,9 @@
 #include "Collision.h"
 
 #include "Patroller.h"
+#include "SnakeCopter.h"
+#include "SnakeCopter1.h"
+#include "Battery.h"
 #include "MiniGoblin.h"
 #include "EnemyManager.h"
 
@@ -72,6 +75,7 @@ void CPlayerMove::Left()
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 3);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 	}
 }
 
@@ -89,6 +93,7 @@ void CPlayerMove::Right()
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 3);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 	}
 	
 }
@@ -107,6 +112,7 @@ void CPlayerMove::Up()
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(3, 1);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 	}
 }
 
@@ -124,6 +130,7 @@ void CPlayerMove::Down()
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(3, 5);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 	}
 }
 
@@ -141,6 +148,7 @@ void CPlayerMove::RightUp()
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 1);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 	}
 }
 
@@ -158,6 +166,7 @@ void CPlayerMove::RightDown()
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 5);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 	}
 }
 
@@ -175,6 +184,7 @@ void CPlayerMove::LeftUp()
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 1);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 	}
 }
 
@@ -192,6 +202,7 @@ void CPlayerMove::LeftDown()
 		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 5);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
+		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 	}
 }
 
@@ -329,6 +340,104 @@ void CPlayerMove::WallCollision()
 			}
 		}
 	}
+	
+	
+	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit1)
+	{
+		auto patroller = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0);
+		if (player->transform.GetPos().x < patroller->transform.GetPos().x - pos.x)
+		{
+			VelocitySpeed(Point(-speed.x * 4, 0));
+			return;
+		}
+		if (player->transform.GetPos().x > patroller->transform.GetPos().x - pos.x)
+		{
+			VelocitySpeed(Point(speed.x * 4, 0));
+			return;
+		}
+		if (player->transform.GetPos().y < patroller->transform.GetPos().y - pos.y)
+		{
+			VelocitySpeed(Point(0, -speed.y * 4));
+			return;
+		}
+		if (player->transform.GetPos().y > patroller->transform.GetPos().y - pos.y)
+		{
+			VelocitySpeed(Point(0, speed.y * 4));
+			return;
+		}
+	}
+	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit2)
+	{
+		auto s = task->GetComponent<CSnakeCopter>(CEnemyManager::SnakeCopter, 0);
+		if (player->transform.GetPos().x < s->transform.GetPos().x - pos.x)
+		{
+			VelocitySpeed(Point(-speed.x * 4, 0));
+			return;
+		}
+		if (player->transform.GetPos().x > s->transform.GetPos().x - pos.x)
+		{
+			VelocitySpeed(Point(speed.x * 4, 0));
+			return;
+		}
+		if (player->transform.GetPos().y < s->transform.GetPos().y - pos.y)
+		{
+			VelocitySpeed(Point(0, -speed.y * 4));
+			return;
+		}
+		if (player->transform.GetPos().y > s->transform.GetPos().y - pos.y)
+		{
+			VelocitySpeed(Point(0, speed.y * 4));
+			return;
+		}
+	}
+	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit3)
+	{
+		auto s1 = task->GetComponent<CSnakeCopter1>(CEnemyManager::SnakeCopter1, 0);
+		if (player->transform.GetPos().x < s1->transform.GetPos().x - pos.x)
+		{
+			VelocitySpeed(Point(-speed.x * 4, 0));
+			return;
+		}
+		if (player->transform.GetPos().x > s1->transform.GetPos().x - pos.x)
+		{
+			VelocitySpeed(Point(speed.x * 4, 0));
+			return;
+		}
+		if (player->transform.GetPos().y < s1->transform.GetPos().y - pos.y)
+		{
+			VelocitySpeed(Point(0, -speed.y * 4));
+			return;
+		}
+		if (player->transform.GetPos().y > s1->transform.GetPos().y - pos.y)
+		{
+			VelocitySpeed(Point(0, speed.y * 4));
+			return;
+		}
+	}
+	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit4)
+	{
+		auto b = task->GetComponent<CBattery>(CEnemyManager::Battery, 0);
+		if (player->transform.GetPos().x < b->transform.GetPos().x - pos.x)
+		{
+			VelocitySpeed(Point(-speed.x * 4, 0));
+			return;
+		}
+		if (player->transform.GetPos().x > b->transform.GetPos().x - pos.x)
+		{
+			VelocitySpeed(Point(speed.x * 4, 0));
+			return;
+		}
+		if (player->transform.GetPos().y < b->transform.GetPos().y - pos.y)
+		{
+			VelocitySpeed(Point(0, -speed.y * 4));
+			return;
+		}
+		if (player->transform.GetPos().y > b->transform.GetPos().y - pos.y)
+		{
+			VelocitySpeed(Point(0, speed.y * 4));
+			return;
+		}
+	}
 }
 void CPlayerMove::Update()
 {
@@ -377,7 +486,7 @@ void CPlayerMove::Draw()
 		else if (CharacterController::AttackAnimation())
 		{
 			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-			if (player_atk->isHit)
+			if (player_atk->isHit1 || player_atk->isHit2 || player_atk->isHit3 || player_atk->isHit4)
 			{
 				Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw(ColorF(Palette::Black));
 			}

@@ -29,4 +29,7 @@ private:
 	bool isCollision;
 
 	const Font font;
+	int HP;
+	int GetHP(){ return HP; };
+	void HitAttack(){ HP = HP - 1; };
 };

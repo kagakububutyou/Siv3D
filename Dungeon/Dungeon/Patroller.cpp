@@ -19,7 +19,8 @@ CPatroller::CPatroller(std::shared_ptr<CTask> task, Point pos) :
 CActor(task, Transform(pos + Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2 - CMapRead::Size / 2), Point(CMapRead::Size/* / CMiniMap::MapScale*/, CMapRead::Size/* / CMiniMap::MapScale*/), Point(0, 0)), State::Live),
 anime(std::make_unique<CPatrollerAnimation>(task)),
 move(std::make_unique<CPatrollerMove>(task)),
-isCollision(false)
+isCollision(false),
+HP(4)
 {
 }
 
@@ -40,7 +41,14 @@ void CPatroller::OnCollision()
 	if (Collision::RectToRect(patroller->transform.GetPos() - pos, patroller->transform.GetScale(), atk->transform.GetPos(), atk->transform.GetScale())
 		&& atk->isCollision)
 	{
+		patroller->HitAttack();
+	}
+	if (patroller->GetHP() <= 0)
+	{
 		state = State::None;
+	}
+	if (state == State::None)
+	{
 		atk->isEnemy1 = true;
 	}
 }
