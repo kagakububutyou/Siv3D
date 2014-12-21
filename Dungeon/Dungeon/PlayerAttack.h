@@ -50,4 +50,5 @@ private:
 	Point TexturePos;	///	‰æ‘œ‚ÌêŠ
 
 	const Font font;
+	Font *Logo;	///	ƒƒS
 };

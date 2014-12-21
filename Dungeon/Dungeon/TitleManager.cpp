@@ -10,7 +10,8 @@ key(std::make_unique<CTitleKeyEvent>())
 }
 void CTitleManager::Init()
 {
-	TextureAsset::Register(L"Title", L"engine/data/texture/Character/Etc/contaminatedSky4.jpg");
+	TextureAsset::Register(L"Title", L"engine/data/texture/Character/Etc/Title.png");
+	TextureAsset::Register(L"splash", L"engine/data/texture/Character/Etc/splash.png");
 
 	Logo = new Font(50, Typeface::Black);
 }
@@ -24,6 +25,6 @@ void CTitleManager::Update()
 void CTitleManager::Draw()
 {
 	TextureAsset(L"Title").resize(CGameApplication::ScreenWidth, CGameApplication::ScreenHeight).draw();
-
-	Logo->drawCenter(L"The Escape Robot", Float2(CGameApplication::ScreenWidth / 2, 100), Palette::Royalblue);
+	TextureAsset(L"splash").resize(610, 258).draw(CGameApplication::ScreenWidth / 2 - 300, 0);
+	//Logo->drawCenter(L"The Escape Robot", Float2(CGameApplication::ScreenWidth / 2, 100), Palette::Royalblue);
 }

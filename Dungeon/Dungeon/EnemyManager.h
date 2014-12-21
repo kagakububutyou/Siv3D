@@ -19,8 +19,8 @@ public:
 
 	static const std::string SnakeCopter;
 	static const std::string SnakeCopterAttack;
-	static const std::string SnakeCopter1;
-	static const std::string SnakeCopter1Attack;
+	static const std::string TatteredId;
+	static const std::string TatteredIdAttack;
 	static const std::string Patroller;
 	static const std::string PatrollerAttack;
 	static const std::string Battery;
@@ -31,7 +31,7 @@ public:
 	static const int PatrollerPosition = 10;		
 	static const int SnakeCopterPosition = 11;
 	static const int BatteryPosition = 12;
-	static const int SnakeCopter1Position = 13;
+	static const int TatteredIdPosition = 13;
 
 private:
 

@@ -11,7 +11,7 @@
 #include "EnemyManager.h"
 #include "PatrollerAttack.h"
 #include "SnakeCopterAttack.h"
-#include "SnakeCopter1Attack.h"
+#include "TatteredIdAttack.h"
 #include "BatteryAttack.h"
 
 #include "Scene.h"
@@ -80,7 +80,7 @@ void CPlayerAttack::OnCollision()
 	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0));
 	auto patroller = task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack, 0);
 	auto snake_copter = task->GetComponent<CSnakeCopterAttack>(CEnemyManager::SnakeCopterAttack, 0);
-	auto snake_copter1 = task->GetComponent<CSnakeCopter1Attack>(CEnemyManager::SnakeCopter1Attack, 0);
+	auto snake_copter1 = task->GetComponent<CTatteredIdAttack>(CEnemyManager::TatteredIdAttack, 0);
 	auto battery = task->GetComponent<CBatteryAttack>(CEnemyManager::BatteryAttack, 0);
 
 	isHit1 = false; isHit2 = false; isHit3 = false; isHit4 = false;
@@ -130,13 +130,43 @@ void CPlayerAttack::Update()
 void CPlayerAttack::Draw()
 {
 	auto hp = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->GetHP();
-	//auto maxHp = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->GetMaxHP();
+	auto maxHp = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->GetMaxHP();
 
 	//auto HP = "HP";
 
-	font(hp).draw();
+	//font(hp).draw();
+	//Logo->drawCenter(L"E", Float2(0, 10), Palette::Red);
 
-	Rect(10, 10, hp / 10, 40).draw(ColorF(Palette::Blue, 0.5));
+	font(L"E").drawCenter(Float2(10, 30), Palette::Black);
+
+	if (hp > maxHp * 6 / 7)
+	{
+		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Purple, 0.5));
+	}
+	else if (hp > maxHp * 5 / 7)
+	{
+		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Indigo, 0.5));
+	}
+	else if (hp > maxHp * 4 / 7)
+	{
+		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Blue, 0.5));
+	}
+	else if (hp > maxHp * 3 / 7)
+	{
+		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Green, 0.5));
+	}
+	else if (hp > maxHp * 2 / 7)
+	{
+		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Yellow, 0.5));
+	}
+	else if (hp > maxHp * 1 / 7)
+	{
+		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Orange, 0.5));
+	}
+	else if (hp > maxHp * 0 / 7)
+	{
+		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Red, 0.5));
+	}
 
 	if (isCollision)
 	{

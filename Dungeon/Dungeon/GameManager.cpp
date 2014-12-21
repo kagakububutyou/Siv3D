@@ -16,6 +16,10 @@
 #include "SwitchWall1.h"
 #include "SwitchWall2.h"
 #include "SwitchWall3.h"
+#include "MiniSwitchWall.h"
+#include "MiniSwitchWall1.h"
+#include "MiniSwitchWall2.h"
+#include "MiniSwitchWall3.h"
 
 const std::string CGameManager::PlayerName = "player";
 const std::string CGameManager::MiniPlayer = "MiniMapPlayer";
@@ -77,6 +81,10 @@ void CGameManager::Init()
 	auto switch_wall1 = std::make_shared<CActor>();
 	auto switch_wall2 = std::make_shared<CActor>();
 	auto switch_wall3 = std::make_shared<CActor>();
+	auto mini_switch = std::make_shared<CActor>();
+	auto mini_switch1 = std::make_shared<CActor>();
+	auto mini_switch2 = std::make_shared<CActor>();
+	auto mini_switch3 = std::make_shared<CActor>();
 	
 
 	auto mini_map_player = std::make_shared<CActor>();
@@ -99,7 +107,7 @@ void CGameManager::Init()
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
-			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopter1Position, floor, std::make_shared<CFloor>(task,
+			map_read->ObjectRead(Point(x, y), CEnemyManager::TatteredIdPosition, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::BatteryPosition, floor, std::make_shared<CFloor>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
@@ -135,14 +143,25 @@ void CGameManager::Init()
 			///	•”‰®
 			map_read->ObjectRead(Point(x, y), CMapRead::Room, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::Wall, mini_map, std::make_shared<CMiniMap>(task,
+				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
 			///	’Ê˜H
 			map_read->ObjectRead(Point(x, y), CMapRead::Corridor, mini_map, std::make_shared<CMiniMap>(task,
+				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::SwitchWallPosition, mini_switch, std::make_shared<CMiniSwitchWall>(task,
+				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::SwitchWall1Position, mini_switch1, std::make_shared<CMiniSwitchWall1>(task,
+				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::SwitchWall2Position, mini_switch2, std::make_shared<CMiniSwitchWall2>(task,
+				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
+			map_read->ObjectRead(Point(x, y), CMapRead::SwitchWall3Position, mini_switch3, std::make_shared<CMiniSwitchWall3>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
 			///	ŠK’i
 			map_read->ObjectRead(Point(x, y), CMapRead::DownStairsPosition, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CMapRead::UpStairsPosition, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
+			
 			///	“G
 			map_read->ObjectRead(Point(x, y), CEnemyManager::PatrollerPosition, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
@@ -150,7 +169,7 @@ void CGameManager::Init()
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::BatteryPosition, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
-			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopter1Position, mini_map, std::make_shared<CMiniMap>(task,
+			map_read->ObjectRead(Point(x, y), CEnemyManager::TatteredIdPosition, mini_map, std::make_shared<CMiniMap>(task,
 				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
 		}
 	}
@@ -175,6 +194,10 @@ void CGameManager::Init()
 
 	task->Append(MiniPlayer, mini_map_player);
 	task->Append("mini_map", mini_map);
+	task->Append("mini_switch", mini_switch);
+	task->Append("mini_switch1", mini_switch1);
+	task->Append("mini_switch2", mini_switch2);
+	task->Append("mini_switch3", mini_switch3);
 
 }
 void CGameManager::GameOver()

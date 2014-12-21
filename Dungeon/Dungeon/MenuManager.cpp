@@ -11,6 +11,8 @@ key(std::make_unique<CMenuKeyEvent>())
 
 void CMenuManager::Init()
 {
+	TextureAsset::Register(L"OP", L"engine/data/texture/Character/Etc/OP.png");
+	//TextureAsset::Register(L"GAMEOVER", L"engine/data/texture/Character/Etc/GAMEOVER.png");
 	Logo = new Font(50, Typeface::Black);
 }
 
@@ -22,5 +24,6 @@ void CMenuManager::Update()
 
 void CMenuManager::Draw()
 {
-	Logo->drawCenter(L"メニュー", Float2(CGameApplication::ScreenWidth / 2, 100), Palette::Royalblue);
+	//Logo->drawCenter(L"メニュー", Float2(CGameApplication::ScreenWidth / 2, 100), Palette::Royalblue);
+	TextureAsset(L"OP")/*.resize(CGameApplication::ScreenWidth, CGameApplication::ScreenHeight)*/.draw();
 }

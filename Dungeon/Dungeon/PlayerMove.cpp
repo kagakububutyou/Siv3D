@@ -11,7 +11,7 @@
 
 #include "Patroller.h"
 #include "SnakeCopter.h"
-#include "SnakeCopter1.h"
+#include "TatteredId.h"
 #include "Battery.h"
 #include "MiniGoblin.h"
 #include "EnemyManager.h"
@@ -392,7 +392,7 @@ void CPlayerMove::WallCollision()
 	}
 	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit3)
 	{
-		auto s1 = task->GetComponent<CSnakeCopter1>(CEnemyManager::SnakeCopter1, 0);
+		auto s1 = task->GetComponent<CTatteredId>(CEnemyManager::TatteredId, 0);
 		if (player->transform.GetPos().x < s1->transform.GetPos().x - pos.x)
 		{
 			VelocitySpeed(Point(-speed.x * 4, 0));
