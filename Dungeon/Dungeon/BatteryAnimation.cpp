@@ -26,6 +26,7 @@ void CBatteryAnimation::Start()
 	TextureAsset::Register(L"Battery", L"engine/data/texture/Character/Enemy/Battery.png");
 	TextureAsset::Register(L"BatteryWalk", L"engine/data/texture/Character/Enemy/Batteryaruki.png");
 	TextureAsset::Register(L"BatteryAttack", L"engine/data/texture/Character/Enemy/BatteryAttack.png");
+	TextureAsset::Register(L"tekiefekuto", L"engine/data/texture/Character/Enemy/tekiefekuto.png");
 }
 
 void CBatteryAnimation::Right()

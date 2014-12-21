@@ -45,6 +45,7 @@ void CBatteryAttack::Left()
 	if (player.x < Battery->transform.GetPos().x - Battery->transform.GetScale().x / 2 - pos->transform.GetPos().x)
 	{
 		transform.TransformPoint(Point(Battery->transform.GetPos().x - Battery->transform.GetScale().x, Battery->transform.GetPos().y) - pos->transform.GetPos());
+		TexturePos = Point(0, 1);
 	}
 }
 void CBatteryAttack::Right()
@@ -56,6 +57,7 @@ void CBatteryAttack::Right()
 	if (player.x > Battery->transform.GetPos().x + Battery->transform.GetScale().x / 2 - pos->transform.GetPos().x)
 	{
 		transform.TransformPoint(Point(Battery->transform.GetPos().x + Battery->transform.GetScale().x, Battery->transform.GetPos().y) - pos->transform.GetPos());
+		TexturePos = Point(2, 1);
 	}
 }
 void CBatteryAttack::Up()
@@ -67,6 +69,7 @@ void CBatteryAttack::Up()
 	if (player.y < Battery->transform.GetPos().y - Battery->transform.GetScale().y / 2 - pos->transform.GetPos().y)
 	{
 		transform.TransformPoint(Point(Battery->transform.GetPos().x, Battery->transform.GetPos().y - Battery->transform.GetScale().y) - pos->transform.GetPos());
+		TexturePos = Point(1, 0);
 	}
 }
 void CBatteryAttack::Down()
@@ -78,6 +81,7 @@ void CBatteryAttack::Down()
 	if (player.y > Battery->transform.GetPos().y + Battery->transform.GetScale().y / 2 - pos->transform.GetPos().y)
 	{
 		transform.TransformPoint(Point(Battery->transform.GetPos().x, Battery->transform.GetPos().y + Battery->transform.GetScale().y) - pos->transform.GetPos());
+		TexturePos = Point(1, 2);
 	}
 }
 void CBatteryAttack::Update()
@@ -97,6 +101,7 @@ void CBatteryAttack::Draw()
 
 	if (isCollision)
 	{
-		Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(Palette::Red, 0.5));
+		Rect(transform.GetPos(), transform.GetScale())(TextureAsset(L"tekiefekuto")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+		//Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(Palette::Red, 0.5));
 	}
 }
