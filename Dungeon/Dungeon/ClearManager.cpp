@@ -25,7 +25,7 @@ void CClearManager::Update()
 void CClearManager::Draw()
 {
 	TextureAsset(L"good_end").draw();
-	TextureAsset(L"ED")/*.resize(CGameApplication::ScreenWidth, CGameApplication::ScreenHeight)*/.draw(CGameApplication::ScreenWidth / 2 - 260, 250);
+	//TextureAsset(L"ED")/*.resize(CGameApplication::ScreenWidth, CGameApplication::ScreenHeight)*/.draw(CGameApplication::ScreenWidth / 2 - 260, 250);
 
 	//Logo->drawCenter(L"GameClearÅH", Float2(CGameApplication::ScreenWidth / 2, 100), Palette::Royalblue);
 }
