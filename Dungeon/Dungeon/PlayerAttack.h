@@ -37,14 +37,7 @@ private:
 
 	void Create();		///	生成
 
-	void Right();		///	右移動
-	void Left();			///	左移動
-	void Up();			//	/	上移動
-	void Down();		///	下移動
-	void RightUp();	///	右上
-	void RightDown();///	右下
-	void LeftUp();		///	左上
-	void LeftDown();	///	左下
+	void PushKey();
 
 	Point TextureSize = Point(256, 256);		///	画像のサイズ
 	Point TexturePos;	///	画像の場所
@@ -52,6 +45,19 @@ private:
 	static const int ColorMax = 7;
 
 	ColorF Color[ColorMax];
+
+	enum KeyNum
+	{
+		left,
+		right,
+		up,
+		down,
+
+		max,
+	};
+
+	bool KeyPressed[KeyNum::max];
+	Point TransformPoint[KeyNum::max];
 
 	const Font font;
 	Font *Logo;	///	ロゴ

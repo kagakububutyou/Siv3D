@@ -29,14 +29,23 @@ font(30)
 void CPlayerAttack::Start()
 {
 	TextureAsset::Register(L"huga", L"engine/data/texture/Character/MainCharacter/efect_damage.png");
+	
+	Color[6] = ColorF(Palette::Purple, 0.5);
+	Color[5] = ColorF(Palette::Indigo, 0.5);
+	Color[4] = ColorF(Palette::Blue, 0.5);
+	Color[3] = ColorF(Palette::Green, 0.5);
+	Color[2] = ColorF(Palette::Yellow, 0.5);
+	Color[1] = ColorF(Palette::Orange, 0.5);
+	Color[0] = ColorF(Palette::Red, 0.5);
 
-	Color[6] = Palette::Purple, 0.5;
-	Color[5] = Palette::Indigo, 0.5;
-	Color[4] = Palette::Blue, 0.5;
-	Color[3] = Palette::Green, 0.5;
-	Color[2] = Palette::Yellow, 0.5;
-	Color[1] = Palette::Orange, 0.5;
-	Color[0] = Palette::Red, 0.5;
+	
+
+	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0));
+
+	TransformPoint[KeyNum::left]		= Point(player->transform.GetPos().x - player->transform.GetScale().x, player->transform.GetPos().y);
+	TransformPoint[KeyNum::right]		= Point(player->transform.GetPos().x + player->transform.GetScale().x, player->transform.GetPos().y);
+	TransformPoint[KeyNum::up]		= Point(player->transform.GetPos().x, player->transform.GetPos().y - player->transform.GetScale().y);
+	TransformPoint[KeyNum::down]	= Point(player->transform.GetPos().x, player->transform.GetPos().y + player->transform.GetScale().y);
 
 }
 void CPlayerAttack::Create()
@@ -48,40 +57,19 @@ void CPlayerAttack::Create()
 	}
 	isCollision = false;
 }
-void CPlayerAttack::Left()
+void CPlayerAttack::PushKey()
 {
-	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0));
-
-	if (CharacterController::LeftMoveKey())
+	
+	KeyPressed[KeyNum::left] = CharacterController::LeftMoveKey();
+	KeyPressed[KeyNum::right] = CharacterController::RightMoveKey();
+	KeyPressed[KeyNum::up] = CharacterController::UpMoveKey();
+	KeyPressed[KeyNum::down] = CharacterController::DownMoveKey();
+	for (int i = 0; i < KeyNum::max; i++)
 	{
-		transform.TransformPoint(Point(player->transform.GetPos().x - player->transform.GetScale().x, player->transform.GetPos().y));
-	}
-}
-void CPlayerAttack::Right()
-{
-	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0));
-
-	if (CharacterController::RightMoveKey())
-	{
-		transform.TransformPoint(Point(player->transform.GetPos().x + player->transform.GetScale().x, player->transform.GetPos().y));
-	}
-}
-void CPlayerAttack::Up()
-{
-	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0));
-
-	if (CharacterController::UpMoveKey())
-	{
-		transform.TransformPoint(Point(player->transform.GetPos().x, player->transform.GetPos().y - player->transform.GetScale().y));
-	}
-}
-void CPlayerAttack::Down()
-{
-	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0));
-
-	if (CharacterController::DownMoveKey())
-	{
-		transform.TransformPoint(Point(player->transform.GetPos().x, player->transform.GetPos().y + player->transform.GetScale().y));
+		if (KeyPressed[i] == true)
+		{
+			transform.TransformPoint(TransformPoint[i]);
+		}
 	}
 }
 void CPlayerAttack::OnCollision()
@@ -127,10 +115,7 @@ void CPlayerAttack::OnCollision()
 }
 void CPlayerAttack::Update()
 {
-	Left();
-	Right();
-	Up();
-	Down();
+	PushKey();
 
 	Create();
 	OnCollision();
@@ -155,36 +140,6 @@ void CPlayerAttack::Draw()
 			Rect(30, 10, hp / 10, 40).draw(Color[i]);
 		}
 	}
-	/*
-	if (hp > maxHp * 6 / 7)
-	{
-		Rect(30, 10, hp / 10, 40).draw(Color[6]);
-	}
-	else if (hp > maxHp * 5 / 7)
-	{
-		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Indigo, 0.5));
-	}
-	else if (hp > maxHp * 4 / 7)
-	{
-		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Blue, 0.5));
-	}
-	else if (hp > maxHp * 3 / 7)
-	{
-		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Green, 0.5));
-	}
-	else if (hp > maxHp * 2 / 7)
-	{
-		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Yellow, 0.5));
-	}
-	else if (hp > maxHp * 1 / 7)
-	{
-		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Orange, 0.5));
-	}
-	else if (hp > maxHp * 0 / 7)
-	{
-		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Red, 0.5));
-	}
-	//*/
 	if (isCollision)
 	{
 		//Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(Palette::Blue,0.5));

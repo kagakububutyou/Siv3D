@@ -179,7 +179,7 @@ void CGameManager::Init()
 	
 	task->Append(Scroll, scroll);
 	
-	task->Append(Attack, atk);
+	
 
 	task->Append(FloorName, floor);
 	task->Append(UpStairs, up_stairs);
@@ -198,6 +198,8 @@ void CGameManager::Init()
 	task->Append("mini_switch1", mini_switch1);
 	task->Append("mini_switch2", mini_switch2);
 	task->Append("mini_switch3", mini_switch3);
+
+	task->Append(Attack, atk);
 
 }
 void CGameManager::GameOver()
