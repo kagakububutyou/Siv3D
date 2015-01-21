@@ -17,7 +17,7 @@ scene_manager(std::make_shared<CSceneManager>(this))
 	scene.insert(std::make_pair(CSceneManager::Scene::Clear, std::make_unique<CClearManager>(scene_manager)));
 	scene.insert(std::make_pair(CSceneManager::Scene::Over, std::make_unique<CGameOverManager>(scene_manager)));
 
-	scene_manager->ChangeScene(CSceneManager::Scene::Title);
+	scene_manager->ChangeScene(CSceneManager::Scene::Game);
 }
 
 std::shared_ptr<CScene> CGameApplication::SceneFind(CSceneManager::Scene scene)

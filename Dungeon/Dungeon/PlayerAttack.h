@@ -49,6 +49,10 @@ private:
 	Point TextureSize = Point(256, 256);		///	‰æ‘œ‚ÌƒTƒCƒY
 	Point TexturePos;	///	‰æ‘œ‚ÌêŠ
 
+	static const int ColorMax = 7;
+
+	ColorF Color[ColorMax];
+
 	const Font font;
 	Font *Logo;	///	ƒƒS
 };

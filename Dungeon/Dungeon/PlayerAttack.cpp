@@ -29,6 +29,15 @@ font(30)
 void CPlayerAttack::Start()
 {
 	TextureAsset::Register(L"huga", L"engine/data/texture/Character/MainCharacter/efect_damage.png");
+
+	Color[6] = Palette::Purple, 0.5;
+	Color[5] = Palette::Indigo, 0.5;
+	Color[4] = Palette::Blue, 0.5;
+	Color[3] = Palette::Green, 0.5;
+	Color[2] = Palette::Yellow, 0.5;
+	Color[1] = Palette::Orange, 0.5;
+	Color[0] = Palette::Red, 0.5;
+
 }
 void CPlayerAttack::Create()
 {
@@ -139,9 +148,17 @@ void CPlayerAttack::Draw()
 
 	font(L"E").drawCenter(Float2(10, 30), Palette::Black);
 
+	for (int i = 0; i < ColorMax; i++)
+	{
+		if (hp > maxHp * i / 7)
+		{
+			Rect(30, 10, hp / 10, 40).draw(Color[i]);
+		}
+	}
+	/*
 	if (hp > maxHp * 6 / 7)
 	{
-		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Purple, 0.5));
+		Rect(30, 10, hp / 10, 40).draw(Color[6]);
 	}
 	else if (hp > maxHp * 5 / 7)
 	{
@@ -167,7 +184,7 @@ void CPlayerAttack::Draw()
 	{
 		Rect(30, 10, hp / 10, 40).draw(ColorF(Palette::Red, 0.5));
 	}
-
+	//*/
 	if (isCollision)
 	{
 		//Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(Palette::Blue,0.5));
