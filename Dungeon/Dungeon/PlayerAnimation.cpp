@@ -12,7 +12,6 @@
 
 CPlayerAnimation::CPlayerAnimation(std::shared_ptr<CTask> task) :
 CPlayerState(task),
-//MoveTexturePos(Point(2, 2)),
 StopTexture(Point(1,1)),
 MoveTexture(Point(2, 2)),
 GraphicChangeCounts(0)

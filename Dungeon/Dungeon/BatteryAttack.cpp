@@ -97,11 +97,4 @@ void CBatteryAttack::Update()
 void CBatteryAttack::Draw()
 {
 
-	//font(transform.GetPos()).draw();
-
-	if (isCollision)
-	{
-		Rect(transform.GetPos(), transform.GetScale())(TextureAsset(L"tekiefekuto")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-		//Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(Palette::Red, 0.5));
-	}
 }
