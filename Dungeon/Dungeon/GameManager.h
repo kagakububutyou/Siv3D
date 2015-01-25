@@ -22,6 +22,7 @@ public:
 
 	static const std::string PlayerName;
 	static const std::string MiniPlayer;
+	static const std::string EnemyManager;
 	static const std::string FloorName;
 	static const std::string UpStairs;
 	static const std::string DownStairs;

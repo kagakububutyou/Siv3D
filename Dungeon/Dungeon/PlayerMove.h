@@ -17,6 +17,23 @@ private:
 	void Stop();			///	停止
 	void VelocitySpeed(const Point speed);	///	移動量設定
 
+	void WallCollision();			///	壁との当たり判定
+	void EnemyCollision();		///	敵との当たり判定
+
+	///	方向
+	enum  MOVEDIREC{
+		LEFT,
+		RIGHT,
+		UP,
+		DOWN,
+
+		DIREC,
+	};
+
+	void Move(MOVEDIREC direc);
+	void knockBack();		///	ノックバック
+
+	Point MoveDirec[MOVEDIREC::DIREC];
 	Point velocity;	///	移動量
 	Point speed;		///	速度
 
@@ -31,7 +48,7 @@ public:
 
 	void Draw();
 
-	void WallCollision();
+	
 
 	///	移動量を取得
 	Point GetVelocity()const { return velocity; }

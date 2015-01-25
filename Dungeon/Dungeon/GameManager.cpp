@@ -23,6 +23,7 @@
 
 const std::string CGameManager::PlayerName = "player";
 const std::string CGameManager::MiniPlayer = "MiniMapPlayer";
+const std::string CGameManager::EnemyManager = "enemy_manager";
 const std::string CGameManager::FloorName = "floor";
 const std::string CGameManager::UpStairs = "up_stairs";
 const std::string CGameManager::DownStairs = "down_stairs";
@@ -190,7 +191,7 @@ void CGameManager::Init()
 	task->Append(SwitchWall2, switch_wall2);
 	task->Append(SwitchWall3, switch_wall3);
 	task->Append(PlayerName, player);
-	task->Append("enemy_manager", enemy_manager);
+	task->Append(EnemyManager, enemy_manager);
 
 	task->Append(MiniPlayer, mini_map_player);
 	task->Append("mini_map", mini_map);

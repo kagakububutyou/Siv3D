@@ -30,48 +30,38 @@ speed(Point(8.0f, 8.0f))
 }
 void CPlayerMove::Start()
 {
-	
+	MoveDirec[MOVEDIREC::LEFT] = Point(-speed.x, 0);
+	MoveDirec[MOVEDIREC::RIGHT] = Point(speed.x, 0);
+	MoveDirec[MOVEDIREC::UP] = Point(0, -speed.y);
+	MoveDirec[MOVEDIREC::DOWN] = Point(0, speed.y);
 
 }
 void CPlayerMove::VelocitySpeed(const Point speed)
 {
 	velocity = speed;
 }
-
 void CPlayerMove::Left()
 {
 	if (CharacterController::LeftMoveKey())
 	{
-		VelocitySpeed(Point(-speed.x, 0));
-
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
+		Move(MOVEDIREC::LEFT);
 	}
 }
-
 void CPlayerMove::Right()
 {
 	if (CharacterController::RightMoveKey())
 	{
-		VelocitySpeed(Point(speed.x, 0));
-
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
+		Move(MOVEDIREC::RIGHT);
 	}
 	
 }
-
 void CPlayerMove::Up()
 {
 	if (CharacterController::UpMoveKey())
 	{
-		VelocitySpeed(Point(0, -speed.y));
-
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
+		Move(MOVEDIREC::UP);
 	}
 }
-
 void CPlayerMove::Down()
 {
 	if (CharacterController::DownMoveKey())
@@ -82,7 +72,6 @@ void CPlayerMove::Down()
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 	}
 }
-
 void CPlayerMove::Stop()
 {
 	if (!CharacterController::RightMoveKey() && !CharacterController::LeftMoveKey()
@@ -93,6 +82,14 @@ void CPlayerMove::Stop()
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = false;
 	}
 }
+void CPlayerMove::Move(MOVEDIREC direc)
+{
+	VelocitySpeed(MoveDirec[direc]);
+
+	task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
+	task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
+}
+
 void CPlayerMove::WallCollision()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
@@ -217,36 +214,12 @@ void CPlayerMove::WallCollision()
 			}
 		}
 	}
-	/*
-	for (int i = 0; i < task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->EnemyMax; i++)
-	{
-		if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit[i])
-		{
-			auto patroller = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0);
-			if (player->transform.GetPos().x < patroller->transform.GetPos().x - pos.x)
-			{
-				VelocitySpeed(Point(-speed.x * 4, 0));
-				return;
-			}
-			if (player->transform.GetPos().x > patroller->transform.GetPos().x - pos.x)
-			{
-				VelocitySpeed(Point(speed.x * 4, 0));
-				return;
-			}
-			if (player->transform.GetPos().y < patroller->transform.GetPos().y - pos.y)
-			{
-				VelocitySpeed(Point(0, -speed.y * 4));
-				return;
-			}
-			if (player->transform.GetPos().y > patroller->transform.GetPos().y - pos.y)
-			{
-				VelocitySpeed(Point(0, speed.y * 4));
-				return;
-			}
-		}
-	}
-	//*/
-	///*
+}
+void CPlayerMove::knockBack()
+{
+	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+
 	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit1)
 	{
 		auto patroller = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0);
@@ -345,6 +318,35 @@ void CPlayerMove::WallCollision()
 	}
 	//*/
 }
+void CPlayerMove::EnemyCollision()
+{
+	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
+	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+
+	for (auto& enemy : task->GetActor(CGameManager::EnemyManager))
+	{
+		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
+			enemy->transform.GetPos() - pos, enemy->transform.GetScale()))
+		{
+			if (player->transform.GetPos().y > enemy->transform.GetPos().y - pos.y)
+			{
+				VelocitySpeed(Point(0, speed.y));
+			}
+			if (enemy->transform.GetPos().y - pos.y > player->transform.GetPos().y)
+			{
+				VelocitySpeed(Point(0, -speed.y));
+			}
+			if (player->transform.GetPos().x > enemy->transform.GetPos().x - pos.x)
+			{
+				VelocitySpeed(Point(speed.x, 0));
+			}
+			if (enemy->transform.GetPos().x - pos.x > player->transform.GetPos().x)
+			{
+				VelocitySpeed(Point(-speed.x, 0));
+			}
+		}
+	}
+}
 void CPlayerMove::Update()
 {
 	
@@ -356,48 +358,13 @@ void CPlayerMove::Update()
 	Stop();
 
 	WallCollision();
+	EnemyCollision();
+	knockBack();
 		
 	task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.Translate(Point(velocity.x / CMiniMap::MapScale, velocity.y / CMiniMap::MapScale));
 	task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.Translate(velocity);
 }
 void CPlayerMove::Draw()
 {
-	/*
-	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
-	auto player_atk = task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0);
 
-	//Circle(player->transform.GetPos() + Point(64,128), 32).draw(ColorF(0,0,0,0.5));
-
-	if (!CharacterController::RightMoveKey() && !CharacterController::LeftMoveKey()
-		&& !CharacterController::UpMoveKey() && !CharacterController::DownMoveKey())
-	{
-		
-	}
-	//if (!task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision)
-	{
-		if (CharacterController::RightMoveKey() || CharacterController::LeftMoveKey()
-			|| CharacterController::UpMoveKey() || CharacterController::DownMoveKey())
-		{
-			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Walk")(TextureSize.x * MoveTexturePos.x, TextureSize.y * MoveTexturePos.y, TextureSize.x, TextureSize.y)).draw();
-		}
-		else if (CharacterController::AttackKey())
-		{
-			Rect(player_atk->transform.GetPos(), player_atk->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-			Rect(player_atk->transform.GetPos(), player_atk->transform.GetScale())(TextureAsset(L"Attack_Efect")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-		}
-		else if (CharacterController::AttackAnimation())
-		{
-			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-			if (player_atk->isHit1 || player_atk->isHit2 || player_atk->isHit3 || player_atk->isHit4)
-			{
-				Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw(ColorF(Palette::Black));
-			}
-		}
-		else
-		{
-			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"TaChi")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-		}
-	}
-	//*/
 }
