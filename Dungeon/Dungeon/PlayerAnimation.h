@@ -10,9 +10,28 @@ private:
 	void Up();			//	/	ã
 	void Down();		///	‰º
 
+	
+
+	///	•ûŒü
+	enum  MOVEDIREC{
+		LEFT,
+		RIGHT,
+		UP,
+		DOWN,
+
+		DIREC,
+	};
+
+	void Texture(MOVEDIREC Direc);
+
+	int CutNum = 4;
+	int Cut[4];
+
 	Point TextureSize = Point(256, 256);		///	‰æ‘œ‚ÌƒTƒCƒY
-	Point TexturePos;	///	‰æ‘œ‚ÌêŠ
-	Point MoveTexturePos;	///	‰æ‘œ‚ÌêŠ
+	Point StopTexturePos[MOVEDIREC::DIREC];			///	‰æ‘œ‚ÌêŠ
+	Point MoveTexturePos[MOVEDIREC::DIREC][4];	///	‰æ‘œ‚ÌêŠ
+	Point StopTexture;				///	‰æ‘œ
+	Point MoveTexture;			///	‰æ‘œ
 	int GraphicChangeCounts;
 
 public:

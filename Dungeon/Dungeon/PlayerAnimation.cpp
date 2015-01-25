@@ -12,8 +12,9 @@
 
 CPlayerAnimation::CPlayerAnimation(std::shared_ptr<CTask> task) :
 CPlayerState(task),
-TexturePos(Point(1, 1)),
-MoveTexturePos(Point(2, 2)),
+//MoveTexturePos(Point(2, 2)),
+StopTexture(Point(1,1)),
+MoveTexture(Point(2, 2)),
 GraphicChangeCounts(0)
 {
 
@@ -25,31 +26,41 @@ void CPlayerAnimation::Start()
 	TextureAsset::Register(L"Walk", L"engine/data/texture/Character/MainCharacter/shujinkouaruki.png");
 	TextureAsset::Register(L"Attack", L"engine/data/texture/Character/MainCharacter/attack.png");
 	TextureAsset::Register(L"Attack_Efect", L"engine/data/texture/Character/MainCharacter/エフェク.png");
+
+	StopTexturePos[MOVEDIREC::LEFT] = Point(0, 1);
+	StopTexturePos[MOVEDIREC::RIGHT] = Point(2, 1);
+	StopTexturePos[MOVEDIREC::UP] = Point(1, 0);
+	StopTexturePos[MOVEDIREC::DOWN] = Point(1, 2);
+
+	Cut[0] = 0; Cut[1] = 1; Cut[2] = 2; Cut[3] = 1;
+	
+	for (int i = MOVEDIREC::LEFT; i < MOVEDIREC::UP; i++)
+	{
+		for (int j = 0; j < CutNum; j++)
+		{
+			MoveTexturePos[i][j] = Point(Cut[j] + i * CutNum, CutNum - 1);
+		}
+	}
+	for (int i = MOVEDIREC::UP; i < MOVEDIREC::DIREC; i++)
+	{
+		for (int j = 0; j < CutNum; j++)
+		{
+			MoveTexturePos[i][j] = Point(CutNum - 1, Cut[j] + (i - MOVEDIREC::UP) * CutNum);
+		}
+	}
 }
 void CPlayerAnimation::Left()
 {
 	if (CharacterController::LeftMoveKey())
 	{
-		TexturePos = Point(0, 1);
-
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(0, 3);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(1, 3);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(2, 3);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 3);
+		Texture(MOVEDIREC::LEFT);
 	}
 }
 void CPlayerAnimation::Right()
 {
 	if (CharacterController::RightMoveKey())
 	{
-		TexturePos = Point(2, 1);
-
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(6, 3);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(5, 3);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(4, 3);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 3);
+		Texture(MOVEDIREC::RIGHT);
 	}
 }
 
@@ -57,13 +68,7 @@ void CPlayerAnimation::Up()
 {
 	if (CharacterController::UpMoveKey())
 	{
-		TexturePos = Point(1, 0);
-
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(3, 0);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(3, 1);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(3, 2);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(3, 1);
+		Texture(MOVEDIREC::UP);
 	}
 }
 
@@ -71,13 +76,21 @@ void CPlayerAnimation::Down()
 {
 	if (CharacterController::DownMoveKey())
 	{
-		TexturePos = Point(1, 2);
+		Texture(MOVEDIREC::DOWN);
+	}
+}
+void CPlayerAnimation::Texture(MOVEDIREC Direc)
+{
+	StopTexture = StopTexturePos[Direc];
 
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(3, 6);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(3, 5);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(3, 4);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(3, 5);
+	GraphicChangeCounts++;
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (GraphicChangeCounts % 40 >= i * 10 && GraphicChangeCounts % 40 < (i + 1) * 10)
+		{
+			MoveTexture = MoveTexturePos[Direc][i];
+		}
 	}
 }
 void CPlayerAnimation::Update()
@@ -96,16 +109,17 @@ void CPlayerAnimation::Draw()
 	if (CharacterController::RightMoveKey() || CharacterController::LeftMoveKey()
 		|| CharacterController::UpMoveKey() || CharacterController::DownMoveKey())
 	{
-		Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Walk")(TextureSize.x * MoveTexturePos.x, TextureSize.y * MoveTexturePos.y, TextureSize.x, TextureSize.y)).draw();
-	}
-	else if (CharacterController::AttackKey())
-	{
-		Rect(player_atk->transform.GetPos(), player_atk->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-		Rect(player_atk->transform.GetPos(), player_atk->transform.GetScale())(TextureAsset(L"Attack_Efect")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-		Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+		Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Walk")(TextureSize.x * MoveTexture.x, TextureSize.y * MoveTexture.y, TextureSize.x, TextureSize.y)).draw();
 	}
 	else
 	{
-		Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"TaChi")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+		Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"TaChi")(TextureSize.x * StopTexture.x, TextureSize.y * StopTexture.y, TextureSize.x, TextureSize.y)).draw();
 	}
+	if (CharacterController::AttackKey())
+	{
+		Rect(player_atk->transform.GetPos(), player_atk->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * StopTexture.x, TextureSize.y * StopTexture.y, TextureSize.x, TextureSize.y)).draw();
+		Rect(player_atk->transform.GetPos(), player_atk->transform.GetScale())(TextureAsset(L"Attack_Efect")(TextureSize.x * StopTexture.x, TextureSize.y * StopTexture.y, TextureSize.x, TextureSize.y)).draw();
+		Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"Attack")(TextureSize.x * StopTexture.x, TextureSize.y * StopTexture.y, TextureSize.x, TextureSize.y)).draw();
+	}
+	
 }

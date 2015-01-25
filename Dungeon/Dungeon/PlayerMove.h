@@ -22,17 +22,6 @@ private:
 
 	State state;
 
-	///	•ûŒü
-	enum  MOVEDIREC{
-		RIGHT,
-		LEFT,
-		UP,
-		DOWN,
-
-		DIREC,
-	};
-
-
 public:
 	CPlayerMove(std::shared_ptr<CTask> task);
 
