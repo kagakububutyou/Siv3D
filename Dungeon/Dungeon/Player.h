@@ -11,6 +11,7 @@
 
 class CPlayerMove;
 class CPlayerAttack;
+class CPlayerAnimation;
 
 class CPlayer :public CActor
 {
@@ -29,6 +30,7 @@ public:
 	bool behavior;
 
 private:
+	std::unique_ptr<CPlayerAnimation> anime;	///	アニメーション
 	std::unique_ptr<CPlayerMove> move;	///	移動処理
 	std::unique_ptr<CPlayerAttack> attack;	///	攻撃
 

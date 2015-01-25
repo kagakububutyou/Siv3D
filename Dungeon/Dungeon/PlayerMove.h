@@ -14,10 +14,6 @@ private:
 	void Left();			///	左移動
 	void Up();			//	/	上移動
 	void Down();		///	下移動
-	void RightUp();	///	右上
-	void RightDown();///	右下
-	void LeftUp();		///	左上
-	void LeftDown();	///	左下
 	void Stop();			///	停止
 	void VelocitySpeed(const Point speed);	///	移動量設定
 
@@ -27,24 +23,15 @@ private:
 	State state;
 
 	///	方向
-	enum class MOVEDIREC{
-		Right,
-		Left,
-		Up,
-		Down,
-		RightUp,
-		RightDown,
-		LeftUp,
-		LeftDown,
-		Stop,
+	enum  MOVEDIREC{
+		RIGHT,
+		LEFT,
+		UP,
+		DOWN,
+
+		DIREC,
 	};
 
-	MOVEDIREC MoveDirec;
-
-	Point TextureSize = Point(256, 256);		///	画像のサイズ
-	Point MoveTexturePos;	///	画像の場所
-	Point TexturePos;	///	画像の場所
-	int GraphicChangeCounts;
 
 public:
 	CPlayerMove(std::shared_ptr<CTask> task);
@@ -60,6 +47,6 @@ public:
 	///	移動量を取得
 	Point GetVelocity()const { return velocity; }
 
-	MOVEDIREC GetMoveDirec() const{ return MoveDirec; }
+	//MOVEDIREC GetMoveDirec() const{ return MoveDirec; }
 
 };

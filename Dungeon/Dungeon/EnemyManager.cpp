@@ -71,6 +71,7 @@ void CEnemyManager::Start()
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::SnakeCopterPosition, snake_copter_atk, std::make_shared<CSnakeCopterAttack>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
+			///	‹U•¨
 			map_read->ObjectRead(Point(x, y), CEnemyManager::TatteredIdPosition, tattered_id, std::make_shared<CTatteredId>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::TatteredIdPosition, tattered_id_atk, std::make_shared<CTatteredIdAttack>(task,

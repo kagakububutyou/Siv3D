@@ -24,38 +24,17 @@ CPlayerMove::CPlayerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
 state(State::Live),
 velocity(Point(0, 0)),
-speed(Point(8.0f, 8.0f)),
-MoveTexturePos(Point(2,2)),
-TexturePos(Point(1, 1)),
-GraphicChangeCounts(0)
+speed(Point(8.0f, 8.0f))
 {
 
 }
 void CPlayerMove::Start()
 {
-	TextureAsset::Register(L"TaChi", L"engine/data/texture/Character/MainCharacter/shujinkoutachi.png");
-	TextureAsset::Register(L"Walk", L"engine/data/texture/Character/MainCharacter/shujinkouaruki.png");
-	TextureAsset::Register(L"Attack", L"engine/data/texture/Character/MainCharacter/attack.png");
-	TextureAsset::Register(L"Attack_Efect", L"engine/data/texture/Character/MainCharacter/エフェク.png");
+	
 
 }
 void CPlayerMove::VelocitySpeed(const Point speed)
 {
-	/*
-	static int hoge = 0;
-
-	hoge++;
-
-	if (hoge % 60 == 0)
-	{
-	velocity = speed;
-	}
-	else
-	{
-	velocity = Point(0,0);
-	}
-	//*/
-
 	velocity = speed;
 }
 
@@ -64,15 +43,6 @@ void CPlayerMove::Left()
 	if (CharacterController::LeftMoveKey())
 	{
 		VelocitySpeed(Point(-speed.x, 0));
-		TexturePos = Point(0, 1);
-
-		MoveDirec = MOVEDIREC::Left;
-
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(0, 3);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(1, 3);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(2, 3);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 3);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
@@ -84,13 +54,6 @@ void CPlayerMove::Right()
 	if (CharacterController::RightMoveKey())
 	{
 		VelocitySpeed(Point(speed.x, 0));
-		TexturePos = Point(2, 1);
-
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(6, 3);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(5, 3);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(4, 3);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 3);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
@@ -103,13 +66,6 @@ void CPlayerMove::Up()
 	if (CharacterController::UpMoveKey())
 	{
 		VelocitySpeed(Point(0, -speed.y));
-		TexturePos = Point(1, 0);
-
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(3, 0);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(3, 1);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(3, 2);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(3, 1);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
@@ -121,85 +77,6 @@ void CPlayerMove::Down()
 	if (CharacterController::DownMoveKey())
 	{
 		VelocitySpeed(Point(0, speed.y));
-		TexturePos = Point(1, 2);
-
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(3, 6);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(3, 5);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(3, 4);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(3, 5);
-
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
-	}
-}
-
-void CPlayerMove::RightUp()
-{
-	if (CharacterController::RightMoveKey() && CharacterController::UpMoveKey())
-	{
-		VelocitySpeed(Point(speed.x/2, -speed.y/2));
-		TexturePos = Point(2, 0);
-
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(6, 0);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(5, 1);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(4, 2);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 1);
-
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
-	}
-}
-
-void CPlayerMove::RightDown()
-{
-	if (CharacterController::RightMoveKey() && CharacterController::DownMoveKey())
-	{
-		VelocitySpeed(Point(speed.x/2, speed.y/2));
-		TexturePos = Point(2, 2);
-
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(6, 6);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(5, 5);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(4, 4);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(5, 5);
-
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
-	}
-}
-
-void CPlayerMove::LeftUp()
-{
-	if (CharacterController::LeftMoveKey() && CharacterController::UpMoveKey())
-	{
-		VelocitySpeed(Point(-speed.x/2, -speed.y/2));
-		TexturePos = Point(0, 0);
-
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(0, 0);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(1, 1);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(2, 2);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 1);
-
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
-	}
-}
-
-void CPlayerMove::LeftDown()
-{
-	if (CharacterController::LeftMoveKey() && CharacterController::DownMoveKey())
-	{
-		VelocitySpeed(Point(-speed.x/2, speed.y/2));
-		TexturePos = Point(0, 2);
-
-		GraphicChangeCounts++;
-		if (GraphicChangeCounts % 40 >= 0 && GraphicChangeCounts % 40 <  10) MoveTexturePos = Point(0, 6);
-		if (GraphicChangeCounts % 40 >= 10 && GraphicChangeCounts % 40 <  20) MoveTexturePos = Point(1, 5);
-		if (GraphicChangeCounts % 40 >= 20 && GraphicChangeCounts % 40 <  30) MoveTexturePos = Point(2, 4);
-		if (GraphicChangeCounts % 40 >= 30 && GraphicChangeCounts % 40 <  40) MoveTexturePos = Point(1, 5);
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
@@ -470,16 +347,12 @@ void CPlayerMove::WallCollision()
 }
 void CPlayerMove::Update()
 {
-	//if (state == State::None) return;
 	
 	Right(),
 	Left();
 	Up();
 	Down();
-	//RightUp();
-	//RightDown();
-	//LeftUp();
-	//LeftDown();
+
 	Stop();
 
 	WallCollision();
@@ -489,6 +362,7 @@ void CPlayerMove::Update()
 }
 void CPlayerMove::Draw()
 {
+	/*
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
 	auto player_atk = task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0);
 
@@ -525,4 +399,5 @@ void CPlayerMove::Draw()
 			Rect(player->transform.GetPos(), player->transform.GetScale())(TextureAsset(L"TaChi")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
 		}
 	}
+	//*/
 }

@@ -1,5 +1,6 @@
 //PlayerAttack
 #pragma once
+#include "Actor.h"
 #include "PlayerState.h"
 #include "Transform.h"
 #include "Scene.h"

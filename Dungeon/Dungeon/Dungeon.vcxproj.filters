@@ -255,6 +255,9 @@
     <ClCompile Include="TatteredIdMove.cpp">
       <Filter>Enemy\TatteredId</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerAnimation.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon.ico">
@@ -628,6 +631,9 @@
     </ClInclude>
     <ClInclude Include="TatteredIdMove.h">
       <Filter>Enemy\TatteredId</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAnimation.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
