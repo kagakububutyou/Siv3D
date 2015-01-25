@@ -15,17 +15,28 @@ public:
 	void Start();
 	void Update();
 	void Draw();
-	void OnCollisionStart();
-	void Finish();
-	void OnCollision();
-	//Transform transform;	///<	座標、サイズ、回転
+	
 
 	bool isCollision;	///<	あたり判定がおこっているかどうか
+
+	enum EnemyName
+	{
+		Patroller,
+		SnakeCopter,
+		TatteredId,
+		Battery,
+
+		EnemyMax,
+	};
+
+	//bool isHit[EnemyName::EnemyMax];
+
+	///*
 	bool isHit1;
 	bool isHit2;
 	bool isHit3;
 	bool isHit4;
-
+	//*/
 	bool isEnemy1;
 	bool isEnemy2;
 	bool isEnemy3;
@@ -37,15 +48,22 @@ private:
 
 	void Create();		///	生成
 
-	void PushKey();
+	void PushKey();				///	攻撃の方向
+	void OnCollision();			///	当たり判定
+
+	void ReadColors();			///	色の読み込み
+	bool ReadColor;				///	読み込んだかどうか
+
+	void DrawHpBar();
+
 
 	Point TextureSize = Point(256, 256);		///	画像のサイズ
 	Point TexturePos;	///	画像の場所
-
+	///	HPの色
 	static const int ColorMax = 7;
-
 	ColorF Color[ColorMax];
 
+	///	キー入力
 	enum KeyNum
 	{
 		left,
@@ -53,11 +71,10 @@ private:
 		up,
 		down,
 
-		max,
+		KeyMax,
 	};
-
-	bool KeyPressed[KeyNum::max];
-	Point TransformPoint[KeyNum::max];
+	bool KeyPressed[KeyNum::KeyMax];
+	Point TransformPoint[KeyNum::KeyMax];
 
 	const Font font;
 	Font *Logo;	///	ロゴ

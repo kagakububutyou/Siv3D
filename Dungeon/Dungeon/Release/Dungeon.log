@@ -1,8 +1,35 @@
-﻿2015/01/21 12:11:49 にビルドを開始しました。
+﻿2015/01/25 10:46:33 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\教材\審査会出展作品\チーム制作\Dungeon\Dungeon\Dungeon.vcxproj" (Build ターゲット)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /sdl /MP /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt PlayerAttack.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /sdl /MP /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Battery.cpp BatteryAnimation.cpp BatteryAttack.cpp BatteryMove.cpp GameManager.cpp MiniSwitchWall.cpp MiniSwitchWall1.cpp MiniSwitchWall2.cpp MiniSwitchWall3.cpp Patroller.cpp PatrollerAnimation.cpp PatrollerAttack.cpp PatrollerMove.cpp Player.cpp PlayerAttack.cpp PlayerMove.cpp SnakeCopter.cpp SnakeCopterAnimation.cpp SnakeCopterAttack.cpp SnakeCopterMove.cpp SwitchWall.cpp SwitchWall1.cpp SwitchWall2.cpp SwitchWall3.cpp TatteredId.cpp TatteredIdAnimation.cpp TatteredIdAttack.cpp TatteredIdMove.cpp
+         Battery.cpp
+         BatteryAnimation.cpp
+         BatteryAttack.cpp
+         BatteryMove.cpp
+         GameManager.cpp
+         MiniSwitchWall.cpp
+         MiniSwitchWall1.cpp
+         MiniSwitchWall2.cpp
+         MiniSwitchWall3.cpp
+         Patroller.cpp
+         PatrollerAnimation.cpp
+         PatrollerAttack.cpp
+         PatrollerMove.cpp
+         Player.cpp
          PlayerAttack.cpp
+         PlayerMove.cpp
+         SnakeCopter.cpp
+         SnakeCopterAnimation.cpp
+         SnakeCopterAttack.cpp
+         SnakeCopterMove.cpp
+         SwitchWall.cpp
+         SwitchWall1.cpp
+         SwitchWall2.cpp
+         SwitchWall3.cpp
+         TatteredId.cpp
+         TatteredIdAnimation.cpp
+         TatteredIdAttack.cpp
+         TatteredIdMove.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\教材\審査会出展作品\チーム制作\Dungeon\Release\Dungeon.lib" /MACHINE:X86 /SAFESEH Release\RC.res
          Release\Actor.obj
@@ -67,4 +94,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:56.34
+経過時間 00:04:41.54

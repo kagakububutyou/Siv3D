@@ -340,8 +340,36 @@ void CPlayerMove::WallCollision()
 			}
 		}
 	}
-	
-	
+	/*
+	for (int i = 0; i < task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->EnemyMax; i++)
+	{
+		if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit[i])
+		{
+			auto patroller = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0);
+			if (player->transform.GetPos().x < patroller->transform.GetPos().x - pos.x)
+			{
+				VelocitySpeed(Point(-speed.x * 4, 0));
+				return;
+			}
+			if (player->transform.GetPos().x > patroller->transform.GetPos().x - pos.x)
+			{
+				VelocitySpeed(Point(speed.x * 4, 0));
+				return;
+			}
+			if (player->transform.GetPos().y < patroller->transform.GetPos().y - pos.y)
+			{
+				VelocitySpeed(Point(0, -speed.y * 4));
+				return;
+			}
+			if (player->transform.GetPos().y > patroller->transform.GetPos().y - pos.y)
+			{
+				VelocitySpeed(Point(0, speed.y * 4));
+				return;
+			}
+		}
+	}
+	//*/
+	///*
 	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit1)
 	{
 		auto patroller = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0);
@@ -438,6 +466,7 @@ void CPlayerMove::WallCollision()
 			return;
 		}
 	}
+	//*/
 }
 void CPlayerMove::Update()
 {
