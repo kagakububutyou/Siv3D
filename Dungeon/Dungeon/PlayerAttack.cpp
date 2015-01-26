@@ -20,7 +20,7 @@
 CPlayerAttack::CPlayerAttack(std::shared_ptr<CTask> task) :
 CActor(task, Transform(Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2), Point(CMapRead::Size, CMapRead::Size), Point(0, 0)), state),
 isCollision(false),
-isEnemy1(false),isEnemy2(false),isEnemy3(false),isEnemy4(false),
+//isEnemy1(false),isEnemy2(false),isEnemy3(false),isEnemy4(false),
 font(30),
 ReadColor(false)
 {
@@ -38,9 +38,9 @@ void CPlayerAttack::Start()
 	TransformPoint[KeyNum::up]		= Point(player->transform.GetPos().x, player->transform.GetPos().y - player->transform.GetScale().y);
 	TransformPoint[KeyNum::down]	= Point(player->transform.GetPos().x, player->transform.GetPos().y + player->transform.GetScale().y);
 
-	for (int i = 0; i < EnemyName::EnemyMax; i++)
+	for (int i = 0; i < EnemyName::Max; i++)
 	{
-		isHits[i] = false;
+		isHits[i] = false; isEnemys[i] = false;
 	}
 }
 ///	“–‚½‚è”»’è‚Ì¶¬
@@ -94,11 +94,11 @@ void CPlayerAttack::OnCollision()
 	Point scale[] = { patroller_scale, snake_copter_scale, tattered_id_scale, battery_scale };
 	bool Collision[] = { patroller_isCollision, snake_copter_isCollision, tattered_id_isCollision, battery_isCollision };
 
-	for (int i = 0; i < EnemyName::EnemyMax; i++)
+	for (int i = 0; i < EnemyName::Max; i++)
 	{
 		isHits[i] = false;
 	}
-	for (int i = 0; i < EnemyName::EnemyMax; i++)
+	for (int i = 0; i < EnemyName::Max; i++)
 	{
 		if (Collision::RectToRect(player_pos, player_scale, pos[i], scale[i])
 			&& Collision[i])

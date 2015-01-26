@@ -129,7 +129,10 @@ void CPlayerMove::WallCollision()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
 	auto scroll = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
-	///*
+	std::vector<std::shared_ptr<CActor>> walls[]	= {	task->GetActor(CGameManager::SwitchWall),
+																		task->GetActor(CGameManager::SwitchWall1),
+																		task->GetActor(CGameManager::SwitchWall2),
+																		task->GetActor(CGameManager::SwitchWall3) };
 	for (auto& floor : task->GetActor(CGameManager::WallName))
 	{
 		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
@@ -138,40 +141,16 @@ void CPlayerMove::WallCollision()
 			CollisionMoveDirec(player->transform.GetPos(), floor->transform.GetPos(), scroll);
 		}
 	}
-	for (auto& wall : task->GetActor(CGameManager::SwitchWall))
+	for (int i = 0; i < CPlayerAttack::EnemyName::Max; i++)
 	{
-		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
-			wall->transform.GetPos() - scroll, wall->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy1)
+		for (auto& wall : walls[i])
 		{
-			CollisionMoveDirec(player->transform.GetPos(), wall->transform.GetPos(), scroll);
-		}
-	}
-	for (auto& wall1 : task->GetActor(CGameManager::SwitchWall1))
-	{
-		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
-			wall1->transform.GetPos() - scroll, wall1->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy2)
-		{
-			CollisionMoveDirec(player->transform.GetPos(), wall1->transform.GetPos(), scroll);
-		}
-	}
-	for (auto& wall2 : task->GetActor(CGameManager::SwitchWall2))
-	{
-		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
-			wall2->transform.GetPos() - scroll, wall2->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy3)
-		{
-			CollisionMoveDirec(player->transform.GetPos(), wall2->transform.GetPos(), scroll);
-		}
-	}
-	for (auto& wall3 : task->GetActor(CGameManager::SwitchWall3))
-	{
-		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
-			wall3->transform.GetPos() - scroll, wall3->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy4)
-		{
-			CollisionMoveDirec(player->transform.GetPos(), wall3->transform.GetPos(), scroll);
+			if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
+				wall->transform.GetPos() - scroll, wall->transform.GetScale())
+				&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[i])
+			{
+				CollisionMoveDirec(player->transform.GetPos(), wall->transform.GetPos(), scroll);
+			}
 		}
 	}
 }
@@ -185,7 +164,7 @@ void CPlayerMove::knockBack()
 	auto b = task->GetComponent<CBattery>(CEnemyManager::Battery, 0)->transform.GetPos();
 
 	Point enemy[] = { patroller, s, t, b };
-	for (int i = 0; i < EnemyName::EnemyMax; i++)
+	for (int i = 0; i < EnemyName::Max; i++)
 	{
 		if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHits[i])
 		{

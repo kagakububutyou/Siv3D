@@ -49,7 +49,7 @@ void CPatroller::OnCollision()
 	}
 	if (state == State::None)
 	{
-		atk->isEnemy1 = true;
+		atk->isEnemys[CPlayerAttack::EnemyName::Patroller] = true;
 	}
 }
 void CPatroller::Update()

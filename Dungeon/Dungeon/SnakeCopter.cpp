@@ -48,7 +48,7 @@ void CSnakeCopter::OnCollision()
 	}
 	if (state == State::None)
 	{
-		atk->isEnemy2 = true;
+		atk->isEnemys[CPlayerAttack::EnemyName::SnakeCopter] = true;
 	}
 }
 void CSnakeCopter::Update()

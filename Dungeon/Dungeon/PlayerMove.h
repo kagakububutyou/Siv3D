@@ -27,7 +27,7 @@ private:
 		TatteredId,
 		Battery,
 
-		EnemyMax,
+		Max,
 	};
 
 	///	•ûŒü

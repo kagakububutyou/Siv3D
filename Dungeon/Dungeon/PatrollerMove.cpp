@@ -119,7 +119,7 @@ void CPatrollerMove::WallCollision()
 	{
 		if (Collision::RectToRect(patroller->transform.GetPos(), patroller->transform.GetScale(),
 			wall->transform.GetPos(), wall->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy1)
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::Patroller])
 		{
 			if (patroller->transform.GetPos().y > wall->transform.GetPos().y)
 			{
@@ -143,7 +143,7 @@ void CPatrollerMove::WallCollision()
 	{
 		if (Collision::RectToRect(patroller->transform.GetPos(), patroller->transform.GetScale(),
 			wall1->transform.GetPos(), wall1->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy2)
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::SnakeCopter])
 		{
 			if (patroller->transform.GetPos().y > wall1->transform.GetPos().y)
 			{
@@ -167,7 +167,7 @@ void CPatrollerMove::WallCollision()
 	{
 		if (Collision::RectToRect(patroller->transform.GetPos(), patroller->transform.GetScale(),
 			wall2->transform.GetPos(), wall2->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy3)
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::TatteredId])
 		{
 			if (patroller->transform.GetPos().y > wall2->transform.GetPos().y)
 			{
@@ -191,7 +191,7 @@ void CPatrollerMove::WallCollision()
 	{
 		if (Collision::RectToRect(patroller->transform.GetPos(), patroller->transform.GetScale(),
 			wall3->transform.GetPos(), wall3->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy4)
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::Battery])
 		{
 			if (patroller->transform.GetPos().y > wall3->transform.GetPos().y)
 			{

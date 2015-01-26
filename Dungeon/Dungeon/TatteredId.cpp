@@ -49,7 +49,7 @@ void CTatteredId::OnCollision()
 	}
 	if (state == State::None)
 	{
-		atk->isEnemy3 = true;
+		atk->isEnemys[CPlayerAttack::EnemyName::TatteredId] = true;
 	}
 }
 void CTatteredId::Update()

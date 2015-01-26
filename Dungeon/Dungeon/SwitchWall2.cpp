@@ -28,7 +28,7 @@ void CSwitchWall2::Draw()
 {
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
 
-	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy3)
+	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::TatteredId])
 	{
 		Rect(transform.GetPos() - pos, transform.GetScale())(TextureAsset(L"Floor")).draw();
 	}

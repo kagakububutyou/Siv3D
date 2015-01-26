@@ -22,20 +22,22 @@ public:
 
 	enum EnemyName
 	{
-		Patroller,
-		SnakeCopter,
-		TatteredId,
-		Battery,
+		Patroller,		///	isEnemy1
+		SnakeCopter,	///	isEnemy2
+		TatteredId,		///	isEnemy3
+		Battery,			///	isEnemy4
 
-		EnemyMax,
+		Max,
 	};
 
-	bool isHits[EnemyName::EnemyMax];			///	“–‚½‚è”»’è
-
+	bool isHits[EnemyName::Max];			///	“–‚½‚è”»’è
+	bool isEnemys[EnemyName::Max];
+	/*
 	bool isEnemy1;
 	bool isEnemy2;
 	bool isEnemy3;
 	bool isEnemy4;
+	//*/
 
 private:
 	

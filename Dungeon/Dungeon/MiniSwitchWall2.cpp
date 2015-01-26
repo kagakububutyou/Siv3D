@@ -18,13 +18,13 @@ void CMiniSwitchWall2::Start()
 void CMiniSwitchWall2::JudgmentDisplayMiniSwitchWall2()
 {
 	if (CharacterController::DisplayMiniMapKey() && task->GetComponent<CMiniMap>("mini_map", 0)->DisplayMiniMap == false
-		&& task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy3 == true)
+		&& task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::TatteredId] == true)
 	{
 		DisplayMiniSwitchWall2 = false;
 		return;
 	}
 	if (CharacterController::DisplayMiniMapKey() && task->GetComponent<CMiniMap>("mini_map", 0)->DisplayMiniMap == true
-		&& task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy3 == true)
+		&& task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::TatteredId] == true)
 	{
 		DisplayMiniSwitchWall2 = true;
 		return;

@@ -49,7 +49,7 @@ void CBattery::OnCollision()
 	}
 	if (state == State::None)
 	{
-		atk->isEnemy4 = true;
+		atk->isEnemys[CPlayerAttack::EnemyName::Battery] = true;
 	}
 }
 void CBattery::Update()
