@@ -175,28 +175,23 @@ void CPlayerMove::knockBack()
 void CPlayerMove::EnemyCollision()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto scroll = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	///*
+	std::vector<std::shared_ptr<CActor>> enemys[]	= { task->GetActor(CEnemyManager::Patroller) ,
+																			 task->GetActor(CEnemyManager::SnakeCopter) ,
+																			 task->GetActor(CEnemyManager::TatteredId),
+																			 task->GetActor(CEnemyManager::Battery)};
+																			 //*/
 
-	for (auto& enemy : task->GetActor(CGameManager::EnemyManager))
+	for (int i = 0; i < CPlayerAttack::EnemyName::Max; i++)
 	{
-		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
-			enemy->transform.GetPos() - pos, enemy->transform.GetScale()))
+		for (auto& enemy : enemys[i])
 		{
-			if (player->transform.GetPos().y > enemy->transform.GetPos().y - pos.y)
+			if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
+				enemy->transform.GetPos() - scroll, enemy->transform.GetScale())
+				&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[i])
 			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (enemy->transform.GetPos().y - pos.y > player->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (player->transform.GetPos().x > enemy->transform.GetPos().x - pos.x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (enemy->transform.GetPos().x - pos.x > player->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
+				CollisionMoveDirec(player->transform.GetPos(), enemy->transform.GetPos(), scroll);
 			}
 		}
 	}
@@ -212,7 +207,7 @@ void CPlayerMove::Update()
 	Stop();
 
 	WallCollision();
-	EnemyCollision();
+	//EnemyCollision();
 	knockBack();
 		
 	task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.Translate(Point(velocity.x / CMiniMap::MapScale, velocity.y / CMiniMap::MapScale));

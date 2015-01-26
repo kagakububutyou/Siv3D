@@ -32,12 +32,6 @@ public:
 
 	bool isHits[EnemyName::Max];			///	“–‚½‚è”»’è
 	bool isEnemys[EnemyName::Max];
-	/*
-	bool isEnemy1;
-	bool isEnemy2;
-	bool isEnemy3;
-	bool isEnemy4;
-	//*/
 
 private:
 	
