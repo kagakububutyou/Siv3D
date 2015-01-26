@@ -20,13 +20,13 @@
 CPlayerAttack::CPlayerAttack(std::shared_ptr<CTask> task) :
 CActor(task, Transform(Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2), Point(CMapRead::Size, CMapRead::Size), Point(0, 0)), state),
 isCollision(false),
-isHit1(false), isHit2(false), isHit3(false), isHit4(false),
 isEnemy1(false),isEnemy2(false),isEnemy3(false),isEnemy4(false),
 font(30),
 ReadColor(false)
 {
 
 }
+///	初期化
 void CPlayerAttack::Start()
 {
 	TextureAsset::Register(L"huga", L"engine/data/texture/Character/MainCharacter/efect_damage.png");
@@ -38,7 +38,12 @@ void CPlayerAttack::Start()
 	TransformPoint[KeyNum::up]		= Point(player->transform.GetPos().x, player->transform.GetPos().y - player->transform.GetScale().y);
 	TransformPoint[KeyNum::down]	= Point(player->transform.GetPos().x, player->transform.GetPos().y + player->transform.GetScale().y);
 
+	for (int i = 0; i < EnemyName::EnemyMax; i++)
+	{
+		isHits[i] = false;
+	}
 }
+///	当たり判定の生成
 void CPlayerAttack::Create()
 {
 	if (CharacterController::AttackKey())
@@ -48,13 +53,14 @@ void CPlayerAttack::Create()
 	}
 	isCollision = false;
 }
+///	当たり判定の場所
 void CPlayerAttack::PushKey()
 {
 	
-	KeyPressed[KeyNum::left] = CharacterController::LeftMoveKey();
-	KeyPressed[KeyNum::right] = CharacterController::RightMoveKey();
-	KeyPressed[KeyNum::up] = CharacterController::UpMoveKey();
-	KeyPressed[KeyNum::down] = CharacterController::DownMoveKey();
+	KeyPressed[KeyNum::left]	= CharacterController::LeftMoveKey();
+	KeyPressed[KeyNum::right]	= CharacterController::RightMoveKey();
+	KeyPressed[KeyNum::up]		= CharacterController::UpMoveKey();
+	KeyPressed[KeyNum::down]	= CharacterController::DownMoveKey();
 	for (int i = 0; i < KeyNum::KeyMax; i++)
 	{
 		if (KeyPressed[i] == true)
@@ -63,47 +69,47 @@ void CPlayerAttack::PushKey()
 		}
 	}
 }
+///	当たっているかどうか
 void CPlayerAttack::OnCollision()
 {
-	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0));
-	auto patroller = task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack, 0);
-	auto snake_copter = task->GetComponent<CSnakeCopterAttack>(CEnemyManager::SnakeCopterAttack, 0);
-	auto tattered_id = task->GetComponent<CTatteredIdAttack>(CEnemyManager::TatteredIdAttack, 0);
-	auto battery = task->GetComponent<CBatteryAttack>(CEnemyManager::BatteryAttack, 0);
+	auto player_pos = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
+	auto player_scale = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetScale());
 
-	isHit1 = false; isHit2 = false; isHit3 = false; isHit4 = false;
+	auto patroller_pos = task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack, 0)->transform.GetPos();
+	auto snake_copter_pos = task->GetComponent<CSnakeCopterAttack>(CEnemyManager::SnakeCopterAttack, 0)->transform.GetPos();
+	auto tattered_id_pos = task->GetComponent<CTatteredIdAttack>(CEnemyManager::TatteredIdAttack, 0)->transform.GetPos();	
+	auto battery_pos = task->GetComponent<CBatteryAttack>(CEnemyManager::BatteryAttack, 0)->transform.GetPos();
 
-	if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(), patroller->transform.GetPos(), patroller->transform.GetScale())
-		&& patroller->isCollision)
+	auto patroller_scale = task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack, 0)->transform.GetScale();
+	auto snake_copter_scale = task->GetComponent<CSnakeCopterAttack>(CEnemyManager::SnakeCopterAttack, 0)->transform.GetScale();
+	auto tattered_id_scale = task->GetComponent<CTatteredIdAttack>(CEnemyManager::TatteredIdAttack, 0)->transform.GetScale();
+	auto battery_scale = task->GetComponent<CBatteryAttack>(CEnemyManager::BatteryAttack, 0)->transform.GetScale();
+
+	auto patroller_isCollision = task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack, 0)->isCollision;
+	auto snake_copter_isCollision = task->GetComponent<CSnakeCopterAttack>(CEnemyManager::SnakeCopterAttack, 0)->isCollision;
+	auto tattered_id_isCollision = task->GetComponent<CTatteredIdAttack>(CEnemyManager::TatteredIdAttack, 0)->isCollision;
+	auto battery_isCollision = task->GetComponent<CBatteryAttack>(CEnemyManager::BatteryAttack, 0)->isCollision;
+
+	Point pos[] = { patroller_pos, snake_copter_pos, tattered_id_pos, battery_pos };
+	Point scale[] = { patroller_scale, snake_copter_scale, tattered_id_scale, battery_scale };
+	bool Collision[] = { patroller_isCollision, snake_copter_isCollision, tattered_id_isCollision, battery_isCollision };
+
+	for (int i = 0; i < EnemyName::EnemyMax; i++)
 	{
-		player->HitAttack();
-		isHit1 = true;
-		return;
+		isHits[i] = false;
 	}
-	
-	if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(), snake_copter->transform.GetPos(), snake_copter->transform.GetScale())
-		&& snake_copter->isCollision)
+	for (int i = 0; i < EnemyName::EnemyMax; i++)
 	{
-		player->HitAttack();
-		isHit2 = true;
-		return;
-	}
-	if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(), tattered_id->transform.GetPos(), tattered_id->transform.GetScale())
-		&& tattered_id->isCollision)
-	{
-		player->HitAttack();
-		isHit3 = true;
-		return;
-	}
-	//*/
-	if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(), battery->transform.GetPos(), battery->transform.GetScale())
-		&& battery->isCollision)
-	{
-		player->HitAttack();
-		isHit4 = true;
-		return;
+		if (Collision::RectToRect(player_pos, player_scale, pos[i], scale[i])
+			&& Collision[i])
+		{
+			task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
+			isHits[i] = true;
+			return;
+		}
 	}
 }
+///	アップデート
 void CPlayerAttack::Update()
 {
 	PushKey();
@@ -111,6 +117,7 @@ void CPlayerAttack::Update()
 	Create();
 	OnCollision();
 }
+///	色設定
 void CPlayerAttack::ReadColors()
 {
 	if (ReadColor) return;
@@ -126,6 +133,7 @@ void CPlayerAttack::ReadColors()
 	ReadColor = true;
 
 }
+///	HPバーの表示
 void CPlayerAttack::DrawHpBar()
 {
 	auto hp = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->GetHP();
@@ -141,6 +149,7 @@ void CPlayerAttack::DrawHpBar()
 		}
 	}
 }
+///	描画
 void CPlayerAttack::Draw()
 {
 	ReadColors();

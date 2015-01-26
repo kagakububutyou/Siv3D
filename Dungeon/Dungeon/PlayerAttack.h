@@ -13,9 +13,9 @@ class CPlayerAttack :public CActor
 public:
 	CPlayerAttack(std::shared_ptr<CTask> task);
 
-	void Start();
-	void Update();
-	void Draw();
+	void Start();		///	初期化
+	void Update();		///	更新
+	void Draw();		///	描画
 	
 
 	bool isCollision;	///<	あたり判定がおこっているかどうか
@@ -30,14 +30,8 @@ public:
 		EnemyMax,
 	};
 
-	//bool isHit[EnemyName::EnemyMax];
+	bool isHits[EnemyName::EnemyMax];			///	当たり判定
 
-	///*
-	bool isHit1;
-	bool isHit2;
-	bool isHit3;
-	bool isHit4;
-	//*/
 	bool isEnemy1;
 	bool isEnemy2;
 	bool isEnemy3;
@@ -55,8 +49,7 @@ private:
 	void ReadColors();			///	色の読み込み
 	bool ReadColor;				///	読み込んだかどうか
 
-	void DrawHpBar();
-
+	void DrawHpBar();			///	HP表示
 
 	Point TextureSize = Point(256, 256);		///	画像のサイズ
 	Point TexturePos;	///	画像の場所

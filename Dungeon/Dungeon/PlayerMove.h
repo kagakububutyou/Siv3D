@@ -20,6 +20,16 @@ private:
 	void WallCollision();			///	壁との当たり判定
 	void EnemyCollision();		///	敵との当たり判定
 
+	enum EnemyName
+	{
+		Patroller,
+		SnakeCopter,
+		TatteredId,
+		Battery,
+
+		EnemyMax,
+	};
+
 	///	方向
 	enum  MOVEDIREC{
 		LEFT,
@@ -29,7 +39,7 @@ private:
 
 		DIREC,
 	};
-
+	MOVEDIREC Direc(Point player, Point enemy, Point scroll);
 	void Move(MOVEDIREC direc);
 	void knockBack();		///	ノックバック
 

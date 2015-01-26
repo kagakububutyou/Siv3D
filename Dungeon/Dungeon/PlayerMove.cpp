@@ -24,7 +24,7 @@ CPlayerMove::CPlayerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
 state(State::Live),
 velocity(Point(0, 0)),
-speed(Point(8.0f, 8.0f))
+speed(Point(16.0f, 16.0f))
 {
 
 }
@@ -53,7 +53,6 @@ void CPlayerMove::Right()
 	{
 		Move(MOVEDIREC::RIGHT);
 	}
-	
 }
 void CPlayerMove::Up()
 {
@@ -66,10 +65,14 @@ void CPlayerMove::Down()
 {
 	if (CharacterController::DownMoveKey())
 	{
+
+		Move(MOVEDIREC::DOWN);
+		/*
 		VelocitySpeed(Point(0, speed.y));
 
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
+		//*/
 	}
 }
 void CPlayerMove::Stop()
@@ -89,7 +92,21 @@ void CPlayerMove::Move(MOVEDIREC direc)
 	task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 	task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 }
+CPlayerMove::MOVEDIREC CPlayerMove::Direc(Point player, Point enemy, Point scroll)
+{
+	int small[] = { player.x, enemy.x - scroll.x, player.y, enemy.y - scroll.y };
+	int big[] = { enemy.x - scroll.x, player.x, enemy.y - scroll.y, player.y };
+	MOVEDIREC direc[] = { MOVEDIREC::LEFT, MOVEDIREC::RIGHT, MOVEDIREC::UP, MOVEDIREC::DOWN };
 
+	for (int i = 0; i < MOVEDIREC::DIREC; i++)
+	{
+		if (small[i] < big[i])
+		{
+			return direc[i];
+		}
+	}
+	return MOVEDIREC::DOWN;
+}
 void CPlayerMove::WallCollision()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
@@ -217,106 +234,21 @@ void CPlayerMove::WallCollision()
 }
 void CPlayerMove::knockBack()
 {
-	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos();
+	auto scroll = task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos();
+	auto patroller = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0)->transform.GetPos();
+	auto s = task->GetComponent<CSnakeCopter>(CEnemyManager::SnakeCopter, 0)->transform.GetPos();
+	auto t = task->GetComponent<CTatteredId>(CEnemyManager::TatteredId, 0)->transform.GetPos();
+	auto b = task->GetComponent<CBattery>(CEnemyManager::Battery, 0)->transform.GetPos();
 
-	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit1)
+	Point enemy[] = { patroller, s, t, b };
+	for (int i = 0; i < EnemyName::EnemyMax; i++)
 	{
-		auto patroller = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0);
-		if (player->transform.GetPos().x < patroller->transform.GetPos().x - pos.x)
+		if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHits[i])
 		{
-			VelocitySpeed(Point(-speed.x * 4, 0));
-			return;
-		}
-		if (player->transform.GetPos().x > patroller->transform.GetPos().x - pos.x)
-		{
-			VelocitySpeed(Point(speed.x * 4, 0));
-			return;
-		}
-		if (player->transform.GetPos().y < patroller->transform.GetPos().y - pos.y)
-		{
-			VelocitySpeed(Point(0, -speed.y * 4));
-			return;
-		}
-		if (player->transform.GetPos().y > patroller->transform.GetPos().y - pos.y)
-		{
-			VelocitySpeed(Point(0, speed.y * 4));
-			return;
+			Move(Direc(player, enemy[i], scroll));
 		}
 	}
-	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit2)
-	{
-		auto s = task->GetComponent<CSnakeCopter>(CEnemyManager::SnakeCopter, 0);
-		if (player->transform.GetPos().x < s->transform.GetPos().x - pos.x)
-		{
-			VelocitySpeed(Point(-speed.x * 4, 0));
-			return;
-		}
-		if (player->transform.GetPos().x > s->transform.GetPos().x - pos.x)
-		{
-			VelocitySpeed(Point(speed.x * 4, 0));
-			return;
-		}
-		if (player->transform.GetPos().y < s->transform.GetPos().y - pos.y)
-		{
-			VelocitySpeed(Point(0, -speed.y * 4));
-			return;
-		}
-		if (player->transform.GetPos().y > s->transform.GetPos().y - pos.y)
-		{
-			VelocitySpeed(Point(0, speed.y * 4));
-			return;
-		}
-	}
-	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit3)
-	{
-		auto s1 = task->GetComponent<CTatteredId>(CEnemyManager::TatteredId, 0);
-		if (player->transform.GetPos().x < s1->transform.GetPos().x - pos.x)
-		{
-			VelocitySpeed(Point(-speed.x * 4, 0));
-			return;
-		}
-		if (player->transform.GetPos().x > s1->transform.GetPos().x - pos.x)
-		{
-			VelocitySpeed(Point(speed.x * 4, 0));
-			return;
-		}
-		if (player->transform.GetPos().y < s1->transform.GetPos().y - pos.y)
-		{
-			VelocitySpeed(Point(0, -speed.y * 4));
-			return;
-		}
-		if (player->transform.GetPos().y > s1->transform.GetPos().y - pos.y)
-		{
-			VelocitySpeed(Point(0, speed.y * 4));
-			return;
-		}
-	}
-	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHit4)
-	{
-		auto b = task->GetComponent<CBattery>(CEnemyManager::Battery, 0);
-		if (player->transform.GetPos().x < b->transform.GetPos().x - pos.x)
-		{
-			VelocitySpeed(Point(-speed.x * 4, 0));
-			return;
-		}
-		if (player->transform.GetPos().x > b->transform.GetPos().x - pos.x)
-		{
-			VelocitySpeed(Point(speed.x * 4, 0));
-			return;
-		}
-		if (player->transform.GetPos().y < b->transform.GetPos().y - pos.y)
-		{
-			VelocitySpeed(Point(0, -speed.y * 4));
-			return;
-		}
-		if (player->transform.GetPos().y > b->transform.GetPos().y - pos.y)
-		{
-			VelocitySpeed(Point(0, speed.y * 4));
-			return;
-		}
-	}
-	//*/
 }
 void CPlayerMove::EnemyCollision()
 {
