@@ -39,11 +39,12 @@ private:
 
 		DIREC,
 	};
-	MOVEDIREC Direc(Point player, Point enemy, Point scroll);
+	MOVEDIREC MoveDirec(Point player, Point object, Point scroll);
+	void CollisionMoveDirec(Point player, Point object, Point scroll);
 	void Move(MOVEDIREC direc);
 	void knockBack();		///	ノックバック
 
-	Point MoveDirec[MOVEDIREC::DIREC];
+	Point MoveDirecData[MOVEDIREC::DIREC];
 	Point velocity;	///	移動量
 	Point speed;		///	速度
 

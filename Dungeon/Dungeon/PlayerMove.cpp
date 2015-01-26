@@ -30,10 +30,10 @@ speed(Point(16.0f, 16.0f))
 }
 void CPlayerMove::Start()
 {
-	MoveDirec[MOVEDIREC::LEFT] = Point(-speed.x, 0);
-	MoveDirec[MOVEDIREC::RIGHT] = Point(speed.x, 0);
-	MoveDirec[MOVEDIREC::UP] = Point(0, -speed.y);
-	MoveDirec[MOVEDIREC::DOWN] = Point(0, speed.y);
+	MoveDirecData[MOVEDIREC::LEFT] = Point(-speed.x, 0);
+	MoveDirecData[MOVEDIREC::RIGHT] = Point(speed.x, 0);
+	MoveDirecData[MOVEDIREC::UP] = Point(0, -speed.y);
+	MoveDirecData[MOVEDIREC::DOWN] = Point(0, speed.y);
 
 }
 void CPlayerMove::VelocitySpeed(const Point speed)
@@ -87,15 +87,17 @@ void CPlayerMove::Stop()
 }
 void CPlayerMove::Move(MOVEDIREC direc)
 {
-	VelocitySpeed(MoveDirec[direc]);
+	//VelocitySpeed(MoveDirecData[direc]);
+
+	velocity = MoveDirecData[direc];
 
 	task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 	task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 }
-CPlayerMove::MOVEDIREC CPlayerMove::Direc(Point player, Point enemy, Point scroll)
+CPlayerMove::MOVEDIREC CPlayerMove::MoveDirec(Point player, Point object, Point scroll)
 {
-	int small[] = { player.x, enemy.x - scroll.x, player.y, enemy.y - scroll.y };
-	int big[] = { enemy.x - scroll.x, player.x, enemy.y - scroll.y, player.y };
+	int small[] = { player.x, object.x - scroll.x, player.y, object.y - scroll.y };
+	int big[] = { object.x - scroll.x, player.x, object.y - scroll.y, player.y };
 	MOVEDIREC direc[] = { MOVEDIREC::LEFT, MOVEDIREC::RIGHT, MOVEDIREC::UP, MOVEDIREC::DOWN };
 
 	for (int i = 0; i < MOVEDIREC::DIREC; i++)
@@ -107,128 +109,69 @@ CPlayerMove::MOVEDIREC CPlayerMove::Direc(Point player, Point enemy, Point scrol
 	}
 	return MOVEDIREC::DOWN;
 }
+void CPlayerMove::CollisionMoveDirec(Point player, Point object, Point scroll)
+{
+	int small[] = { player.x, object.x - scroll.x, player.y, object.y - scroll.y };
+	int big[] = { object.x - scroll.x, player.x, object.y - scroll.y, player.y };
+	//MOVEDIREC direc[] = { MOVEDIREC::RIGHT, MOVEDIREC::LEFT, MOVEDIREC::DOWN, MOVEDIREC::UP};
+	Point direc[] = { Point(-speed.x, 0), Point(speed.x, 0), Point(0, -speed.y), Point(0, speed.y) };
+	for (int i = 0; i < MOVEDIREC::DIREC; i++)
+	{
+		if (small[i] < big[i])
+		{
+			VelocitySpeed(direc[i]);
+			//return direc[i];
+		}
+	}
+	//return MOVEDIREC::DOWN;
+}
 void CPlayerMove::WallCollision()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
-
+	auto scroll = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	///*
 	for (auto& floor : task->GetActor(CGameManager::WallName))
 	{
 		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
-			floor->transform.GetPos() - pos, floor->transform.GetScale()))
+			floor->transform.GetPos() - scroll, floor->transform.GetScale()))
 		{
-			if (player->transform.GetPos().y > floor->transform.GetPos().y - pos.y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (floor->transform.GetPos().y - pos.y > player->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (player->transform.GetPos().x > floor->transform.GetPos().x - pos.x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (floor->transform.GetPos().x - pos.x > player->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
+			CollisionMoveDirec(player->transform.GetPos(), floor->transform.GetPos(), scroll);
 		}
 	}
 	for (auto& wall : task->GetActor(CGameManager::SwitchWall))
 	{
 		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
-			wall->transform.GetPos() - pos, wall->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack,0)->isEnemy1)
+			wall->transform.GetPos() - scroll, wall->transform.GetScale())
+			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy1)
 		{
-			if (player->transform.GetPos().y > wall->transform.GetPos().y - pos.y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall->transform.GetPos().y - pos.y > player->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (player->transform.GetPos().x > wall->transform.GetPos().x - pos.x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall->transform.GetPos().x - pos.x > player->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
+			CollisionMoveDirec(player->transform.GetPos(), wall->transform.GetPos(), scroll);
 		}
 	}
 	for (auto& wall1 : task->GetActor(CGameManager::SwitchWall1))
 	{
 		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
-			wall1->transform.GetPos() - pos, wall1->transform.GetScale())
+			wall1->transform.GetPos() - scroll, wall1->transform.GetScale())
 			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy2)
 		{
-			if (player->transform.GetPos().y > wall1->transform.GetPos().y - pos.y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall1->transform.GetPos().y - pos.y > player->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (player->transform.GetPos().x > wall1->transform.GetPos().x - pos.x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall1->transform.GetPos().x - pos.x > player->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
+			CollisionMoveDirec(player->transform.GetPos(), wall1->transform.GetPos(), scroll);
 		}
 	}
 	for (auto& wall2 : task->GetActor(CGameManager::SwitchWall2))
 	{
 		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
-			wall2->transform.GetPos() - pos, wall2->transform.GetScale())
+			wall2->transform.GetPos() - scroll, wall2->transform.GetScale())
 			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy3)
 		{
-			if (player->transform.GetPos().y > wall2->transform.GetPos().y - pos.y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall2->transform.GetPos().y - pos.y > player->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (player->transform.GetPos().x > wall2->transform.GetPos().x - pos.x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall2->transform.GetPos().x - pos.x > player->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
+			CollisionMoveDirec(player->transform.GetPos(), wall2->transform.GetPos(), scroll);
 		}
 	}
 	for (auto& wall3 : task->GetActor(CGameManager::SwitchWall3))
 	{
 		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),
-			wall3->transform.GetPos() - pos, wall3->transform.GetScale())
+			wall3->transform.GetPos() - scroll, wall3->transform.GetScale())
 			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemy4)
 		{
-			if (player->transform.GetPos().y > wall3->transform.GetPos().y - pos.y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall3->transform.GetPos().y - pos.y > player->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (player->transform.GetPos().x > wall3->transform.GetPos().x - pos.x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall3->transform.GetPos().x - pos.x > player->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
+			CollisionMoveDirec(player->transform.GetPos(), wall3->transform.GetPos(), scroll);
 		}
 	}
 }
@@ -246,7 +189,7 @@ void CPlayerMove::knockBack()
 	{
 		if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isHits[i])
 		{
-			Move(Direc(player, enemy[i], scroll));
+			Move(MoveDirec(player, enemy[i], scroll));
 		}
 	}
 }
