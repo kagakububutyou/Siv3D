@@ -1,5 +1,5 @@
-#include "MapRead.h"
 #include "EnemyManager.h"
+#include "MapRead.h"
 #include "GameManager.h"
 #include "Patroller.h"
 #include "PatrollerAttack.h"
@@ -11,8 +11,8 @@
 #include "BatteryAttack.h"
 #include "MiniMap.h"
 #include "GameApplication.h"
-#include "MiniGoblin.h"
 
+///	名前の設定
 const std::string CEnemyManager::SnakeCopter = "SnakeCopter";
 const std::string CEnemyManager::SnakeCopterAttack = "SnakeCopterAttack";
 const std::string CEnemyManager::TatteredId = "TatteredId";
@@ -29,22 +29,27 @@ map_read(std::make_unique<CMapRead>())
 {
 
 }
+///	座標変換
 int CEnemyManager::TransformMapToScreenX(const int x)
 {
 	return x * CMapRead::Size;
 }
+///	座標変換
 int CEnemyManager::TransformMapToScreenY(const int y)
 {
 	return y * CMapRead::Size;
 }
+///	座標変換
 int CEnemyManager::TransformMiniMapToScreenX(const int x)
 {
 	return (x * CMapRead::Size / CMiniMap::MapScale) + CGameApplication::ScreenWidth / 2 - (CMapRead::Width * CMapRead::Size / CMiniMap::MapScale) / 2;
 }
+///	座標変換
 int CEnemyManager::TransformMiniMapToScreenY(const int y)
 {
 	return (y * CMapRead::Size / CMiniMap::MapScale) + CGameApplication::ScreenHeight / 2 - (CMapRead::Height * CMapRead::Size / CMiniMap::MapScale) / 2 - (CMapRead::Size / CMiniMap::MapScale) * 4;
 }
+///	初めに呼ぶ関数　初期化系
 void CEnemyManager::Start()
 {
 	auto patroller = std::make_shared<CActor>();
@@ -55,7 +60,6 @@ void CEnemyManager::Start()
 	auto tattered_id_atk = std::make_shared<CActor>();
 	auto battery = std::make_shared<CActor>();
 	auto battery_atk = std::make_shared<CActor>();
-	auto minigoblin = std::make_shared<CActor>();
 
 	for (int y = 0; y < CMapRead::Height; y++)
 	{
@@ -81,12 +85,6 @@ void CEnemyManager::Start()
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
 			map_read->ObjectRead(Point(x, y), CEnemyManager::BatteryPosition, battery_atk, std::make_shared<CBatteryAttack>(task,
 				Point(TransformMapToScreenX(x), TransformMapToScreenY(y))));
-
-
-
-			map_read->ObjectRead(Point(x, y), CEnemyManager::PatrollerPosition, minigoblin, std::make_shared<CMiniGoblin>(task,
-				Point(TransformMiniMapToScreenX(x), TransformMiniMapToScreenY(y))));
-			//*/
 		}
 	}
 
@@ -98,10 +96,9 @@ void CEnemyManager::Start()
 	task->Append(TatteredIdAttack, tattered_id_atk);
 	task->Append(Battery, battery);
 	task->Append(BatteryAttack, battery_atk);
-	task->Append(MiniGoblin, minigoblin);
 
 }
-
+///	毎フレーム呼ぶ関数　更新が必要な関数
 void CEnemyManager::Update()
 {
 

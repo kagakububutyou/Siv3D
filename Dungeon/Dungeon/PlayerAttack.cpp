@@ -1,7 +1,6 @@
-#include "MapRead.h"
-#include "Scroll.h"
-#include "GameApplication.h"
 #include "PlayerAttack.h"
+#include "MapRead.h"
+#include "GameApplication.h"
 #include "CharacterController.h"
 #include "Player.h"
 #include "GameManager.h"
@@ -14,19 +13,16 @@
 #include "TatteredIdAttack.h"
 #include "BatteryAttack.h"
 
-#include "Scene.h"
-
 
 CPlayerAttack::CPlayerAttack(std::shared_ptr<CTask> task) :
 CActor(task, Transform(Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2), Point(CMapRead::Size, CMapRead::Size), Point(0, 0)), state),
 isCollision(false),
-//isEnemy1(false),isEnemy2(false),isEnemy3(false),isEnemy4(false),
 font(30),
 ReadColor(false)
 {
 
 }
-///	初期化
+///	初めに呼ぶ関数　初期化系
 void CPlayerAttack::Start()
 {
 	TextureAsset::Register(L"huga", L"engine/data/texture/Character/MainCharacter/efect_damage.png");
@@ -69,7 +65,7 @@ void CPlayerAttack::PushKey()
 		}
 	}
 }
-///	当たっているかどうか
+///	当たっているかどうか　変更予定
 void CPlayerAttack::OnCollision()
 {
 	auto player_pos = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
@@ -109,7 +105,7 @@ void CPlayerAttack::OnCollision()
 		}
 	}
 }
-///	アップデート
+///	毎フレーム呼ぶ関数　更新が必要な関数
 void CPlayerAttack::Update()
 {
 	PushKey();
@@ -117,7 +113,7 @@ void CPlayerAttack::Update()
 	Create();
 	OnCollision();
 }
-///	色設定
+///	色設定　ここでやると調子がいい
 void CPlayerAttack::ReadColors()
 {
 	if (ReadColor) return;
@@ -149,7 +145,7 @@ void CPlayerAttack::DrawHpBar()
 		}
 	}
 }
-///	描画
+///	描画関係の関数　描画したい奴はここへ
 void CPlayerAttack::Draw()
 {
 	ReadColors();

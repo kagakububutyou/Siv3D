@@ -1,21 +1,18 @@
 //PlayerAttack
 #pragma once
 #include "Actor.h"
-#include "PlayerState.h"
-#include "Transform.h"
-#include "Scene.h"
+
 
 class CPlayerMove;
-class CSceneManager;
 
 class CPlayerAttack :public CActor
 {
 public:
 	CPlayerAttack(std::shared_ptr<CTask> task);
 
-	void Start();		///	初期化
-	void Update();		///	更新
-	void Draw();		///	描画
+	void Start();		///	初めに呼ぶ関数　
+	void Update();		///	毎フレーム呼ぶ関数
+	void Draw();		///	描画関係の関数
 	
 
 	bool isCollision;	///<	あたり判定がおこっているかどうか

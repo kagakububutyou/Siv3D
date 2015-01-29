@@ -1,13 +1,8 @@
 #include "PlayerAnimation.h"
-#include "PlayerAttack.h"
 #include "Player.h"
 #include "PlayerAttack.h"
 #include "GameManager.h"
-#include "Scroll.h"
-#include "Collision.h"
 
-#include "Transform.h"
-#include "GameApplication.h"
 #include "CharacterController.h"
 
 CPlayerAnimation::CPlayerAnimation(std::shared_ptr<CTask> task) :
@@ -18,7 +13,7 @@ GraphicChangeCounts(0)
 {
 
 }
-
+///	初めに呼ぶ関数　初期化系
 void CPlayerAnimation::Start()
 {
 	TextureAsset::Register(L"TaChi", L"engine/data/texture/Character/MainCharacter/shujinkoutachi.png");
@@ -30,9 +25,9 @@ void CPlayerAnimation::Start()
 	StopTexturePos[MOVEDIREC::RIGHT] = Point(2, 1);
 	StopTexturePos[MOVEDIREC::UP] = Point(1, 0);
 	StopTexturePos[MOVEDIREC::DOWN] = Point(1, 2);
-
+	///	画像の場所
 	Cut[0] = 0; Cut[1] = 1; Cut[2] = 2; Cut[3] = 1;
-	
+	///	画像の場所の代入
 	for (int i = MOVEDIREC::LEFT; i < MOVEDIREC::UP; i++)
 	{
 		for (int j = 0; j < CutNum; j++)
@@ -48,6 +43,7 @@ void CPlayerAnimation::Start()
 		}
 	}
 }
+///	方向キーが押された時　変更予定
 void CPlayerAnimation::Left()
 {
 	if (CharacterController::LeftMoveKey())
@@ -55,6 +51,7 @@ void CPlayerAnimation::Left()
 		Texture(MOVEDIREC::LEFT);
 	}
 }
+///	方向キーが押された時　変更予定
 void CPlayerAnimation::Right()
 {
 	if (CharacterController::RightMoveKey())
@@ -62,7 +59,7 @@ void CPlayerAnimation::Right()
 		Texture(MOVEDIREC::RIGHT);
 	}
 }
-
+///	方向キーが押された時　変更予定
 void CPlayerAnimation::Up()
 {
 	if (CharacterController::UpMoveKey())
@@ -70,7 +67,7 @@ void CPlayerAnimation::Up()
 		Texture(MOVEDIREC::UP);
 	}
 }
-
+///	方向キーが押された時　変更予定
 void CPlayerAnimation::Down()
 {
 	if (CharacterController::DownMoveKey())
@@ -78,6 +75,7 @@ void CPlayerAnimation::Down()
 		Texture(MOVEDIREC::DOWN);
 	}
 }
+///	なんの画像を描画するか　引数で方向をもらって対応する画像を渡す
 void CPlayerAnimation::Texture(MOVEDIREC Direc)
 {
 	StopTexture = StopTexturePos[Direc];
@@ -92,6 +90,7 @@ void CPlayerAnimation::Texture(MOVEDIREC Direc)
 		}
 	}
 }
+///	毎フレーム呼ぶ関数　更新が必要な関数
 void CPlayerAnimation::Update()
 {
 	Right();
@@ -99,7 +98,7 @@ void CPlayerAnimation::Update()
 	Up();
 	Down();
 }
-
+///	描画関係の関数　描画したい奴はここへ
 void CPlayerAnimation::Draw()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);

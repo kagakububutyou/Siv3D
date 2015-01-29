@@ -1,7 +1,6 @@
 #include "PlayerMove.h"
 #include "CharacterController.h"
 #include "Player.h"
-#include "Floor.h"
 #include "GameManager.h"
 #include "Scroll.h"
 #include "MiniMap.h"
@@ -13,13 +12,15 @@
 #include "SnakeCopter.h"
 #include "TatteredId.h"
 #include "Battery.h"
-#include "MiniGoblin.h"
 #include "EnemyManager.h"
 
-#include "Wall.h"
-#include "MapRead.h"
 #include "PlayerAttack.h"
 
+
+/*
+	今後の予定
+	当たり判定と動きの分離
+*/
 CPlayerMove::CPlayerMove(std::shared_ptr<CTask> task) :
 CPlayerState(task),
 state(State::Live),
@@ -28,6 +29,7 @@ speed(Point(16.0f, 16.0f))
 {
 
 }
+///	初めに呼ぶ関数　初期化系
 void CPlayerMove::Start()
 {
 	MoveDirecData[MOVEDIREC::LEFT] = Point(-speed.x, 0);
@@ -36,10 +38,12 @@ void CPlayerMove::Start()
 	MoveDirecData[MOVEDIREC::DOWN] = Point(0, speed.y);
 
 }
+///	動きの管理　スピードを代入
 void CPlayerMove::VelocitySpeed(const Point speed)
 {
 	velocity = speed;
 }
+///	方向キーが押された時　変更予定
 void CPlayerMove::Left()
 {
 	if (CharacterController::LeftMoveKey())
@@ -85,15 +89,15 @@ void CPlayerMove::Stop()
 		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = false;
 	}
 }
+///	どっちに動くかの関数　引数で方向をもらってスピードに渡す
 void CPlayerMove::Move(MOVEDIREC direc)
 {
-	//VelocitySpeed(MoveDirecData[direc]);
-
-	velocity = MoveDirecData[direc];
+	VelocitySpeed(MoveDirecData[direc]);
 
 	task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
 	task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 }
+///	動く方向を返す　ノックバックでしか使っていない
 CPlayerMove::MOVEDIREC CPlayerMove::MoveDirec(Point player, Point object, Point scroll)
 {
 	int small[] = { player.x, object.x - scroll.x, player.y, object.y - scroll.y };
@@ -109,8 +113,10 @@ CPlayerMove::MOVEDIREC CPlayerMove::MoveDirec(Point player, Point object, Point 
 	}
 	return MOVEDIREC::DOWN;
 }
+///	何かに当たった時の動く方向を決める
 void CPlayerMove::CollisionMoveDirec(Point player, Point object, Point scroll)
 {
+	///	コメントアウトは消さないように　変更中
 	int small[] = { player.x, object.x - scroll.x, player.y, object.y - scroll.y };
 	int big[] = { object.x - scroll.x, player.x, object.y - scroll.y, player.y };
 	//MOVEDIREC direc[] = { MOVEDIREC::RIGHT, MOVEDIREC::LEFT, MOVEDIREC::DOWN, MOVEDIREC::UP};
@@ -125,6 +131,7 @@ void CPlayerMove::CollisionMoveDirec(Point player, Point object, Point scroll)
 	}
 	//return MOVEDIREC::DOWN;
 }
+///	壁との当たり判定
 void CPlayerMove::WallCollision()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
@@ -154,6 +161,7 @@ void CPlayerMove::WallCollision()
 		}
 	}
 }
+///	的に攻撃された時のノックバック
 void CPlayerMove::knockBack()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos();
@@ -172,6 +180,7 @@ void CPlayerMove::knockBack()
 		}
 	}
 }
+///	敵との当たり判定　うまくいかないので処理してない
 void CPlayerMove::EnemyCollision()
 {
 	auto player = task->GetComponent<CPlayer>(CGameManager::PlayerName, 0);
@@ -196,6 +205,7 @@ void CPlayerMove::EnemyCollision()
 		}
 	}
 }
+///	毎フレーム呼ぶ関数　更新が必要な関数
 void CPlayerMove::Update()
 {
 	
@@ -213,7 +223,8 @@ void CPlayerMove::Update()
 	task->GetComponent<CMiniMapPlayer>(CGameManager::MiniPlayer, 0)->transform.Translate(Point(velocity.x / CMiniMap::MapScale, velocity.y / CMiniMap::MapScale));
 	task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.Translate(velocity);
 }
+///	描画関係の関数　描画したい奴はここへ
 void CPlayerMove::Draw()
 {
-
+	///	描画するものは無し
 }

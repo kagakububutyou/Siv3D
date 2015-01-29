@@ -7,21 +7,15 @@
 
 #pragma once
 #include "Actor.h"
-#include <string>
-
-class CPlayerMove;
 
 class CMiniMapPlayer :public CActor
 {
 public:
 	CMiniMapPlayer(std::shared_ptr<CTask> task, Point pos);
 
-	void Start();
-	void Update();
-	void Draw();
-
-	bool OnCollision;
+	void Start();		///	‰‚ß‚ÉŒÄ‚ÔŠÖ”
+	void Update();		///	–ˆƒtƒŒ[ƒ€ŒÄ‚ÔŠÖ”
+	void Draw();		///	•`‰æŠÖŒW‚ÌŠÖ”
 
 private:
-	std::unique_ptr<CPlayerMove> move;	///	ˆÚ“®ˆ—
 };

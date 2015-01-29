@@ -99,7 +99,6 @@
     <ClCompile Include="ClearKeyEvent.cpp" />
     <ClCompile Include="ClearManager.cpp" />
     <ClCompile Include="DownStairs.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Floor.cpp" />
     <ClCompile Include="GameApplication.cpp" />
@@ -110,7 +109,6 @@
     <ClCompile Include="MapRead.cpp" />
     <ClCompile Include="MenuKeyEvent.cpp" />
     <ClCompile Include="MenuManager.cpp" />
-    <ClCompile Include="MiniGoblin.cpp" />
     <ClCompile Include="MiniMap.cpp" />
     <ClCompile Include="MiniMapPlayer.cpp" />
     <ClCompile Include="MiniSwitchWall.cpp" />
@@ -233,7 +231,6 @@
     <ClInclude Include="ClearKeyEvent.h" />
     <ClInclude Include="ClearManager.h" />
     <ClInclude Include="DownStairs.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Floor.h" />
     <ClInclude Include="GameApplication.h" />
@@ -243,7 +240,6 @@
     <ClInclude Include="MapRead.h" />
     <ClInclude Include="MenuKeyEvent.h" />
     <ClInclude Include="MenuManager.h" />
-    <ClInclude Include="MiniGoblin.h" />
     <ClInclude Include="MiniMap.h" />
     <ClInclude Include="MiniMapPlayer.h" />
     <ClInclude Include="MiniSwitchWall.h" />
