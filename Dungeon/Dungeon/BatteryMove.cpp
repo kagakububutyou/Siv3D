@@ -22,62 +22,19 @@ speed(Point(8.0f, 8.0f))
 
 void CBatteryMove::Start()
 {
-
+	MoveDirecData[MOVEDIREC::LEFT] = Point(-speed.x, 0);
+	MoveDirecData[MOVEDIREC::RIGHT] = Point(speed.x, 0);
+	MoveDirecData[MOVEDIREC::UP] = Point(0, -speed.y);
+	MoveDirecData[MOVEDIREC::DOWN] = Point(0, speed.y);
 }
 
 void CBatteryMove::VelocitySpeed(const Point speed)
 {
 	velocity = speed;
 }
-void CBatteryMove::Left()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
-
-	if (player.x < Battery->transform.GetPos().x - Battery->transform.GetScale().x / 2 - pos->transform.GetPos().x - CMapRead::Size)
-	{
-		VelocitySpeed(Point(-speed.x, 0));
-	}
-}
-void CBatteryMove::Right()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
-
-	if (player.x > Battery->transform.GetPos().x + Battery->transform.GetScale().x / 2 - pos->transform.GetPos().x + CMapRead::Size)
-	{
-		VelocitySpeed(Point(speed.x, 0));
-	}
-}
-
-void CBatteryMove::Up()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
-
-	if (player.y < Battery->transform.GetPos().y - Battery->transform.GetScale().y / 2 - pos->transform.GetPos().y - CMapRead::Size)
-	{
-		VelocitySpeed(Point(0, -speed.y));
-	}
-}
-
-void CBatteryMove::Down()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
-
-	if (player.y > Battery->transform.GetPos().y + Battery->transform.GetScale().y / 2 - pos->transform.GetPos().y + CMapRead::Size)
-	{
-		VelocitySpeed(Point(0, speed.y));
-	}
-}
 void CBatteryMove::Stop()
 {
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
+	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
 	auto patroll = task->GetComponent<CBattery>(CEnemyManager::Battery, 0);
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
 	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
@@ -212,36 +169,37 @@ void CBatteryMove::WallCollision()
 		}
 	}
 }
-void CBatteryMove::Move()
+///	•ûŒü‚ð•Ô‚·ŠÖ”
+CBatteryMove::MOVEDIREC CBatteryMove::Direc(Point player, Point scroll, Point enemy_pos, Point enemy_scale)
 {
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
+	int small[] = { player.x, enemy_pos.x + enemy_scale.x / 2 - scroll.x, player.y, enemy_pos.y + enemy_scale.y / 2 - scroll.y };
+	int big[] = { enemy_pos.x - enemy_scale.x / 2 - scroll.x, player.x, enemy_pos.y - enemy_scale.y / 2 - scroll.y, player.y };
+	MOVEDIREC direc[] = { MOVEDIREC::LEFT, MOVEDIREC::RIGHT, MOVEDIREC::UP, MOVEDIREC::DOWN };
 
-	if (player.y - Battery->transform.GetPos().y + Battery->transform.GetScale().y / 2 - pos->transform.GetPos().y + CMapRead::Size
-		> player.x - Battery->transform.GetPos().x + Battery->transform.GetScale().x / 2 - pos->transform.GetPos().x + CMapRead::Size)
+	for (int i = 0; i < MOVEDIREC::DIREC; i++)
 	{
-		if (player.y < Battery->transform.GetPos().y - Battery->transform.GetScale().y / 2 - pos->transform.GetPos().y - CMapRead::Size)
+		if (small[i] < big[i])
 		{
-			VelocitySpeed(Point(0, -speed.y));
-		}
-		if (player.y > Battery->transform.GetPos().y + Battery->transform.GetScale().y / 2 - pos->transform.GetPos().y + CMapRead::Size)
-		{
-			VelocitySpeed(Point(0, speed.y));
+			return direc[i];
 		}
 	}
 
+	return MOVEDIREC::DOWN;
+}
+void CBatteryMove::Move(MOVEDIREC direc)
+{
+	VelocitySpeed(MoveDirecData[direc]);
 }
 void CBatteryMove::Update()
 {
-	Right();
-	Left();
-	Up();
-	Down();
+	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
+	auto scroll = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto battery_pos = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0)->transform.GetPos());
+	auto battery_scale = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0)->transform.GetScale());
+
+	Move(Direc(player, scroll, battery_pos, battery_scale));
 
 	WallCollision();
-
-	//Move();
 
 	Stop();
 

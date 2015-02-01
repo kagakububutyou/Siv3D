@@ -39,10 +39,10 @@ public:
 
 	CBatteryAnimation(std::shared_ptr<CTask> task);
 
-	void Start();
+	void Start();		///	‰‚ß‚ÉŒÄ‚ÔŠÖ”
 
-	void Update();
+	void Update();		///	–ˆƒtƒŒ[ƒ€ŒÄ‚ÔŠÖ”
 
-	void Draw();
+	void Draw();		///	•`‰æŠÖŒW‚ÌŠÖ”
 
 };

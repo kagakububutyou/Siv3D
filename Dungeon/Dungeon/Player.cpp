@@ -11,8 +11,8 @@ move(std::make_unique<CPlayerMove>(task)),
 attack(std::make_unique<CPlayerAttack>(task)),
 anime(std::make_unique<CPlayerAnimation>(task)),
 behavior(false),
-MaxHP(3500),
-HP(3500)
+MaxHP(3000),
+HP(3000)
 {
 
 }

@@ -26,7 +26,7 @@ private:
 
 	std::unique_ptr<CBatteryAnimation> anime;	///	アニメーション
 	std::unique_ptr<CBatteryMove> move;			///	移動
-	std::unique_ptr<CBatteryAttack> attack;		///	攻撃
+
 
 	bool isCollision;
 

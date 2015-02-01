@@ -6,10 +6,7 @@
 #include "PlayerAttack.h"
 #include "GameManager.h"
 #include "Scroll.h"
-#include "Collision.h"
 
-#include "Transform.h"
-#include "GameApplication.h"
 #include "CharacterController.h"
 
 CBatteryAnimation::CBatteryAnimation(std::shared_ptr<CTask> task) :
@@ -20,6 +17,7 @@ GraphicChangeCounts(0)
 {
 
 }
+///	‰‚ß‚ÉŒÄ‚ÔŠÖ”@‰Šú‰»Œn
 void CBatteryAnimation::Start()
 {
 	TextureAsset::Register(L"Battery", L"engine/data/texture/Character/Enemy/Battery.png");
@@ -49,6 +47,7 @@ void CBatteryAnimation::Start()
 		}
 	}
 }
+///	‰æ‘œ‚ÌêŠ‚ð•Ô‚·ŠÖ”
 void CBatteryAnimation::Texture(MOVEDIREC Direc)
 {
 	StopTexture = StopTexturePos[Direc];
@@ -63,6 +62,7 @@ void CBatteryAnimation::Texture(MOVEDIREC Direc)
 		}
 	}
 }
+///	•ûŒü‚ð•Ô‚·ŠÖ”
 CBatteryAnimation::MOVEDIREC CBatteryAnimation::Direc(Point player, Point scroll, Point enemy_pos, Point enemy_scale)
 {
 	int small[]	= { player.x, enemy_pos.x + enemy_scale.x / 2 - scroll.x, player.y, enemy_pos.y + enemy_scale.y / 2 - scroll.y };
@@ -79,6 +79,7 @@ CBatteryAnimation::MOVEDIREC CBatteryAnimation::Direc(Point player, Point scroll
 
 	return MOVEDIREC::DOWN;
 }
+///	–ˆƒtƒŒ[ƒ€ŒÄ‚ÔŠÖ”@XV‚ª•K—v‚ÈŠÖ”
 void CBatteryAnimation::Update()
 {
 	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
@@ -89,6 +90,7 @@ void CBatteryAnimation::Update()
 	Texture(Direc(player, scroll, battery_pos, battery_scale));
 
 }
+///	•`‰æŠÖŒW‚ÌŠÖ”@•`‰æ‚µ‚½‚¢“z‚Í‚±‚±‚Ö
 void CBatteryAnimation::Draw()
 {
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());

@@ -17,17 +17,29 @@ isCollision(false)
 {
 
 }
+void CBatteryAttack::Start()
+{
+	
+}
+void CBatteryAttack::PosUpdate()
+{
+	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
+	auto scroll = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto battery_pos = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0)->transform.GetPos());
+	auto battery_scale = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0)->transform.GetScale());
+
+	AttackPos[MOVEDIREC::LEFT]		= Point(Point(battery_pos.x - battery_scale.x, battery_pos.y) - scroll);
+	AttackPos[MOVEDIREC::RIGHT]	= Point(Point(battery_pos.x + battery_scale.x, battery_pos.y) - scroll);
+	AttackPos[MOVEDIREC::UP]			= Point(Point(battery_pos.x, battery_pos.y - battery_scale.y) - scroll);
+	AttackPos[MOVEDIREC::DOWN]	= Point(Point(battery_pos.x, battery_pos.y + battery_scale.y) - scroll);
+}
 void CBatteryAttack::Create()
 {
 	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
 	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
 
-	if (/*player.x > Battery->transform.GetPos().x - Battery->transform.GetScale().x / 2 - pos.x - CMapRead::Size
-		&&player.x < Battery->transform.GetPos().x + Battery->transform.GetScale().x / 2 - pos.x + CMapRead::Size
-		&&player.y > Battery->transform.GetPos().y - Battery->transform.GetScale().y / 2 - pos.y - CMapRead::Size
-		&&player.y < Battery->transform.GetPos().y + Battery->transform.GetScale().y / 2 - pos.y + CMapRead::Size
-		&&*/task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision
+	if (task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision
 		&&  task->GetComponent<CBattery>(CEnemyManager::Battery, 0)->GetState() != State::None)
 	{
 		isCollision = true;
@@ -36,60 +48,36 @@ void CBatteryAttack::Create()
 	isCollision = false;
 
 }
-void CBatteryAttack::Left()
+///	•ûŒü‚ð•Ô‚·ŠÖ”
+CBatteryAttack::MOVEDIREC CBatteryAttack::Direc(Point player, Point scroll, Point enemy_pos, Point enemy_scale)
 {
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
+	int small[] = { player.x, enemy_pos.x + enemy_scale.x / 2 - scroll.x, player.y, enemy_pos.y + enemy_scale.y / 2 - scroll.y };
+	int big[] = { enemy_pos.x - enemy_scale.x / 2 - scroll.x, player.x, enemy_pos.y - enemy_scale.y / 2 - scroll.y, player.y };
+	MOVEDIREC direc[] = { MOVEDIREC::LEFT, MOVEDIREC::RIGHT, MOVEDIREC::UP, MOVEDIREC::DOWN };
 
-	if (player.x < Battery->transform.GetPos().x - Battery->transform.GetScale().x / 2 - pos->transform.GetPos().x)
+	for (int i = 0; i < MOVEDIREC::DIREC; i++)
 	{
-		transform.TransformPoint(Point(Battery->transform.GetPos().x - Battery->transform.GetScale().x, Battery->transform.GetPos().y) - pos->transform.GetPos());
-		TexturePos = Point(0, 1);
+		if (small[i] < big[i])
+		{
+			return direc[i];
+		}
 	}
+
+	return MOVEDIREC::DOWN;
 }
-void CBatteryAttack::Right()
+void CBatteryAttack::Position(MOVEDIREC direc)
 {
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
-
-	if (player.x > Battery->transform.GetPos().x + Battery->transform.GetScale().x / 2 - pos->transform.GetPos().x)
-	{
-		transform.TransformPoint(Point(Battery->transform.GetPos().x + Battery->transform.GetScale().x, Battery->transform.GetPos().y) - pos->transform.GetPos());
-		TexturePos = Point(2, 1);
-	}
-}
-void CBatteryAttack::Up()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
-
-	if (player.y < Battery->transform.GetPos().y - Battery->transform.GetScale().y / 2 - pos->transform.GetPos().y)
-	{
-		transform.TransformPoint(Point(Battery->transform.GetPos().x, Battery->transform.GetPos().y - Battery->transform.GetScale().y) - pos->transform.GetPos());
-		TexturePos = Point(1, 0);
-	}
-}
-void CBatteryAttack::Down()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
-
-	if (player.y > Battery->transform.GetPos().y + Battery->transform.GetScale().y / 2 - pos->transform.GetPos().y)
-	{
-		transform.TransformPoint(Point(Battery->transform.GetPos().x, Battery->transform.GetPos().y + Battery->transform.GetScale().y) - pos->transform.GetPos());
-		TexturePos = Point(1, 2);
-	}
+	transform.TransformPoint(AttackPos[direc]);
 }
 void CBatteryAttack::Update()
 {
-	Left();
-	Right();
-	Up();
-	Down();
+	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
+	auto scroll = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto battery_pos = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0)->transform.GetPos());
+	auto battery_scale = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0)->transform.GetScale());
+
+	PosUpdate();
+	Position(Direc(player, scroll, battery_pos, battery_scale));
 
 	Create();
 }

@@ -27,8 +27,9 @@ void CBattery::Start()
 {
 	anime->Start();
 	move->Start();
+	task->GetComponent<CBatteryAttack>(CEnemyManager::BatteryAttack, 0)->Start();
 }
-///	“–‚½‚è”»’è‚¾‚Æ‚¨‚à‚¤
+///	“–‚½‚è”»’è‚¾‚Æ‚¨‚à‚¤@‚È‚ñ‚Å‚±‚±‚Å‚â‚Á‚Ä‚ñ‚¾H
 void CBattery::OnCollision()
 {
 	auto atk = task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0);
@@ -56,7 +57,7 @@ void CBattery::Update()
 	{
 		anime->Update();
 		move->Update();
-		attack->Update();
+		task->GetComponent<CBatteryAttack>(CEnemyManager::BatteryAttack, 0)->Update();
 	}
 
 	OnCollision();
@@ -68,6 +69,6 @@ void CBattery::Draw()
 	{
 		move->Draw();
 		anime->Draw();
-		attack->Draw();
+		task->GetComponent<CBatteryAttack>(CEnemyManager::BatteryAttack, 0)->Draw();
 	}
 }
