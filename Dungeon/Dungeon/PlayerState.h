@@ -29,4 +29,14 @@ public:
 protected:
 	std::shared_ptr<CTask> task;
 	State state;
+
+	///	•ûŒü
+	enum  MOVEDIREC{
+		LEFT,
+		RIGHT,
+		UP,
+		DOWN,
+
+		DIREC,
+	};
 };

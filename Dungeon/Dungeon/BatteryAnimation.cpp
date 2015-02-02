@@ -1,6 +1,7 @@
 #include "BatteryAnimation.h"
 #include "BatteryAttack.h"
 #include "Battery.h"
+#include "BatteryMove.h"
 #include "EnemyManager.h"
 #include "Player.h"
 #include "PlayerAttack.h"
@@ -11,6 +12,7 @@
 
 CBatteryAnimation::CBatteryAnimation(std::shared_ptr<CTask> task) :
 CPlayerState(task),
+move(std::make_unique<CBatteryMove>(task)),
 StopTexture(Point(1, 1)),
 MoveTexture(Point(2, 2)),
 GraphicChangeCounts(0)

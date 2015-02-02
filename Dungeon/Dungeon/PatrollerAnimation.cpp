@@ -2,7 +2,7 @@
 #include "PatrollerAttack.h"
 #include "Patroller.h"
 #include "EnemyManager.h"
-
+#include "Player.h"
 #include "PlayerAttack.h"
 #include "GameManager.h"
 #include "Scroll.h"
@@ -14,7 +14,7 @@
 
 CPatrollerAnimation::CPatrollerAnimation(std::shared_ptr<CTask> task) :
 CPlayerState(task),
-TexturePos(Point(1, 1))
+MoveTexture(Point(1, 1))
 {
 
 }
@@ -23,59 +23,42 @@ void CPatrollerAnimation::Start()
 {
 	TextureAsset::Register(L"Patroller", L"engine/data/texture/Character/Enemy/Patroller.png");
 	TextureAsset::Register(L"Fire", L"engine/data/texture/Character/Enemy/Fire.png");
+
+	MoveTexturePos[MOVEDIREC::LEFT] = Point(0, 1);
+	MoveTexturePos[MOVEDIREC::RIGHT] = Point(2, 1);
+	MoveTexturePos[MOVEDIREC::UP] = Point(1, 0);
+	MoveTexturePos[MOVEDIREC::DOWN] = Point(1, 2);
 }
-
-void CPatrollerAnimation::Right()
+///	‰æ‘œ‚ÌêŠ‚ð•Ô‚·ŠÖ”
+void CPatrollerAnimation::Texture(MOVEDIREC Direc)
 {
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-
-	if (player.x > patroller->transform.GetPos().x + patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x)
-	{
-		TexturePos = Point(2,1);
-	}
+	MoveTexture = MoveTexturePos[Direc];
 }
-void CPatrollerAnimation::Left()
+///	•ûŒü‚ð•Ô‚·ŠÖ”
+CPatrollerAnimation::MOVEDIREC CPatrollerAnimation::Direc(Point player, Point scroll, Point enemy_pos, Point enemy_scale)
 {
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
+	int small[] = { player.x, enemy_pos.x + enemy_scale.x / 2 - scroll.x, player.y, enemy_pos.y + enemy_scale.y / 2 - scroll.y };
+	int big[] = { enemy_pos.x - enemy_scale.x / 2 - scroll.x, player.x, enemy_pos.y - enemy_scale.y / 2 - scroll.y, player.y };
+	MOVEDIREC direc[] = { MOVEDIREC::LEFT, MOVEDIREC::RIGHT, MOVEDIREC::UP, MOVEDIREC::DOWN };
 
-	if (player.x < patroller->transform.GetPos().x - patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x)
+	for (int i = 0; i < MOVEDIREC::DIREC; i++)
 	{
-		TexturePos = Point(0, 1);
+		if (small[i] < big[i])
+		{
+			return direc[i];
+		}
 	}
-}
-void CPatrollerAnimation::Up()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
-	if (player.y < patroller->transform.GetPos().y - patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y)
-	{
-		TexturePos = Point(1, 0);
-	}
-}
-	
-void CPatrollerAnimation::Down()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-
-	if (player.y > patroller->transform.GetPos().y + patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y)
-	{
-		TexturePos = Point(1, 2);
-	}
+	return MOVEDIREC::DOWN;
 }
 void CPatrollerAnimation::Update()
 {
-	Right();
-	Left();
-	Up();
-	Down();
+	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
+	auto scroll = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto patroller_pos = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0)->transform.GetPos());
+	auto patroller_scale = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0)->transform.GetScale());
+
+	Texture(Direc(player, scroll, patroller_pos, patroller_scale));
 }
 
 void CPatrollerAnimation::Draw()
@@ -88,15 +71,15 @@ void CPatrollerAnimation::Draw()
 	if (Collision::RectToRect(patroller->transform.GetPos() - pos, patroller->transform.GetScale(), atk->transform.GetPos(), atk->transform.GetScale())
 		&& atk->isCollision)
 	{
-		Rect(patroller->transform.GetPos() - pos, patroller->transform.GetScale())(TextureAsset(L"Patroller")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw(ColorF(Palette::Yellow));
+		Rect(patroller->transform.GetPos() - pos, patroller->transform.GetScale())(TextureAsset(L"Patroller")(TextureSize.x * MoveTexture.x, TextureSize.y * MoveTexture.y, TextureSize.x, TextureSize.y)).draw(ColorF(Palette::Yellow));
 	}
 	else if (CharacterController::AttackKey())
 	{
-		Rect(patro_atk->transform.GetPos(), patro_atk->transform.GetScale())(TextureAsset(L"Fire")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
-		Rect(patroller->transform.GetPos() - pos, patroller->transform.GetScale())(TextureAsset(L"Patroller")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+		Rect(patro_atk->transform.GetPos(), patro_atk->transform.GetScale())(TextureAsset(L"Fire")(TextureSize.x * MoveTexture.x, TextureSize.y * MoveTexture.y, TextureSize.x, TextureSize.y)).draw();
+		Rect(patroller->transform.GetPos() - pos, patroller->transform.GetScale())(TextureAsset(L"Patroller")(TextureSize.x * MoveTexture.x, TextureSize.y * MoveTexture.y, TextureSize.x, TextureSize.y)).draw();
 	}
 	else
 	{
-		Rect(patroller->transform.GetPos() - pos, patroller->transform.GetScale())(TextureAsset(L"Patroller")(TextureSize.x * TexturePos.x, TextureSize.y * TexturePos.y, TextureSize.x, TextureSize.y)).draw();
+		Rect(patroller->transform.GetPos() - pos, patroller->transform.GetScale())(TextureAsset(L"Patroller")(TextureSize.x * MoveTexture.x, TextureSize.y * MoveTexture.y, TextureSize.x, TextureSize.y)).draw();
 	}
 }

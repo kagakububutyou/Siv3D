@@ -10,13 +10,23 @@
 class CPatrollerAnimation :public CPlayerState
 {
 private:
-	void Right();		///	右
-	void Left();			///	左
-	void Up();			//	/	上
-	void Down();		///	下
+	///	方向
+	enum  MOVEDIREC{
+		LEFT,
+		RIGHT,
+		UP,
+		DOWN,
+
+		DIREC,
+	};
+
+	MOVEDIREC Direc(Point player, Point scroll, Point enemy_pos, Point enemy_scale);		///	方向
+
+	void Texture(MOVEDIREC Direc);
 
 	Point TextureSize = Point(256, 256);		///	画像のサイズ
-	Point TexturePos;	///	画像の場所
+	Point MoveTexturePos[MOVEDIREC::DIREC];	///	画像の場所
+	Point MoveTexture;			///	画像
 
 public:
 

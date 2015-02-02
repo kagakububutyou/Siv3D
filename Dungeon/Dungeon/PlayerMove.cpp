@@ -69,14 +69,7 @@ void CPlayerMove::Down()
 {
 	if (CharacterController::DownMoveKey())
 	{
-
 		Move(MOVEDIREC::DOWN);
-		/*
-		VelocitySpeed(Point(0, speed.y));
-
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior = true;
-		task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
-		//*/
 	}
 }
 void CPlayerMove::Stop()
@@ -98,7 +91,7 @@ void CPlayerMove::Move(MOVEDIREC direc)
 	task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->HitAttack();
 }
 ///	動く方向を返す　ノックバックでしか使っていない
-CPlayerMove::MOVEDIREC CPlayerMove::MoveDirec(Point player, Point object, Point scroll)
+CPlayerMove::MOVEDIREC CPlayerMove::MoveDirec(const Point &player, Point object, Point scroll)
 {
 	int small[] = { player.x, object.x - scroll.x, player.y, object.y - scroll.y };
 	int big[] = { object.x - scroll.x, player.x, object.y - scroll.y, player.y };

@@ -39,7 +39,7 @@ private:
 
 		DIREC,
 	};
-	MOVEDIREC MoveDirec(Point player, Point object, Point scroll);
+	MOVEDIREC MoveDirec(const Point &player, Point object, Point scroll);
 	void CollisionMoveDirec(Point player, Point object, Point scroll);
 	void Move(MOVEDIREC direc);
 	void knockBack();		///	ノックバック

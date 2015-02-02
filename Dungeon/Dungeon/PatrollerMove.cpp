@@ -22,233 +22,117 @@ speed(Point(8.0f, 8.0f))
 
 void CPatrollerMove::Start()
 {
-
+	MoveDirecData[MOVEDIREC::LEFT] = Point(-speed.x, 0);
+	MoveDirecData[MOVEDIREC::RIGHT] = Point(speed.x, 0);
+	MoveDirecData[MOVEDIREC::UP] = Point(0, -speed.y);
+	MoveDirecData[MOVEDIREC::DOWN] = Point(0, speed.y);
 }
-
+///	速さを速度に代入
 void CPatrollerMove::VelocitySpeed(const Point speed)
 {
 	velocity = speed;
 }
-void CPatrollerMove::Left()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-
-	if (player.x < patroller->transform.GetPos().x - patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x - CMapRead::Size)
-	{
-		VelocitySpeed(Point(-speed.x, 0));
-	}
-}
-void CPatrollerMove::Right()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-
-	if (player.x > patroller->transform.GetPos().x + patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x + CMapRead::Size)
-	{
-		VelocitySpeed(Point(speed.x, 0));
-	}
-}
-
-void CPatrollerMove::Up()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-
-	if (player.y < patroller->transform.GetPos().y - patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y - CMapRead::Size)
-	{
-		VelocitySpeed(Point(0, -speed.y));
-	}
-}
-
-void CPatrollerMove::Down()
-{
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-
-	if (player.y > patroller->transform.GetPos().y + patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y + CMapRead::Size)
-	{
-		VelocitySpeed(Point(0, speed.y));
-	}
-}
+///	止める
 void CPatrollerMove::Stop()
 {
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
+	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
 	auto patroll = task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0);
 	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
+	auto Patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
 
 	if (!task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->behavior
-	&&!task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision)
+		&&!task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isCollision)
 	{
 		VelocitySpeed(Point(0, 0));
 	}
 }
+///	何かに当たった時の動く方向を決める
+void CPatrollerMove::CollisionMoveDirec(Point player, Point object)
+{
+	///	コメントアウトは消さないように　調整中
+	int small[] = { player.x, object.x, player.y, object.y };
+	int big[] = { object.x, player.x, object.y, player.y };
+	//MOVEDIREC direc[] = { MOVEDIREC::RIGHT, MOVEDIREC::LEFT, MOVEDIREC::DOWN, MOVEDIREC::UP};
+	Point direc[] = { Point(-speed.x, 0), Point(speed.x, 0), Point(0, -speed.y), Point(0, speed.y) };
+	for (int i = 0; i < MOVEDIREC::DIREC; i++)
+	{
+		if (small[i] < big[i])
+		{
+			VelocitySpeed(direc[i]);
+			//return direc[i];
+		}
+	}
+	//return MOVEDIREC::DOWN;
+}
+///	壁との当たり判定
 void CPatrollerMove::WallCollision()
 {
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
-
+	auto Patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
+	std::vector<std::shared_ptr<CActor>> walls[] = { task->GetActor(CGameManager::SwitchWall),
+																		task->GetActor(CGameManager::SwitchWall1),
+																		task->GetActor(CGameManager::SwitchWall2),
+																		task->GetActor(CGameManager::SwitchWall3) };
 	for (auto& floor : task->GetActor(CGameManager::WallName))
 	{
-		if (Collision::RectToRect(patroller->transform.GetPos(), patroller->transform.GetScale(),
+		if (Collision::RectToRect(Patroller->transform.GetPos(), Patroller->transform.GetScale(),
 			floor->transform.GetPos(), floor->transform.GetScale()))
 		{
-			if (patroller->transform.GetPos().y > floor->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (floor->transform.GetPos().y > patroller->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (patroller->transform.GetPos().x > floor->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (floor->transform.GetPos().x > patroller->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
+			CollisionMoveDirec(Patroller->transform.GetPos(), floor->transform.GetPos());
 		}
 	}
-	for (auto& wall : task->GetActor(CGameManager::SwitchWall))
+	for (int i = 0; i < CPlayerAttack::EnemyName::Max; i++)
 	{
-		if (Collision::RectToRect(patroller->transform.GetPos(), patroller->transform.GetScale(),
-			wall->transform.GetPos(), wall->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::Patroller])
+		for (auto& wall : walls[i])
 		{
-			if (patroller->transform.GetPos().y > wall->transform.GetPos().y)
+			if (Collision::RectToRect(Patroller->transform.GetPos(), Patroller->transform.GetScale(),
+				wall->transform.GetPos(), wall->transform.GetScale())
+				&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[i])
 			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall->transform.GetPos().y > patroller->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (patroller->transform.GetPos().x > wall->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall->transform.GetPos().x > patroller->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
-		}
-	}
-	for (auto& wall1 : task->GetActor(CGameManager::SwitchWall1))
-	{
-		if (Collision::RectToRect(patroller->transform.GetPos(), patroller->transform.GetScale(),
-			wall1->transform.GetPos(), wall1->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::SnakeCopter])
-		{
-			if (patroller->transform.GetPos().y > wall1->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall1->transform.GetPos().y> patroller->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (patroller->transform.GetPos().x > wall1->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall1->transform.GetPos().x> patroller->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
-		}
-	}
-	for (auto& wall2 : task->GetActor(CGameManager::SwitchWall2))
-	{
-		if (Collision::RectToRect(patroller->transform.GetPos(), patroller->transform.GetScale(),
-			wall2->transform.GetPos(), wall2->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::TatteredId])
-		{
-			if (patroller->transform.GetPos().y > wall2->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall2->transform.GetPos().y> patroller->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (patroller->transform.GetPos().x > wall2->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall2->transform.GetPos().x  > patroller->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
-		}
-	}
-	for (auto& wall3 : task->GetActor(CGameManager::SwitchWall3))
-	{
-		if (Collision::RectToRect(patroller->transform.GetPos(), patroller->transform.GetScale(),
-			wall3->transform.GetPos(), wall3->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::Battery])
-		{
-			if (patroller->transform.GetPos().y > wall3->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall3->transform.GetPos().y> patroller->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (patroller->transform.GetPos().x > wall3->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall3->transform.GetPos().x > patroller->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
+				CollisionMoveDirec(Patroller->transform.GetPos(), wall->transform.GetPos());
 			}
 		}
 	}
 }
-void CPatrollerMove::Move()
+///	方向を返す関数
+CPatrollerMove::MOVEDIREC CPatrollerMove::Direc(Point player, Point scroll, Point enemy_pos, Point enemy_scale)
 {
-	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
-	auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0));
-	auto patroller = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0));
+	int small[] = { player.x, enemy_pos.x + enemy_scale.x / 2 - scroll.x, player.y, enemy_pos.y + enemy_scale.y / 2 - scroll.y };
+	int big[] = { enemy_pos.x - enemy_scale.x / 2 - scroll.x, player.x, enemy_pos.y - enemy_scale.y / 2 - scroll.y, player.y };
+	MOVEDIREC direc[] = { MOVEDIREC::LEFT, MOVEDIREC::RIGHT, MOVEDIREC::UP, MOVEDIREC::DOWN };
 
-	if (player.y - patroller->transform.GetPos().y + patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y + CMapRead::Size
-		> player.x - patroller->transform.GetPos().x + patroller->transform.GetScale().x / 2 - pos->transform.GetPos().x + CMapRead::Size)
+	for (int i = 0; i < MOVEDIREC::DIREC; i++)
 	{
-		if (player.y < patroller->transform.GetPos().y - patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y - CMapRead::Size)
+		if (small[i] < big[i])
 		{
-			VelocitySpeed(Point(0, -speed.y));
-		}
-		if(player.y > patroller->transform.GetPos().y + patroller->transform.GetScale().y / 2 - pos->transform.GetPos().y + CMapRead::Size)
-		{
-			VelocitySpeed(Point(0, speed.y));
+			return direc[i];
 		}
 	}
 
+	return MOVEDIREC::DOWN;
 }
+///	方向受け取って動かす
+void CPatrollerMove::Move(MOVEDIREC direc)
+{
+	VelocitySpeed(MoveDirecData[direc]);
+}
+///	更新
 void CPatrollerMove::Update()
 {
-	Right();
-	Left();
-	Up();
-	Down();
+	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
+	auto scroll = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
+	auto patroller_pos = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0)->transform.GetPos());
+	auto patroller_scale = (task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0)->transform.GetScale());
+
+	Move(Direc(player, scroll, patroller_pos, patroller_scale));
 
 	WallCollision();
-
-	//Move();
 
 	Stop();
 
 	task->GetComponent<CPatroller>(CEnemyManager::Patroller, 0)->transform.Translate(velocity);
 }
-
+///	更新
 void CPatrollerMove::Draw()
 {
-	
+
 }

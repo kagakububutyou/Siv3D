@@ -7,20 +7,14 @@
 #pragma once
 #include "PlayerState.h"
 
+class CBatteryMove;
+
 class CBatteryAnimation :public CPlayerState
 {
 private:
+
+	std::unique_ptr<CBatteryMove> move;			///	ˆÚ“®
 	
-	///	•ûŒü
-	enum  MOVEDIREC{
-		LEFT,
-		RIGHT,
-		UP,
-		DOWN,
-
-		DIREC,
-	};
-
 	MOVEDIREC Direc(Point player, Point scroll, Point enemy_pos, Point enemy_scale);		///	•ûŒü
 
 	void Texture(MOVEDIREC Direc);

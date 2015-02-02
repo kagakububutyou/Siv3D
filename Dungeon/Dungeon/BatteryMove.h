@@ -17,16 +17,6 @@ private:
 	void Stop();			///	’â~
 	void VelocitySpeed(const Point speed);	///	ˆÚ“®—Êİ’è
 
-	///	•ûŒü
-	enum  MOVEDIREC{
-		LEFT,
-		RIGHT,
-		UP,
-		DOWN,
-
-		DIREC,
-	};
-
 	MOVEDIREC Direc(Point player, Point scroll, Point enemy_pos, Point enemy_scale);		///	•ûŒü
 	void CollisionMoveDirec(Point player, Point object);
 	Point MoveDirecData[MOVEDIREC::DIREC];
@@ -45,5 +35,4 @@ public:
 	void Update();
 
 	void Draw();
-
 };

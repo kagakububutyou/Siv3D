@@ -470,9 +470,6 @@
     <ClInclude Include="PlayerMove.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>Player</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -621,6 +618,9 @@
       <Filter>Enemy\TatteredId</Filter>
     </ClInclude>
     <ClInclude Include="PlayerAnimation.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
       <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>

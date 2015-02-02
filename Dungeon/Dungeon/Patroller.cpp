@@ -22,11 +22,12 @@ isCollision(false),
 HP(4)
 {
 }
-
+///	‰Šú‰»
 void CPatroller::Start()
 {
 	anime->Start();
 	move->Start();
+	task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack, 0)->Start();
 }
 void CPatroller::OnCollision()
 {
@@ -48,26 +49,21 @@ void CPatroller::OnCollision()
 		atk->isEnemys[CPlayerAttack::EnemyName::Patroller] = true;
 	}
 }
+///	XV
 void CPatroller::Update()
 {
 	if (state != State::None)
 	{
 		anime->Update();
 		move->Update();
+		OnCollision();
 		task->GetComponent<CPatrollerAttack>(CEnemyManager::PatrollerAttack,0)->Update();
 	}
 
-	OnCollision();
+	
 }
 void CPatroller::Draw()
 {
-	//auto pos = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
-	//auto pos = (task->GetComponent<CScroll>(CGameManager::Scroll, 0)->transform.GetPos());
-	//auto pos = (transform.GetPos() - scroll + Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2 - CMapRead::Size / 2), transform.GetScale());
-
-	//Rect(transform.GetPos(), transform.GetScale()).draw(ColorF(0, 255, 0));
-
-	//isCollision = true;
 	if (state != State::None)
 	{
 		move->Draw();

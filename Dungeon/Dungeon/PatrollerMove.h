@@ -10,17 +10,17 @@
 class CPatrollerMove :public CPlayerState
 {
 private:
-	void Right();		///	‰E
-	void Left();			///	¶
-	void Up();			//	/	ã
-	void Down();		///	‰º
 
-	void Move();		///	“®‚«
 
-	void WallCollision();
+	void WallCollision();			///	•Ç‚Æ‚Ì“–‚½‚è”»’è
 
 	void Stop();			///	’â~
 	void VelocitySpeed(const Point speed);	///	ˆÚ“®—Êİ’è
+
+	MOVEDIREC Direc(Point player, Point scroll, Point enemy_pos, Point enemy_scale);		///	•ûŒü
+	void CollisionMoveDirec(Point player, Point object);
+	Point MoveDirecData[MOVEDIREC::DIREC];
+	void Move(MOVEDIREC direc);
 
 	Point velocity;	///	ˆÚ“®—Ê
 	Point speed;		///	‘¬“x
@@ -35,5 +35,4 @@ public:
 	void Update();
 
 	void Draw();
-
 };
