@@ -21,6 +21,7 @@ void CBatteryAttack::Start()
 {
 	
 }
+///	UŒ‚êŠ‚ÌXV
 void CBatteryAttack::PosUpdate()
 {
 	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
@@ -33,6 +34,7 @@ void CBatteryAttack::PosUpdate()
 	AttackPos[MOVEDIREC::UP]			= Point(Point(battery_pos.x, battery_pos.y - battery_scale.y) - scroll);
 	AttackPos[MOVEDIREC::DOWN]	= Point(Point(battery_pos.x, battery_pos.y + battery_scale.y) - scroll);
 }
+///	UŒ‚‚µ‚Ä‚é‚©‚Ç‚¤‚©
 void CBatteryAttack::Create()
 {
 	Point  player = Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2);
@@ -65,6 +67,7 @@ CBatteryAttack::MOVEDIREC CBatteryAttack::Direc(Point player, Point scroll, Poin
 
 	return MOVEDIREC::DOWN;
 }
+///	UŒ‚êŠ‚ÌˆÚ“®
 void CBatteryAttack::Position(MOVEDIREC direc)
 {
 	transform.TransformPoint(AttackPos[direc]);

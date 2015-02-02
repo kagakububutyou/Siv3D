@@ -116,7 +116,7 @@ CPlayerMove::MOVEDIREC CPlayerMove::MoveDirec(Point player, Point object, Point 
 ///	何かに当たった時の動く方向を決める
 void CPlayerMove::CollisionMoveDirec(Point player, Point object, Point scroll)
 {
-	///	コメントアウトは消さないように　変更中
+	///	コメントアウトは消さないように　調整中
 	int small[] = { player.x, object.x - scroll.x, player.y, object.y - scroll.y };
 	int big[] = { object.x - scroll.x, player.x, object.y - scroll.y, player.y };
 	//MOVEDIREC direc[] = { MOVEDIREC::RIGHT, MOVEDIREC::LEFT, MOVEDIREC::DOWN, MOVEDIREC::UP};
@@ -140,6 +140,7 @@ void CPlayerMove::WallCollision()
 																		task->GetActor(CGameManager::SwitchWall1),
 																		task->GetActor(CGameManager::SwitchWall2),
 																		task->GetActor(CGameManager::SwitchWall3) };
+
 	for (auto& floor : task->GetActor(CGameManager::WallName))
 	{
 		if (Collision::RectToRect(player->transform.GetPos(), player->transform.GetScale(),

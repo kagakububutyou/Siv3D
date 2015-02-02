@@ -27,11 +27,12 @@ void CBatteryMove::Start()
 	MoveDirecData[MOVEDIREC::UP] = Point(0, -speed.y);
 	MoveDirecData[MOVEDIREC::DOWN] = Point(0, speed.y);
 }
-
+///	速さを速度に代入
 void CBatteryMove::VelocitySpeed(const Point speed)
 {
 	velocity = speed;
 }
+///	止める
 void CBatteryMove::Stop()
 {
 	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
@@ -45,126 +46,49 @@ void CBatteryMove::Stop()
 		VelocitySpeed(Point(0, 0));
 	}
 }
+///	何かに当たった時の動く方向を決める
+void CBatteryMove::CollisionMoveDirec(Point player, Point object)
+{
+	///	コメントアウトは消さないように　調整中
+	int small[] = { player.x, object.x, player.y, object.y};
+	int big[] = { object.x, player.x, object.y, player.y };
+	//MOVEDIREC direc[] = { MOVEDIREC::RIGHT, MOVEDIREC::LEFT, MOVEDIREC::DOWN, MOVEDIREC::UP};
+	Point direc[] = { Point(-speed.x, 0), Point(speed.x, 0), Point(0, -speed.y), Point(0, speed.y) };
+	for (int i = 0; i < MOVEDIREC::DIREC; i++)
+	{
+		if (small[i] < big[i])
+		{
+			VelocitySpeed(direc[i]);
+			//return direc[i];
+		}
+	}
+	//return MOVEDIREC::DOWN;
+}
+///	壁との当たり判定
 void CBatteryMove::WallCollision()
 {
 	auto Battery = (task->GetComponent<CBattery>(CEnemyManager::Battery, 0));
-
+	std::vector<std::shared_ptr<CActor>> walls[] = { task->GetActor(CGameManager::SwitchWall),
+																		task->GetActor(CGameManager::SwitchWall1),
+																		task->GetActor(CGameManager::SwitchWall2),
+																		task->GetActor(CGameManager::SwitchWall3) };
 	for (auto& floor : task->GetActor(CGameManager::WallName))
 	{
 		if (Collision::RectToRect(Battery->transform.GetPos(), Battery->transform.GetScale(),
 			floor->transform.GetPos(), floor->transform.GetScale()))
 		{
-			if (Battery->transform.GetPos().y > floor->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (floor->transform.GetPos().y > Battery->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (Battery->transform.GetPos().x > floor->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (floor->transform.GetPos().x > Battery->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
+			CollisionMoveDirec(Battery->transform.GetPos(), floor->transform.GetPos());
 		}
 	}
-	for (auto& wall : task->GetActor(CGameManager::SwitchWall))
+	for (int i = 0; i < CPlayerAttack::EnemyName::Max; i++)
 	{
-		if (Collision::RectToRect(Battery->transform.GetPos(), Battery->transform.GetScale(),
-			wall->transform.GetPos(), wall->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::Patroller])
+		for (auto& wall : walls[i])
 		{
-			if (Battery->transform.GetPos().y > wall->transform.GetPos().y)
+			if (Collision::RectToRect(Battery->transform.GetPos(), Battery->transform.GetScale(),
+				wall->transform.GetPos(), wall->transform.GetScale())
+				&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[i])
 			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall->transform.GetPos().y > Battery->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (Battery->transform.GetPos().x > wall->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall->transform.GetPos().x > Battery->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
-		}
-	}
-	for (auto& wall1 : task->GetActor(CGameManager::SwitchWall1))
-	{
-		if (Collision::RectToRect(Battery->transform.GetPos(), Battery->transform.GetScale(),
-			wall1->transform.GetPos(), wall1->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::SnakeCopter])
-		{
-			if (Battery->transform.GetPos().y > wall1->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall1->transform.GetPos().y> Battery->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (Battery->transform.GetPos().x > wall1->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall1->transform.GetPos().x> Battery->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
-		}
-	}
-	for (auto& wall2 : task->GetActor(CGameManager::SwitchWall2))
-	{
-		if (Collision::RectToRect(Battery->transform.GetPos(), Battery->transform.GetScale(),
-			wall2->transform.GetPos(), wall2->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::TatteredId])
-		{
-			if (Battery->transform.GetPos().y > wall2->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall2->transform.GetPos().y> Battery->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (Battery->transform.GetPos().x > wall2->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall2->transform.GetPos().x  > Battery->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
-			}
-		}
-	}
-	for (auto& wall3 : task->GetActor(CGameManager::SwitchWall3))
-	{
-		if (Collision::RectToRect(Battery->transform.GetPos(), Battery->transform.GetScale(),
-			wall3->transform.GetPos(), wall3->transform.GetScale())
-			&& !task->GetComponent<CPlayerAttack>(CGameManager::Attack, 0)->isEnemys[CPlayerAttack::EnemyName::Battery])
-		{
-			if (Battery->transform.GetPos().y > wall3->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, speed.y));
-			}
-			if (wall3->transform.GetPos().y> Battery->transform.GetPos().y)
-			{
-				VelocitySpeed(Point(0, -speed.y));
-			}
-			if (Battery->transform.GetPos().x > wall3->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(speed.x, 0));
-			}
-			if (wall3->transform.GetPos().x > Battery->transform.GetPos().x)
-			{
-				VelocitySpeed(Point(-speed.x, 0));
+				CollisionMoveDirec(Battery->transform.GetPos(), wall->transform.GetPos());
 			}
 		}
 	}
@@ -186,10 +110,12 @@ CBatteryMove::MOVEDIREC CBatteryMove::Direc(Point player, Point scroll, Point en
 
 	return MOVEDIREC::DOWN;
 }
+///	方向受け取って動かす
 void CBatteryMove::Move(MOVEDIREC direc)
 {
 	VelocitySpeed(MoveDirecData[direc]);
 }
+///	更新
 void CBatteryMove::Update()
 {
 	auto player = (task->GetComponent<CPlayer>(CGameManager::PlayerName, 0)->transform.GetPos());
@@ -205,7 +131,7 @@ void CBatteryMove::Update()
 
 	task->GetComponent<CBattery>(CEnemyManager::Battery, 0)->transform.Translate(velocity);
 }
-
+///	更新
 void CBatteryMove::Draw()
 {
 

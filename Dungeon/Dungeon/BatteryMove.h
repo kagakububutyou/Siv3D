@@ -28,7 +28,7 @@ private:
 	};
 
 	MOVEDIREC Direc(Point player, Point scroll, Point enemy_pos, Point enemy_scale);		///	•ûŒü
-
+	void CollisionMoveDirec(Point player, Point object);
 	Point MoveDirecData[MOVEDIREC::DIREC];
 	void Move(MOVEDIREC direc);
 
