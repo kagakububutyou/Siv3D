@@ -32,12 +32,12 @@ map_read(std::make_unique<CMapRead>())
 ///	À•W•ÏŠ·
 int CEnemyManager::TransformMapToScreenX(const int x)
 {
-	return x * CMapRead::Size;
+	return x * CMapRead::Size + (CGameApplication::ScreenWidth / 2);
 }
 ///	À•W•ÏŠ·
 int CEnemyManager::TransformMapToScreenY(const int y)
 {
-	return y * CMapRead::Size;
+	return y * CMapRead::Size + (CGameApplication::ScreenHeight / 2 - CMapRead::Size / 2);
 }
 ///	À•W•ÏŠ·
 int CEnemyManager::TransformMiniMapToScreenX(const int x)

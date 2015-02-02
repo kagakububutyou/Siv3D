@@ -5,7 +5,6 @@
 #include "MiniMap.h"
 #include "Scroll.h"
 #include "GameManager.h"
-#include "GameApplication.h"
 #include "EnemyManager.h"
 
 #include "Player.h"
@@ -15,7 +14,7 @@
 
 
 CSnakeCopter::CSnakeCopter(std::shared_ptr<CTask> task, Point pos) :
-CActor(task, Transform(pos + Point(CGameApplication::ScreenWidth / 2, CGameApplication::ScreenHeight / 2 - CMapRead::Size / 2), Point(CMapRead::Size/* / CMiniMap::MapScale*/, CMapRead::Size/* / CMiniMap::MapScale*/), Point(0, 0)), State::Live),
+CActor(task, Transform(pos, Point(CMapRead::Size, CMapRead::Size), Point(0, 0)), State::Live),
 anime(std::make_unique<CSnakeCopterAnimation>(task)),
 move(std::make_unique<CSnakeCopterMove>(task)),
 isCollision(false),
